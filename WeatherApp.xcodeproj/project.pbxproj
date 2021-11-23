@@ -13,6 +13,8 @@
 		73F037A7274BD67800C130FC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73F037A5274BD67800C130FC /* LaunchScreen.storyboard */; };
 		73F037B4274BE11E00C130FC /* UIKit+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F037B3274BE11E00C130FC /* UIKit+Extensions.swift */; };
 		73F037B6274BE33600C130FC /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F037B5274BE33600C130FC /* MainViewController.swift */; };
+		73F037B8274BE52700C130FC /* WeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F037B7274BE52700C130FC /* WeatherModel.swift */; };
+		73F037BA274BE55300C130FC /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F037B9274BE55300C130FC /* City.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		73F037A8274BD67800C130FC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		73F037B3274BE11E00C130FC /* UIKit+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIKit+Extensions.swift"; sourceTree = "<group>"; };
 		73F037B5274BE33600C130FC /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		73F037B7274BE52700C130FC /* WeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherModel.swift; sourceTree = "<group>"; };
+		73F037B9274BE55300C130FC /* City.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +76,8 @@
 		73F037AE274BDF7700C130FC /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				73F037B7274BE52700C130FC /* WeatherModel.swift */,
+				73F037B9274BE55300C130FC /* City.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -179,8 +185,10 @@
 			files = (
 				73F0379B274BD67600C130FC /* AppDelegate.swift in Sources */,
 				73F037B4274BE11E00C130FC /* UIKit+Extensions.swift in Sources */,
+				73F037BA274BE55300C130FC /* City.swift in Sources */,
 				73F0379D274BD67600C130FC /* SceneDelegate.swift in Sources */,
 				73F037B6274BE33600C130FC /* MainViewController.swift in Sources */,
+				73F037B8274BE52700C130FC /* WeatherModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
