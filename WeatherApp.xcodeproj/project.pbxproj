@@ -15,6 +15,7 @@
 		73F037B6274BE33600C130FC /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F037B5274BE33600C130FC /* MainViewController.swift */; };
 		73F037B8274BE52700C130FC /* WeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F037B7274BE52700C130FC /* WeatherModel.swift */; };
 		73F037BA274BE55300C130FC /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F037B9274BE55300C130FC /* City.swift */; };
+		73FD63C4274CF7E400E33A61 /* CurrentDayCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73FD63C3274CF7E400E33A61 /* CurrentDayCellTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		73F037B5274BE33600C130FC /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		73F037B7274BE52700C130FC /* WeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherModel.swift; sourceTree = "<group>"; };
 		73F037B9274BE55300C130FC /* City.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
+		73FD63C3274CF7E400E33A61 /* CurrentDayCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentDayCellTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +87,7 @@
 		73F037AF274BDF8500C130FC /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				73FD63C3274CF7E400E33A61 /* CurrentDayCellTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -187,6 +190,7 @@
 				73F037B4274BE11E00C130FC /* UIKit+Extensions.swift in Sources */,
 				73F037BA274BE55300C130FC /* City.swift in Sources */,
 				73F0379D274BD67600C130FC /* SceneDelegate.swift in Sources */,
+				73FD63C4274CF7E400E33A61 /* CurrentDayCellTableViewCell.swift in Sources */,
 				73F037B6274BE33600C130FC /* MainViewController.swift in Sources */,
 				73F037B8274BE52700C130FC /* WeatherModel.swift in Sources */,
 			);
