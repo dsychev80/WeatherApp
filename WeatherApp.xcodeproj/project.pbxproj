@@ -16,6 +16,12 @@
 		73F037B8274BE52700C130FC /* WeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F037B7274BE52700C130FC /* WeatherModel.swift */; };
 		73F037BA274BE55300C130FC /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F037B9274BE55300C130FC /* City.swift */; };
 		73FD63C4274CF7E400E33A61 /* CurrentDayCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73FD63C3274CF7E400E33A61 /* CurrentDayCellTableViewCell.swift */; };
+		73FD63C6274D32BC00E33A61 /* RecentDayTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73FD63C5274D32BC00E33A61 /* RecentDayTableViewCell.swift */; };
+		73FD63C8274E38DE00E33A61 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73FD63C7274E38DE00E33A61 /* Fonts.swift */; };
+		73FD63CF274E3DD500E33A61 /* Manrope-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 73FD63CB274E3DD500E33A61 /* Manrope-SemiBold.ttf */; };
+		73FD63D0274E3DD500E33A61 /* Manrope-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 73FD63CC274E3DD500E33A61 /* Manrope-Medium.ttf */; };
+		73FD63D1274E3DD500E33A61 /* Manrope-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 73FD63CD274E3DD500E33A61 /* Manrope-Bold.ttf */; };
+		73FD63D2274E3DD500E33A61 /* Manrope-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 73FD63CE274E3DD500E33A61 /* Manrope-ExtraBold.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +36,12 @@
 		73F037B7274BE52700C130FC /* WeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherModel.swift; sourceTree = "<group>"; };
 		73F037B9274BE55300C130FC /* City.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
 		73FD63C3274CF7E400E33A61 /* CurrentDayCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentDayCellTableViewCell.swift; sourceTree = "<group>"; };
+		73FD63C5274D32BC00E33A61 /* RecentDayTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentDayTableViewCell.swift; sourceTree = "<group>"; };
+		73FD63C7274E38DE00E33A61 /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
+		73FD63CB274E3DD500E33A61 /* Manrope-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Manrope-SemiBold.ttf"; path = "../../../../../../Downloads/Manrope/static/Manrope-SemiBold.ttf"; sourceTree = "<group>"; };
+		73FD63CC274E3DD500E33A61 /* Manrope-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Manrope-Medium.ttf"; path = "../../../../../../Downloads/Manrope/static/Manrope-Medium.ttf"; sourceTree = "<group>"; };
+		73FD63CD274E3DD500E33A61 /* Manrope-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Manrope-Bold.ttf"; path = "../../../../../../Downloads/Manrope/static/Manrope-Bold.ttf"; sourceTree = "<group>"; };
+		73FD63CE274E3DD500E33A61 /* Manrope-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Manrope-ExtraBold.ttf"; path = "../../../../../../Downloads/Manrope/static/Manrope-ExtraBold.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +100,7 @@
 			isa = PBXGroup;
 			children = (
 				73FD63C3274CF7E400E33A61 /* CurrentDayCellTableViewCell.swift */,
+				73FD63C5274D32BC00E33A61 /* RecentDayTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -103,7 +116,9 @@
 		73F037B1274BE0E200C130FC /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				73FD63C9274E3C1600E33A61 /* SupportingFiles */,
 				73F037B2274BE0EC00C130FC /* Extensions */,
+				73FD63C7274E38DE00E33A61 /* Fonts.swift */,
 			);
 			path = Library;
 			sourceTree = "<group>";
@@ -114,6 +129,25 @@
 				73F037B3274BE11E00C130FC /* UIKit+Extensions.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		73FD63C9274E3C1600E33A61 /* SupportingFiles */ = {
+			isa = PBXGroup;
+			children = (
+				73FD63CA274E3C3400E33A61 /* Fonts */,
+			);
+			path = SupportingFiles;
+			sourceTree = "<group>";
+		};
+		73FD63CA274E3C3400E33A61 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				73FD63CD274E3DD500E33A61 /* Manrope-Bold.ttf */,
+				73FD63CE274E3DD500E33A61 /* Manrope-ExtraBold.ttf */,
+				73FD63CC274E3DD500E33A61 /* Manrope-Medium.ttf */,
+				73FD63CB274E3DD500E33A61 /* Manrope-SemiBold.ttf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -175,6 +209,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				73F037A7274BD67800C130FC /* LaunchScreen.storyboard in Resources */,
+				73FD63D1274E3DD500E33A61 /* Manrope-Bold.ttf in Resources */,
+				73FD63CF274E3DD500E33A61 /* Manrope-SemiBold.ttf in Resources */,
+				73FD63D2274E3DD500E33A61 /* Manrope-ExtraBold.ttf in Resources */,
+				73FD63D0274E3DD500E33A61 /* Manrope-Medium.ttf in Resources */,
 				73F037A4274BD67800C130FC /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -187,11 +225,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				73F0379B274BD67600C130FC /* AppDelegate.swift in Sources */,
+				73FD63C6274D32BC00E33A61 /* RecentDayTableViewCell.swift in Sources */,
 				73F037B4274BE11E00C130FC /* UIKit+Extensions.swift in Sources */,
 				73F037BA274BE55300C130FC /* City.swift in Sources */,
 				73F0379D274BD67600C130FC /* SceneDelegate.swift in Sources */,
 				73FD63C4274CF7E400E33A61 /* CurrentDayCellTableViewCell.swift in Sources */,
 				73F037B6274BE33600C130FC /* MainViewController.swift in Sources */,
+				73FD63C8274E38DE00E33A61 /* Fonts.swift in Sources */,
 				73F037B8274BE52700C130FC /* WeatherModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

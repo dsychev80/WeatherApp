@@ -27,6 +27,8 @@ final class CurrentDayCellTableViewCell: UITableViewCell {
         static let rightMargin: CGFloat = 10
         static let gapToViews: CGFloat = 10
         static let imageHeight: CGFloat = 150
+        static let screenHeight: CGFloat = UIScreen.main.bounds.height
+        static let screenWidth: CGFloat = UIScreen.main.bounds.width
     }
     
     // MARK: - Properties
@@ -49,8 +51,9 @@ final class CurrentDayCellTableViewCell: UITableViewCell {
     private var dataLabel: UILabel = {
         let label = UILabel()
         label.makeTextWhite()
+        label.font = AppFont.semiBold.size(14)
         // FIXME: Default data, need to delete after creating model.
-        label.text = "Сегодня, 23 ноября, Вт"
+        label.text = "Сегодня, 12 августа, чт"
         return label
     }()
     
@@ -62,7 +65,7 @@ final class CurrentDayCellTableViewCell: UITableViewCell {
     private var degreeLabel: UILabel = {
         let label = UILabel()
         label.makeTextWhite()
-        label.font = UIFont(name: "Cochin-Bold", size: 50)
+        label.font = AppFont.extraBold.size(48)
         // FIXME: Default data, need to delete after creating model.
         label.text = "30°"
         return label
@@ -71,6 +74,7 @@ final class CurrentDayCellTableViewCell: UITableViewCell {
     private var feelsLikeLabel: UILabel = {
         let label = UILabel()
         label.makeTextWhite()
+        label.font = AppFont.semiBold.size(14)
         // FIXME: Default data, need to delete after creating model.
         label.text = "Ясно, ощущается как 32°"
         return label

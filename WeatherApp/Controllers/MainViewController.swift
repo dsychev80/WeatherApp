@@ -60,7 +60,8 @@ extension MainViewController: UITableViewDataSource {
             let currentDayCell = CurrentDayCellTableViewCell(style: .default, reuseIdentifier: CurrentDayCellTableViewCell.name)
             return currentDayCell
         }
-        return UITableViewCell()
+        
+        return RecentDayTableViewCell()
     }
     
     

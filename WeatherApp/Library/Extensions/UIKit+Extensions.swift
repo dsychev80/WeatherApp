@@ -26,6 +26,7 @@ extension UINavigationController {
         label.text = "HowToChangeNameCity"
         self.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationBar.topItem?.titleView = label
+        self.navigationBar.shadowImage = UIImage()
     }
 }
 
@@ -36,7 +37,7 @@ extension UIView {
 }
 
 extension UIView {
-    func makeEqualConstraintsToView(_ view: UIView, withGap gap: CGFloat) {
+    func makeEqualConstraintsToView(_ view: UIView, withGap gap: CGFloat = 0) {
         self.topAnchor.constraint(equalTo: view.topAnchor, constant: gap).isActive = true
         self.leftAnchor.constraint(equalTo: view.leftAnchor, constant: gap).isActive = true
         self.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -gap).isActive = true
