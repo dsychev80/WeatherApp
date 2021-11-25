@@ -13,7 +13,7 @@ class RecentDayTableViewCell: UITableViewCell {
     struct Constants {
         static let contentViewBackgroundColor = UIColor(displayP3Red: 243/255, green: 245/255, blue: 248/255, alpha: 1)
         static let contentViewWidth: CGFloat = 343
-        static let contentViewHeight: CGFloat = 206
+        static let contentViewHeight: CGFloat = 214
         
         static let blackFontColor = UIColor(displayP3Red: 42/255, green: 45/255, blue: 51/255, alpha: 1)
         static let greyFontColor = UIColor(displayP3Red: 143/255, green: 150/255, blue: 161/255, alpha: 1)
@@ -102,11 +102,15 @@ class RecentDayTableViewCell: UITableViewCell {
     private var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
-        let collectionView = UICollectionView(frame: CGRect.init(x: 0, y: 0, width: 343, height: 114.0), collectionViewLayout: layout)
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 0)
+        layout.itemSize = CGSize(width: 73, height: 114)
+        let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
         collectionView.collectionViewLayout = layout
         collectionView.isPagingEnabled = true
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.register(HourWeatherCellCollectionViewCell.self, forCellWithReuseIdentifier: HourWeatherCellCollectionViewCell.name)
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.backgroundColor = .clear
         return collectionView
     }()
 
@@ -140,17 +144,17 @@ class RecentDayTableViewCell: UITableViewCell {
         cellHeaderContainerView.addSubview(weatherImage)
         backView.addSubview(cellHeaderContainerView)
         backView.addSubview(separatorView)
-//        backView.addSubview(collectionView)
+        backView.addSubview(collectionView)
         contentView.addSubview(backView)
     }
     
     private func setupLayoutConstraints() {
         
         let widthConstraint = contentView.widthAnchor.constraint(equalToConstant: Constants.contentViewWidth)
-        widthConstraint.priority = .defaultLow
+        widthConstraint.priority = .defaultHigh
         widthConstraint.isActive = true
         let heightConstraint = contentView.heightAnchor.constraint(equalToConstant: Constants.contentViewHeight)
-        heightConstraint.priority = .defaultLow
+        heightConstraint.priority = .defaultHigh
         heightConstraint.isActive = true
         
         backView.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 16).isActive = true
@@ -179,9 +183,28 @@ class RecentDayTableViewCell: UITableViewCell {
         
         weatherImage.heightAnchor.constraint(equalToConstant: Constants.weatherImageHeight).isActive = true
         
-        separatorView.heightAnchor.constraint(equalToConstant: 2).isActive = true
-        separatorView.topAnchor.constraint(equalTo: cellHeaderContainerView.bottomAnchor, constant: 16).isActive = true
+        separatorView.heightAnchor.constraint(equalToConstant: 1).isActive = true
+        separatorView.topAnchor.constraint(equalTo: cellHeaderContainerView.bottomAnchor, constant: 15.14).isActive = true
+        
         separatorView.leftAnchor.constraint(equalTo: backView.leftAnchor, constant: 20).isActive = true
         separatorView.rightAnchor.constraint(equalTo: backView.rightAnchor, constant: -20).isActive = true
+        
+        collectionView.topAnchor.constraint(equalTo: separatorView.bottomAnchor, constant: 16).isActive = true
+        
+        collectionView.leftAnchor.constraint(equalTo: backView.leftAnchor).isActive = true
+        collectionView.rightAnchor.constraint(equalTo: backView.rightAnchor).isActive = true
+        collectionView.bottomAnchor.constraint(equalTo: backView.bottomAnchor, constant: -16).isActive = true
+    }
+}
+
+extension RecentDayTableViewCell: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 10
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HourWeatherCellCollectionViewCell.name, for: indexPath) as! HourWeatherCellCollectionViewCell
+        
+        return cell
     }
 }
