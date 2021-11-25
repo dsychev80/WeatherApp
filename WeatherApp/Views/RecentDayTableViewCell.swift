@@ -96,15 +96,18 @@ class RecentDayTableViewCell: UITableViewCell {
         let view = UIView()
         view.backgroundColor = Constants.separatorColor
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.widthAnchor.constraint(equalToConstant: 303).isActive = true
-        view.heightAnchor.constraint(equalToConstant: 2).isActive = true
         return view
     }()
     
-    private var scrollView: UIScrollView = {
-        let scrollView = UIScrollView()
-        
-        return scrollView
+    private var collectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        let collectionView = UICollectionView(frame: CGRect.init(x: 0, y: 0, width: 343, height: 114.0), collectionViewLayout: layout)
+        collectionView.collectionViewLayout = layout
+        collectionView.isPagingEnabled = true
+        collectionView.showsHorizontalScrollIndicator = false
+        collectionView.register(HourWeatherCellCollectionViewCell.self, forCellWithReuseIdentifier: HourWeatherCellCollectionViewCell.name)
+        return collectionView
     }()
 
     // MARK: - Life cycle
@@ -113,6 +116,9 @@ class RecentDayTableViewCell: UITableViewCell {
         
         setupViewHierarchy()
         setupLayoutConstraints()
+        
+        collectionView.dataSource = self
+        
         selectionStyle = .none
     }
 
@@ -134,14 +140,19 @@ class RecentDayTableViewCell: UITableViewCell {
         cellHeaderContainerView.addSubview(weatherImage)
         backView.addSubview(cellHeaderContainerView)
         backView.addSubview(separatorView)
-        backView.addSubview(scrollView)
+//        backView.addSubview(collectionView)
         contentView.addSubview(backView)
     }
     
     private func setupLayoutConstraints() {
         
-        backView.widthAnchor.constraint(equalToConstant: Constants.contentViewWidth).isActive = true
-        backView.heightAnchor.constraint(equalToConstant: Constants.contentViewHeight).isActive = true
+        let widthConstraint = contentView.widthAnchor.constraint(equalToConstant: Constants.contentViewWidth)
+        widthConstraint.priority = .defaultLow
+        widthConstraint.isActive = true
+        let heightConstraint = contentView.heightAnchor.constraint(equalToConstant: Constants.contentViewHeight)
+        heightConstraint.priority = .defaultLow
+        heightConstraint.isActive = true
+        
         backView.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 16).isActive = true
         backView.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -16).isActive = true
         backView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 4).isActive = true
@@ -162,13 +173,13 @@ class RecentDayTableViewCell: UITableViewCell {
         weatherImage.widthAnchor.constraint(equalToConstant: Constants.weatherImageWidth).isActive = true
         
         dataLabel.leftAnchor.constraint(equalTo: cellHeaderContainerView.leftAnchor).isActive = true
-        minTempLabel.leftAnchor.constraint(equalTo: dataLabel.rightAnchor, constant: 79).isActive = true
         maxTempLabel.leftAnchor.constraint(equalTo: minTempLabel.rightAnchor, constant: 8).isActive = true
         maxTempLabel.rightAnchor.constraint(equalTo: weatherImage.leftAnchor, constant: -16).isActive = true
         weatherImage.rightAnchor.constraint(equalTo: cellHeaderContainerView.rightAnchor).isActive = true
         
         weatherImage.heightAnchor.constraint(equalToConstant: Constants.weatherImageHeight).isActive = true
         
+        separatorView.heightAnchor.constraint(equalToConstant: 2).isActive = true
         separatorView.topAnchor.constraint(equalTo: cellHeaderContainerView.bottomAnchor, constant: 16).isActive = true
         separatorView.leftAnchor.constraint(equalTo: backView.leftAnchor, constant: 20).isActive = true
         separatorView.rightAnchor.constraint(equalTo: backView.rightAnchor, constant: -20).isActive = true
