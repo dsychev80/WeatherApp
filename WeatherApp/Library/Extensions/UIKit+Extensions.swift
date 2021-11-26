@@ -40,6 +40,20 @@ extension UIView {
         self.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -right).isActive = true
         self.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -bottom).isActive = true
     }
+    
+    func makeConstraintsAtLeftBottomCornerView(_ view: UIView, left: CGFloat, bottom: CGFloat, height: CGFloat, width: CGFloat) {
+        self.leftAnchor.constraint(equalTo: view.leftAnchor, constant: left).isActive = true
+        self.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -bottom).isActive = true
+        self.widthAnchor.constraint(equalToConstant: width).isActive = true
+        self.heightAnchor.constraint(equalToConstant: height).isActive = true
+    }
+    
+    func makeConstraintsAtRightBottomCornerView(_ view: UIView, right: CGFloat, bottom: CGFloat, height: CGFloat, width: CGFloat) {
+        self.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -right).isActive = true
+        self.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -bottom).isActive = true
+        self.widthAnchor.constraint(equalToConstant: width).isActive = true
+        self.heightAnchor.constraint(equalToConstant: height).isActive = true
+    }
 }
 
 extension UILabel {

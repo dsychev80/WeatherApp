@@ -91,6 +91,10 @@ class MainViewController: UIViewController {
     
     @objc private func selectOnMap() {
         print("map")
+        let searchVC = CitySearchViewController()
+        searchVC.modalPresentationStyle = .overCurrentContext
+        searchVC.modalTransitionStyle = .crossDissolve
+        present(searchVC, animated: true, completion: nil)
     }
 }
 
