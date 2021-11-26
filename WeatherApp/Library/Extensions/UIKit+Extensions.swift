@@ -20,16 +20,6 @@ extension Nameable {
 extension UIView: Nameable {}
 extension UIViewController: Nameable {}
 
-extension UINavigationController {
-    func styleNavBar() {
-        let label = UILabel()
-        label.text = "HowToChangeNameCity"
-        self.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        self.navigationBar.topItem?.titleView = label
-        self.navigationBar.shadowImage = UIImage()
-    }
-}
-
 extension UIView {
     func roundCorners() {
         self.layer.cornerRadius = 20

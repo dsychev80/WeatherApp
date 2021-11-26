@@ -8,6 +8,10 @@
 import UIKit
 
 class MainViewController: UIViewController {
+    
+    private struct Constants {
+        static let titleColor = UIColor(displayP3Red: 42/255, green: 45/255, blue: 51/255, alpha: 1)
+    }
 
     private let tableView: UITableView = {
         let table = UITableView()
@@ -17,7 +21,6 @@ class MainViewController: UIViewController {
     }()
     
     required init() {
-        
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -32,6 +35,7 @@ class MainViewController: UIViewController {
         
         setupViewHierarchy()
         setupLayoutConstraints()
+        customizeNavigationBar()
         
         tableView.dataSource = self
     }
@@ -46,7 +50,48 @@ class MainViewController: UIViewController {
         tableView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
         tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
     }
-
+    
+    private func customizeNavigationBar() {
+        guard let navBar = navigationController?.navigationBar else { return }
+        navBar.titleTextAttributes = [
+            .font: AppFont.extraBold.size(18),
+            .foregroundColor: Constants.titleColor
+        ]
+        
+        // FIXME: - Default data, need to delete after creating model.
+        self.title = "Тамбов"
+        
+        let pointButton = UIButton()
+        pointButton.addTarget(self, action: #selector(selectOnMap), for: .touchUpInside)
+        pointButton.setImage(UIImage(named: "Point"), for: .normal)
+        
+        let searchButton = UIButton()
+        searchButton.addTarget(self, action: #selector(search), for: .touchUpInside)
+        searchButton.setImage(UIImage(named: "Search"), for: .normal)
+        
+        let themeButton = UIButton()
+        themeButton.addTarget(self, action: #selector(changeTheme), for: .touchUpInside)
+        themeButton.setImage(UIImage(named: "Theme"), for: .normal)
+        
+        let mapPointItem = UIBarButtonItem(customView: pointButton)
+        let searchItem = UIBarButtonItem(customView: searchButton)
+        let themeItem = UIBarButtonItem(customView: themeButton)
+        
+        navigationItem.leftBarButtonItem = mapPointItem
+        navigationItem.rightBarButtonItems = [searchItem, themeItem]
+    }
+    
+    @objc private func search() {
+        print("search")
+    }
+    
+    @objc private func changeTheme() {
+        print("change theme")
+    }
+    
+    @objc private func selectOnMap() {
+        print("map")
+    }
 }
 
 extension MainViewController: UITableViewDataSource {
@@ -63,6 +108,4 @@ extension MainViewController: UITableViewDataSource {
         
         return RecentDayTableViewCell()
     }
-    
-    
 }
