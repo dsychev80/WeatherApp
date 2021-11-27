@@ -16,6 +16,7 @@ class CitySearchViewController: UIViewController {
         static let cancelButtonColor = UIColor(displayP3Red: 243/255, green: 245/255, blue: 248/255, alpha: 1)
         static let cancelButtonTextColor = UIColor(displayP3Red: 112/255, green: 119/255, blue: 130/255, alpha: 1)
         static let addButtonTextColor = UIColor(displayP3Red: 255/255, green: 255/255, blue: 255/255, alpha: 1)
+        static let textFieldBorderColor = UIColor(displayP3Red: 231/255, green: 236/255, blue: 243/255, alpha: 1)
         
         static let viewHeight: CGFloat = 180
         static let viewWidth: CGFloat = 343
@@ -24,7 +25,7 @@ class CitySearchViewController: UIViewController {
         
         static let textFieldHeight: CGFloat = 40
         
-        static let collectionViewHeight: CGFloat = 24
+        static let collectionViewHeight: CGFloat = 30
         
         static let buttonHeight: CGFloat = 40
         static let buttonWidth: CGFloat = 151
@@ -41,10 +42,18 @@ class CitySearchViewController: UIViewController {
     }()
     
     private var searchTextField: UITextField = {
-        let textField = UITextField()
-        textField.leftViewMode = .always
+        let textField = WeatherCityNameTextField(withInsets: 8, left: 40, bottom: 8, right: 14)
+        
+        textField.layer.borderWidth = 1
+        textField.layer.borderColor = Constants.textFieldBorderColor.cgColor
+        textField.layer.cornerRadius = 12
+        
         textField.leftView = UIImageView(image: UIImage(named: "textSearch"))
-        textField.borderStyle = .roundedRect
+        textField.rightView = UIImageView(image: UIImage(named: "Plus"))
+        
+        textField.rightViewMode = .whileEditing
+        textField.leftViewMode = .always
+        textField.borderStyle = .none
         textField.clearButtonMode = .whileEditing
         textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
@@ -53,10 +62,8 @@ class CitySearchViewController: UIViewController {
     private var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
-        layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        layout.estimatedItemSize = CGSize(width: 1, height: 1)
         let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
-        collectionView.collectionViewLayout = layout
-        collectionView.isPagingEnabled = true
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.register(CityCollectionViewCell.self, forCellWithReuseIdentifier: CityCollectionViewCell.name)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
@@ -87,7 +94,7 @@ class CitySearchViewController: UIViewController {
         return button
     }()
     
-    let citys = ["Тамбов", "Тюмень", "Тула", "Темрюк", "Таганрог"]
+    let citys = ["Тамбов", "Тюмень", "Тула", "Темрюк", "Таганрог", "Тьматараканья", "Тбилисси"]
     
     // MARK: - Lifecycle
     override func viewDidLoad() {

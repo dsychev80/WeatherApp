@@ -12,16 +12,23 @@ class CityCollectionViewCell: UICollectionViewCell {
     private struct Constants {
         static let cityLabelTextColor = UIColor(displayP3Red: 42/255, green: 45/255, blue: 51/255, alpha: 1)
         static let cellBackgroundColor = UIColor(displayP3Red: 243/255, green: 245/255, blue: 248/255, alpha: 1)
+        static let cornerRadius: CGFloat = 8
     }
     
-    private var cityLabel: UILabel = {
-        let label = UILabel()
-        
+    private var backView: UIView = {
+        let view = UIView()
+        view.backgroundColor = Constants.cellBackgroundColor
+        view.clipsToBounds = true
+        view.layer.cornerRadius = Constants.cornerRadius
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    private var cityLabel: WeatherCityNameLabel = {
+        let label = WeatherCityNameLabel(withInsets: 4, left: 8, bottom: 4, right: 8)
         label.font = AppFont.medium.size(14)
         label.textColor = Constants.cityLabelTextColor
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.setContentHuggingPriority(.defaultLow, for: .horizontal)
-
         return label
     }()
     
@@ -29,11 +36,8 @@ class CityCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        contentView.backgroundColor = Constants.cellBackgroundColor
-        contentView.clipsToBounds = true
-        contentView.layer.cornerRadius = 30
-        contentView.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
-
+        clipsToBounds = true
+        autoresizesSubviews = true
         setupViewHierarchy()
         setupLayoutConstraints()
     }
@@ -49,10 +53,13 @@ class CityCollectionViewCell: UICollectionViewCell {
     }
     
     private func setupViewHierarchy() {
-        contentView.addSubview(cityLabel)
+        backView.addSubview(cityLabel)
+        contentView.addSubview(backView)
     }
     
     private func setupLayoutConstraints() {
-        cityLabel.makeEqualConstraintsToView(contentView)
+        backView.makeEqualConstraintsToView(contentView)
+        cityLabel.makeEqualConstraintsToView(backView)
+        
     }
 }
