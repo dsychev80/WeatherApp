@@ -43,14 +43,11 @@ class CitySearchViewController: UIViewController {
     
     private var searchTextField: UITextField = {
         let textField = WeatherCityNameTextField(withInsets: 8, left: 40, bottom: 8, right: 14)
-        
         textField.layer.borderWidth = 1
         textField.layer.borderColor = Constants.textFieldBorderColor.cgColor
         textField.layer.cornerRadius = 12
-        
         textField.leftView = UIImageView(image: UIImage(named: "textSearch"))
         textField.rightView = UIImageView(image: UIImage(named: "Plus"))
-        
         textField.rightViewMode = .whileEditing
         textField.leftViewMode = .always
         textField.borderStyle = .none
@@ -159,6 +156,4 @@ extension CitySearchViewController: UICollectionViewDataSource {
         cell.configureCell(withData: citys[indexPath.row])
         return cell
     }
-    
-    
 }
