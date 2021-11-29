@@ -10,15 +10,19 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-
+    
+    // possible to make it public
+    private var diContainer: DIContainer!
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
 
         guard let windowScene = scene as? UIWindowScene else { return }
-        
         window = UIWindow(windowScene: windowScene)
-        let mainVC = MainViewController()
-        let navVC = UINavigationController(rootViewController: mainVC)
+        
+        diContainer = DIContainer()
+        
+        let navVC = UINavigationController(rootViewController: diContainer.configureMainViewController())
+        
         window?.rootViewController = navVC
         window?.makeKeyAndVisible()
     }

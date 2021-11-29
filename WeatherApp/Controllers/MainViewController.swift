@@ -12,7 +12,11 @@ class MainViewController: UIViewController {
     private struct Constants {
         static let titleColor = UIColor(displayP3Red: 42/255, green: 45/255, blue: 51/255, alpha: 1)
     }
+    
+    // MARK: - Attributes
 
+    private let dataController: DataController
+    
     private let tableView: UITableView = {
         let table = UITableView()
         table.separatorStyle = .none
@@ -20,7 +24,10 @@ class MainViewController: UIViewController {
         return table
     }()
     
-    required init() {
+    // MARK: - Lifecycle
+    required init(with dataController: DataController) {
+        self.dataController = dataController
+        
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -40,6 +47,7 @@ class MainViewController: UIViewController {
         tableView.dataSource = self
     }
     
+    // MARK: - Methods
     private func setupViewHierarchy() {
         view.addSubview(tableView)
     }
@@ -91,7 +99,7 @@ class MainViewController: UIViewController {
     
     @objc private func selectOnMap() {
         print("map")
-        let searchVC = CitySearchViewController()
+        let searchVC = CitySearchViewController(with: dataController as CityDataDelegate)
         searchVC.modalPresentationStyle = .overCurrentContext
         searchVC.modalTransitionStyle = .crossDissolve
         present(searchVC, animated: true, completion: nil)

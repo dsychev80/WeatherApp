@@ -32,6 +32,9 @@ class CitySearchViewController: UIViewController {
     }
 
     // MARK: - Attributes
+    
+    private weak var cityDataDelegate: CityDataDelegate?
+    
     private let backView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -94,6 +97,16 @@ class CitySearchViewController: UIViewController {
     let citys = ["Тамбов", "Тюмень", "Тула", "Темрюк", "Таганрог", "Тьматараканья", "Тбилисси"]
     
     // MARK: - Lifecycle
+    
+    required init(with cityDataDelegate: CityDataDelegate) {
+        self.cityDataDelegate = cityDataDelegate
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -104,6 +117,7 @@ class CitySearchViewController: UIViewController {
         setupLayoutConstraints()
         
         collectionView.dataSource = self
+        searchTextField.delegate = self
     }
     
     // MARK: - Methods
@@ -155,5 +169,13 @@ extension CitySearchViewController: UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CityCollectionViewCell.name, for: indexPath) as? CityCollectionViewCell else { return UICollectionViewCell() }
         cell.configureCell(withData: citys[indexPath.row])
         return cell
+    }
+}
+
+extension CitySearchViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        guard let text = textField.text, let cityDataDelegate = cityDataDelegate else { return false }
+        cityDataDelegate.recievedCityName(text)
+        return true
     }
 }
