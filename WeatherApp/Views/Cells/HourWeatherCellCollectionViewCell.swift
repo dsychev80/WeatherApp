@@ -10,7 +10,7 @@ import UIKit
 protocol HourWeatherData {
     var time: String { get }
     var temp: String { get }
-    var weather: String { get }
+    var imageName: String { get }
 }
 
 class HourWeatherCellCollectionViewCell: UICollectionViewCell {
@@ -81,8 +81,16 @@ class HourWeatherCellCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Methods
     // Use this function to configure cell with data
-    public func configure(with data: HourWeatherData) {
+    public func configure(with data: HoursWeatherModel) {
+        hourLabel.text = data.time
+        // FIXME: implement icon configuration
+        tempLabel.text = data.temp
+    }
+    
+    override func prepareForReuse() {
+        hourLabel.text = ":"
         
+        tempLabel.text = "-"
     }
     
     private func setupViewHierarchy() {

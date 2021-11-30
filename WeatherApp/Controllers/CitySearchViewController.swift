@@ -122,7 +122,9 @@ class CitySearchViewController: UIViewController {
     
     // MARK: - Methods
     @objc private func search() {
-        // search code here
+        guard let cityDataDelegate = cityDataDelegate else { return }
+        guard let text = searchTextField.text, text != "" else { return }
+        cityDataDelegate.recievedCityName(text)
         dismissView()
     }
     
@@ -174,8 +176,7 @@ extension CitySearchViewController: UICollectionViewDataSource {
 
 extension CitySearchViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        guard let text = textField.text, let cityDataDelegate = cityDataDelegate else { return false }
-        cityDataDelegate.recievedCityName(text)
+        search()
         return true
     }
 }

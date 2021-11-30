@@ -20,10 +20,10 @@ class RecentDayTableViewCell: UITableViewCell {
         
         static let separatorColor = UIColor(displayP3Red: 217/255, green: 224/255, blue: 234/255, alpha: 1)
         
-        static let dataLabelWidth: CGFloat = 118
+        static let dataLabelWidth: CGFloat = 115
         static let dataLabelHeight: CGFloat = 28.14
         
-        static let minMaxLabelWidth: CGFloat = 29
+        static let minMaxLabelWidth: CGFloat = 32
         static let minMaxLabelHeight: CGFloat = 28.14
         
         static let weatherImageHeight: CGFloat = 24.12
@@ -113,6 +113,8 @@ class RecentDayTableViewCell: UITableViewCell {
         collectionView.backgroundColor = .clear
         return collectionView
     }()
+    
+    private var forecast: ForecastModel?
 
     // MARK: - Life cycle
     required override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -132,8 +134,14 @@ class RecentDayTableViewCell: UITableViewCell {
     
     // MARK: - Methods
     // Use this function to configure cell with data
-    public func configure(with data: CurrentDayWeatherData) {
+    public func configure(with data: ForecastModel) {
+        forecast = data
+        dataLabel.text = data.date
+        minTempLabel.text = data.minTemp
+        maxTempLabel.text = data.maxTemp
+        // FIXME: implement icon configuration
         
+        collectionView.reloadData()
     }
     
     private func setupViewHierarchy() {
@@ -199,12 +207,17 @@ class RecentDayTableViewCell: UITableViewCell {
 
 extension RecentDayTableViewCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        guard let forecast = forecast?.forecast else { return 0 }
+        return forecast.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HourWeatherCellCollectionViewCell.name, for: indexPath) as! HourWeatherCellCollectionViewCell
-        
+        guard let forecast = forecast else { return cell }
+        cell.configure(with: forecast.forecast[indexPath.row])
+        DispatchQueue.main.async {
+            collectionView.reloadData()
+        }
         return cell
     }
 }

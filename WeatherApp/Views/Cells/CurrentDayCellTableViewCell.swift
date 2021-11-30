@@ -9,12 +9,6 @@ import UIKit
 
 protocol CurrentDayWeatherData {
     var data: WeatherModel { get }
-    var colorStyle: ColorScheme { get }
-}
-
-enum ColorScheme {
-    case dark
-    case light
 }
 
 final class CurrentDayCellTableViewCell: UITableViewCell {
@@ -97,7 +91,9 @@ final class CurrentDayCellTableViewCell: UITableViewCell {
     // MARK: - Methods
     // Use this function to configure cell with data
     public func configure(with data: CurrentDayWeatherData) {
-        
+        dataLabel.text = data.data.convertedTimeToCurrentDay()
+        degreeLabel.text = data.data.convertedTempreture()
+        feelsLikeLabel.text = data.data.convertedFeelsLikeTemp()
     }
     
     private func setupViewHierarchy() {

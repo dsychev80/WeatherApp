@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol MainDataRecivier: AnyObject {
+    func dataReciviedForCity(_ name: String)
+}
+
 class MainViewController: UIViewController {
     
     private struct Constants {
@@ -44,7 +48,8 @@ class MainViewController: UIViewController {
         setupLayoutConstraints()
         customizeNavigationBar()
         
-        tableView.dataSource = self
+        dataController.dataRecivier = self
+        tableView.dataSource = dataController
     }
     
     // MARK: - Methods
@@ -59,15 +64,13 @@ class MainViewController: UIViewController {
         tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
     }
     
+    // FIXME: - need to move this code
     private func customizeNavigationBar() {
         guard let navBar = navigationController?.navigationBar else { return }
         navBar.titleTextAttributes = [
             .font: AppFont.extraBold.size(18),
             .foregroundColor: Constants.titleColor
         ]
-        
-        // FIXME: - Default data, need to delete after creating model.
-        self.title = "Тамбов"
         
         let pointButton = UIButton()
         pointButton.addTarget(self, action: #selector(selectOnMap), for: .touchUpInside)
@@ -106,18 +109,9 @@ class MainViewController: UIViewController {
     }
 }
 
-extension MainViewController: UITableViewDataSource {
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.row == 0 {
-            let currentDayCell = CurrentDayCellTableViewCell(style: .default, reuseIdentifier: CurrentDayCellTableViewCell.name)
-            return currentDayCell
-        }
-        
-        return RecentDayTableViewCell()
+extension MainViewController: MainDataRecivier {
+    func dataReciviedForCity(_ name: String) {
+        self.title = name
+        self.tableView.reloadData()
     }
 }

@@ -22,13 +22,13 @@ extension ApiResource {
 }
 
 /*
-    api.openweathermap.org/data/2.5/weather?lat=52.7211&lon=41.4518&appid=08e77799ad87c75f8ae1192abab79639&lang=ru
+    api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={API key}
  */
 
 struct WeatherResource: ApiResource {
     
     private enum Constants: String {
-        case url = "https://api.openweathermap.org/data/2.5/weather?"
+        case url = "https://api.openweathermap.org/data/2.5/forecast?"
         case apiKey = "08e77799ad87c75f8ae1192abab79639"
         // possible to use another enum with different languages
         case lang = "ru"
@@ -44,7 +44,6 @@ struct WeatherResource: ApiResource {
                                          "units": Constants.units.rawValue]
     
     mutating func addLocation(_ location: LocationData) {
-        print("\(location.stringLatt), \(location.stringLong)")
         parameters.updateValue(location.stringLatt, forKey: "lat")
         parameters.updateValue(location.stringLong, forKey: "lon")
     }
