@@ -9,7 +9,7 @@ import Foundation
 
 
 protocol ApiResource {
-    associatedtype ModelType: Decodable
+    
     var apiURL: String { get }
     var parameters: [String: String] { get set }
 }
@@ -34,8 +34,6 @@ struct WeatherResource: ApiResource {
         case lang = "ru"
         case units = "metric"
     }
-    
-    typealias ModelType = Weather
     
     internal var apiURL = Constants.url.rawValue
     

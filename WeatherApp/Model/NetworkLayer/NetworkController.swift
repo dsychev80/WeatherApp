@@ -17,7 +17,7 @@ final class NetworkController {
     
     init() { }
     
-    public func loadWeatherForLocation(_ location: LocationData, completion: @escaping (Result<WeatherData, WeatherError>) -> Void) {
+    public func loadWeatherForLocation(_ location: LocationData, completion: @escaping (Result<JSONWeatherData, WeatherError>) -> Void) {
         
         var api = WeatherResource()
         api.addLocation(location)
@@ -31,7 +31,7 @@ final class NetworkController {
             
             do {
                 let jsonDecoder = JSONDecoder()
-                let jsonData = try jsonDecoder.decode(WeatherData.self, from: data)
+                let jsonData = try jsonDecoder.decode(JSONWeatherData.self, from: data)
                 completion(.success(jsonData))
             } catch {
                 completion(.failure(WeatherError.decodingError(error.localizedDescription)))

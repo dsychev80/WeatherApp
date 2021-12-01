@@ -27,7 +27,7 @@ final class DataController: NSObject {
     private let locationManager: LocationManager
     public weak var dataRecivier: MainDataRecivier?
     
-    private var weather: WeatherData?
+    private var weather: JSONWeatherData?
     private var forecast: [ForecastData]?
     
     // MARK: - Lifecycle

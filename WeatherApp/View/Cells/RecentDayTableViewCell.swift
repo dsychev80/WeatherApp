@@ -137,7 +137,7 @@ class RecentDayTableViewCell: UITableViewCell {
     public func configure(with data: ForecastData) {
         forecast = data
         dataLabel.text = data.date
-        minTempLabel.text = data.minTemp
+        minTempLabel.text = data.averageTemp()
         maxTempLabel.text = data.maxTemp
         // FIXME: implement icon configuration
         

@@ -19,8 +19,12 @@ struct ForecastData {
 
 extension ForecastData {
     func averageTemp() -> String {
-        let tempData: [Int] = self.forecast.map{ Int($0.temp) ?? 0 }
+        let tempData: [Int] = self.forecast.map{ Int($0.temp.dropLast()) ?? 0 }
         let tempSum = tempData.reduce(0){ $0 + $1 }
         return "\(Int(tempSum / tempData.count))°"
+    }
+    
+    func minAverageTemp() -> String {
+        return ""
     }
 }
