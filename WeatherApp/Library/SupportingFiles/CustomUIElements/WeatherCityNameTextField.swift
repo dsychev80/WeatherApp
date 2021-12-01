@@ -8,20 +8,49 @@
 import UIKit
 
 class WeatherCityNameTextField: UITextField {
-
+    // MARK: - Constants
     private struct Constants {
+        static let textFieldBorderColor = UIColor(displayP3Red: 231/255, green: 236/255, blue: 243/255, alpha: 1)
+        
+        // insets
+        static let topInset: CGFloat = 8
+        static let leftInset: CGFloat = 40
+        static let bottomInset: CGFloat = 8
+        static let rightInset: CGFloat = 14
+        
         static let imageGap: CGFloat = 8
+        static let cornerRadius: CGFloat = 12
+        static let borderWidth: CGFloat = 1
     }
-    
+    // MARK: - Properties
     let insets: UIEdgeInsets
     
-    required init(withInsets top: CGFloat, left: CGFloat, bottom: CGFloat, right: CGFloat) {
-        self.insets = UIEdgeInsets(top: top, left: left, bottom: bottom, right: right)
+    // MARK: - Lifecycle
+    required init() {
+        self.insets = UIEdgeInsets(top: Constants.topInset,
+                                   left: Constants.leftInset,
+                                   bottom: Constants.bottomInset,
+                                   right: Constants.rightInset)
         super.init(frame: CGRect.zero)
+        configurate()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: - Methods
+    private func configurate() {
+        self.layer.borderWidth = Constants.borderWidth
+        self.layer.borderColor = Constants.textFieldBorderColor.cgColor
+        self.layer.cornerRadius = Constants.cornerRadius
+        self.leftView = UIImageView(image: UIImage(named: "textSearch"))
+        self.rightView = UIImageView(image: UIImage(named: "Plus"))
+        self.rightViewMode = .whileEditing
+        self.leftViewMode = .always
+        self.borderStyle = .none
+        self.clearButtonMode = .whileEditing
+        self.translatesAutoresizingMaskIntoConstraints = false
     }
     
     override func textRect(forBounds bounds: CGRect) -> CGRect {

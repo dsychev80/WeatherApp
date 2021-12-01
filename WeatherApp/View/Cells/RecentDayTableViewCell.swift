@@ -114,7 +114,7 @@ class RecentDayTableViewCell: UITableViewCell {
         return collectionView
     }()
     
-    private var forecast: ForecastModel?
+    private var forecast: ForecastData?
 
     // MARK: - Life cycle
     required override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -134,7 +134,7 @@ class RecentDayTableViewCell: UITableViewCell {
     
     // MARK: - Methods
     // Use this function to configure cell with data
-    public func configure(with data: ForecastModel) {
+    public func configure(with data: ForecastData) {
         forecast = data
         dataLabel.text = data.date
         minTempLabel.text = data.minTemp

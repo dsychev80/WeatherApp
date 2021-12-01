@@ -35,7 +35,7 @@ struct WeatherResource: ApiResource {
         case units = "metric"
     }
     
-    typealias ModelType = WeatherModel
+    typealias ModelType = Weather
     
     internal var apiURL = Constants.url.rawValue
     

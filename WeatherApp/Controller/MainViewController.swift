@@ -18,17 +18,20 @@ class MainViewController: UIViewController {
     }
     
     // MARK: - Attributes
-
+    
     private let dataController: DataController
     
     private let tableView: UITableView = {
         let table = UITableView()
         table.separatorStyle = .none
         table.translatesAutoresizingMaskIntoConstraints = false
+        table.register(CurrentDayCellTableViewCell.self, forCellReuseIdentifier: CurrentDayCellTableViewCell.name)
+        table.register(RecentDayTableViewCell.self, forCellReuseIdentifier: RecentDayTableViewCell.name)
         return table
     }()
     
     // MARK: - Lifecycle
+    
     required init(with dataController: DataController) {
         self.dataController = dataController
         
@@ -53,6 +56,7 @@ class MainViewController: UIViewController {
     }
     
     // MARK: - Methods
+    
     private func setupViewHierarchy() {
         view.addSubview(tableView)
     }
@@ -101,7 +105,6 @@ class MainViewController: UIViewController {
     }
     
     @objc private func selectOnMap() {
-        print("map")
         let searchVC = CitySearchViewController(with: dataController as CityDataDelegate)
         searchVC.modalPresentationStyle = .overCurrentContext
         searchVC.modalTransitionStyle = .crossDissolve

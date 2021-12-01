@@ -13,6 +13,14 @@ protocol CityDataDelegate: AnyObject {
 }
 
 final class DataController: NSObject {
+    // MARK: - Constants
+    private struct Constants {
+        static let screenHeight: CGFloat = UIScreen.main.bounds.height
+        static let currentDayCellHeight: CGFloat = Constants.screenHeight * 0.42
+        static let recentDayCellHeight: CGFloat = Constants.screenHeight * 0.39
+        static let screenWidth: CGFloat = UIScreen.main.bounds.width
+    }
+    
     
     // MARK: - Properties
     private let networkController: NetworkController
@@ -20,7 +28,7 @@ final class DataController: NSObject {
     public weak var dataRecivier: MainDataRecivier?
     
     private var weather: WeatherData?
-    private var forecast: [ForecastModel]?
+    private var forecast: [ForecastData]?
     
     // MARK: - Lifecycle
     init(with networkController: NetworkController, locationManager: LocationManager) {
@@ -41,9 +49,6 @@ final class DataController: NSObject {
                     // FIXME: Handle answer
                     self?.weather = weather
                     self?.forecast = weather.convertToForecastByDay()
-//                    for weather in forecast. {
-//
-//                    }
                     self?.dataRecivier?.dataReciviedForCity(weather.city.name)
                 }
             }

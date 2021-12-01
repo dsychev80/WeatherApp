@@ -16,7 +16,7 @@ struct WeatherData: Decodable {
 
 extension WeatherData {
 
-    func convertToForecastByDay() -> [ForecastModel] {
+    func convertToForecastByDay() -> [ForecastData] {
         
         let formatter = DateFormatter()
         // "dt_txt":"2021-11-29 15:00:00"
@@ -24,8 +24,8 @@ extension WeatherData {
         let dayFormatter = DateFormatter()
         dayFormatter.dateFormat = "dd"
         
-        var forcast: [ForecastModel] = []
-        var weatherBuffer = ForecastModel()
+        var forcast: [ForecastData] = []
+        var weatherBuffer = ForecastData()
         
         var currentDay: Int = 0
         self.list.forEach { weather in
@@ -42,7 +42,6 @@ extension WeatherData {
                     weatherBuffer.forecast.append(weather.convertToHoursWeatherModel())
                     forcast.append(weatherBuffer)
                     weatherBuffer = weather.convertToForecastModel()
-                    print(weather.dtText)
                     currentDay = day
                 }
             }
@@ -63,6 +62,9 @@ struct WeatherModel: Decodable {
         case weather, main, wind, dt
         case dtText = "dt_txt"
     }
+}
+
+extension WeatherModel {
     
     public func convertedTime() -> String {
         let todayDate = Date(timeIntervalSince1970: self.dt)
@@ -82,14 +84,12 @@ struct WeatherModel: Decodable {
         return "Сегодня, \(convertedTime())"
     }
     
-    public func convertedHour() -> String {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        guard let date = formatter.date(from: self.dtText) else { return "-"}
-        let calendar = Calendar(identifier: .gregorian)
-        let hour = calendar.component(.hour, from: date)
-        let minute = calendar.component(.minute, from: date)
-        return "\(hour):\(minute)"
+    public func convertedHour() -> String {        
+        let components = self.dtText.components(separatedBy: " ")
+        let time = components[1]
+        let hoursAndMins = time.components(separatedBy: ":")
+        
+        return "\(hoursAndMins[0]):\(hoursAndMins[1])"
     }
     
     public func convertedTempreture() -> String {
@@ -118,8 +118,8 @@ extension WeatherModel: CurrentDayWeatherData {
         return model
     }
 
-    func convertToForecastModel() -> ForecastModel {
-        var forcast = ForecastModel()
+    func convertToForecastModel() -> ForecastData {
+        var forcast = ForecastData()
         forcast.date = self.convertedTime()
         forcast.minTemp = self.main.tempMin.toDegreesInString()
         forcast.maxTemp = self.main.tempMax.toDegreesInString()
@@ -172,15 +172,7 @@ struct Coordinates: Decodable {
     let lon: Float
 }
 
-// MARK: - ForecastModel
-// Model for RecenDayTableViewCell's
-struct ForecastModel {
-    var date: String = ""
-    var minTemp: String = ""
-    var maxTemp: String = ""
-    var imageName: String = ""
-    var forecast: [HoursWeatherModel] = []
-}
+
 
 struct HoursWeatherModel: HourWeatherData {
     var time: String = ""

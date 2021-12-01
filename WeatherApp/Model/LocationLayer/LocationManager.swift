@@ -6,7 +6,6 @@
 //
 
 import CoreLocation
-import UIKit
 
 protocol LocationManager {
     func getCityCoordinatesByName(_ name: String, completion: @escaping (Result<LocationData, WeatherError>) -> Void)

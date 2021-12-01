@@ -10,6 +10,7 @@ import UIKit
 class CitySearchViewController: UIViewController {
     
     // MARK: - Constants
+    
     private struct Constants {
         static let viewBackgroundColor = UIColor(displayP3Red: 28/255, green: 28/255, blue: 30/255, alpha: 0.9)
         static let addButtonColor = UIColor(displayP3Red: 53/255, green: 153/255, blue: 255/255, alpha: 1)
@@ -34,6 +35,7 @@ class CitySearchViewController: UIViewController {
     // MARK: - Attributes
     
     private weak var cityDataDelegate: CityDataDelegate?
+    private var searchTextField = WeatherCityNameTextField()
     
     private let backView: UIView = {
         let view = UIView()
@@ -44,20 +46,20 @@ class CitySearchViewController: UIViewController {
         return view
     }()
     
-    private var searchTextField: UITextField = {
-        let textField = WeatherCityNameTextField(withInsets: 8, left: 40, bottom: 8, right: 14)
-        textField.layer.borderWidth = 1
-        textField.layer.borderColor = Constants.textFieldBorderColor.cgColor
-        textField.layer.cornerRadius = 12
-        textField.leftView = UIImageView(image: UIImage(named: "textSearch"))
-        textField.rightView = UIImageView(image: UIImage(named: "Plus"))
-        textField.rightViewMode = .whileEditing
-        textField.leftViewMode = .always
-        textField.borderStyle = .none
-        textField.clearButtonMode = .whileEditing
-        textField.translatesAutoresizingMaskIntoConstraints = false
-        return textField
-    }()
+//    private var searchTextField: UITextField = {
+//        let textField = WeatherCityNameTextField(withInsets: 8, left: 40, bottom: 8, right: 14)
+//        textField.layer.borderWidth = 1
+//        textField.layer.borderColor = Constants.textFieldBorderColor.cgColor
+//        textField.layer.cornerRadius = 12
+//        textField.leftView = UIImageView(image: UIImage(named: "textSearch"))
+//        textField.rightView = UIImageView(image: UIImage(named: "Plus"))
+//        textField.rightViewMode = .whileEditing
+//        textField.leftViewMode = .always
+//        textField.borderStyle = .none
+//        textField.clearButtonMode = .whileEditing
+//        textField.translatesAutoresizingMaskIntoConstraints = false
+//        return textField
+//    }()
     
     private var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -162,6 +164,7 @@ class CitySearchViewController: UIViewController {
     }
 }
 
+    // MARK: - UICollectionViewDataSource
 extension CitySearchViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return citys.count
