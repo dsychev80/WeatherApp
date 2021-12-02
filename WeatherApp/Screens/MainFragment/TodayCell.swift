@@ -27,37 +27,16 @@ final class TodayCell: UITableViewCell {
         return stack
     }()
     
-    private var dataLabel: UILabel = {
-        let label = UILabel()
-        label.makeTextWhite()
-        label.font = AppFont.semiBold.size(14)
-        // FIXME: Default data, need to delete after creating model.
-        label.text = "Сегодня, 12 августа, чт"
-        return label
-    }()
-    
-    private var weatherImage: UIImageView = {
-        let imageView = UIImageView(image: UIImage(named: "Sun"))
-        return imageView
-    }()
-    
-    private var degreeLabel: UILabel = {
-        let label = UILabel()
-        label.makeTextWhite()
-        label.font = AppFont.extraBold.size(48)
-        // FIXME: Default data, need to delete after creating model.
-        label.text = "30°"
-        return label
-    }()
-    
-    private var feelsLikeLabel: UILabel = {
-        let label = UILabel()
-        label.makeTextWhite()
-        label.font = AppFont.semiBold.size(14)
-        // FIXME: Default data, need to delete after creating model.
-        label.text = "Ясно, ощущается как 32°"
-        return label
-    }()
+    // AppFont.semiBold.size(14)
+    private var dataLabel = TodayCellLabel(withFont: AppFont.semiBold.size(14),
+                                           andText: "Сегодя заебись")
+    private var weatherImage = UIImageView(image: UIImage(named: "Sun"))
+    // AppFont.extraBold.size(48)
+    private var degreeLabel = TodayCellLabel(withFont: AppFont.extraBold.size(48),
+                                             andText: "25°")
+    // AppFont.semiBold.size(14)
+    private var feelsLikeLabel = TodayCellLabel(withFont: AppFont.semiBold.size(14),
+                                                andText: "Все ясно, по ощущениям весна!")
     
     // MARK: - Life cycle
     required override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
