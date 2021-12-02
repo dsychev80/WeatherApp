@@ -11,13 +11,7 @@ import UIKit
 final class TodayCell: UITableViewCell {
     
     // MARK: - Properties
-    private var backView: UIView = {
-        let view = UIView()
-        view.roundCorners()
-        view.backgroundColor = UIColor(displayP3Red: 110/255, green: 170/255, blue: 249/255, alpha: 1)
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
+    private var backView = TodayCellBackgroundView()
     
     private var verticalStackView: UIStackView = {
         let stack = UIStackView()
@@ -27,14 +21,11 @@ final class TodayCell: UITableViewCell {
         return stack
     }()
     
-    // AppFont.semiBold.size(14)
     private var dataLabel = TodayCellLabel(withFont: AppFont.semiBold.size(14),
                                            andText: "Сегодя заебись")
     private var weatherImage = UIImageView(image: UIImage(named: "Sun"))
-    // AppFont.extraBold.size(48)
     private var degreeLabel = TodayCellLabel(withFont: AppFont.extraBold.size(48),
                                              andText: "25°")
-    // AppFont.semiBold.size(14)
     private var feelsLikeLabel = TodayCellLabel(withFont: AppFont.semiBold.size(14),
                                                 andText: "Все ясно, по ощущениям весна!")
     
