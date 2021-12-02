@@ -90,7 +90,6 @@ protocol MainDataRecivier: AnyObject {
     func dataReciviedForCity(_ name: String)
 }
 
-
 protocol LocationManager {
     func getCityCoordinatesByName(_ name: String, completion: @escaping (Result<LocationData, WeatherError>) -> Void)
 }

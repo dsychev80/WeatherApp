@@ -12,21 +12,15 @@ class MainViewController: UIViewController {
     // MARK: - Attributes
     private let dataController: MainPresenter
     
-    private let tableView: UITableView = {
-        let table = UITableView()
-        table.separatorStyle = .none
-        table.translatesAutoresizingMaskIntoConstraints = false
-        table.register(TodayCell.self, forCellReuseIdentifier: TodayCell.name)
-        table.register(RecentDayCell.self, forCellReuseIdentifier: RecentDayCell.name)
-        return table
-    }()
+    private let tableView: MainTableView!
     
     // MARK: - Lifecycle
     
     required init(with dataController: MainPresenter) {
         self.dataController = dataController
-        
+        self.tableView = MainTableView(with: dataController)
         super.init(nibName: nil, bundle: nil)
+            
     }
     
     required init?(coder: NSCoder) {
@@ -43,7 +37,6 @@ class MainViewController: UIViewController {
         customizeNavigationBar()
         
         dataController.dataRecivier = self
-        tableView.dataSource = dataController
     }
     
     // MARK: - Methods
