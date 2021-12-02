@@ -19,20 +19,20 @@ class MainViewController: UIViewController {
     
     // MARK: - Attributes
     
-    private let dataController: DataController
+    private let dataController: MainPresenter
     
     private let tableView: UITableView = {
         let table = UITableView()
         table.separatorStyle = .none
         table.translatesAutoresizingMaskIntoConstraints = false
-        table.register(CurrentDayCellTableViewCell.self, forCellReuseIdentifier: CurrentDayCellTableViewCell.name)
-        table.register(RecentDayTableViewCell.self, forCellReuseIdentifier: RecentDayTableViewCell.name)
+        table.register(CurrentDayCell.self, forCellReuseIdentifier: CurrentDayCell.name)
+        table.register(RecentDayCell.self, forCellReuseIdentifier: RecentDayCell.name)
         return table
     }()
     
     // MARK: - Lifecycle
     
-    required init(with dataController: DataController) {
+    required init(with dataController: MainPresenter) {
         self.dataController = dataController
         
         super.init(nibName: nil, bundle: nil)

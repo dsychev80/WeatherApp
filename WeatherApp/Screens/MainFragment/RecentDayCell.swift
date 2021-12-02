@@ -7,7 +7,7 @@
 
 import UIKit
 
-class RecentDayTableViewCell: UITableViewCell {
+class RecentDayCell: UITableViewCell {
     
     // MARK:- Constants
     struct Constants {
@@ -108,7 +108,7 @@ class RecentDayTableViewCell: UITableViewCell {
         collectionView.collectionViewLayout = layout
         collectionView.isPagingEnabled = true
         collectionView.showsHorizontalScrollIndicator = false
-        collectionView.register(HourWeatherCellCollectionViewCell.self, forCellWithReuseIdentifier: HourWeatherCellCollectionViewCell.name)
+        collectionView.register(HourWeatherCell.self, forCellWithReuseIdentifier: HourWeatherCell.name)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.backgroundColor = .clear
         return collectionView
@@ -205,14 +205,14 @@ class RecentDayTableViewCell: UITableViewCell {
     }
 }
 
-extension RecentDayTableViewCell: UICollectionViewDataSource {
+extension RecentDayCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         guard let forecast = forecast?.forecast else { return 0 }
         return forecast.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HourWeatherCellCollectionViewCell.name, for: indexPath) as! HourWeatherCellCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HourWeatherCell.name, for: indexPath) as! HourWeatherCell
         guard let forecast = forecast else { return cell }
         cell.configure(with: forecast.forecast[indexPath.row])
         DispatchQueue.main.async {

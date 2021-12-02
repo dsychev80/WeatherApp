@@ -12,7 +12,7 @@ protocol CityDataDelegate: AnyObject {
     func recievedCityName(_ name: String)
 }
 
-final class DataController: NSObject {
+final class MainPresenter: NSObject {
     // MARK: - Constants
     private struct Constants {
         static let screenHeight: CGFloat = UIScreen.main.bounds.height
@@ -56,7 +56,7 @@ final class DataController: NSObject {
     }
 }
 
-extension DataController: CityDataDelegate {
+extension MainPresenter: CityDataDelegate {
     func recievedCityName(_ name: String) {
         locationManager.getCityCoordinatesByName(name) { [weak self] result in
             guard let self = self else {
@@ -75,7 +75,7 @@ extension DataController: CityDataDelegate {
     }
 }
 
-extension DataController: UITableViewDataSource {
+extension MainPresenter: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let data = forecast else { return 1 }
         return data.count
@@ -83,14 +83,14 @@ extension DataController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
-            let currentDayCell = CurrentDayCellTableViewCell(style: .default, reuseIdentifier: CurrentDayCellTableViewCell.name)
+            let currentDayCell = CurrentDayCell(style: .default, reuseIdentifier: CurrentDayCell.name)
             guard let data = weather, let currentWeather = data.list.first else { return currentDayCell } // Returns cell without data
             currentDayCell.configure(with: currentWeather)
             return currentDayCell
         } else {
-            guard let forcast = forecast else { return RecentDayTableViewCell() }
+            guard let forcast = forecast else { return RecentDayCell() }
             let recentDayWeather = forcast[indexPath.row]
-            let recentDayCell = RecentDayTableViewCell()
+            let recentDayCell = RecentDayCell()
             recentDayCell.configure(with: recentDayWeather)
             return recentDayCell
         }

@@ -1,5 +1,5 @@
 //
-//  CurrentDayCellTableViewCell.swift
+//  CurrentDayCell.swift
 //  WeatherApp
 //
 //  Created by Denis Sychev on 23.11.2021.
@@ -11,7 +11,7 @@ protocol CurrentDayWeatherData {
     var data: WeatherModel { get }
 }
 
-final class CurrentDayCellTableViewCell: UITableViewCell {
+final class CurrentDayCell: UITableViewCell {
     // MARK: - Constants
     
     struct Constants {

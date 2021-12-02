@@ -1,5 +1,5 @@
 //
-//  HourWeatherCellCollectionViewCell.swift
+//  HourWeatherCell.swift
 //  WeatherApp
 //
 //  Created by Denis Sychev on 24.11.2021.
@@ -13,7 +13,7 @@ protocol HourWeatherData {
     var imageName: String { get }
 }
 
-class HourWeatherCellCollectionViewCell: UICollectionViewCell {
+class HourWeatherCell: UICollectionViewCell {
     // MARK: - Constants
     struct Constants {
         static let backgroundColor = UIColor(displayP3Red: 234/255, green: 236/255, blue: 239/255, alpha: 1)
