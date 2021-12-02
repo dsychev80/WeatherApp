@@ -12,15 +12,7 @@ final class TodayCell: UITableViewCell {
     
     // MARK: - Properties
     private var backView = TodayCellBackgroundView()
-    
-    private var verticalStackView: UIStackView = {
-        let stack = UIStackView()
-        stack.axis = .vertical
-        stack.alignment = .center
-        stack.translatesAutoresizingMaskIntoConstraints = false
-        return stack
-    }()
-    
+    private var verticalStackView = TodayCellStackView()
     private var dataLabel = TodayCellLabel(withFont: AppFont.semiBold.size(14),
                                            andText: "Сегодя заебись")
     private var weatherImage = UIImageView(image: UIImage(named: "Sun"))
