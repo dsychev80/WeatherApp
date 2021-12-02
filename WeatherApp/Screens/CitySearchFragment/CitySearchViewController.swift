@@ -9,28 +9,6 @@ import UIKit
 
 class CitySearchViewController: UIViewController {
     
-    // MARK: - Constants
-    
-    private struct Constants {
-        static let viewBackgroundColor = UIColor(displayP3Red: 28/255, green: 28/255, blue: 30/255, alpha: 0.9)
-        static let addButtonColor = UIColor(displayP3Red: 53/255, green: 153/255, blue: 255/255, alpha: 1)
-        static let cancelButtonColor = UIColor(displayP3Red: 243/255, green: 245/255, blue: 248/255, alpha: 1)
-        static let cancelButtonTextColor = UIColor(displayP3Red: 112/255, green: 119/255, blue: 130/255, alpha: 1)
-        static let addButtonTextColor = UIColor(displayP3Red: 255/255, green: 255/255, blue: 255/255, alpha: 1)
-        static let textFieldBorderColor = UIColor(displayP3Red: 231/255, green: 236/255, blue: 243/255, alpha: 1)
-        
-        static let viewHeight: CGFloat = 180
-        static let viewWidth: CGFloat = 343
-        
-        static let buttonsAndTextFieldGap: CGFloat = 16
-        
-        static let textFieldHeight: CGFloat = 40
-        
-        static let collectionViewHeight: CGFloat = 30
-        
-        static let buttonHeight: CGFloat = 40
-        static let buttonWidth: CGFloat = 151
-    }
 
     // MARK: - Attributes
     
@@ -46,21 +24,6 @@ class CitySearchViewController: UIViewController {
         return view
     }()
     
-//    private var searchTextField: UITextField = {
-//        let textField = WeatherCityNameTextField(withInsets: 8, left: 40, bottom: 8, right: 14)
-//        textField.layer.borderWidth = 1
-//        textField.layer.borderColor = Constants.textFieldBorderColor.cgColor
-//        textField.layer.cornerRadius = 12
-//        textField.leftView = UIImageView(image: UIImage(named: "textSearch"))
-//        textField.rightView = UIImageView(image: UIImage(named: "Plus"))
-//        textField.rightViewMode = .whileEditing
-//        textField.leftViewMode = .always
-//        textField.borderStyle = .none
-//        textField.clearButtonMode = .whileEditing
-//        textField.translatesAutoresizingMaskIntoConstraints = false
-//        return textField
-//    }()
-    
     private var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
@@ -75,10 +38,10 @@ class CitySearchViewController: UIViewController {
     
     private var cancelButton: UIButton = {
         let button = UIButton()
-        button.backgroundColor = Constants.cancelButtonColor
+        button.backgroundColor = Constants.CANCEL_BUTTON_COLOR
         button.layer.cornerRadius = 12
         button.titleLabel?.font = AppFont.bold.size(14)
-        button.setTitleColor(Constants.cancelButtonTextColor, for: .normal)
+        button.setTitleColor(Constants.CANCEL_BUTTON_TEXT_COLOR, for: .normal)
         button.setTitle("Отменить", for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(dismissView), for: .touchUpInside)
@@ -87,7 +50,7 @@ class CitySearchViewController: UIViewController {
     
     private var addButton: UIButton = {
         let button = UIButton()
-        button.backgroundColor = Constants.addButtonColor
+        button.backgroundColor = Constants.ADD_BUTTON_COLOR
         button.layer.cornerRadius = 12
         button.titleLabel?.font = AppFont.bold.size(14)
         button.setTitle("Добавить", for: .normal)
@@ -112,7 +75,7 @@ class CitySearchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = Constants.viewBackgroundColor
+        view.backgroundColor = Constants.VIEW_BACKGROUND_COLOR
         self.definesPresentationContext = true
         
         setupViewHierarchy()
@@ -144,24 +107,49 @@ class CitySearchViewController: UIViewController {
     
     private func setupLayoutConstraints() {
         
-        backView.heightAnchor.constraint(equalToConstant: Constants.viewHeight).isActive = true
-        backView.widthAnchor.constraint(equalToConstant: Constants.viewWidth).isActive = true
+        backView.heightAnchor.constraint(equalToConstant: VIEW_HEIGHT).isActive = true
+        backView.widthAnchor.constraint(equalToConstant: VIEW_WIDTH).isActive = true
         backView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         backView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
         
-        searchTextField.topAnchor.constraint(equalTo: backView.topAnchor, constant: Constants.buttonsAndTextFieldGap).isActive = true
-        searchTextField.rightAnchor.constraint(equalTo: backView.rightAnchor, constant: -Constants.buttonsAndTextFieldGap).isActive = true
-        searchTextField.leftAnchor.constraint(equalTo: backView.leftAnchor, constant: Constants.buttonsAndTextFieldGap).isActive = true
-        searchTextField.heightAnchor.constraint(equalToConstant: Constants.textFieldHeight).isActive = true
+        searchTextField.topAnchor.constraint(equalTo: backView.topAnchor, constant: BUTTONS_AND_TEXTFIELD_GAP).isActive = true
+        searchTextField.rightAnchor.constraint(equalTo: backView.rightAnchor, constant: -BUTTONS_AND_TEXTFIELD_GAP).isActive = true
+        searchTextField.leftAnchor.constraint(equalTo: backView.leftAnchor, constant: BUTTONS_AND_TEXTFIELD_GAP).isActive = true
+        searchTextField.heightAnchor.constraint(equalToConstant: TEXTFIELD_HEIGHT).isActive = true
         
         collectionView.topAnchor.constraint(equalTo: searchTextField.bottomAnchor, constant: 12).isActive = true
-        collectionView.leftAnchor.constraint(equalTo: backView.leftAnchor, constant: Constants.buttonsAndTextFieldGap).isActive = true
+        collectionView.leftAnchor.constraint(equalTo: backView.leftAnchor, constant: BUTTONS_AND_TEXTFIELD_GAP).isActive = true
         collectionView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
-        collectionView.heightAnchor.constraint(equalToConstant: Constants.collectionViewHeight).isActive = true
+        collectionView.heightAnchor.constraint(equalToConstant: COLLECTION_VIEW_HEIGHT).isActive = true
         
-        cancelButton.makeConstraintsAtLeftBottomCornerView(backView, left: Constants.buttonsAndTextFieldGap, bottom: Constants.buttonsAndTextFieldGap, height: Constants.buttonHeight, width: Constants.buttonWidth)
-        addButton.makeConstraintsAtRightBottomCornerView(backView, right: Constants.buttonsAndTextFieldGap, bottom: Constants.buttonsAndTextFieldGap, height: Constants.buttonHeight, width: Constants.buttonWidth)
+        cancelButton.makeConstraintsAtLeftBottomCornerView(backView,
+                                                           left: BUTTONS_AND_TEXTFIELD_GAP,
+                                                           bottom: BUTTONS_AND_TEXTFIELD_GAP,
+                                                           height: BUTTON_HEIGHT,
+                                                           width: BUTTON_WIDTH)
+        addButton.makeConstraintsAtRightBottomCornerView(backView,
+                                                         right: BUTTONS_AND_TEXTFIELD_GAP,
+                                                         bottom: BUTTONS_AND_TEXTFIELD_GAP,
+                                                         height: BUTTON_HEIGHT,
+                                                         width: BUTTON_WIDTH)
     }
+    
+    // MARK: - Constants
+    private struct Constants {
+        static let VIEW_BACKGROUND_COLOR = UIColor(displayP3Red: 28/255, green: 28/255, blue: 30/255, alpha: 0.9)
+        static let ADD_BUTTON_COLOR = UIColor(displayP3Red: 53/255, green: 153/255, blue: 255/255, alpha: 1)
+        static let CANCEL_BUTTON_COLOR = UIColor(displayP3Red: 243/255, green: 245/255, blue: 248/255, alpha: 1)
+        static let CANCEL_BUTTON_TEXT_COLOR = UIColor(displayP3Red: 112/255, green: 119/255, blue: 130/255, alpha: 1)
+        static let ADD_BUTTON_TEXT_COLOR = UIColor(displayP3Red: 255/255, green: 255/255, blue: 255/255, alpha: 1)
+        static let TEXT_FIELD_BORDER_COLOR = UIColor(displayP3Red: 231/255, green: 236/255, blue: 243/255, alpha: 1)
+    }
+    private let VIEW_HEIGHT: CGFloat = 180
+    private let VIEW_WIDTH: CGFloat = 343
+    private let BUTTONS_AND_TEXTFIELD_GAP: CGFloat = 16
+    private let TEXTFIELD_HEIGHT: CGFloat = 40
+    private let COLLECTION_VIEW_HEIGHT: CGFloat = 30
+    private let BUTTON_HEIGHT: CGFloat = 40
+    private let BUTTON_WIDTH: CGFloat = 151
 }
 
     // MARK: - UICollectionViewDataSource
