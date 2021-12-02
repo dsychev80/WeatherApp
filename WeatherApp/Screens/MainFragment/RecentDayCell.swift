@@ -8,29 +8,6 @@
 import UIKit
 
 class RecentDayCell: UITableViewCell {
-    
-    // MARK:- Constants
-    struct Constants {
-        static let contentViewBackgroundColor = UIColor(displayP3Red: 243/255, green: 245/255, blue: 248/255, alpha: 1)
-        static let contentViewWidth: CGFloat = 343
-        static let contentViewHeight: CGFloat = 214
-        
-        static let blackFontColor = UIColor(displayP3Red: 42/255, green: 45/255, blue: 51/255, alpha: 1)
-        static let greyFontColor = UIColor(displayP3Red: 143/255, green: 150/255, blue: 161/255, alpha: 1)
-        
-        static let separatorColor = UIColor(displayP3Red: 217/255, green: 224/255, blue: 234/255, alpha: 1)
-        
-        static let dataLabelWidth: CGFloat = 115
-        static let dataLabelHeight: CGFloat = 28.14
-        
-        static let minMaxLabelWidth: CGFloat = 32
-        static let minMaxLabelHeight: CGFloat = 28.14
-        
-        static let weatherImageHeight: CGFloat = 24.12
-        static let weatherImageWidth: CGFloat = 30
-        
-        static let headerLeftRightGapToContentView: CGFloat = 20
-    }
 
     // MARK: - Properties
     private var backView: UIView = {
@@ -158,10 +135,10 @@ class RecentDayCell: UITableViewCell {
     
     private func setupLayoutConstraints() {
         
-        let widthConstraint = contentView.widthAnchor.constraint(equalToConstant: Constants.contentViewWidth)
+        let widthConstraint = contentView.widthAnchor.constraint(equalToConstant: Сontent_View_Width)
         widthConstraint.priority = .defaultHigh
         widthConstraint.isActive = true
-        let heightConstraint = contentView.heightAnchor.constraint(equalToConstant: Constants.contentViewHeight)
+        let heightConstraint = contentView.heightAnchor.constraint(equalToConstant: Content_View_Height)
         heightConstraint.priority = .defaultHigh
         heightConstraint.isActive = true
         
@@ -179,17 +156,17 @@ class RecentDayCell: UITableViewCell {
             view.centerYAnchor.constraint(equalTo: cellHeaderContainerView.centerYAnchor).isActive = true
         }
     
-        dataLabel.widthAnchor.constraint(equalToConstant: Constants.dataLabelWidth).isActive = true
-        minTempLabel.widthAnchor.constraint(equalToConstant: Constants.minMaxLabelWidth).isActive = true
-        maxTempLabel.widthAnchor.constraint(equalToConstant: Constants.minMaxLabelWidth).isActive = true
-        weatherImage.widthAnchor.constraint(equalToConstant: Constants.weatherImageWidth).isActive = true
+        dataLabel.widthAnchor.constraint(equalToConstant: Data_Label_Width).isActive = true
+        minTempLabel.widthAnchor.constraint(equalToConstant: Min_Max_Label_Width).isActive = true
+        maxTempLabel.widthAnchor.constraint(equalToConstant: Min_Max_Label_Width).isActive = true
+        weatherImage.widthAnchor.constraint(equalToConstant: Weather_Image_Width).isActive = true
         
         dataLabel.leftAnchor.constraint(equalTo: cellHeaderContainerView.leftAnchor).isActive = true
         maxTempLabel.leftAnchor.constraint(equalTo: minTempLabel.rightAnchor, constant: 8).isActive = true
         maxTempLabel.rightAnchor.constraint(equalTo: weatherImage.leftAnchor, constant: -16).isActive = true
         weatherImage.rightAnchor.constraint(equalTo: cellHeaderContainerView.rightAnchor).isActive = true
         
-        weatherImage.heightAnchor.constraint(equalToConstant: Constants.weatherImageHeight).isActive = true
+        weatherImage.heightAnchor.constraint(equalToConstant: Weather_Image_Height).isActive = true
         
         separatorView.heightAnchor.constraint(equalToConstant: 1).isActive = true
         separatorView.topAnchor.constraint(equalTo: cellHeaderContainerView.bottomAnchor, constant: 15.14).isActive = true
@@ -203,6 +180,24 @@ class RecentDayCell: UITableViewCell {
         collectionView.rightAnchor.constraint(equalTo: backView.rightAnchor).isActive = true
         collectionView.bottomAnchor.constraint(equalTo: backView.bottomAnchor, constant: -16).isActive = true
     }
+    
+    //MARK: - Constants
+    struct Constants {
+        static let contentViewBackgroundColor = UIColor(displayP3Red: 243/255, green: 245/255, blue: 248/255, alpha: 1)
+        static let blackFontColor = UIColor(displayP3Red: 42/255, green: 45/255, blue: 51/255, alpha: 1)
+        static let greyFontColor = UIColor(displayP3Red: 143/255, green: 150/255, blue: 161/255, alpha: 1)
+        static let separatorColor = UIColor(displayP3Red: 217/255, green: 224/255, blue: 234/255, alpha: 1)
+    }
+    
+    private let Сontent_View_Width: CGFloat = 343
+    private let Content_View_Height: CGFloat = 214
+    private let Data_Label_Width: CGFloat = 115
+    private let Data_Label_Height: CGFloat = 28.14
+    private let Min_Max_Label_Width: CGFloat = 32
+    private let Min_Max_Label_Height: CGFloat = 28.14
+    private let Weather_Image_Height: CGFloat = 24.12
+    private let Weather_Image_Width: CGFloat = 30
+    private let Header_Left_Right_Gap_To_Content_View: CGFloat = 20
 }
 
 extension RecentDayCell: UICollectionViewDataSource {
