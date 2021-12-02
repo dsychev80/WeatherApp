@@ -13,12 +13,12 @@ final class DIContainer {
     
     let networkController: NetworkController
     let locationManager: LocationManager
-    let dataController: DataController
+    let dataController: MainPresenter
     
     init() {
         self.networkController = NetworkController()
         self.locationManager = LocationManagerImp()
-        self.dataController = DataController(with: networkController, locationManager: locationManager)
+        self.dataController = MainPresenter(with: networkController, locationManager: locationManager)
     }
     
 }
