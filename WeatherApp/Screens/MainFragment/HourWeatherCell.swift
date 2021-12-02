@@ -7,33 +7,12 @@
 
 import UIKit
 
-protocol HourData {
-    var time: String { get }
-    var temp: String { get }
-    var imageName: String { get }
-}
-
 class HourWeatherCell: UICollectionViewCell {
-    // MARK: - Constants
-    struct Constants {
-        static let backgroundColor = UIColor(displayP3Red: 234/255, green: 236/255, blue: 239/255, alpha: 1)
-        static let hourFontColor = UIColor(displayP3Red: 143/255, green: 150/255, blue: 161/255, alpha: 1)
-        static let tempFontColor = UIColor(displayP3Red: 42/255, green: 45/255, blue: 51/255, alpha: 1)
-        
-        static let contentCellHeight: CGFloat = 114
-        static let contentCellWidth: CGFloat = 73
-        static let cornerRadius: CGFloat = 16
-        
-        static let tempLabelGap: CGFloat = 12
-        
-        static let imageWidth: CGFloat = 26
-        static let imageHeight: CGFloat = 32
-    }
     
     private var backView: UIView = {
         let view = UIView()
         view.backgroundColor = Constants.backgroundColor
-        view.layer.cornerRadius = Constants.cornerRadius
+        view.layer.cornerRadius = 16
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -101,8 +80,8 @@ class HourWeatherCell: UICollectionViewCell {
     }
     
     private func setupLayoutConstraints() {
-        backView.heightAnchor.constraint(equalToConstant: Constants.contentCellHeight).isActive = true
-        backView.widthAnchor.constraint(equalToConstant: Constants.contentCellWidth).isActive = true
+        backView.heightAnchor.constraint(equalToConstant: Content_Cell_Height).isActive = true
+        backView.widthAnchor.constraint(equalToConstant: Content_Cell_Width).isActive = true
         
         
         hourLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
@@ -111,10 +90,30 @@ class HourWeatherCell: UICollectionViewCell {
         weatherImage.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
         weatherImage.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
         
-        weatherImage.heightAnchor.constraint(equalToConstant: Constants.imageHeight).isActive = true
-        weatherImage.widthAnchor.constraint(equalToConstant: Constants.imageWidth).isActive = true
+        weatherImage.heightAnchor.constraint(equalToConstant: Image_Height).isActive = true
+        weatherImage.widthAnchor.constraint(equalToConstant: Image_Width).isActive = true
         
         tempLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
         tempLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -12).isActive = true
     }
+    
+    // MARK: - Constants
+    struct Constants {
+        static let backgroundColor = UIColor(displayP3Red: 234/255, green: 236/255, blue: 239/255, alpha: 1)
+        static let hourFontColor = UIColor(displayP3Red: 143/255, green: 150/255, blue: 161/255, alpha: 1)
+        static let tempFontColor = UIColor(displayP3Red: 42/255, green: 45/255, blue: 51/255, alpha: 1)
+    }
+    
+    private let Content_Cell_Height: CGFloat = 114
+    private let Content_Cell_Width: CGFloat = 73
+    private let Temp_Label_Gap: CGFloat = 12
+    private let Image_Width: CGFloat = 26
+    private let Image_Height: CGFloat = 32
+    
+}
+
+protocol HourData {
+    var time: String { get }
+    var temp: String { get }
+    var imageName: String { get }
 }
