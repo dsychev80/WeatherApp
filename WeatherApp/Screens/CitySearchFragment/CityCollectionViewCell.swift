@@ -9,17 +9,12 @@ import UIKit
 
 class CityCollectionViewCell: UICollectionViewCell {
     
-    private struct Constants {
-        static let cityLabelTextColor = UIColor(displayP3Red: 42/255, green: 45/255, blue: 51/255, alpha: 1)
-        static let cellBackgroundColor = UIColor(displayP3Red: 243/255, green: 245/255, blue: 248/255, alpha: 1)
-        static let cornerRadius: CGFloat = 8
-    }
-    
+    // MARK: - Properties
     private var backView: UIView = {
         let view = UIView()
-        view.backgroundColor = Constants.cellBackgroundColor
+        view.backgroundColor = Constants.CELL_BACKGROUND_COLOR
         view.clipsToBounds = true
-        view.layer.cornerRadius = Constants.cornerRadius
+        view.layer.cornerRadius = Constants.CORNER_RADIUS
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -27,7 +22,7 @@ class CityCollectionViewCell: UICollectionViewCell {
     private var cityLabel: WeatherCityNameLabel = {
         let label = WeatherCityNameLabel(withInsets: 4, left: 8, bottom: 4, right: 8)
         label.font = AppFont.medium.size(14)
-        label.textColor = Constants.cityLabelTextColor
+        label.textColor = Constants.CITY_LABEL_TEXT_COLOR
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -47,7 +42,6 @@ class CityCollectionViewCell: UICollectionViewCell {
     }
     
     // MARK: - Methods
-    
     public func configureCell(withData data: String) {
         cityLabel.text = data
     }
@@ -61,5 +55,12 @@ class CityCollectionViewCell: UICollectionViewCell {
         backView.makeEqualConstraintsToView(contentView)
         cityLabel.makeEqualConstraintsToView(backView)
         
+    }
+    
+    // MARK: - Constants
+    private struct Constants {
+        static let CITY_LABEL_TEXT_COLOR = UIColor(displayP3Red: 42/255, green: 45/255, blue: 51/255, alpha: 1)
+        static let CELL_BACKGROUND_COLOR = UIColor(displayP3Red: 243/255, green: 245/255, blue: 248/255, alpha: 1)
+        static let CORNER_RADIUS: CGFloat = 8
     }
 }

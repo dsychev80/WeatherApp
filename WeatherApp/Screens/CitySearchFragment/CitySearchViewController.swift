@@ -9,7 +9,6 @@ import UIKit
 
 class CitySearchViewController: UIViewController {
     
-
     // MARK: - Attributes
     
     private weak var cityDataDelegate: CityDataDelegate?
