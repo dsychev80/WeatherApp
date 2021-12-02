@@ -8,7 +8,7 @@
 import Foundation
 
 
-struct HoursWeatherModel: HourWeatherData {
+struct HoursWeatherModel: HourData {
     var time: String = ""
     var imageName: String = ""
     var temp: String = ""

@@ -7,20 +7,6 @@
 
 import Foundation
 
-
-protocol ApiResource {
-    
-    var apiURL: String { get }
-    var parameters: [String: String] { get set }
-}
-
-extension ApiResource {
-    var url: URL? {
-        guard let baseUrl = URL(string: apiURL) else { return nil }
-        return baseUrl.appendingParameters(parameters)
-    }
-}
-
 /*
     api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={API key}
  */
@@ -48,3 +34,15 @@ struct WeatherResource: ApiResource {
 }
 
 
+protocol ApiResource {
+    
+    var apiURL: String { get }
+    var parameters: [String: String] { get set }
+}
+
+extension ApiResource {
+    var url: URL? {
+        guard let baseUrl = URL(string: apiURL) else { return nil }
+        return baseUrl.appendingParameters(parameters)
+    }
+}

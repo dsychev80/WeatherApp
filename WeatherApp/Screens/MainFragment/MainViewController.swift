@@ -7,9 +7,6 @@
 
 import UIKit
 
-protocol MainDataRecivier: AnyObject {
-    func dataReciviedForCity(_ name: String)
-}
 
 class MainViewController: UIViewController {
     
@@ -25,7 +22,7 @@ class MainViewController: UIViewController {
         let table = UITableView()
         table.separatorStyle = .none
         table.translatesAutoresizingMaskIntoConstraints = false
-        table.register(CurrentDayCell.self, forCellReuseIdentifier: CurrentDayCell.name)
+        table.register(TodayCell.self, forCellReuseIdentifier: TodayCell.name)
         table.register(RecentDayCell.self, forCellReuseIdentifier: RecentDayCell.name)
         return table
     }()
@@ -117,4 +114,8 @@ extension MainViewController: MainDataRecivier {
         self.title = name
         self.tableView.reloadData()
     }
+}
+
+protocol CityDataDelegate: AnyObject {
+    func recievedCityName(_ name: String)
 }

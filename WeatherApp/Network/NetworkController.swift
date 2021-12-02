@@ -7,9 +7,6 @@
 
 import Foundation
 
-protocol NetworkDataUserDelegate: AnyObject {
-    func dataEndLoading()
-}
 
 final class NetworkController {
     
@@ -39,4 +36,9 @@ final class NetworkController {
 
         }.resume()
     }
+}
+
+
+protocol NetworkDataUserDelegate: AnyObject {
+    func dataEndLoading()
 }

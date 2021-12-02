@@ -1,5 +1,5 @@
 //
-//  CurrentDayCell.swift
+//  TodayCell.swift
 //  WeatherApp
 //
 //  Created by Denis Sychev on 23.11.2021.
@@ -7,11 +7,8 @@
 
 import UIKit
 
-protocol CurrentDayWeatherData {
-    var data: WeatherModel { get }
-}
 
-final class CurrentDayCell: UITableViewCell {
+final class TodayCell: UITableViewCell {
     // MARK: - Constants
     
     struct Constants {
@@ -90,7 +87,7 @@ final class CurrentDayCell: UITableViewCell {
     
     // MARK: - Methods
     // Use this function to configure cell with data
-    public func configure(with data: CurrentDayWeatherData) {
+    public func configure(with data: TodayData) {
         dataLabel.text = data.data.convertedTimeToCurrentDay()
         degreeLabel.text = data.data.convertedTempreture()
         feelsLikeLabel.text = data.data.convertedFeelsLikeTemp()

@@ -66,7 +66,7 @@ extension WeatherModel {
 }
 
 
-extension WeatherModel: CurrentDayWeatherData {
+extension WeatherModel: TodayData {
     
     func convertToHoursWeatherModel() -> HoursWeatherModel {
         var model = HoursWeatherModel()

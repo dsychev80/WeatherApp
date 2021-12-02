@@ -7,10 +7,6 @@
 
 import CoreLocation
 
-protocol LocationManager {
-    func getCityCoordinatesByName(_ name: String, completion: @escaping (Result<LocationData, WeatherError>) -> Void)
-}
-
 
 final class LocationManagerImp: LocationManager {
     

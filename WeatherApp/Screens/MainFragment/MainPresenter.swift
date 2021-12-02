@@ -8,9 +8,6 @@
 import Foundation
 import UIKit
 
-protocol CityDataDelegate: AnyObject {
-    func recievedCityName(_ name: String)
-}
 
 final class MainPresenter: NSObject {
     // MARK: - Constants
@@ -83,7 +80,7 @@ extension MainPresenter: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
-            let currentDayCell = CurrentDayCell(style: .default, reuseIdentifier: CurrentDayCell.name)
+            let currentDayCell = TodayCell(style: .default, reuseIdentifier: TodayCell.name)
             guard let data = weather, let currentWeather = data.list.first else { return currentDayCell } // Returns cell without data
             currentDayCell.configure(with: currentWeather)
             return currentDayCell
@@ -95,4 +92,13 @@ extension MainPresenter: UITableViewDataSource {
             return recentDayCell
         }
     }
+}
+
+protocol MainDataRecivier: AnyObject {
+    func dataReciviedForCity(_ name: String)
+}
+
+
+protocol LocationManager {
+    func getCityCoordinatesByName(_ name: String, completion: @escaping (Result<LocationData, WeatherError>) -> Void)
 }

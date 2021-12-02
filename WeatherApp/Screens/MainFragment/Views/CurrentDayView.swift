@@ -85,7 +85,7 @@ class CurrentDayView: UIView {
     
     // MARK: - Methods
     // Use this function to configure cell with data
-    public func configure(with data: CurrentDayWeatherData) {
+    public func configure(with data: TodayData) {
         dataLabel.text = data.data.convertedTimeToCurrentDay()
         degreeLabel.text = data.data.convertedTempreture()
         feelsLikeLabel.text = data.data.convertedFeelsLikeTemp()
