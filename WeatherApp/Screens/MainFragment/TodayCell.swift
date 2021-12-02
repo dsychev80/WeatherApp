@@ -9,18 +9,6 @@ import UIKit
 
 
 final class TodayCell: UITableViewCell {
-    // MARK: - Constants
-    
-    struct Constants {
-        static let topMargin: CGFloat = 25
-        static let bottomMargin: CGFloat = 25
-        static let leftMargin: CGFloat = 10
-        static let rightMargin: CGFloat = 10
-        static let gapToViews: CGFloat = 10
-        static let imageHeight: CGFloat = 150
-        static let screenHeight: CGFloat = UIScreen.main.bounds.height
-        static let screenWidth: CGFloat = UIScreen.main.bounds.width
-    }
     
     // MARK: - Properties
     private var backView: UIView = {
@@ -103,11 +91,20 @@ final class TodayCell: UITableViewCell {
     }
     
     private func setupLayoutConstraints() {
-        weatherImage.heightAnchor.constraint(equalToConstant: Constants.imageHeight).isActive = true
-        weatherImage.widthAnchor.constraint(equalToConstant: Constants.imageHeight).isActive = true
-        backView.makeEqualConstraintsToView(contentView, withGap: Constants.gapToViews)
-        verticalStackView.makeConstraintsToView(backView, top: Constants.topMargin, bottom: Constants.bottomMargin, right: Constants.rightMargin, left: Constants.leftMargin)
+        weatherImage.heightAnchor.constraint(equalToConstant: IMAGE_HEIGHT).isActive = true
+        weatherImage.widthAnchor.constraint(equalToConstant: IMAGE_HEIGHT).isActive = true
+        backView.makeEqualConstraintsToView(contentView, withGap: GAP_TO_VIEW)
+        verticalStackView.makeConstraintsToView(backView, top: TOP_MARGIN, bottom: BOTTOM_MARGIN, right: RIGHT_MARGIN, left: LEFT_MARGIN)
     }
 
+    // MARK: - Constants
+    private let TOP_MARGIN: CGFloat = 25
+    private let BOTTOM_MARGIN: CGFloat = 25
+    private let LEFT_MARGIN: CGFloat = 10
+    private let RIGHT_MARGIN: CGFloat = 10
+    private let GAP_TO_VIEW: CGFloat = 10
+    private let IMAGE_HEIGHT: CGFloat = 150
+    private let SCREEN_HEIGHT: CGFloat = UIScreen.main.bounds.height
+    private let SCREEN_WIDTH: CGFloat = UIScreen.main.bounds.width
 }
 
