@@ -10,14 +10,6 @@ import UIKit
 
 
 final class MainPresenter: NSObject {
-    // MARK: - Constants
-    private struct Constants {
-        static let screenHeight: CGFloat = UIScreen.main.bounds.height
-        static let currentDayCellHeight: CGFloat = Constants.screenHeight * 0.42
-        static let recentDayCellHeight: CGFloat = Constants.screenHeight * 0.39
-        static let screenWidth: CGFloat = UIScreen.main.bounds.width
-    }
-    
     
     // MARK: - Properties
     private let networkController: NetworkController

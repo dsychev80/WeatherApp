@@ -9,13 +9,7 @@ import UIKit
 
 
 class MainViewController: UIViewController {
-    
-    private struct Constants {
-        static let titleColor = UIColor(displayP3Red: 42/255, green: 45/255, blue: 51/255, alpha: 1)
-    }
-    
     // MARK: - Attributes
-    
     private let dataController: MainPresenter
     
     private let tableView: UITableView = {
@@ -70,7 +64,7 @@ class MainViewController: UIViewController {
         guard let navBar = navigationController?.navigationBar else { return }
         navBar.titleTextAttributes = [
             .font: AppFont.extraBold.size(18),
-            .foregroundColor: Constants.titleColor
+            .foregroundColor: TITLE_COLOR
         ]
         
         let pointButton = UIButton()
@@ -107,6 +101,9 @@ class MainViewController: UIViewController {
         searchVC.modalTransitionStyle = .crossDissolve
         present(searchVC, animated: true, completion: nil)
     }
+    
+    // MARK: - Constants
+    private let TITLE_COLOR = UIColor(displayP3Red: 42/255, green: 45/255, blue: 51/255, alpha: 1)
 }
 
 extension MainViewController: MainDataRecivier {
