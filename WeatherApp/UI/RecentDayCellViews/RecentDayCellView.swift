@@ -10,21 +10,8 @@ import UIKit
 class RecentDayCellView: UIView {
 
     // MARK: - Properties
-    private var backView: UIView = {
-        let view = UIView()
-        view.roundCorners()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.clipsToBounds = true
-        // FIXME: Need to change for theme supporting
-        view.backgroundColor = Constants.contentViewBackgroundColor
-        return view
-    }()
-
-    private var cellHeaderContainerView: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
+    private var backView = RecentDayCellBackView()
+    private var cellHeaderContainerView = UIView()
     
     private var dataLabel: UILabel = {
         let label = UILabel()
@@ -136,7 +123,7 @@ class RecentDayCellView: UIView {
     }
     
     private func setupLayoutConstraints() {
-        
+        cellHeaderContainerView.translatesAutoresizingMaskIntoConstraints = false
         let widthConstraint = self.widthAnchor.constraint(equalToConstant: Сontent_View_Width)
         widthConstraint.priority = .defaultHigh
         widthConstraint.isActive = true
@@ -185,7 +172,6 @@ class RecentDayCellView: UIView {
     
     //MARK: - Constants
     struct Constants {
-        static let contentViewBackgroundColor = UIColor(displayP3Red: 243/255, green: 245/255, blue: 248/255, alpha: 1)
         static let blackFontColor = UIColor(displayP3Red: 42/255, green: 45/255, blue: 51/255, alpha: 1)
         static let greyFontColor = UIColor(displayP3Red: 143/255, green: 150/255, blue: 161/255, alpha: 1)
         static let separatorColor = UIColor(displayP3Red: 217/255, green: 224/255, blue: 234/255, alpha: 1)
