@@ -9,6 +9,7 @@ import UIKit
 
 class HourWeatherCell: UICollectionViewCell {
     
+    // MARK: - Properties
     private var backView = HourCellView(withColor: UIColor(displayP3Red: 234/255,
                                                                  green: 236/255,
                                                                  blue: 239/255,

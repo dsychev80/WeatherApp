@@ -9,10 +9,10 @@ import UIKit
 
 
 class MainViewController: UIViewController {
-    // MARK: - Attributes
+    // MARK: - Properties
     private let dataController: MainPresenter
     
-    private let tableView: MainTableView!
+    private var tableView: MainTableView!
     
     // MARK: - Lifecycle
     
@@ -20,7 +20,6 @@ class MainViewController: UIViewController {
         self.dataController = dataController
         self.tableView = MainTableView(with: dataController)
         super.init(nibName: nil, bundle: nil)
-            
     }
     
     required init?(coder: NSCoder) {

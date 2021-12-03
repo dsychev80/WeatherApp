@@ -9,7 +9,7 @@ import UIKit
 
 class CitySearchViewController: UIViewController {
     
-    // MARK: - Attributes
+    // MARK: - Properties
     
     private weak var cityDataDelegate: CityDataDelegate?
     private var searchTextField = WeatherCityNameTextField()

@@ -9,9 +9,10 @@ import UIKit
 
 class TodayCellView: UIView {
     
+    // MARK: - Properties
     private var backView = TodayCellBackgroundView()
     private var verticalStackView = TodayCellStackView()
-    private var dataLabel = WeatherCellLabel(withFont: AppFont.semiBold.size(14), fontColor: .white, andText: "Сегодя заебись")
+    private var dataLabel = WeatherCellLabel(withFont: AppFont.semiBold.size(14), fontColor: .white, andText: "Сегодя ништяк")
     private var weatherImage = UIImageView(image: UIImage(named: "Sun"))
     private var degreeLabel = WeatherCellLabel(withFont: AppFont.extraBold.size(48), fontColor: .white, andText: "25°")
     private var feelsLikeLabel = WeatherCellLabel(withFont: AppFont.semiBold.size(14), fontColor: .white, andText: "Все ясно, по ощущениям весна!")

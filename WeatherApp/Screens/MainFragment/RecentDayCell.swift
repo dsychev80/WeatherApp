@@ -9,6 +9,7 @@ import UIKit
 
 class RecentDayCell: UITableViewCell {
 
+    // MARK: - Properties
     var cellView = RecentDayCellView()
 
     // MARK: - Life cycle
