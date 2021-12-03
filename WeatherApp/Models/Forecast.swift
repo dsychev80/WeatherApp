@@ -28,3 +28,17 @@ extension ForecastData {
         return ""
     }
 }
+
+extension ForecastData: RecentDayHeaderData {
+    var dayDate: String {
+        return date
+    }
+    
+    var dayAverageTemp: String {
+        return minTemp
+    }
+    
+    var dayMaxTemp: String {
+        return maxTemp
+    }
+}

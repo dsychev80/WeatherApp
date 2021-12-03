@@ -11,26 +11,14 @@ class RecentDayCellView: UIView {
 
     // MARK: - Properties
     private var backView = RecentDayCellBackView()
-    private var cellHeaderContainerView = UIView()
-    private var dataLabel = WeatherCellLabel(withFont: AppFont.medium.size(16), fontColor: .black)
-    private var maxTempLabel = WeatherCellLabel(withFont: AppFont.extraBold.size(16), fontColor: Constants.greyFontColor)
-    private var minTempLabel = WeatherCellLabel(withFont: AppFont.extraBold.size(16), fontColor: Constants.blackFontColor)
-    private var collectionView = RecentDayCollectionView()
+    private var cellHeaderContainerView = RecentHeaderView()
     private var separatorView = SeparatorView()
-    
-    private var weatherImage: UIImageView = {
-        let imageView = UIImageView(image: UIImage(named: "Sun"))
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.clipsToBounds = true
-        return imageView
-    }()
-    
+    private var collectionView = RecentDayCollectionView()
     private var forecast: ForecastData?
     
     // MARK: - LifeCycle
     required init() {
         super.init(frame: .zero)
-
         setup()
     }
     
@@ -40,41 +28,35 @@ class RecentDayCellView: UIView {
     
     // MARK: - Methods
     public func configure(with data: ForecastData) {
+        cellHeaderContainerView.configure(withData: data)
+
         forecast = data
-        dataLabel.text = data.date
-        minTempLabel.text = data.averageTemp()
-        maxTempLabel.text = data.maxTemp
-        // FIXME: implement icon configuration
-        
         collectionView.reloadData()
     }
     
     private func setup() {
         collectionView.dataSource = self
-        
+    
         setupViewHierarchy()
         setupLayoutConstraints()
     }
     
     private func setupViewHierarchy() {
         translatesAutoresizingMaskIntoConstraints = false
-        backView.addSubview(cellHeaderContainerView)
-        cellHeaderContainerView.addSubview(dataLabel)
-        cellHeaderContainerView.addSubview(minTempLabel)
-        cellHeaderContainerView.addSubview(maxTempLabel)
-        cellHeaderContainerView.addSubview(weatherImage)
+        
         backView.addSubview(cellHeaderContainerView)
         backView.addSubview(separatorView)
         backView.addSubview(collectionView)
+        
         self.addSubview(backView)
     }
     
     private func setupLayoutConstraints() {
-        cellHeaderContainerView.translatesAutoresizingMaskIntoConstraints = false
-        let widthConstraint = self.widthAnchor.constraint(equalToConstant: Сontent_View_Width)
+
+        let widthConstraint = self.widthAnchor.constraint(equalToConstant: СONTENT_VIEW_WIDTH)
         widthConstraint.priority = .defaultHigh
         widthConstraint.isActive = true
-        let heightConstraint = self.heightAnchor.constraint(equalToConstant: Content_View_Height)
+        let heightConstraint = self.heightAnchor.constraint(equalToConstant: CONTENT_VIEW_HEIGHT)
         heightConstraint.priority = .defaultHigh
         heightConstraint.isActive = true
         
@@ -88,50 +70,20 @@ class RecentDayCellView: UIView {
         cellHeaderContainerView.leftAnchor.constraint(equalTo: backView.leftAnchor, constant: 20).isActive = true
         cellHeaderContainerView.heightAnchor.constraint(equalToConstant: 28).isActive = true
         
-        for view in cellHeaderContainerView.subviews {
-            view.centerYAnchor.constraint(equalTo: cellHeaderContainerView.centerYAnchor).isActive = true
-        }
-    
-        dataLabel.widthAnchor.constraint(equalToConstant: Data_Label_Width).isActive = true
-        minTempLabel.widthAnchor.constraint(equalToConstant: Min_Max_Label_Width).isActive = true
-        maxTempLabel.widthAnchor.constraint(equalToConstant: Min_Max_Label_Width).isActive = true
-        weatherImage.widthAnchor.constraint(equalToConstant: Weather_Image_Width).isActive = true
-        
-        dataLabel.leftAnchor.constraint(equalTo: cellHeaderContainerView.leftAnchor).isActive = true
-        maxTempLabel.leftAnchor.constraint(equalTo: minTempLabel.rightAnchor, constant: 8).isActive = true
-        maxTempLabel.rightAnchor.constraint(equalTo: weatherImage.leftAnchor, constant: -16).isActive = true
-        weatherImage.rightAnchor.constraint(equalTo: cellHeaderContainerView.rightAnchor).isActive = true
-        
-        weatherImage.heightAnchor.constraint(equalToConstant: Weather_Image_Height).isActive = true
-        
         separatorView.topAnchor.constraint(equalTo: cellHeaderContainerView.bottomAnchor, constant: 15.14).isActive = true
-        
         separatorView.leftAnchor.constraint(equalTo: backView.leftAnchor, constant: 20).isActive = true
         separatorView.rightAnchor.constraint(equalTo: backView.rightAnchor, constant: -20).isActive = true
         
         collectionView.topAnchor.constraint(equalTo: separatorView.bottomAnchor, constant: 16).isActive = true
-        
         collectionView.leftAnchor.constraint(equalTo: backView.leftAnchor).isActive = true
         collectionView.rightAnchor.constraint(equalTo: backView.rightAnchor).isActive = true
         collectionView.bottomAnchor.constraint(equalTo: backView.bottomAnchor, constant: -16).isActive = true
     }
     
-    //MARK: - Constants
-    struct Constants {
-        static let blackFontColor = UIColor(displayP3Red: 42/255, green: 45/255, blue: 51/255, alpha: 1)
-        static let greyFontColor = UIColor(displayP3Red: 143/255, green: 150/255, blue: 161/255, alpha: 1)
-    }
-    
-    private let Сontent_View_Width: CGFloat = 343
-    private let Content_View_Height: CGFloat = 214
-    private let Data_Label_Width: CGFloat = 115
-    private let Data_Label_Height: CGFloat = 28.14
-    private let Min_Max_Label_Width: CGFloat = 32
-    private let Min_Max_Label_Height: CGFloat = 28.14
-    private let Weather_Image_Height: CGFloat = 24.12
-    private let Weather_Image_Width: CGFloat = 30
-    private let Header_Left_Right_Gap_To_Content_View: CGFloat = 20
-    
+    //MARK: - Constants    
+    private let СONTENT_VIEW_WIDTH: CGFloat = 343
+    private let CONTENT_VIEW_HEIGHT: CGFloat = 214
+    private let HEADER_LEFT_RIGHT_GAP_TO_CONTENT_VIEW: CGFloat = 20
 }
 
 extension RecentDayCellView: UICollectionViewDataSource {
@@ -149,4 +101,10 @@ extension RecentDayCellView: UICollectionViewDataSource {
         }
         return cell
     }
+}
+
+protocol RecentDayHeaderData {
+    var dayDate: String { get }
+    var dayAverageTemp: String { get }
+    var dayMaxTemp: String { get }
 }
