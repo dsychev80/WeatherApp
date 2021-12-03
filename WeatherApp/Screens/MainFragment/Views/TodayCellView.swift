@@ -11,13 +11,10 @@ class TodayCellView: UIView {
     
     private var backView = TodayCellBackgroundView()
     private var verticalStackView = TodayCellStackView()
-    private var dataLabel = TodayCellLabel(withFont: AppFont.semiBold.size(14),
-                                           andText: "Сегодя заебись")
+    private var dataLabel = WeatherCellLabel(withFont: AppFont.semiBold.size(14), fontColor: .white, andText: "Сегодя заебись")
     private var weatherImage = UIImageView(image: UIImage(named: "Sun"))
-    private var degreeLabel = TodayCellLabel(withFont: AppFont.extraBold.size(48),
-                                             andText: "25°")
-    private var feelsLikeLabel = TodayCellLabel(withFont: AppFont.semiBold.size(14),
-                                                andText: "Все ясно, по ощущениям весна!")
+    private var degreeLabel = WeatherCellLabel(withFont: AppFont.extraBold.size(48), fontColor: .white, andText: "25°")
+    private var feelsLikeLabel = WeatherCellLabel(withFont: AppFont.semiBold.size(14), fontColor: .white, andText: "Все ясно, по ощущениям весна!")
 
     // MARK: - LifeCycle
     required init() {

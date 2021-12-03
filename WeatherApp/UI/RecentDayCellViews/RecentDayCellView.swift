@@ -12,42 +12,9 @@ class RecentDayCellView: UIView {
     // MARK: - Properties
     private var backView = RecentDayCellBackView()
     private var cellHeaderContainerView = UIView()
-    
-    private var dataLabel: UILabel = {
-        let label = UILabel()
-        label.makeTextWhite()
-        label.font = AppFont.medium.size(16)
-        label.textColor = Constants.blackFontColor
-        // FIXME: Default data, need to delete after creating model.
-        label.text = "13 августа, пт"
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.clipsToBounds = true
-        return label
-    }()
-    
-    private var maxTempLabel: UILabel = {
-        let label = UILabel()
-        label.makeTextWhite()
-        label.font = AppFont.extraBold.size(16)
-        label.textColor = Constants.greyFontColor
-        // FIXME: Default data, need to delete after creating model.
-        label.text = "26°"
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.clipsToBounds = true
-        return label
-    }()
-    
-    private var minTempLabel: UILabel = {
-        let label = UILabel()
-        label.makeTextWhite()
-        label.font = AppFont.extraBold.size(16)
-        label.textColor = Constants.blackFontColor
-        // FIXME: Default data, need to delete after creating model.
-        label.text = "25°"
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.clipsToBounds = true
-        return label
-    }()
+    private var dataLabel = WeatherCellLabel(withFont: AppFont.medium.size(16), fontColor: .black)
+    private var maxTempLabel = WeatherCellLabel(withFont: AppFont.extraBold.size(16), fontColor: Constants.greyFontColor)
+    private var minTempLabel = WeatherCellLabel(withFont: AppFont.extraBold.size(16), fontColor: Constants.blackFontColor)
     
     private var weatherImage: UIImageView = {
         let imageView = UIImageView(image: UIImage(named: "Sun"))
