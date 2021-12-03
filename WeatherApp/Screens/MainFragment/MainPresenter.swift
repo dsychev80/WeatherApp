@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 
-final class MainPresenter: NSObject {
+final class MainPresenter {
     
     // MARK: - Properties
     private let networkController: NetworkController
@@ -17,9 +17,6 @@ final class MainPresenter: NSObject {
     public weak var dataRecivier: MainDataRecivier?
     
     public weak var mainViewController: MainViewController!
-    
-    private var weather: JSONWeatherData?
-    private var forecast: [ForecastData] = []
     
     // MARK: - Lifecycle
     init(with networkController: NetworkController, locationManager: LocationManager) {
@@ -38,8 +35,7 @@ final class MainPresenter: NSObject {
                     print(error.localizedDescription)
                 case .success(let weather):
                     // FIXME: Handle answer
-                    self?.weather = weather
-                    self?.forecast = weather.convertToForecastByDay()
+                    self?.mainViewController.provideForcastData(weather)
                     self?.dataRecivier?.dataReciviedForCity(weather.city.name)
                 }
             }
@@ -62,26 +58,6 @@ extension MainPresenter: CityDataDelegate {
             case .success(let coordinates):
                 self.loadWeatherForCoordinates(coordinates)
             }
-        }
-    }
-}
-
-extension MainPresenter: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return forecast.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.row == 0 {
-            let currentDayCell = TodayCell(style: .default, reuseIdentifier: TodayCell.name)
-            guard let data = weather, let currentWeather = data.list.first else { return currentDayCell } // Returns cell without data
-            currentDayCell.configure(with: currentWeather)
-            return currentDayCell
-        } else {
-            let recentDayWeather = forecast[indexPath.row]
-            let recentDayCell = RecentDayCell()
-            recentDayCell.configure(with: recentDayWeather)
-            return recentDayCell
         }
     }
 }

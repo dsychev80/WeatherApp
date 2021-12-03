@@ -12,13 +12,15 @@ class MainViewController: UIViewController {
     // MARK: - Properties
     private weak var presenter: MainPresenter?
     private var tableView: MainTableView!
+    private var mainWeatherDataSourceAdapter = MainWeatherAdapter()
     
     // MARK: - Lifecycle
     
-    required init(with dataController: MainPresenter) {
-        self.presenter = dataController
-        self.tableView = MainTableView(with: dataController)
+    required init(with presenter: MainPresenter) {
+        self.presenter = presenter
+        self.tableView = MainTableView(with: mainWeatherDataSourceAdapter)
         super.init(nibName: nil, bundle: nil)
+        presenter.mainViewController = self
     }
     
     required init?(coder: NSCoder) {
@@ -38,6 +40,9 @@ class MainViewController: UIViewController {
     }
     
     // MARK: - Methods
+    public func provideForcastData(_ data: JSONWeatherData) {
+        mainWeatherDataSourceAdapter.getForecast(data)
+    }
     
     private func setupViewHierarchy() {
         view.addSubview(tableView)
