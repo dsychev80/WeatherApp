@@ -12,6 +12,8 @@
 		730355C92759238A0068DCC8 /* TodayCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 730355C82759238A0068DCC8 /* TodayCellView.swift */; };
 		730355CC275A01930068DCC8 /* RecentDayCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 730355CB275A01930068DCC8 /* RecentDayCellView.swift */; };
 		730355CE275A101D0068DCC8 /* RecentDayCellBackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 730355CD275A101D0068DCC8 /* RecentDayCellBackView.swift */; };
+		730355D1275A1C450068DCC8 /* RecentDayCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 730355D0275A1C450068DCC8 /* RecentDayCollectionView.swift */; };
+		730355D3275A1DA10068DCC8 /* SeparatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 730355D2275A1DA10068DCC8 /* SeparatorView.swift */; };
 		7358E6BC274E72E100926C02 /* HourWeatherCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7358E6BB274E72E100926C02 /* HourWeatherCell.swift */; };
 		7358E6C62751024500926C02 /* CitySearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7358E6C52751024500926C02 /* CitySearchViewController.swift */; };
 		73765C502758D15700C1CA4E /* Manrope-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 73765C4C2758D15700C1CA4E /* Manrope-ExtraBold.ttf */; };
@@ -55,6 +57,8 @@
 		730355C82759238A0068DCC8 /* TodayCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayCellView.swift; sourceTree = "<group>"; };
 		730355CB275A01930068DCC8 /* RecentDayCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentDayCellView.swift; sourceTree = "<group>"; };
 		730355CD275A101D0068DCC8 /* RecentDayCellBackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentDayCellBackView.swift; sourceTree = "<group>"; };
+		730355D0275A1C450068DCC8 /* RecentDayCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentDayCollectionView.swift; sourceTree = "<group>"; };
+		730355D2275A1DA10068DCC8 /* SeparatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeparatorView.swift; sourceTree = "<group>"; };
 		7358E6BB274E72E100926C02 /* HourWeatherCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourWeatherCell.swift; sourceTree = "<group>"; };
 		7358E6C52751024500926C02 /* CitySearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitySearchViewController.swift; sourceTree = "<group>"; };
 		73765C4C2758D15700C1CA4E /* Manrope-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Manrope-ExtraBold.ttf"; sourceTree = "<group>"; };
@@ -110,6 +114,8 @@
 			children = (
 				730355CB275A01930068DCC8 /* RecentDayCellView.swift */,
 				730355CD275A101D0068DCC8 /* RecentDayCellBackView.swift */,
+				730355D0275A1C450068DCC8 /* RecentDayCollectionView.swift */,
+				730355D2275A1DA10068DCC8 /* SeparatorView.swift */,
 			);
 			path = RecentDayCellViews;
 			sourceTree = "<group>";
@@ -349,6 +355,7 @@
 				737B1C992753A38C00397F19 /* WeatherAppErrors.swift in Sources */,
 				737B1C8D27538A4900397F19 /* NetworkController.swift in Sources */,
 				737B1C912753930E00397F19 /* MainPresenter.swift in Sources */,
+				730355D3275A1DA10068DCC8 /* SeparatorView.swift in Sources */,
 				7358E6BC274E72E100926C02 /* HourWeatherCell.swift in Sources */,
 				73F0379D274BD67600C130FC /* SceneDelegate.swift in Sources */,
 				73765C552758DC6100C1CA4E /* TodayDataProtocolExtendWeatherModel.swift in Sources */,
@@ -361,6 +368,7 @@
 				730355C727591E5F0068DCC8 /* TodayCellStackView.swift in Sources */,
 				73FD63C8274E38DE00E33A61 /* Fonts.swift in Sources */,
 				730355CE275A101D0068DCC8 /* RecentDayCellBackView.swift in Sources */,
+				730355D1275A1C450068DCC8 /* RecentDayCollectionView.swift in Sources */,
 				73765C592759114C00C1CA4E /* WeatherCellLabel.swift in Sources */,
 				737B1C892752807500397F19 /* WeatherCityNameLabel.swift in Sources */,
 				73F037B8274BE52700C130FC /* WeatherModel.swift in Sources */,

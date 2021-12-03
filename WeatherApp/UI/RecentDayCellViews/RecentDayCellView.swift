@@ -15,34 +15,14 @@ class RecentDayCellView: UIView {
     private var dataLabel = WeatherCellLabel(withFont: AppFont.medium.size(16), fontColor: .black)
     private var maxTempLabel = WeatherCellLabel(withFont: AppFont.extraBold.size(16), fontColor: Constants.greyFontColor)
     private var minTempLabel = WeatherCellLabel(withFont: AppFont.extraBold.size(16), fontColor: Constants.blackFontColor)
+    private var collectionView = RecentDayCollectionView()
+    private var separatorView = SeparatorView()
     
     private var weatherImage: UIImageView = {
         let imageView = UIImageView(image: UIImage(named: "Sun"))
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.clipsToBounds = true
         return imageView
-    }()
-    
-    private var separatorView: UIView = {
-        let view = UIView()
-        view.backgroundColor = Constants.separatorColor
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-    
-    private var collectionView: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
-        layout.sectionInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 0)
-        layout.itemSize = CGSize(width: 73, height: 114)
-        let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
-        collectionView.collectionViewLayout = layout
-        collectionView.isPagingEnabled = true
-        collectionView.showsHorizontalScrollIndicator = false
-        collectionView.register(HourWeatherCell.self, forCellWithReuseIdentifier: HourWeatherCell.name)
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.backgroundColor = .clear
-        return collectionView
     }()
     
     private var forecast: ForecastData?
@@ -124,7 +104,6 @@ class RecentDayCellView: UIView {
         
         weatherImage.heightAnchor.constraint(equalToConstant: Weather_Image_Height).isActive = true
         
-        separatorView.heightAnchor.constraint(equalToConstant: 1).isActive = true
         separatorView.topAnchor.constraint(equalTo: cellHeaderContainerView.bottomAnchor, constant: 15.14).isActive = true
         
         separatorView.leftAnchor.constraint(equalTo: backView.leftAnchor, constant: 20).isActive = true
@@ -141,7 +120,6 @@ class RecentDayCellView: UIView {
     struct Constants {
         static let blackFontColor = UIColor(displayP3Red: 42/255, green: 45/255, blue: 51/255, alpha: 1)
         static let greyFontColor = UIColor(displayP3Red: 143/255, green: 150/255, blue: 161/255, alpha: 1)
-        static let separatorColor = UIColor(displayP3Red: 217/255, green: 224/255, blue: 234/255, alpha: 1)
     }
     
     private let Сontent_View_Width: CGFloat = 343
