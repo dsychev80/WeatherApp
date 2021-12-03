@@ -68,3 +68,7 @@ class TodayCellView: UIView {
     private let SCREEN_HEIGHT: CGFloat = UIScreen.main.bounds.height
     private let SCREEN_WIDTH: CGFloat = UIScreen.main.bounds.width
 }
+
+protocol TodayData {
+    var data: WeatherModel { get }
+}
