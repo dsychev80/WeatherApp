@@ -10,6 +10,7 @@
 		730355C327591AE60068DCC8 /* TodayCellBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 730355C227591AE60068DCC8 /* TodayCellBackgroundView.swift */; };
 		730355C727591E5F0068DCC8 /* TodayCellStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 730355C627591E5F0068DCC8 /* TodayCellStackView.swift */; };
 		730355C92759238A0068DCC8 /* TodayCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 730355C82759238A0068DCC8 /* TodayCellView.swift */; };
+		730355CC275A01930068DCC8 /* RecentDayCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 730355CB275A01930068DCC8 /* RecentDayCellView.swift */; };
 		7358E6BC274E72E100926C02 /* HourWeatherCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7358E6BB274E72E100926C02 /* HourWeatherCell.swift */; };
 		7358E6C62751024500926C02 /* CitySearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7358E6C52751024500926C02 /* CitySearchViewController.swift */; };
 		73765C502758D15700C1CA4E /* Manrope-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 73765C4C2758D15700C1CA4E /* Manrope-ExtraBold.ttf */; };
@@ -51,6 +52,7 @@
 		730355C227591AE60068DCC8 /* TodayCellBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayCellBackgroundView.swift; sourceTree = "<group>"; };
 		730355C627591E5F0068DCC8 /* TodayCellStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayCellStackView.swift; sourceTree = "<group>"; };
 		730355C82759238A0068DCC8 /* TodayCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayCellView.swift; sourceTree = "<group>"; };
+		730355CB275A01930068DCC8 /* RecentDayCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentDayCellView.swift; sourceTree = "<group>"; };
 		7358E6BB274E72E100926C02 /* HourWeatherCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourWeatherCell.swift; sourceTree = "<group>"; };
 		7358E6C52751024500926C02 /* CitySearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitySearchViewController.swift; sourceTree = "<group>"; };
 		73765C4C2758D15700C1CA4E /* Manrope-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Manrope-ExtraBold.ttf"; sourceTree = "<group>"; };
@@ -101,6 +103,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		730355CA2759FF3A0068DCC8 /* RecentDayCellViews */ = {
+			isa = PBXGroup;
+			children = (
+				730355CB275A01930068DCC8 /* RecentDayCellView.swift */,
+			);
+			path = RecentDayCellViews;
+			sourceTree = "<group>";
+		};
 		737B1CD52757782200397F19 /* DI */ = {
 			isa = PBXGroup;
 			children = (
@@ -167,6 +177,7 @@
 		737B1CE72758B42700397F19 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				730355CA2759FF3A0068DCC8 /* RecentDayCellViews */,
 				737B1C8A2752972300397F19 /* WeatherCityNameTextField.swift */,
 				737B1C882752807500397F19 /* WeatherCityNameLabel.swift */,
 				73765C562759039100C1CA4E /* MainTableView.swift */,
@@ -328,6 +339,7 @@
 				737B1CDB27578D0000397F19 /* HoursWeatherModel.swift in Sources */,
 				737B1C8F275392E700397F19 /* LocationManager.swift in Sources */,
 				730355C92759238A0068DCC8 /* TodayCellView.swift in Sources */,
+				730355CC275A01930068DCC8 /* RecentDayCellView.swift in Sources */,
 				730355C327591AE60068DCC8 /* TodayCellBackgroundView.swift in Sources */,
 				73765C572759039100C1CA4E /* MainTableView.swift in Sources */,
 				737B1C872751286700397F19 /* CityCollectionViewCell.swift in Sources */,
