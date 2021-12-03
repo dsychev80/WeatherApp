@@ -10,11 +10,12 @@ import UIKit
 class RecentDayCellView: UIView {
 
     // MARK: - Properties
+    private var collectionViewAdapter = RecentDayCollectionAdapter()
+    
     private var backView = RecentDayCellBackView()
     private var cellHeaderContainerView = RecentHeaderView()
     private var separatorView = SeparatorView()
     private var collectionView = RecentDayCollectionView()
-    private var forecast: ForecastData?
     
     // MARK: - LifeCycle
     required init() {
@@ -29,13 +30,12 @@ class RecentDayCellView: UIView {
     // MARK: - Methods
     public func configure(with data: ForecastData) {
         cellHeaderContainerView.configure(withData: data)
-
-        forecast = data
+        collectionViewAdapter.getForcastData(data.forecast)
         collectionView.reloadData()
     }
     
     private func setup() {
-        collectionView.dataSource = self
+        collectionView.dataSource = collectionViewAdapter
     
         setupViewHierarchy()
         setupLayoutConstraints()
@@ -84,23 +84,6 @@ class RecentDayCellView: UIView {
     private let СONTENT_VIEW_WIDTH: CGFloat = 343
     private let CONTENT_VIEW_HEIGHT: CGFloat = 214
     private let HEADER_LEFT_RIGHT_GAP_TO_CONTENT_VIEW: CGFloat = 20
-}
-
-extension RecentDayCellView: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        guard let forecast = forecast?.forecast else { return 0 }
-        return forecast.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HourWeatherCell.name, for: indexPath) as! HourWeatherCell
-        guard let forecast = forecast else { return cell }
-        cell.configure(with: forecast.forecast[indexPath.row])
-        DispatchQueue.main.async {
-            collectionView.reloadData()
-        }
-        return cell
-    }
 }
 
 protocol RecentDayHeaderData {
