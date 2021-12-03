@@ -16,8 +16,10 @@ final class MainPresenter: NSObject {
     private let locationManager: LocationManager
     public weak var dataRecivier: MainDataRecivier?
     
+    public weak var mainViewController: MainViewController!
+    
     private var weather: JSONWeatherData?
-    private var forecast: [ForecastData]?
+    private var forecast: [ForecastData] = []
     
     // MARK: - Lifecycle
     init(with networkController: NetworkController, locationManager: LocationManager) {
@@ -66,8 +68,7 @@ extension MainPresenter: CityDataDelegate {
 
 extension MainPresenter: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let data = forecast else { return 1 }
-        return data.count
+        return forecast.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -77,8 +78,7 @@ extension MainPresenter: UITableViewDataSource {
             currentDayCell.configure(with: currentWeather)
             return currentDayCell
         } else {
-            guard let forcast = forecast else { return RecentDayCell() }
-            let recentDayWeather = forcast[indexPath.row]
+            let recentDayWeather = forecast[indexPath.row]
             let recentDayCell = RecentDayCell()
             recentDayCell.configure(with: recentDayWeather)
             return recentDayCell

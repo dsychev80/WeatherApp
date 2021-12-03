@@ -13,12 +13,12 @@ final class DIContainer {
     
     let networkController: NetworkController
     let locationManager: LocationManager
-    let dataController: MainPresenter
+    let mainPresenter: MainPresenter
     
     init() {
         self.networkController = NetworkController()
         self.locationManager = LocationManagerImp()
-        self.dataController = MainPresenter(with: networkController, locationManager: locationManager)
+        self.mainPresenter = MainPresenter(with: networkController, locationManager: locationManager)
     }
     
 }
@@ -26,11 +26,11 @@ final class DIContainer {
 extension DIContainer {
     
     public func configureMainViewController() -> UIViewController {
-        return MainViewController(with: dataController)
+        return MainViewController(with: mainPresenter)
     }
     
     public func configureCitySearchViewController() -> UIViewController {
-        return CitySearchViewController(with: dataController as CityDataDelegate)
+        return CitySearchViewController(with: mainPresenter as CityDataDelegate)
     }
 
 }

@@ -10,14 +10,13 @@ import UIKit
 
 class MainViewController: UIViewController {
     // MARK: - Properties
-    private let dataController: MainPresenter
-    
+    private weak var presenter: MainPresenter?
     private var tableView: MainTableView!
     
     // MARK: - Lifecycle
     
     required init(with dataController: MainPresenter) {
-        self.dataController = dataController
+        self.presenter = dataController
         self.tableView = MainTableView(with: dataController)
         super.init(nibName: nil, bundle: nil)
     }
@@ -35,7 +34,7 @@ class MainViewController: UIViewController {
         setupLayoutConstraints()
         customizeNavigationBar()
         
-        dataController.dataRecivier = self
+        presenter?.dataRecivier = self
     }
     
     // MARK: - Methods
@@ -88,7 +87,8 @@ class MainViewController: UIViewController {
     }
     
     @objc private func selectOnMap() {
-        let searchVC = CitySearchViewController(with: dataController as CityDataDelegate)
+        guard let presenter = presenter else { return }
+        let searchVC = CitySearchViewController(with: presenter)
         searchVC.modalPresentationStyle = .overCurrentContext
         searchVC.modalTransitionStyle = .crossDissolve
         present(searchVC, animated: true, completion: nil)
