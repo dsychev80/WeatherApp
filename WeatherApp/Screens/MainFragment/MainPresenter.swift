@@ -12,13 +12,13 @@ import UIKit
 final class MainPresenter {
     
     // MARK: - Properties
-    private let networkController: NetworkController
+    private let networkController: NetworkManager
     private let locationManager: LocationManager
     
     public weak var mainViewController: MainView!
     
     // MARK: - Lifecycle
-    init(with networkController: NetworkController, locationManager: LocationManager) {
+    init(with networkController: NetworkManager, locationManager: LocationManager) {
         self.networkController = networkController
         self.locationManager = locationManager
     }
@@ -68,4 +68,8 @@ protocol MainView: AnyObject {
 
 protocol LocationManager {
     func getCityCoordinatesByName(_ name: String, completion: @escaping (Result<LocationData, WeatherError>) -> Void)
+}
+
+protocol NetworkManager {
+    func loadWeatherForLocation(_ location: LocationData, completion: @escaping (Result<JSONWeatherData, WeatherError>) -> Void)
 }

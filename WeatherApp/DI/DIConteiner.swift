@@ -11,7 +11,7 @@ import UIKit
 
 final class DIContainer {
     
-    let networkController: NetworkController
+    let networkController: NetworkManager
     let locationManager: LocationManager
     let mainPresenter: MainPresenter
     

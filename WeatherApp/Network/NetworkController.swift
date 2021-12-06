@@ -8,7 +8,7 @@
 import Foundation
 
 
-final class NetworkController {
+final class NetworkController: NetworkManager {
     
     private weak var dataUser: NetworkDataUserDelegate?
     
