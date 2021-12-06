@@ -135,6 +135,8 @@
 		730355DA275A5EF30068DCC8 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				730355D7275A31240068DCC8 /* HourCell */,
+				730355CA2759FF3A0068DCC8 /* RecentDayCellViews */,
 				73FD63C3274CF7E400E33A61 /* TodayCell.swift */,
 				73FD63C5274D32BC00E33A61 /* RecentDayCell.swift */,
 				7358E6BB274E72E100926C02 /* HourWeatherCell.swift */,
@@ -206,8 +208,6 @@
 		737B1CE72758B42700397F19 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				730355D7275A31240068DCC8 /* HourCell */,
-				730355CA2759FF3A0068DCC8 /* RecentDayCellViews */,
 				737B1C8A2752972300397F19 /* WeatherCityNameTextField.swift */,
 				737B1C882752807500397F19 /* WeatherCityNameLabel.swift */,
 				73765C562759039100C1CA4E /* MainTableView.swift */,
