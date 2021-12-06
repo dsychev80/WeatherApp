@@ -15,7 +15,7 @@ final class MainPresenter {
     private let networkController: NetworkController
     private let locationManager: LocationManager
     
-    public weak var mainViewController: MainDataRecivier!
+    public weak var mainViewController: MainView!
     
     // MARK: - Lifecycle
     init(with networkController: NetworkController, locationManager: LocationManager) {
@@ -61,7 +61,7 @@ extension MainPresenter: CityDataDelegate {
     }
 }
 
-protocol MainDataRecivier: AnyObject {
+protocol MainView: AnyObject {
     func provideForcastData(_ data: JSONWeatherData)
     func dataReciviedForCity(_ name: String)
 }

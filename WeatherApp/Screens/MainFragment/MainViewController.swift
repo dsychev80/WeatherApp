@@ -101,7 +101,7 @@ class MainViewController: UIViewController {
     private let TITLE_COLOR = UIColor(displayP3Red: 42/255, green: 45/255, blue: 51/255, alpha: 1)
 }
 
-extension MainViewController: MainDataRecivier {
+extension MainViewController: MainView {
     func dataReciviedForCity(_ name: String) {
         self.title = name
         self.tableView.reloadData()
