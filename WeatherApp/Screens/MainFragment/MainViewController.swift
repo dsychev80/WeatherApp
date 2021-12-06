@@ -11,14 +11,13 @@ import UIKit
 class MainViewController: UIViewController {
     // MARK: - Properties
     private weak var presenter: MainPresenter?
-    private var tableView: MainTableView!
+    private var tableView: MainTableView { view as! MainTableView }
     private var mainWeatherDataSourceAdapter = MainWeatherAdapter()
     
     // MARK: - Lifecycle
     
     required init(with presenter: MainPresenter) {
         self.presenter = presenter
-        self.tableView = MainTableView(with: mainWeatherDataSourceAdapter)
         super.init(nibName: nil, bundle: nil)
         presenter.mainViewController = self
     }
@@ -30,11 +29,12 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = .lightGray
-        
-        setupViewHierarchy()
-        setupLayoutConstraints()
+        view.backgroundColor = .white
         customizeNavigationBar()
+    }
+    
+    override func loadView() {
+        view = MainTableView(with: mainWeatherDataSourceAdapter)
     }
     
     // MARK: - Methods
@@ -42,16 +42,6 @@ class MainViewController: UIViewController {
         mainWeatherDataSourceAdapter.getForecast(data)
     }
     
-    private func setupViewHierarchy() {
-        view.addSubview(tableView)
-    }
-    
-    private func setupLayoutConstraints() {
-        tableView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        tableView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
-        tableView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-        tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-    }
     
     // FIXME: - need to move this code
     private func customizeNavigationBar() {

@@ -23,7 +23,7 @@ class MainTableView: UITableView {
     // MARK: - Methods
     private func setup() {
         self.separatorStyle = .none
-        self.translatesAutoresizingMaskIntoConstraints = false
+
         self.register(TodayCell.self, forCellReuseIdentifier: TodayCell.name)
         self.register(RecentDayCell.self, forCellReuseIdentifier: RecentDayCell.name)
     }
