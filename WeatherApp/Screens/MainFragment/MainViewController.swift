@@ -35,8 +35,6 @@ class MainViewController: UIViewController {
         setupViewHierarchy()
         setupLayoutConstraints()
         customizeNavigationBar()
-        
-        presenter?.dataRecivier = self
     }
     
     // MARK: - Methods

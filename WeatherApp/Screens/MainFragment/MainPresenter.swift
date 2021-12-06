@@ -14,9 +14,8 @@ final class MainPresenter {
     // MARK: - Properties
     private let networkController: NetworkController
     private let locationManager: LocationManager
-    public weak var dataRecivier: MainDataRecivier?
     
-    public weak var mainViewController: MainViewController!
+    public weak var mainViewController: MainDataRecivier!
     
     // MARK: - Lifecycle
     init(with networkController: NetworkController, locationManager: LocationManager) {
@@ -36,7 +35,7 @@ final class MainPresenter {
                 case .success(let weather):
                     // FIXME: Handle answer
                     self?.mainViewController.provideForcastData(weather)
-                    self?.dataRecivier?.dataReciviedForCity(weather.city.name)
+                    self?.mainViewController?.dataReciviedForCity(weather.city.name)
                 }
             }
         }
@@ -63,6 +62,7 @@ extension MainPresenter: CityDataDelegate {
 }
 
 protocol MainDataRecivier: AnyObject {
+    func provideForcastData(_ data: JSONWeatherData)
     func dataReciviedForCity(_ name: String)
 }
 
