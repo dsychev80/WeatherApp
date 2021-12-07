@@ -10,23 +10,19 @@ import Foundation
 
 class MainView_Mock: MainView {
     
-    var isCityNameCorrect: Bool = false
-    var isForcastDataCorrect: Bool = false
+    var isCalledProvideForcastData: Bool = false
+    var isCalledReciviedForCity: Bool = false
+    
+    var nameRecivied: String = ""
+    var dataReceived: JSONWeatherData?
     
     func provideForcastData(_ data: JSONWeatherData) {
-        isForcastDataCorrect = checkForcastData(data)
+        isCalledProvideForcastData = true
+        dataReceived = data
     }
     
     func dataReciviedForCity(_ name: String) {
-        isCityNameCorrect = checkReciviedCityName(name)
+        isCalledReciviedForCity = true
+        nameRecivied = name
     }
-    
-    func checkForcastData(_ data: JSONWeatherData) -> Bool {
-        return data.city.name == "Тамбов" && data.list.count > 0
-    }
-    
-    func checkReciviedCityName(_ name: String) -> Bool {
-        return name == "Тамбов"
-    }
-    
 }

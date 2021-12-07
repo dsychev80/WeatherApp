@@ -10,19 +10,34 @@ import XCTest
 
 class MainPresenterTest: XCTestCase {
 
-    var networkMock: NetworkManager = NetworkController_Mock()
-    var locationMock: LocationManager = LocationController_Mock()
+    var networkMock = NetworkController_Mock()
+    var locationMock = LocationController_Mock()
+    var mainView = MainView_Mock()
     var mainPresenter: MainPresenter!
-    var mainView: MainView!
     
-//    override func setUp() {
-//        super.setUp()
-//
-//    }
-    
-    func testData() {
-        mainPresenter.recievedCityName("Tambov")
-        XCTAssertTrue((mainView as! MainView_Mock).isCityNameCorrect)
+    func testMainPresenterForCorrectData() {
+        let name = "Tambov"
+        let location = LocationData(longitude: 41.4517589,
+                                    lattitude: 52.7211462)
+        let jsonData = JSONWeatherData(list: [], city: City(name: name,
+                                                            coord: Coordinates(lat: Float(location.lattitude),
+                                                                               lon: Float(location.longitude))))
+        
+        locationMock.mockResult = .success(location)
+        networkMock.mockResult = .success(jsonData)
+        
+        mainPresenter.recievedCityName(name)
+        
+        XCTAssertTrue(locationMock.isCalled)
+        XCTAssertEqual(locationMock.mockName, name)
+        
+        XCTAssertTrue(networkMock.isCalled)
+        XCTAssertEqual(networkMock.mockLocation, location)
+        
+        XCTAssertTrue(mainView.isCalledReciviedForCity)
+        XCTAssertTrue(mainView.isCalledProvideForcastData)
+        XCTAssertEqual(mainView.nameRecivied, name)
+        XCTAssertEqual(mainView.dataReceived, jsonData)
     }
     
     override func setUpWithError() throws {
@@ -33,14 +48,6 @@ class MainPresenterTest: XCTestCase {
     }
 
     override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        mainPresenter = nil
-        mainView = nil
+        
     }
-
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-
 }

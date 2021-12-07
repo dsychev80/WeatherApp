@@ -9,12 +9,14 @@ import Foundation
 @testable import WeatherApp
 
 class NetworkController_Mock: NetworkManager {
-    var dataJson = WeatherDataForTest.jsonData
+    
+    var isCalled: Bool = false
+    var mockLocation: LocationData?
+    var mockResult: Result<JSONWeatherData, WeatherError>!
+    
     func loadWeatherForLocation(_ location: LocationData, completion: @escaping (Result<JSONWeatherData, WeatherError>) -> Void) {
-        if location == LocationData(longitude: 41.4517589, lattitude: 52.7211462) {
-            completion(.success(dataJson))
-        } else {
-            completion(.failure(.serverError("No data")))
-        }
+        isCalled = true
+        mockLocation = location
+        completion(mockResult)
     }
 }
