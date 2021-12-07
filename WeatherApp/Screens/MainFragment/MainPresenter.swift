@@ -26,17 +26,15 @@ final class MainPresenter {
     // MARK: - Methods
     private func loadWeatherForCoordinates(_ coordinates: LocationData) {
         networkController.loadWeatherForLocation(coordinates) { [weak self] result in
-            DispatchQueue.main.async {
-                
-                switch result {
-                case .failure(let error):
-                    // FIXME: Handle error
-                    print(error.localizedDescription)
-                case .success(let weather):
-                    // FIXME: Handle answer
-                    self?.mainViewController.provideForcastData(weather)
-                    self?.mainViewController?.dataReciviedForCity(weather.city.name)
-                }
+            switch result {
+            case .failure(let error):
+                // FIXME: Handle error
+                print(error.localizedDescription)
+            case .success(let weather):
+                // FIXME: Handle answer
+                self?.mainViewController.provideForcastData(weather)
+                self?.mainViewController?.dataReciviedForCity(weather.city.name)
+            
             }
         }
     }
