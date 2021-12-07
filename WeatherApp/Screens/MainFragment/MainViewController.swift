@@ -39,7 +39,9 @@ class MainViewController: UIViewController {
     
     // MARK: - Methods
     public func provideForcastData(_ data: JSONWeatherData) {
-        mainWeatherDataSourceAdapter.getForecast(data)
+        DispatchQueue.main.async { [weak self] in
+            self?.mainWeatherDataSourceAdapter.getForecast(data)
+        }
     }
     
     
@@ -93,8 +95,10 @@ class MainViewController: UIViewController {
 
 extension MainViewController: MainView {
     func dataReciviedForCity(_ name: String) {
-        self.title = name
-        self.tableView.reloadData()
+        DispatchQueue.main.async { [weak self] in
+            self?.title = name
+            self?.tableView.reloadData()
+        }
     }
 }
 

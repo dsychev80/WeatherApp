@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 
-struct WeatherModel: Decodable {
+struct WeatherModel: Decodable, Equatable {
     let weather: [Weather]
     let main: MainWeatherInfo
     let wind: Wind
@@ -90,14 +90,14 @@ extension WeatherModel: TodayData {
     }
 }
 
-struct Weather: Decodable {
+struct Weather: Decodable, Equatable {
     let id: Int
     let main: String
     let description: String
     let icon: String
 }
 
-struct MainWeatherInfo: Decodable {
+struct MainWeatherInfo: Decodable, Equatable {
     let temp: Float
     let feelsLike: Float
     let tempMin: Float
@@ -116,16 +116,16 @@ struct MainWeatherInfo: Decodable {
     }
 }
 
-struct Wind: Decodable {
+struct Wind: Decodable, Equatable {
     let speed: Float
 }
 
-struct City: Decodable {
+struct City: Decodable, Equatable {
     let name: String
     let coord: Coordinates
 }
 
-struct Coordinates: Decodable {
+struct Coordinates: Decodable, Equatable {
     let lat: Float
     let lon: Float
 }

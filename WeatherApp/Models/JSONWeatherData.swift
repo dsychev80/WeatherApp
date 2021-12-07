@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct JSONWeatherData: Decodable {
+struct JSONWeatherData: Decodable, Equatable {
     let list: [WeatherModel]
     let city: City
 }
