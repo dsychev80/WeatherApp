@@ -40,6 +40,24 @@ class MainPresenterTest: XCTestCase {
         XCTAssertEqual(mainView.dataReceived, jsonData)
     }
     
+    func testMainPresenterForIncorrectName() {
+        let name = "blabla"
+        let errorMessage = "No Location"
+        let locationError = WeatherError.missingLocation(errorMessage)
+        
+        locationMock.mockName = name
+        locationMock.mockResult = .failure(locationError)
+        
+        mainPresenter.recievedCityName(name)
+        
+        XCTAssertTrue(locationMock.isCalled)
+        XCTAssertEqual(locationMock.mockName, name)
+        
+        XCTAssertFalse(networkMock.isCalled)
+        XCTAssertFalse(mainView.isCalledProvideForcastData)
+        XCTAssertFalse(mainView.isCalledReciviedForCity)
+    }
+    
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
         mainPresenter = MainPresenter(with: networkMock, locationManager: locationMock)
