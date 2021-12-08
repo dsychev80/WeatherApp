@@ -12,10 +12,10 @@ class TodayCellView: UIView {
     // MARK: - Properties
     private var backView = TodayCellBackgroundView()
     private var verticalStackView = TodayCellStackView()
-    private var dataLabel = WeatherCellLabel(withFont: AppFont.semiBold.size(14), fontColor: .white, andText: "Сегодя ништяк")
+    private var dataLabel = WeatherCellLabel(withFont: AppFont.semiBold.size(14), fontColor: .white)
     private var weatherImage = UIImageView(image: UIImage(named: "Sun"))
-    private var degreeLabel = WeatherCellLabel(withFont: AppFont.extraBold.size(48), fontColor: .white, andText: "25°")
-    private var feelsLikeLabel = WeatherCellLabel(withFont: AppFont.semiBold.size(14), fontColor: .white, andText: "Все ясно, по ощущениям весна!")
+    private var degreeLabel = WeatherCellLabel(withFont: AppFont.extraBold.size(48), fontColor: .white)
+    private var feelsLikeLabel = WeatherCellLabel(withFont: AppFont.semiBold.size(14), fontColor: .white)
 
     // MARK: - LifeCycle
     required init() {
@@ -29,9 +29,9 @@ class TodayCellView: UIView {
     
     // MARK: - Methods
     public func configure(with data: TodayData) {
-        dataLabel.text = data.data.convertedTimeToCurrentDay()
-        degreeLabel.text = data.data.convertedTempreture()
-        feelsLikeLabel.text = data.data.convertedFeelsLikeTemp()
+        dataLabel.text = data.date
+        degreeLabel.text = data.degree
+        feelsLikeLabel.text = data.feelsLike
     }
     
     private func setup() {
@@ -68,8 +68,4 @@ class TodayCellView: UIView {
     private let IMAGE_HEIGHT: CGFloat = 150
     private let SCREEN_HEIGHT: CGFloat = UIScreen.main.bounds.height
     private let SCREEN_WIDTH: CGFloat = UIScreen.main.bounds.width
-}
-
-protocol TodayData {
-    var data: WeatherModel { get }
 }

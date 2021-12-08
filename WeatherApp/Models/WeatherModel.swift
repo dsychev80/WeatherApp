@@ -71,7 +71,7 @@ extension WeatherModel {
 }
 
 // MARK: - : TodayData
-extension WeatherModel: TodayData {
+extension WeatherModel {
     
     func convertToHoursWeatherModel() -> HoursWeatherModel {
         var model = HoursWeatherModel()
@@ -90,8 +90,11 @@ extension WeatherModel: TodayData {
         return forcast
     }
     
-    var data: WeatherModel {
-        return self
+    func convertToTodayData() -> TodayData {
+        let convertData = TodayData(date: self.convertedTimeToCurrentDay(),
+                                    degree: self.convertedTempreture(),
+                                    feelsLike: self.convertedFeelsLikeTemp())
+        return convertData
     }
 }
 

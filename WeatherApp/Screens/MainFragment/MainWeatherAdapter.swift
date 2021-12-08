@@ -32,7 +32,7 @@ extension MainWeatherAdapter: UITableViewDataSource {
         if indexPath.row == 0 {
             let currentDayCell = TodayCell(style: .default, reuseIdentifier: TodayCell.name)
             guard let data = weather, let currentWeather = data.list.first else { return currentDayCell } // Returns cell without data
-            currentDayCell.configure(with: currentWeather)
+            currentDayCell.configure(with: currentWeather.convertToTodayData())
             return currentDayCell
         } else {
             let recentDayWeather = forecast[indexPath.row]
