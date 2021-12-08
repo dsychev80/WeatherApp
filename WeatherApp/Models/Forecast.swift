@@ -10,11 +10,22 @@ import Foundation
 // MARK: - ForecastModel
 // Model for RecenDayTableViewCell's
 struct ForecastData {
+    let identifier = UUID()
     var date: String = ""
     var minTemp: String = ""
     var maxTemp: String = ""
     var imageName: String = ""
     var forecast: [HoursWeatherModel] = []
+}
+
+extension ForecastData: Hashable {
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(identifier)
+    }
+    
+    static func == (lhs: ForecastData, rhs: ForecastData) -> Bool {
+        return lhs.identifier == rhs.identifier
+    }
 }
 
 extension ForecastData {
