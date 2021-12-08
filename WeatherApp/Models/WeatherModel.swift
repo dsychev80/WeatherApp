@@ -8,8 +8,8 @@
 import Foundation
 import UIKit
 
-
-struct WeatherModel: Decodable, Equatable {
+// MARK: - WeatherModel
+struct WeatherModel: Decodable {
     let weather: [Weather]
     let main: MainWeatherInfo
     let wind: Wind
@@ -22,6 +22,11 @@ struct WeatherModel: Decodable, Equatable {
     }
 }
 
+extension WeatherModel: Equatable { }
+
+extension WeatherModel: Hashable { }
+
+// MARK: - convertation functions
 extension WeatherModel {
     
     public func convertedTime() -> String {
@@ -65,7 +70,7 @@ extension WeatherModel {
     }
 }
 
-
+// MARK: - : TodayData
 extension WeatherModel: TodayData {
     
     func convertToHoursWeatherModel() -> HoursWeatherModel {
@@ -90,14 +95,20 @@ extension WeatherModel: TodayData {
     }
 }
 
-struct Weather: Decodable, Equatable {
+// MARK: - Weather
+struct Weather: Decodable {
     let id: Int
     let main: String
     let description: String
     let icon: String
 }
 
-struct MainWeatherInfo: Decodable, Equatable {
+extension Weather: Equatable { }
+
+extension Weather: Hashable { }
+
+// MARK: - MainWeatherInfo
+struct MainWeatherInfo: Decodable {
     let temp: Float
     let feelsLike: Float
     let tempMin: Float
@@ -116,17 +127,36 @@ struct MainWeatherInfo: Decodable, Equatable {
     }
 }
 
-struct Wind: Decodable, Equatable {
+extension MainWeatherInfo: Equatable { }
+
+extension MainWeatherInfo: Hashable { }
+
+// MARK: - Wind
+struct Wind: Decodable {
     let speed: Float
 }
 
-struct City: Decodable, Equatable {
+extension Wind: Equatable { }
+
+extension Wind: Hashable { }
+
+// MARK: - City
+struct City: Decodable {
     let name: String
     let coord: Coordinates
 }
 
-struct Coordinates: Decodable, Equatable {
+extension City: Equatable { }
+
+extension City: Hashable { }
+
+// MARK: - Coordinates
+struct Coordinates: Decodable {
     let lat: Float
     let lon: Float
 }
+
+extension Coordinates: Equatable { }
+
+extension Coordinates: Hashable { }
 
