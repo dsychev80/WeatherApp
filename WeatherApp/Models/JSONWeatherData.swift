@@ -13,6 +13,11 @@ struct JSONWeatherData: Decodable, Equatable, Hashable {
 }
 
 extension JSONWeatherData {
+    
+    func returnTodayWeather() -> TodayData? {
+        guard let weatherModel = self.list.first else { return nil }
+        return weatherModel.convertToTodayData()
+    }
 
     func convertToForecastByDay() -> [ForecastData] {
         
