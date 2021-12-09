@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class TodayCellView: UIView {
     
@@ -53,19 +54,34 @@ class TodayCellView: UIView {
     }
     
     private func setupLayoutConstraints() {
-        weatherImage.heightAnchor.constraint(equalToConstant: IMAGE_HEIGHT).isActive = true
-        weatherImage.widthAnchor.constraint(equalToConstant: IMAGE_HEIGHT).isActive = true
-        backView.makeEqualConstraintsToView(self, withGap: GAP_TO_VIEW)
-        verticalStackView.makeConstraintsToView(backView, top: TOP_MARGIN, bottom: BOTTOM_MARGIN, right: RIGHT_MARGIN, left: LEFT_MARGIN)
+        dataLabel.snp.makeConstraints { make in
+            make.height.equalTo(LABEL_HEIGHT)
+        }
+        degreeLabel.snp.makeConstraints { make in
+            make.height.equalTo(DEGREE_HEIGHT)
+        }
+        feelsLikeLabel.snp.makeConstraints { make in
+            make.height.equalTo(LABEL_HEIGHT)
+        }
+        weatherImage.snp.makeConstraints { make in
+            make.height.equalTo(IMAGE_HEIGHT)
+            make.width.equalTo(IMAGE_HEIGHT)
+        }
+        backView.snp.makeConstraints { make in
+            make.edges.equalTo(self).inset(UIEdgeInsets(top: GAP_TO_VIEW, left: GAP_TO_VIEW, bottom: GAP_TO_VIEW, right: GAP_TO_VIEW))
+        }
+        verticalStackView.snp.makeConstraints { make in
+            make.edges.equalTo(self).inset(UIEdgeInsets(top: TOP_MARGIN, left: LEFT_MARGIN, bottom: BOTTOM_MARGIN, right: RIGHT_MARGIN))
+        }
     }
 
     // MARK: - Constants
+    private let DEGREE_HEIGHT: CGFloat = 52
+    private let LABEL_HEIGHT: CGFloat = 24
     private let TOP_MARGIN: CGFloat = 25
     private let BOTTOM_MARGIN: CGFloat = 25
     private let LEFT_MARGIN: CGFloat = 10
     private let RIGHT_MARGIN: CGFloat = 10
     private let GAP_TO_VIEW: CGFloat = 10
     private let IMAGE_HEIGHT: CGFloat = 150
-    private let SCREEN_HEIGHT: CGFloat = UIScreen.main.bounds.height
-    private let SCREEN_WIDTH: CGFloat = UIScreen.main.bounds.width
 }
