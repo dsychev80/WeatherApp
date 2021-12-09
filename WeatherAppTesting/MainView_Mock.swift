@@ -14,9 +14,9 @@ class MainView_Mock: MainView {
     var isCalledReciviedForCity: Bool = false
     
     var nameRecivied: String = ""
-    var dataReceived: JSONWeatherData?
+    var dataReceived: [Item]?
     
-    func provideForcastData(_ data: JSONWeatherData) {
+    func provideForcastData(_ data: [Item]) {
         isCalledProvideForcastData = true
         dataReceived = data
     }

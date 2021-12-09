@@ -31,8 +31,7 @@ final class MainPresenter {
                 // FIXME: Handle error
                 print(error.localizedDescription)
             case .success(let weather):
-                // FIXME: Handle answer
-                self?.mainViewController.provideForcastData(weather)
+                self?.mainViewController.provideForcastData(weather.convertToItems())
                 self?.mainViewController?.dataReciviedForCity(weather.city.name)
             
             }
@@ -60,7 +59,7 @@ extension MainPresenter: CityDataDelegate {
 }
 
 protocol MainView: AnyObject {
-    func provideForcastData(_ data: JSONWeatherData)
+    func provideForcastData(_ data: [Item])
     func dataReciviedForCity(_ name: String)
 }
 

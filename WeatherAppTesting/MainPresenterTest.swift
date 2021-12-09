@@ -16,12 +16,12 @@ class MainPresenterTest: XCTestCase {
     var mainPresenter: MainPresenter!
     
     func testMainPresenterForCorrectData() {
-        let name = "Tambov"
+        let name = "Тамбов"
         let location = LocationData(longitude: 41.4517589,
                                     lattitude: 52.7211462)
-        let jsonData = JSONWeatherData(list: [], city: City(name: name,
-                                                            coord: Coordinates(lat: Float(location.lattitude),
-                                                                               lon: Float(location.longitude))))
+        let jsonData = Model_MockData.jsonData
+        let items = jsonData.convertToItems()
+        
         
         locationMock.mockResult = .success(location)
         networkMock.mockResult = .success(jsonData)
@@ -37,7 +37,7 @@ class MainPresenterTest: XCTestCase {
         XCTAssertTrue(mainView.isCalledReciviedForCity)
         XCTAssertTrue(mainView.isCalledProvideForcastData)
         XCTAssertEqual(mainView.nameRecivied, name)
-        XCTAssertEqual(mainView.dataReceived, jsonData)
+        XCTAssertEqual(mainView.dataReceived, items)
     }
     
     func testMainPresenterForIncorrectName() {

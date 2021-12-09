@@ -17,6 +17,8 @@ struct ForecastData {
     var forecast: [HoursWeatherModel] = []
 }
 
+extension ForecastData: Hashable { }
+
 extension ForecastData {
     func averageTemp() -> String {
         let tempData: [Int] = self.forecast.map{ Int($0.temp.dropLast()) ?? 0 }

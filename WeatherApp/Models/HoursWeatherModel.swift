@@ -13,3 +13,5 @@ struct HoursWeatherModel: HourData {
     var imageName: String = ""
     var temp: String = ""
 }
+
+extension HoursWeatherModel: Hashable { }

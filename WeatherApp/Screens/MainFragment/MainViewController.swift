@@ -13,6 +13,7 @@ class MainViewController: UIViewController {
     private weak var presenter: MainPresenter?
     private var tableView: MainTableView { view as! MainTableView }
     private var mainWeatherDataSourceAdapter = MainWeatherAdapter()
+    private var dataSource: UITableViewDiffableDataSource<Int, Item>!
     
     // MARK: - Lifecycle
     
@@ -35,12 +36,29 @@ class MainViewController: UIViewController {
     
     override func loadView() {
         view = MainTableView(with: mainWeatherDataSourceAdapter)
+        dataSource = UITableViewDiffableDataSource<Int, Item>(tableView: tableView) {
+            (tableView: UITableView, indexPath: IndexPath, item: Item) -> UITableViewCell? in
+            switch item {
+            case .today(let todayData):
+                let cell = tableView.dequeueReusableCell(withIdentifier: TodayCell.name, for: indexPath) as! TodayCell
+                cell.configure(with: todayData)
+                return cell
+            case .forecast(let forecastData):
+                let cell = tableView.dequeueReusableCell(withIdentifier: RecentDayCell.name, for: indexPath) as! RecentDayCell
+                cell.configure(with: forecastData)
+                return cell
+            }
+        }
+        tableView.dataSource = dataSource
     }
     
     // MARK: - Methods
-    public func provideForcastData(_ data: JSONWeatherData) {
+    public func provideForcastData(_ data: [Item]) {
         DispatchQueue.main.async { [weak self] in
-            self?.mainWeatherDataSourceAdapter.getForecast(data)
+            var snapshot = NSDiffableDataSourceSnapshot<Int, Item>()
+            snapshot.appendSections([0])
+            snapshot.appendItems(data, toSection: 0)
+            self?.dataSource.apply(snapshot)
         }
     }
     
