@@ -53,18 +53,11 @@ class MainViewController: UIViewController {
     }
     
     // MARK: - Methods
-    public func provideForcastData(_ data: JSONWeatherData) {
+    public func provideForcastData(_ data: [Item]) {
         DispatchQueue.main.async { [weak self] in
             var snapshot = NSDiffableDataSourceSnapshot<Int, Item>()
-            guard  let todayWeather = data.returnTodayWeather()
-                    else { return }
-            let dayWeatherItem = Item.today(todayWeather)
-            var forcast = data.convertToForecastByDay()
-                .map { Item.forecast($0) }
-            forcast.insert(dayWeatherItem, at: 0)
             snapshot.appendSections([0])
-            snapshot.appendItems(forcast, toSection: 0)
-            
+            snapshot.appendItems(data, toSection: 0)
             self?.dataSource.apply(snapshot)
         }
     }

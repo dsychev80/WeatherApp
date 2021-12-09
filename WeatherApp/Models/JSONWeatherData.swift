@@ -14,13 +14,12 @@ struct JSONWeatherData: Decodable, Equatable, Hashable {
 
 extension JSONWeatherData {
     
-    func returnTodayWeather() -> TodayData? {
+    public func returnTodayWeather() -> TodayData? {
         guard let weatherModel = self.list.first else { return nil }
         return weatherModel.convertToTodayData()
     }
 
-    func convertToForecastByDay() -> [ForecastData] {
-        
+    public func convertToForecastByDay() -> [ForecastData] {
         let formatter = DateFormatter()
         // "dt_txt":"2021-11-29 15:00:00"
         formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
@@ -51,5 +50,16 @@ extension JSONWeatherData {
         }
         let _ = forcast.removeSubrange(0..<1)
         return forcast
+    }
+    
+    public func convertToItems() -> [Item] {
+        guard  let todayWeather = self.returnTodayWeather()
+                else { return [] }
+        let dayWeatherItem = Item.today(todayWeather)
+        var items = self.convertToForecastByDay()
+            .map { Item.forecast($0) }
+        items.remove(at: 0)
+        items.insert(dayWeatherItem, at: 0)
+        return items
     }
 }
