@@ -35,26 +35,11 @@ class HourWeatherCell: UICollectionViewCell {
     
     private func setup() {
         setupViewHierarchy()
-        setupLayoutConstraints()
     }
     
     private func setupViewHierarchy() {
         contentView.addSubview(backView)
     }
-    
-    private func setupLayoutConstraints() {
-        backView.snp.makeConstraints { make in
-            make.height.equalTo(CONTENT_CELL_HEIGHT)
-        }
-        backView.snp.makeConstraints { make in
-            make.width.equalTo(CONTENT_CELL_WIDTH)
-        }
-    }
-    
-    // MARK: - Constants
-    
-    private let CONTENT_CELL_HEIGHT: CGFloat = 114
-    private let CONTENT_CELL_WIDTH: CGFloat = 73
 }
 
 protocol HourData {

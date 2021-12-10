@@ -59,21 +59,27 @@ class HourCellView: UIView {
     }
     
     private func setupLayoutConstraints() {
-        self.heightAnchor.constraint(equalToConstant: CONTENT_CELL_HEIGHT).isActive = true
-        self.widthAnchor.constraint(equalToConstant: CONTENT_CELL_WIDTH).isActive = true
+        self.snp.makeConstraints { make in
+            make.height.equalTo(CONTENT_CELL_HEIGHT)
+            make.width.equalTo(CONTENT_CELL_WIDTH)
+        }
+
+        hourLabel.snp.makeConstraints { make in
+            make.centerX.equalTo(self.snp.centerX)
+            make.top.equalTo(self.snp.top).offset(LABEL_GAP)
+        }
+
+        weatherImage.snp.makeConstraints { make in
+            make.centerX.equalTo(self.snp.centerX)
+            make.centerY.equalTo(self.snp.centerY)
+            make.height.equalTo(IMAGE_HEIGHT)
+            make.width.equalTo(IMAGE_WIDTH)
+        }
         
-        
-        hourLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        hourLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 12).isActive = true
-        
-        weatherImage.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        weatherImage.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
-        
-        weatherImage.heightAnchor.constraint(equalToConstant: IMAGE_HEIGHT).isActive = true
-        weatherImage.widthAnchor.constraint(equalToConstant: IMAGE_WIDTH).isActive = true
-        
-        tempLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        tempLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -12).isActive = true
+        tempLabel.snp.makeConstraints { make in
+            make.centerX.equalTo(self.snp.centerX)
+            make.bottom.equalTo(self.snp.bottom).offset(-LABEL_GAP)
+        }
     }
     
     // MARK: - Constants
@@ -89,7 +95,7 @@ class HourCellView: UIView {
     
     private let CONTENT_CELL_HEIGHT: CGFloat = 114
     private let CONTENT_CELL_WIDTH: CGFloat = 73
-    private let TEMP_LABEL_GAP: CGFloat = 12
+    private let LABEL_GAP: CGFloat = 12
     private let IMAGE_WIDTH: CGFloat = 26
     private let IMAGE_HEIGHT: CGFloat = 32
     
