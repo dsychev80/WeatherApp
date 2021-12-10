@@ -41,6 +41,8 @@ class RecentDayCell: UITableViewCell {
     }
     
     private func setupLayoutConstraints() {
-        cellView.makeEqualConstraintsToView(contentView)
+        cellView.snp.makeConstraints { make in
+            make.edges.equalTo(contentView)
+        }
     }
 }

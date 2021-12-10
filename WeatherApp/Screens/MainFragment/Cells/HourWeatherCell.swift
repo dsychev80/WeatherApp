@@ -10,10 +10,7 @@ import UIKit
 class HourWeatherCell: UICollectionViewCell {
     
     // MARK: - Properties
-    private var backView = HourCellView(withColor: UIColor(displayP3Red: 234/255,
-                                                                 green: 236/255,
-                                                                 blue: 239/255,
-                                                                 alpha: 1))
+    private var backView = HourCellView(withColor: UIColor(displayP3Red: 234/255, green: 236/255, blue: 239/255, alpha: 1))
     
     // MARK: - Lifecycle
     override init(frame: CGRect) {
@@ -46,8 +43,12 @@ class HourWeatherCell: UICollectionViewCell {
     }
     
     private func setupLayoutConstraints() {
-        backView.heightAnchor.constraint(equalToConstant: CONTENT_CELL_HEIGHT).isActive = true
-        backView.widthAnchor.constraint(equalToConstant: CONTENT_CELL_WIDTH).isActive = true
+        backView.snp.makeConstraints { make in
+            make.height.equalTo(CONTENT_CELL_HEIGHT)
+        }
+        backView.snp.makeConstraints { make in
+            make.width.equalTo(CONTENT_CELL_WIDTH)
+        }
     }
     
     // MARK: - Constants

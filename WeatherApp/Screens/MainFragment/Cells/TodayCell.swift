@@ -34,7 +34,9 @@ final class TodayCell: UITableViewCell {
     
     private func setup() {
         contentView.addSubview(view)
-        view.makeEqualConstraintsToView(contentView)
+        view.snp.makeConstraints { make in
+            make.edges.equalTo(contentView)
+        }
     }
 }
 
