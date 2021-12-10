@@ -23,7 +23,9 @@ class SeparatorView: UIView {
     
     private func setup() {
         translatesAutoresizingMaskIntoConstraints = false
-        self.heightAnchor.constraint(equalToConstant: 1).isActive = true
+        self.snp.makeConstraints { make in
+            make.height.equalTo(1)
+        }
     }
     
 }

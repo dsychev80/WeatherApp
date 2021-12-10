@@ -10,10 +10,7 @@ import UIKit
 class HourWeatherCell: UICollectionViewCell {
     
     // MARK: - Properties
-    private var backView = HourCellView(withColor: UIColor(displayP3Red: 234/255,
-                                                                 green: 236/255,
-                                                                 blue: 239/255,
-                                                                 alpha: 1))
+    private var backView = HourCellView(withColor: UIColor(displayP3Red: 234/255, green: 236/255, blue: 239/255, alpha: 1))
     
     // MARK: - Lifecycle
     override init(frame: CGRect) {
@@ -38,22 +35,11 @@ class HourWeatherCell: UICollectionViewCell {
     
     private func setup() {
         setupViewHierarchy()
-        setupLayoutConstraints()
     }
     
     private func setupViewHierarchy() {
         contentView.addSubview(backView)
     }
-    
-    private func setupLayoutConstraints() {
-        backView.heightAnchor.constraint(equalToConstant: CONTENT_CELL_HEIGHT).isActive = true
-        backView.widthAnchor.constraint(equalToConstant: CONTENT_CELL_WIDTH).isActive = true
-    }
-    
-    // MARK: - Constants
-    
-    private let CONTENT_CELL_HEIGHT: CGFloat = 114
-    private let CONTENT_CELL_WIDTH: CGFloat = 73
 }
 
 protocol HourData {

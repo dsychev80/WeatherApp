@@ -42,11 +42,12 @@ class CitySearchViewController: UIViewController {
     }
     
     private func setupLayoutConstraints() {
-
-        backView.heightAnchor.constraint(equalToConstant: VIEW_HEIGHT).isActive = true
-        backView.widthAnchor.constraint(equalToConstant: VIEW_WIDTH).isActive = true
-        backView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        backView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        backView.snp.makeConstraints { make in
+            make.height.equalTo(VIEW_HEIGHT)
+            make.width.equalTo(VIEW_WIDTH)
+            make.centerX.equalTo(view.snp.centerX)
+            make.centerY.equalTo(view.snp.centerY)
+        }
     }
     
     // MARK: - Constants

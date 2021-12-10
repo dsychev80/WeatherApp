@@ -52,36 +52,38 @@ class RecentDayCellView: UIView {
     }
     
     private func setupLayoutConstraints() {
-
-        let widthConstraint = self.widthAnchor.constraint(equalToConstant: СONTENT_VIEW_WIDTH)
-        widthConstraint.priority = .defaultHigh
-        widthConstraint.isActive = true
-        let heightConstraint = self.heightAnchor.constraint(equalToConstant: CONTENT_VIEW_HEIGHT)
-        heightConstraint.priority = .defaultHigh
-        heightConstraint.isActive = true
+        self.snp.makeConstraints { make in
+            make.height.equalTo(CONTENT_VIEW_HEIGHT).priorityHigh()
+            make.width.equalTo(СONTENT_VIEW_WIDTH).priorityHigh()
+        }
         
-        backView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 16).isActive = true
-        backView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -16).isActive = true
-        backView.topAnchor.constraint(equalTo: self.topAnchor, constant: 4).isActive = true
-        backView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -4).isActive = true
+        backView.snp.makeConstraints { make in
+            make.edges.equalTo(UIEdgeInsets(top: 4, left: 16, bottom: 4, right: 16))
+        }
+  
+        cellHeaderContainerView.snp.makeConstraints { make in
+            make.left.equalTo(backView).offset(20)
+            make.right.equalTo(backView).offset(-20)
+            make.top.equalTo(backView).offset(16)
+            make.height.equalTo(28)
+        }
         
-        cellHeaderContainerView.topAnchor.constraint(equalTo: backView.topAnchor, constant: 16).isActive = true
-        cellHeaderContainerView.rightAnchor.constraint(equalTo: backView.rightAnchor, constant: -20).isActive = true
-        cellHeaderContainerView.leftAnchor.constraint(equalTo: backView.leftAnchor, constant: 20).isActive = true
-        cellHeaderContainerView.heightAnchor.constraint(equalToConstant: 28).isActive = true
+        separatorView.snp.makeConstraints { make in
+            make.top.equalTo(cellHeaderContainerView.snp.bottom).offset(15.14)
+            make.left.equalTo(backView).offset(20)
+            make.right.equalTo(backView).offset(-20)
+        }
         
-        separatorView.topAnchor.constraint(equalTo: cellHeaderContainerView.bottomAnchor, constant: 15.14).isActive = true
-        separatorView.leftAnchor.constraint(equalTo: backView.leftAnchor, constant: 20).isActive = true
-        separatorView.rightAnchor.constraint(equalTo: backView.rightAnchor, constant: -20).isActive = true
-        
-        collectionView.topAnchor.constraint(equalTo: separatorView.bottomAnchor, constant: 16).isActive = true
-        collectionView.leftAnchor.constraint(equalTo: backView.leftAnchor).isActive = true
-        collectionView.rightAnchor.constraint(equalTo: backView.rightAnchor).isActive = true
-        collectionView.bottomAnchor.constraint(equalTo: backView.bottomAnchor, constant: -16).isActive = true
+        collectionView.snp.makeConstraints { make in
+            make.top.equalTo(separatorView.snp.bottom).offset(16)
+            make.left.equalTo(backView)
+            make.right.equalTo(backView)
+            make.bottom.equalTo(backView.snp.bottom).offset(-16)
+        }
     }
     
     //MARK: - Constants    
-    private let СONTENT_VIEW_WIDTH: CGFloat = 343
+    private let СONTENT_VIEW_WIDTH: CGFloat = 345
     private let CONTENT_VIEW_HEIGHT: CGFloat = 214
     private let HEADER_LEFT_RIGHT_GAP_TO_CONTENT_VIEW: CGFloat = 20
 }

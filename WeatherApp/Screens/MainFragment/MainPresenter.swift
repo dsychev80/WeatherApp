@@ -14,7 +14,6 @@ final class MainPresenter {
     // MARK: - Properties
     private let networkController: NetworkManager
     private let locationManager: LocationManager
-    
     public weak var mainViewController: MainView!
     
     // MARK: - Lifecycle

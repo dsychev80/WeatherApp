@@ -34,6 +34,8 @@ class RecentHeaderView: UIView {
     }
     
     private func setup() {
+        minTempLabel.textAlignment = .right
+        maxTempLabel.textAlignment = .right
         setupViewHierarchy()
         setupLayoutConstraints()
     }
@@ -50,25 +52,35 @@ class RecentHeaderView: UIView {
     
     private func setupLayoutConstraints() {
         
-        for view in self.subviews {
-            view.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+        dataLabel.snp.makeConstraints { make in
+            make.left.equalTo(self.snp.left)
+            make.width.equalTo(DATA_LABEL_WIDTH)
+            make.centerY.equalTo(self.snp.centerY)
+        }
+
+        minTempLabel.snp.makeConstraints { make in
+            make.width.equalTo(MIN_MAX_LABEL_WIDTH)
+            make.centerY.equalTo(self.snp.centerY)
         }
         
-        dataLabel.widthAnchor.constraint(equalToConstant: DATA_LABEL_WIDTH).isActive = true
-        minTempLabel.widthAnchor.constraint(equalToConstant: MIN_MAX_LABEL_WIDTH).isActive = true
-        maxTempLabel.widthAnchor.constraint(equalToConstant: MIN_MAX_LABEL_WIDTH).isActive = true
-        weatherImage.widthAnchor.constraint(equalToConstant: WEATHER_IMAGE_WIDTH).isActive = true
-        
-        dataLabel.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
-        maxTempLabel.leftAnchor.constraint(equalTo: minTempLabel.rightAnchor, constant: 8).isActive = true
-        maxTempLabel.rightAnchor.constraint(equalTo: weatherImage.leftAnchor, constant: -16).isActive = true
-        weatherImage.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
-        weatherImage.heightAnchor.constraint(equalToConstant: WEATHER_IMAGE_HEIGHT).isActive = true
+        maxTempLabel.snp.makeConstraints { make in
+            make.centerY.equalTo(self.snp.centerY)
+            make.width.equalTo(MIN_MAX_LABEL_WIDTH)
+            make.left.equalTo(minTempLabel.snp.right).offset(8)
+            make.right.equalTo(weatherImage.snp.left).offset(-16)
+        }
+
+        weatherImage.snp.makeConstraints { make in
+            make.width.equalTo(WEATHER_IMAGE_WIDTH)
+            make.height.equalTo(WEATHER_IMAGE_HEIGHT)
+            make.centerY.equalTo(self.snp.centerY)
+            make.right.equalTo(self.snp.right)
+        }
     }
     
-    private let DATA_LABEL_WIDTH: CGFloat = 115
+    private let DATA_LABEL_WIDTH: CGFloat = 130
     private let DATA_LABEL_HEIGHT: CGFloat = 28.14
-    private let MIN_MAX_LABEL_WIDTH: CGFloat = 32
+    private let MIN_MAX_LABEL_WIDTH: CGFloat = 40
     private let MIN_MAX_LABEL_HEIGHT: CGFloat = 28.14
     private let WEATHER_IMAGE_HEIGHT: CGFloat = 24.12
     private let WEATHER_IMAGE_WIDTH: CGFloat = 30
