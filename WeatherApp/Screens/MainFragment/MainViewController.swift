@@ -99,8 +99,7 @@ class MainViewController: UIViewController {
     }
     
     @objc private func selectOnMap() {
-        guard let presenter = presenter else { return }
-        let searchVC = CitySearchViewController(with: presenter as! CityDataDelegate)
+        let searchVC = CitySearchViewController(with: self)
         searchVC.modalPresentationStyle = .overCurrentContext
         searchVC.modalTransitionStyle = .crossDissolve
         present(searchVC, animated: true, completion: nil)
@@ -116,6 +115,14 @@ extension MainViewController: MainView {
     }
 }
 
+extension MainViewController: CityDataDelegate {
+    func searchCityWithName(_ name: String) {
+        guard let presenter = presenter else { return }
+        presenter.recieveWeatherForCityName(name)
+    }
+}
+
 protocol MainPresenter: AnyObject {
     var mainViewController: MainView! { get set }
+    func recieveWeatherForCityName(_ name: String)
 }

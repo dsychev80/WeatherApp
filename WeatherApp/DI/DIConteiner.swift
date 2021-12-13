@@ -25,14 +25,7 @@ final class DIContainer {
 }
 
 extension DIContainer {
-    
     public func configureMainViewController() -> UIViewController {
         return MainViewController(with: mainPresenter)
     }
-    
-    public func configureCitySearchViewController() -> UIViewController {
-        return CitySearchViewController(with: mainPresenter as! CityDataDelegate)
-    }
 }
-
-

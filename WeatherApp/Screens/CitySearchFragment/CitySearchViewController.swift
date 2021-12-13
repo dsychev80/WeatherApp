@@ -15,7 +15,7 @@ fileprivate let VIEW_BACKGROUND_COLOR = UIColor(displayP3Red: 28/255, green: 28/
 class CitySearchViewController: UIViewController {
     // MARK: - Properties
     
-    private weak var cityDataDelegate: CityDataDelegate?
+    private weak var cityDataDelegate: CityDataDelegate!
     lazy private var backView: BackView = BackView(withDelegate: self)
     
     // MARK: - Lifecycle
@@ -59,12 +59,11 @@ extension CitySearchViewController: CitySearchDelegate {
     }
     
     public func search(name: String) {
-        guard let cityDataDelegate = cityDataDelegate else { return }
-        cityDataDelegate.recievedCityName(name)
+        cityDataDelegate.searchCityWithName(name)
         dismissView()
     }
 }
 
 protocol CityDataDelegate: AnyObject {
-    func recievedCityName(_ name: String)
+    func searchCityWithName(_ name: String)
 }
