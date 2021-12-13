@@ -1,5 +1,5 @@
 //
-//  NetworkController.swift
+//  NetworkProvider.swift
 //  WeatherApp
 //
 //  Created by Denis Sychev on 28.11.2021.
@@ -8,7 +8,7 @@
 import Foundation
 
 
-final class NetworkController: NetworkManager {
+final class NetworkProvider: NetworkManager {
     
     public func loadWeatherForLocation(_ location: LocationData, completion: @escaping (Result<JSONWeatherData, WeatherError>) -> Void) {
         

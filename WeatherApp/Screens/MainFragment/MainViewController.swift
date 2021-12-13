@@ -31,7 +31,6 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = .white
         customizeNavigationBar()
     }
     
@@ -101,7 +100,7 @@ class MainViewController: UIViewController {
     
     @objc private func selectOnMap() {
         guard let presenter = presenter else { return }
-        let searchVC = CitySearchViewController(with: presenter)
+        let searchVC = CitySearchViewController(with: presenter as! CityDataDelegate)
         searchVC.modalPresentationStyle = .overCurrentContext
         searchVC.modalTransitionStyle = .crossDissolve
         present(searchVC, animated: true, completion: nil)
@@ -117,3 +116,6 @@ extension MainViewController: MainView {
     }
 }
 
+protocol MainPresenter: AnyObject {
+    var mainViewController: MainView! { get set }
+}

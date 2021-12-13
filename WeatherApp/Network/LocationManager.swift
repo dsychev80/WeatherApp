@@ -8,7 +8,7 @@
 import CoreLocation
 
 
-final class LocationManagerImp: LocationManager {
+final class LocationManagerImpl: LocationManager {
     
     func getCityCoordinatesByName(_ name: String, completion: @escaping (Result<LocationData, WeatherError>) -> Void) {
         CLGeocoder().geocodeAddressString(name) { placeMarcs, error in
