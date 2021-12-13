@@ -10,17 +10,13 @@ import Foundation
 
 final class NetworkController: NetworkManager {
     
-    private weak var dataUser: NetworkDataUserDelegate?
-    
-    init() { }
-    
     public func loadWeatherForLocation(_ location: LocationData, completion: @escaping (Result<JSONWeatherData, WeatherError>) -> Void) {
         
         var api = WeatherResource()
         api.addLocation(location)
         guard let url = api.url else { return }
         
-        let _ = URLSession.shared.dataTask(with: url) { data, response, error in
+        URLSession.shared.dataTask(with: url) { data, response, error in
             guard error == nil, let data = data else {
                 completion(.failure(WeatherError.serverError(error?.localizedDescription ?? "Unrecognized network error")))
                 return
@@ -36,9 +32,4 @@ final class NetworkController: NetworkManager {
 
         }.resume()
     }
-}
-
-
-protocol NetworkDataUserDelegate: AnyObject {
-    func dataEndLoading()
 }
