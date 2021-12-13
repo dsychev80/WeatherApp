@@ -10,15 +10,16 @@ import UIKit
 
 
 final class DIContainer {
-    
+    // MARK: - Properties
     let networkController: NetworkManager
     let locationManager: LocationManager
     let mainPresenter: MainPresenter
     
+    // MARK: - Lifecycle
     init() {
-        self.networkController = NetworkController()
-        self.locationManager = LocationManagerImp()
-        self.mainPresenter = MainPresenter(with: networkController, locationManager: locationManager)
+        self.networkController = NetworkProvider()
+        self.locationManager = LocationManagerImpl()
+        self.mainPresenter = MainPresenterImpl(with: networkController, locationManager: locationManager)
     }
     
 }
@@ -30,9 +31,8 @@ extension DIContainer {
     }
     
     public func configureCitySearchViewController() -> UIViewController {
-        return CitySearchViewController(with: mainPresenter as CityDataDelegate)
+        return CitySearchViewController(with: mainPresenter as! CityDataDelegate)
     }
-
 }
 
 

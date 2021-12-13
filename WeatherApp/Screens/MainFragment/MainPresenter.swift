@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 
-final class MainPresenter {
+final class MainPresenterImpl: MainPresenter {
     
     // MARK: - Properties
     private let networkController: NetworkManager
@@ -25,7 +25,7 @@ final class MainPresenter {
     }
     
     // MARK: - Methods
-    private func loadWeatherForCoordinates(_ coordinates: LocationData) {
+    public func loadWeatherForCoordinates(_ coordinates: LocationData) {
         networkController.loadWeatherForLocation(coordinates) { [weak self] result in
             switch result {
             case .failure(let error):
@@ -40,7 +40,7 @@ final class MainPresenter {
     }
 }
 
-extension MainPresenter: CityDataDelegate {
+extension MainPresenterImpl: CityDataDelegate {
     func recievedCityName(_ name: String) {
         locationManager.getCityCoordinatesByName(name) { [weak self] result in
             guard let self = self else {
