@@ -9,12 +9,9 @@ import UIKit
 
 class MainTableView: UITableView {
     // MARK: - LifeCycle
-    required init(with dataSource: UITableViewDataSource? = nil,
-                  delegate: UITableViewDelegate? = nil) {
+    required init() {
         super.init(frame: CGRect.zero, style: .plain)
         setup()
-        self.dataSource = dataSource
-        self.delegate = delegate
     }
     
     required init?(coder: NSCoder) {

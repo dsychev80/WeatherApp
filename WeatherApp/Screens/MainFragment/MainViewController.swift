@@ -12,7 +12,6 @@ class MainViewController: UIViewController {
     // MARK: - Properties
     private weak var presenter: MainPresenter?
     private var tableView: MainTableView { view as! MainTableView }
-    private var mainWeatherDataSourceAdapter = MainWeatherAdapter()
     private var dataSource: UITableViewDiffableDataSource<Int, Item>!
     
     // MARK: - Lifecycle
@@ -35,7 +34,7 @@ class MainViewController: UIViewController {
     }
     
     override func loadView() {
-        view = MainTableView(with: mainWeatherDataSourceAdapter)
+        view = MainTableView()
         dataSource = UITableViewDiffableDataSource<Int, Item>(tableView: tableView) {
             (tableView: UITableView, indexPath: IndexPath, item: Item) -> UITableViewCell? in
             switch item {
