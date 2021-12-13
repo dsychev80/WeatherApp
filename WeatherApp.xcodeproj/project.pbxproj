@@ -53,6 +53,7 @@
 		73BD07932760FD4600B5BCE3 /* TodayData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73BD07922760FD4600B5BCE3 /* TodayData.swift */; };
 		73BD0795276109EF00B5BCE3 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73BD0794276109EF00B5BCE3 /* Item.swift */; };
 		73BD07972761FB8C00B5BCE3 /* Model_MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73BD07962761FB8C00B5BCE3 /* Model_MockData.swift */; };
+		73BD07992763AD8000B5BCE3 /* CanvasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73BD07982763AD8000B5BCE3 /* CanvasView.swift */; };
 		73F0379B274BD67600C130FC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F0379A274BD67600C130FC /* AppDelegate.swift */; };
 		73F0379D274BD67600C130FC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F0379C274BD67600C130FC /* SceneDelegate.swift */; };
 		73F037A4274BD67800C130FC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 73F037A3274BD67800C130FC /* Assets.xcassets */; };
@@ -124,6 +125,7 @@
 		73BD07922760FD4600B5BCE3 /* TodayData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayData.swift; sourceTree = "<group>"; };
 		73BD0794276109EF00B5BCE3 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		73BD07962761FB8C00B5BCE3 /* Model_MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model_MockData.swift; sourceTree = "<group>"; };
+		73BD07982763AD8000B5BCE3 /* CanvasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasView.swift; sourceTree = "<group>"; };
 		73F03797274BD67600C130FC /* WeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		73F0379A274BD67600C130FC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		73F0379C274BD67600C130FC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -172,7 +174,6 @@
 				65E43BFD0CA0460819B40CF5 /* Pods-WeatherApp.debug.xcconfig */,
 				70D403EA978C873A3523D10C /* Pods-WeatherApp.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -282,6 +283,7 @@
 				73765C582759114C00C1CA4E /* WeatherCellLabel.swift */,
 				730355C227591AE60068DCC8 /* TodayCellBackgroundView.swift */,
 				730355C627591E5F0068DCC8 /* TodayCellStackView.swift */,
+				73BD07982763AD8000B5BCE3 /* CanvasView.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -569,6 +571,7 @@
 				73FD63C4274CF7E400E33A61 /* TodayCell.swift in Sources */,
 				730355D6275A23630068DCC8 /* RecentHeaderView.swift in Sources */,
 				737B1CD92757840500397F19 /* Forecast.swift in Sources */,
+				73BD07992763AD8000B5BCE3 /* CanvasView.swift in Sources */,
 				737B1C93275393FB00397F19 /* APIResource.swift in Sources */,
 				73F037B6274BE33600C130FC /* MainViewController.swift in Sources */,
 				7358E6C62751024500926C02 /* CitySearchViewController.swift in Sources */,
@@ -613,6 +616,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = V2TV677NUR;
 				GENERATE_INFOPLIST_FILE = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -635,6 +639,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = V2TV677NUR;
 				GENERATE_INFOPLIST_FILE = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -775,10 +780,12 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = V2TV677NUR;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = WeatherApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -802,10 +809,12 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = V2TV677NUR;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = WeatherApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (

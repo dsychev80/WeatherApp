@@ -7,7 +7,15 @@
 
 import UIKit
 
+fileprivate let FIRST_COLOR = UIColor(displayP3Red: 110/255, green: 170/255, blue: 248/255, alpha: 1)
+fileprivate let SECOND_COLOR = UIColor(displayP3Red: 96/255, green: 161/255, blue: 248/255, alpha: 1)
+fileprivate let THIRD_COLOR = UIColor(displayP3Red: 84/255, green: 67/255, blue: 200/255, alpha: 1)
+fileprivate let FOURTH_COLOR = UIColor(displayP3Red: 242/255, green: 170/255, blue: 80/255, alpha: 1)
+
+
 class TodayCellBackgroundView: UIView {
+    
+    private var backgroundView: CanvasView!
     
     // MARK: - LifeCycle
     required init() {
@@ -21,9 +29,14 @@ class TodayCellBackgroundView: UIView {
     
     // MARK: - Methods
     private func setup() {
-        self.roundCorners()
-        self.backgroundColor = UIColor(displayP3Red: 110/255, green: 170/255, blue: 249/255, alpha: 1)
         self.translatesAutoresizingMaskIntoConstraints = false
+        backgroundView = CanvasView(withColors: THIRD_COLOR, color2: FOURTH_COLOR)
+        backgroundView.clipsToBounds = true
+        self.addSubview(backgroundView)
+        backgroundView.translatesAutoresizingMaskIntoConstraints = false
+        
+        backgroundView.snp.makeConstraints { make in
+            make.edges.equalTo(self)
+        }
     }
-    
 }
