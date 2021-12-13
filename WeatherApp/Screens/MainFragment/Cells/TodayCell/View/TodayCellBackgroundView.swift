@@ -13,7 +13,7 @@ fileprivate let THIRD_COLOR = UIColor(displayP3Red: 84/255, green: 67/255, blue:
 fileprivate let FOURTH_COLOR = UIColor(displayP3Red: 242/255, green: 170/255, blue: 80/255, alpha: 1)
 
 class TodayCellBackgroundView: UIView {
-    
+    // MARK: - Properties
     private var backgroundView: CanvasView!
     
     // MARK: - LifeCycle

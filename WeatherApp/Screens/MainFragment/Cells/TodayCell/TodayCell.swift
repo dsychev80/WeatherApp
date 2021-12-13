@@ -9,11 +9,10 @@ import UIKit
 
 
 final class TodayCell: UITableViewCell {
-    
     // MARK: - Properties
     private var view = TodayCellView()
     
-    // MARK: - Life cycle
+    // MARK: - Lifecycle
     required override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
     
@@ -26,17 +25,23 @@ final class TodayCell: UITableViewCell {
     }
     
     // MARK: - Methods
+    private func setup() {
+        setupViewHierarchy()
+        setupLayoutConstraints()
+    }
+    
+    private func setupViewHierarchy() {
+        contentView.addSubview(view)
+    }
+    
+    private func setupLayoutConstraints() {
+        view.snp.makeConstraints { make in
+            make.edges.equalTo(contentView)
+        }
+    }
     
     // Use this function to configure cell with data
     public func configure(with data: TodayData) {
         view.configure(with: data)
     }
-    
-    private func setup() {
-        contentView.addSubview(view)
-        view.snp.makeConstraints { make in
-            make.edges.equalTo(contentView)
-        }
-    }
 }
-

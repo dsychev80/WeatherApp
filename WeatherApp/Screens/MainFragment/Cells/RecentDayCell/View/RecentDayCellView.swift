@@ -34,17 +34,16 @@ class RecentDayCellView: UIView {
     }
     
     // MARK: - Methods
+    private func setup() {
+        collectionView.dataSource = collectionViewAdapter
+        setupViewHierarchy()
+        setupLayoutConstraints()
+    }
+    
     public func configure(with data: ForecastData) {
         cellHeaderContainerView.configure(withData: data)
         collectionViewAdapter.getForcastData(data.forecast)
         collectionView.reloadData()
-    }
-    
-    private func setup() {
-        collectionView.dataSource = collectionViewAdapter
-    
-        setupViewHierarchy()
-        setupLayoutConstraints()
     }
     
     private func setupViewHierarchy() {

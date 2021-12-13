@@ -24,6 +24,10 @@ class HourWeatherCell: UICollectionViewCell {
     }
     
     // MARK: - Methods
+    private func setup() {
+        setupViewHierarchy()
+    }
+    
     // Use this function to configure cell with data
     public func configure(with data: HoursWeatherModel) {
         backView.configure(with: data)
@@ -33,9 +37,6 @@ class HourWeatherCell: UICollectionViewCell {
         backView.prepareForReuse()
     }
     
-    private func setup() {
-        setupViewHierarchy()
-    }
     
     private func setupViewHierarchy() {
         contentView.addSubview(backView)

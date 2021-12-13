@@ -34,17 +34,17 @@ class RecentHeaderView: UIView {
     }
     
     // MARK: - Methods
-    public func configure(withData data: RecentDayHeaderData) {
-        dataLabel.text = data.dayDate
-        maxTempLabel.text = data.dayAverageTemp
-        minTempLabel.text = data.dayMaxTemp
-    }
-    
     private func setup() {
         minTempLabel.textAlignment = .right
         maxTempLabel.textAlignment = .right
         setupViewHierarchy()
         setupLayoutConstraints()
+    }
+    
+    public func configure(withData data: RecentDayHeaderData) {
+        dataLabel.text = data.dayDate
+        maxTempLabel.text = data.dayAverageTemp
+        minTempLabel.text = data.dayMaxTemp
     }
     
     private func setupViewHierarchy() {

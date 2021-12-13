@@ -21,6 +21,7 @@ class SeparatorView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Methods
     private func setup() {
         translatesAutoresizingMaskIntoConstraints = false
         self.snp.makeConstraints { make in

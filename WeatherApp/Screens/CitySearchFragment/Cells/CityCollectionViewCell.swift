@@ -46,10 +46,6 @@ class CityCollectionViewCell: UICollectionViewCell {
     }
     
     // MARK: - Methods
-    public func configureCell(withData data: String) {
-        cityLabel.text = data
-    }
-    
     private func setupViewHierarchy() {
         backView.addSubview(cityLabel)
         contentView.addSubview(backView)
@@ -62,5 +58,9 @@ class CityCollectionViewCell: UICollectionViewCell {
         cityLabel.snp.makeConstraints { make in
             make.edges.equalTo(backView).inset(UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0))
         }
+    }
+    
+    public func configureCell(withData data: String) {
+        cityLabel.text = data
     }
 }

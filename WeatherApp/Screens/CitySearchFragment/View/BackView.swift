@@ -20,7 +20,6 @@ class BackView: UIView {
     let citys = ["Тамбов", "Тюмень", "Тула", "Темрюк", "Таганрог", "Тьматараканья", "Тбилисси"]
 
     private weak var delegate: CitySearchDelegate?
-    
     private var searchTextField = WeatherCityNameTextField()
     private var collectionView = CitysCollectionView()
     private var cancelButton = SityCancelButton(withTarget: self, selector: #selector(dismissView))
@@ -51,17 +50,6 @@ class BackView: UIView {
         setupLayoutConstraints()
     }
     
-    @objc private func dismissView() {
-        delegate?.dismissView()
-    }
-    
-    @objc private func search() {
-        guard let delegate = delegate, let text = searchTextField.text else {
-            print(#function)
-            return
-        }
-        delegate.search(name: text)
-    }
     
     private func setupViewHierarchy() {
         self.addSubview(searchTextField)
@@ -92,6 +80,18 @@ class BackView: UIView {
                                                          bottom: BUTTONS_AND_TEXTFIELD_GAP,
                                                          height: BUTTON_HEIGHT,
                                                          width: BUTTON_WIDTH)
+    }
+    
+    @objc private func dismissView() {
+        delegate?.dismissView()
+    }
+    
+    @objc private func search() {
+        guard let delegate = delegate, let text = searchTextField.text else {
+            print(#function)
+            return
+        }
+        delegate.search(name: text)
     }
 }
 

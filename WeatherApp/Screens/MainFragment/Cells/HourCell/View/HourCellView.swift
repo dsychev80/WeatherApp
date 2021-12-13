@@ -24,8 +24,6 @@ fileprivate let TEMP_FONT_COLOR = UIColor(displayP3Red: 42/255,
                                           alpha: 1)
 
 class HourCellView: UIView {
-    
-    
     // MARK: - Properties
     private var hourLabel = WeatherCellLabel(withFont: AppFont.medium.size(16),
                                              fontColor: HOUR_FONT_COLOR)
@@ -58,17 +56,6 @@ class HourCellView: UIView {
         setupLayoutConstraints()
     }
     
-    public func configure(with data: HoursWeatherModel) {
-        hourLabel.text = data.time
-        // FIXME: implement icon configuration
-        tempLabel.text = data.temp
-    }
-    
-    public func prepareForReuse() {
-        hourLabel.text = ":"
-        tempLabel.text = "-"
-    }
-    
     private func setupViewHierarchy() {
         self.addSubview(hourLabel)
         self.addSubview(weatherImage)
@@ -97,5 +84,16 @@ class HourCellView: UIView {
             make.centerX.equalTo(self.snp.centerX)
             make.bottom.equalTo(self.snp.bottom).offset(-LABEL_GAP)
         }
+    }
+    
+    public func configure(with data: HoursWeatherModel) {
+        hourLabel.text = data.time
+        // FIXME: implement icon configuration
+        tempLabel.text = data.temp
+    }
+    
+    public func prepareForReuse() {
+        hourLabel.text = ":"
+        tempLabel.text = "-"
     }
 }

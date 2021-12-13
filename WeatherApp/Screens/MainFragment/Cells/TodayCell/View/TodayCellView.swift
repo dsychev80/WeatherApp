@@ -19,7 +19,6 @@ fileprivate let GAP_TO_VIEW: CGFloat = 10
 fileprivate let IMAGE_HEIGHT: CGFloat = 150
 
 class TodayCellView: UIView {
-    
     // MARK: - Properties
     private var backView = TodayCellBackgroundView()
     private var verticalStackView = TodayCellStackView()
@@ -39,15 +38,8 @@ class TodayCellView: UIView {
     }
     
     // MARK: - Methods
-    public func configure(with data: TodayData) {
-        dataLabel.text = data.date
-        degreeLabel.text = data.degree
-        feelsLikeLabel.text = data.feelsLike
-    }
-    
     private func setup() {
         translatesAutoresizingMaskIntoConstraints = false
-        
         weatherImage.frame = CGRect(x: 0, y: 0, width: self.frame.width/5, height: self.frame.width/5)
         
         setupViewHierarchy()
@@ -83,5 +75,11 @@ class TodayCellView: UIView {
         verticalStackView.snp.makeConstraints { make in
             make.edges.equalTo(self).inset(UIEdgeInsets(top: TOP_MARGIN, left: LEFT_MARGIN, bottom: BOTTOM_MARGIN, right: RIGHT_MARGIN))
         }
+    }
+    
+    public func configure(with data: TodayData) {
+        dataLabel.text = data.date
+        degreeLabel.text = data.degree
+        feelsLikeLabel.text = data.feelsLike
     }
 }
