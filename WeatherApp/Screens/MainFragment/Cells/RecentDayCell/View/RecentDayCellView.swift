@@ -16,7 +16,7 @@ fileprivate let TOP_BOTTOM_GAP: CGFloat = 16
 class RecentDayCellView: UIView {
 
     // MARK: - Properties
-    private var collectionViewAdapter = RecentDayCollectionAdapter()
+    private var collectionViewAdapter: RecentDayCollectionAdapter
     
     private var backView = RecentDayCellBackView()
     private var cellHeaderContainerView = RecentHeaderView()
@@ -25,6 +25,7 @@ class RecentDayCellView: UIView {
     
     // MARK: - LifeCycle
     required init() {
+        collectionViewAdapter = RecentDayCollectionAdapter(with: collectionView)
         super.init(frame: .zero)
         setup()
     }
@@ -35,7 +36,6 @@ class RecentDayCellView: UIView {
     
     // MARK: - Methods
     private func setup() {
-        collectionView.dataSource = collectionViewAdapter
         setupViewHierarchy()
         setupLayoutConstraints()
     }
@@ -43,7 +43,6 @@ class RecentDayCellView: UIView {
     public func configure(with data: ForecastData) {
         cellHeaderContainerView.configure(withData: data)
         collectionViewAdapter.getForcastData(data.forecast)
-        collectionView.reloadData()
     }
     
     private func setupViewHierarchy() {

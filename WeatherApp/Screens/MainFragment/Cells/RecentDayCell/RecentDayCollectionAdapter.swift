@@ -10,30 +10,28 @@ import UIKit
 class RecentDayCollectionAdapter: NSObject {
     
     // MARK: - Properties
-    private var forecast: [HoursWeatherModel] = []
+    private let collectionView: UICollectionView!
+    private var diffableDataSource: UICollectionViewDiffableDataSource<Int, HoursWeatherModel>!
     
     // MARK: - LifeCycle
-    override init() {
+    required init(with collectionView: UICollectionView) {
+        self.collectionView = collectionView
         super.init()
+        
+        diffableDataSource = UICollectionViewDiffableDataSource<Int, HoursWeatherModel>(collectionView: collectionView) {
+            (collectionView: UICollectionView, indexPath: IndexPath, model: HoursWeatherModel) -> UICollectionViewCell? in
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HourWeatherCell.name, for: indexPath) as! HourWeatherCell
+            cell.configure(with: model)
+                return cell
+        }
+        collectionView.dataSource = diffableDataSource
     }
     
     // MARK: - Methods
     public func getForcastData(_ data: [HoursWeatherModel]) {
-        self.forecast = data
-    }
-}
-
-extension RecentDayCollectionAdapter: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return forecast.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HourWeatherCell.name, for: indexPath) as! HourWeatherCell
-        cell.configure(with: forecast[indexPath.row])
-        DispatchQueue.main.async {
-            collectionView.reloadData()
-        }
-        return cell
+        var snapshot = NSDiffableDataSourceSnapshot<Int, HoursWeatherModel>()
+        snapshot.appendSections([0])
+        snapshot.appendItems(data, toSection: 0)
+        diffableDataSource.apply(snapshot)
     }
 }
