@@ -7,8 +7,16 @@
 
 import UIKit
 
+// MARK: - Constants
+fileprivate let BUTTONS_AND_TEXTFIELD_GAP: CGFloat = 16
+fileprivate let TEXTFIELD_HEIGHT: CGFloat = 40
+fileprivate let COLLECTION_VIEW_HEIGHT: CGFloat = 30
+fileprivate let BUTTON_HEIGHT: CGFloat = 40
+fileprivate let BUTTON_WIDTH: CGFloat = 151
+
 class BackView: UIView {
-    
+
+    // MARK: - Properties
     let citys = ["Тамбов", "Тюмень", "Тула", "Темрюк", "Таганрог", "Тьматараканья", "Тбилисси"]
 
     private weak var delegate: CitySearchDelegate?
@@ -85,13 +93,6 @@ class BackView: UIView {
                                                          height: BUTTON_HEIGHT,
                                                          width: BUTTON_WIDTH)
     }
-    
-    // MARK: - Constants
-    private let BUTTONS_AND_TEXTFIELD_GAP: CGFloat = 16
-    private let TEXTFIELD_HEIGHT: CGFloat = 40
-    private let COLLECTION_VIEW_HEIGHT: CGFloat = 30
-    private let BUTTON_HEIGHT: CGFloat = 40
-    private let BUTTON_WIDTH: CGFloat = 151
 }
 
 // MARK: - UICollectionViewDataSource

@@ -7,6 +7,10 @@
 
 import UIKit
 
+// MARK: - Constants
+fileprivate let ADD_BUTTON_COLOR = UIColor(displayP3Red: 53/255, green: 153/255, blue: 255/255, alpha: 1)
+fileprivate let ADD_BUTTON_TEXT_COLOR = UIColor(displayP3Red: 255/255, green: 255/255, blue: 255/255, alpha: 1)
+
 class CitySearchAddButton: SityCancelButton {
 
     // MARK: - LifeCycle
@@ -21,15 +25,11 @@ class CitySearchAddButton: SityCancelButton {
     
     // MARK: - Methods
     func setup() {
-        self.backgroundColor = CitySearchAddButton.ADD_BUTTON_COLOR
+        self.backgroundColor = ADD_BUTTON_COLOR
         self.layer.cornerRadius = 12
         self.titleLabel?.font = AppFont.bold.size(14)
         self.setTitle("Добавить", for: .normal)
-        self.setTitleColor(CitySearchAddButton.ADD_BUTTON_TEXT_COLOR, for: .normal)
+        self.setTitleColor(ADD_BUTTON_TEXT_COLOR, for: .normal)
         self.translatesAutoresizingMaskIntoConstraints = false
     }
-
-    // MARK: - Constants
-    static let ADD_BUTTON_COLOR = UIColor(displayP3Red: 53/255, green: 153/255, blue: 255/255, alpha: 1)
-    static let ADD_BUTTON_TEXT_COLOR = UIColor(displayP3Red: 255/255, green: 255/255, blue: 255/255, alpha: 1)
 }

@@ -7,6 +7,9 @@
 
 import UIKit
 
+// MARK: - Constants
+fileprivate let CONTENT_VIEW_BACKGROUND_COLOR = UIColor(displayP3Red: 243/255, green: 245/255, blue: 248/255, alpha: 1)
+
 class RecentDayCellBackView: UIView {
 
     // MARK: - LifeCycle
@@ -27,7 +30,4 @@ class RecentDayCellBackView: UIView {
         // FIXME: Need to change for theme supporting
         self.backgroundColor = CONTENT_VIEW_BACKGROUND_COLOR
     }
-    
-    // MARK: - Constants
-    private let CONTENT_VIEW_BACKGROUND_COLOR = UIColor(displayP3Red: 243/255, green: 245/255, blue: 248/255, alpha: 1)
 }

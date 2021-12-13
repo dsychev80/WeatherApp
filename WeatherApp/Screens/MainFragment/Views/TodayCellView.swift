@@ -8,6 +8,16 @@
 import UIKit
 import SnapKit
 
+// MARK: - Constants
+fileprivate let DEGREE_HEIGHT: CGFloat = 52
+fileprivate let LABEL_HEIGHT: CGFloat = 24
+fileprivate let TOP_MARGIN: CGFloat = 25
+fileprivate let BOTTOM_MARGIN: CGFloat = 25
+fileprivate let LEFT_MARGIN: CGFloat = 10
+fileprivate let RIGHT_MARGIN: CGFloat = 10
+fileprivate let GAP_TO_VIEW: CGFloat = 10
+fileprivate let IMAGE_HEIGHT: CGFloat = 150
+
 class TodayCellView: UIView {
     
     // MARK: - Properties
@@ -74,14 +84,4 @@ class TodayCellView: UIView {
             make.edges.equalTo(self).inset(UIEdgeInsets(top: TOP_MARGIN, left: LEFT_MARGIN, bottom: BOTTOM_MARGIN, right: RIGHT_MARGIN))
         }
     }
-
-    // MARK: - Constants
-    private let DEGREE_HEIGHT: CGFloat = 52
-    private let LABEL_HEIGHT: CGFloat = 24
-    private let TOP_MARGIN: CGFloat = 25
-    private let BOTTOM_MARGIN: CGFloat = 25
-    private let LEFT_MARGIN: CGFloat = 10
-    private let RIGHT_MARGIN: CGFloat = 10
-    private let GAP_TO_VIEW: CGFloat = 10
-    private let IMAGE_HEIGHT: CGFloat = 150
 }
