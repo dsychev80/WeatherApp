@@ -54,14 +54,14 @@ class CitySearchViewController: UIViewController {
 }
 
 extension CitySearchViewController: CitySearchDelegate {
+    public func dismissView() {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
     public func search(name: String) {
         guard let cityDataDelegate = cityDataDelegate else { return }
         cityDataDelegate.recievedCityName(name)
         dismissView()
-    }
-    
-     public func dismissView() {
-        self.dismiss(animated: true, completion: nil)
     }
 }
 
