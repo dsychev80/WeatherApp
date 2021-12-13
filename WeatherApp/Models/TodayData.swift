@@ -7,10 +7,8 @@
 
 import Foundation
 
-struct TodayData {
+struct TodayData: Hashable {
     let date: String
     let degree: String
     let feelsLike: String
 }
-
-extension TodayData: Hashable { }

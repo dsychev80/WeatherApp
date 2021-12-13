@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 enum WeatherError: LocalizedError {
     case serverError(String)
     case clientError(String)
