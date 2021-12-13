@@ -7,14 +7,18 @@
 
 import UIKit
 
+// MARK: - Constants
+fileprivate let CORNER_RADIUS: CGFloat = 8
+fileprivate let CITY_LABEL_TEXT_COLOR = UIColor(displayP3Red: 42/255, green: 45/255, blue: 51/255, alpha: 1)
+fileprivate let CELL_BACKGROUND_COLOR = UIColor(displayP3Red: 243/255, green: 245/255, blue: 248/255, alpha: 1)
+
 class CityCollectionViewCell: UICollectionViewCell {
-    
     // MARK: - Properties
     private var backView: UIView = {
         let view = UIView()
-        view.backgroundColor = CityCollectionViewCell.CELL_BACKGROUND_COLOR
+        view.backgroundColor = CELL_BACKGROUND_COLOR
         view.clipsToBounds = true
-        view.layer.cornerRadius = CityCollectionViewCell.CORNER_RADIUS
+        view.layer.cornerRadius = CORNER_RADIUS
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -22,7 +26,7 @@ class CityCollectionViewCell: UICollectionViewCell {
     private var cityLabel: WeatherCityNameLabel = {
         let label = WeatherCityNameLabel(withInsets: 4, left: 8, bottom: 4, right: 8)
         label.font = AppFont.medium.size(14)
-        label.textColor = CityCollectionViewCell.CITY_LABEL_TEXT_COLOR
+        label.textColor = CITY_LABEL_TEXT_COLOR
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -42,10 +46,6 @@ class CityCollectionViewCell: UICollectionViewCell {
     }
     
     // MARK: - Methods
-    public func configureCell(withData data: String) {
-        cityLabel.text = data
-    }
-    
     private func setupViewHierarchy() {
         backView.addSubview(cityLabel)
         contentView.addSubview(backView)
@@ -60,8 +60,7 @@ class CityCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    // MARK: - Constants
-    static let CITY_LABEL_TEXT_COLOR = UIColor(displayP3Red: 42/255, green: 45/255, blue: 51/255, alpha: 1)
-    static let CELL_BACKGROUND_COLOR = UIColor(displayP3Red: 243/255, green: 245/255, blue: 248/255, alpha: 1)
-    static let CORNER_RADIUS: CGFloat = 8
+    public func configureCell(withData data: String) {
+        cityLabel.text = data
+    }
 }

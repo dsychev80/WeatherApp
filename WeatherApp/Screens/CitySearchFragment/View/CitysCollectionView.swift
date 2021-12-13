@@ -29,6 +29,4 @@ class CitysCollectionView: UICollectionView {
         self.translatesAutoresizingMaskIntoConstraints = false
         self.backgroundColor = .clear
     }
-    
-
 }

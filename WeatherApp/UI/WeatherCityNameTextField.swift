@@ -7,30 +7,28 @@
 
 import UIKit
 
+// MARK: - Constants
+fileprivate let textFieldBorderColor = UIColor(displayP3Red: 231/255, green: 236/255, blue: 243/255, alpha: 1)
+// insets
+fileprivate let topInset: CGFloat = 8
+fileprivate let leftInset: CGFloat = 40
+fileprivate let bottomInset: CGFloat = 8
+fileprivate let rightInset: CGFloat = 14
+
+fileprivate let imageGap: CGFloat = 8
+fileprivate let cornerRadius: CGFloat = 12
+fileprivate let borderWidth: CGFloat = 1
+
 class WeatherCityNameTextField: UITextField {
-    // MARK: - Constants
-    private struct Constants {
-        static let textFieldBorderColor = UIColor(displayP3Red: 231/255, green: 236/255, blue: 243/255, alpha: 1)
-        
-        // insets
-        static let topInset: CGFloat = 8
-        static let leftInset: CGFloat = 40
-        static let bottomInset: CGFloat = 8
-        static let rightInset: CGFloat = 14
-        
-        static let imageGap: CGFloat = 8
-        static let cornerRadius: CGFloat = 12
-        static let borderWidth: CGFloat = 1
-    }
     // MARK: - Properties
     let insets: UIEdgeInsets
     
     // MARK: - Lifecycle
     required init() {
-        self.insets = UIEdgeInsets(top: Constants.topInset,
-                                   left: Constants.leftInset,
-                                   bottom: Constants.bottomInset,
-                                   right: Constants.rightInset)
+        self.insets = UIEdgeInsets(top: topInset,
+                                   left: leftInset,
+                                   bottom: bottomInset,
+                                   right: rightInset)
         super.init(frame: CGRect.zero)
         configurate()
     }
@@ -41,9 +39,9 @@ class WeatherCityNameTextField: UITextField {
     
     // MARK: - Methods
     private func configurate() {
-        self.layer.borderWidth = Constants.borderWidth
-        self.layer.borderColor = Constants.textFieldBorderColor.cgColor
-        self.layer.cornerRadius = Constants.cornerRadius
+        self.layer.borderWidth = borderWidth
+        self.layer.borderColor = textFieldBorderColor.cgColor
+        self.layer.cornerRadius = cornerRadius
         self.leftView = UIImageView(image: UIImage(named: "textSearch"))
         self.rightView = UIImageView(image: UIImage(named: "Plus"))
         self.rightViewMode = .whileEditing
@@ -67,18 +65,18 @@ class WeatherCityNameTextField: UITextField {
     
     override func leftViewRect(forBounds bounds: CGRect) -> CGRect {
         guard let width = leftView?.frame.width else { return bounds }
-        return bounds.inset(by: UIEdgeInsets(top: Constants.imageGap,
-                                             left: Constants.imageGap,
-                                             bottom: Constants.imageGap,
-                                             right: bounds.width - (width + Constants.imageGap)))
+        return bounds.inset(by: UIEdgeInsets(top: imageGap,
+                                             left: imageGap,
+                                             bottom: imageGap,
+                                             right: bounds.width - (width + imageGap)))
 
     }
     
     override func rightViewRect(forBounds bounds: CGRect) -> CGRect {
         guard let width = rightView?.frame.width else { return bounds }
-        return bounds.inset(by: UIEdgeInsets(top: Constants.imageGap,
-                                             left: bounds.width - (width + Constants.imageGap),
-                                             bottom: Constants.imageGap,
-                                             right: Constants.imageGap))
+        return bounds.inset(by: UIEdgeInsets(top: imageGap,
+                                             left: bounds.width - (width + imageGap),
+                                             bottom: imageGap,
+                                             right: imageGap))
     }
 }

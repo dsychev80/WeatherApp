@@ -9,6 +9,7 @@ import UIKit
 
 class RecentDayCollectionView: UICollectionView {
 
+    // MARK: - Properties
     private let layout = UICollectionViewFlowLayout()
     
     // MARK: - LifeCycle
@@ -34,5 +35,4 @@ class RecentDayCollectionView: UICollectionView {
         self.translatesAutoresizingMaskIntoConstraints = false
         self.backgroundColor = .clear
     }
-
 }

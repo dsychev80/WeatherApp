@@ -9,15 +9,13 @@ import Foundation
 
 // MARK: - ForecastModel
 // Model for RecenDayTableViewCell's
-struct ForecastData {
+struct ForecastData: Hashable {
     var date: String = ""
     var minTemp: String = ""
     var maxTemp: String = ""
     var imageName: String = ""
     var forecast: [HoursWeatherModel] = []
 }
-
-extension ForecastData: Hashable { }
 
 extension ForecastData {
     func averageTemp() -> String {
@@ -35,11 +33,11 @@ extension ForecastData: RecentDayHeaderData {
     var dayDate: String {
         return date
     }
-    
+
     var dayAverageTemp: String {
         return minTemp
     }
-    
+
     var dayMaxTemp: String {
         return maxTemp
     }

@@ -7,6 +7,8 @@
 
 import UIKit
 
+// MARK: - Constants
+fileprivate let TITLE_COLOR = UIColor(displayP3Red: 42/255, green: 45/255, blue: 51/255, alpha: 1)
 
 class MainViewController: UIViewController {
     // MARK: - Properties
@@ -61,7 +63,6 @@ class MainViewController: UIViewController {
         }
     }
     
-    
     // FIXME: - need to move this code
     private func customizeNavigationBar() {
         guard let navBar = navigationController?.navigationBar else { return }
@@ -105,9 +106,6 @@ class MainViewController: UIViewController {
         searchVC.modalTransitionStyle = .crossDissolve
         present(searchVC, animated: true, completion: nil)
     }
-    
-    // MARK: - Constants
-    private let TITLE_COLOR = UIColor(displayP3Red: 42/255, green: 45/255, blue: 51/255, alpha: 1)
 }
 
 extension MainViewController: MainView {

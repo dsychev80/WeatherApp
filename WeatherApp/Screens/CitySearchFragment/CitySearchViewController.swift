@@ -7,16 +7,18 @@
 
 import UIKit
 
+// MARK: - Constants
+fileprivate let VIEW_HEIGHT: CGFloat = 180
+fileprivate let VIEW_WIDTH: CGFloat = 343
+fileprivate let VIEW_BACKGROUND_COLOR = UIColor(displayP3Red: 28/255, green: 28/255, blue: 30/255, alpha: 0.9)
+
 class CitySearchViewController: UIViewController {
-    
     // MARK: - Properties
     
     private weak var cityDataDelegate: CityDataDelegate?
-    
     lazy private var backView: BackView = BackView(withDelegate: self)
     
     // MARK: - Lifecycle
-    
     required init(with cityDataDelegate: CityDataDelegate) {
         self.cityDataDelegate = cityDataDelegate
         super.init(nibName: nil, bundle: nil)
@@ -29,7 +31,7 @@ class CitySearchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = CitySearchViewController.VIEW_BACKGROUND_COLOR
+        view.backgroundColor = VIEW_BACKGROUND_COLOR
         self.definesPresentationContext = true
         
         setupViewHierarchy()
@@ -49,23 +51,17 @@ class CitySearchViewController: UIViewController {
             make.centerY.equalTo(view.snp.centerY)
         }
     }
-    
-    // MARK: - Constants
-    static private let VIEW_BACKGROUND_COLOR = UIColor(displayP3Red: 28/255, green: 28/255, blue: 30/255, alpha: 0.9)
-        
-    private let VIEW_HEIGHT: CGFloat = 180
-    private let VIEW_WIDTH: CGFloat = 343
 }
 
 extension CitySearchViewController: CitySearchDelegate {
+    public func dismissView() {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
     public func search(name: String) {
         guard let cityDataDelegate = cityDataDelegate else { return }
         cityDataDelegate.recievedCityName(name)
         dismissView()
-    }
-    
-     public func dismissView() {
-        self.dismiss(animated: true, completion: nil)
     }
 }
 

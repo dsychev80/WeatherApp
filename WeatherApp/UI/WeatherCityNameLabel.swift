@@ -8,9 +8,10 @@
 import UIKit
 
 class WeatherCityNameLabel: UILabel {
-    
+    // MARK: - Properties
     let insets: UIEdgeInsets
-
+    
+    // MARK: - Lifecycle
     required init(withInsets top: CGFloat, left: CGFloat, bottom: CGFloat, right: CGFloat) {
         self.insets = UIEdgeInsets(top: top, left: left, bottom: bottom, right: right)
         super.init(frame: CGRect.zero)
@@ -20,6 +21,7 @@ class WeatherCityNameLabel: UILabel {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Methods
     override func drawText(in rect: CGRect) {
         super.drawText(in: rect.inset(by: self.insets))
     }
