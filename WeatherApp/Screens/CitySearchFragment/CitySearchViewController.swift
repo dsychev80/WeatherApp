@@ -68,3 +68,7 @@ extension CitySearchViewController: CitySearchDelegate {
         self.dismiss(animated: true, completion: nil)
     }
 }
+
+protocol CityDataDelegate: AnyObject {
+    func recievedCityName(_ name: String)
+}

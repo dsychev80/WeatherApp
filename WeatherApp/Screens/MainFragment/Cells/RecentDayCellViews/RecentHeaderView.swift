@@ -85,3 +85,9 @@ class RecentHeaderView: UIView {
     private let WEATHER_IMAGE_HEIGHT: CGFloat = 24.12
     private let WEATHER_IMAGE_WIDTH: CGFloat = 30
 }
+
+protocol RecentDayHeaderData {
+    var dayDate: String { get }
+    var dayAverageTemp: String { get }
+    var dayMaxTemp: String { get }
+}

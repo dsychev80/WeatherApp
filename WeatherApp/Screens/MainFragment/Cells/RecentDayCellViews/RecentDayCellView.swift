@@ -87,9 +87,3 @@ class RecentDayCellView: UIView {
     private let CONTENT_VIEW_HEIGHT: CGFloat = 214
     private let HEADER_LEFT_RIGHT_GAP_TO_CONTENT_VIEW: CGFloat = 20
 }
-
-protocol RecentDayHeaderData {
-    var dayDate: String { get }
-    var dayAverageTemp: String { get }
-    var dayMaxTemp: String { get }
-}

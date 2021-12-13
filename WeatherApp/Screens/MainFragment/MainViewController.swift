@@ -119,6 +119,3 @@ extension MainViewController: MainView {
     }
 }
 
-protocol CityDataDelegate: AnyObject {
-    func recievedCityName(_ name: String)
-}
