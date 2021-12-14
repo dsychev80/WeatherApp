@@ -7,16 +7,11 @@
 
 import UIKit
 
-// MARK: - Constants
-fileprivate let VIEW_HEIGHT: CGFloat = 180
-fileprivate let VIEW_WIDTH: CGFloat = 343
-fileprivate let VIEW_BACKGROUND_COLOR = UIColor(displayP3Red: 28/255, green: 28/255, blue: 30/255, alpha: 0.9)
 
 class CitySearchViewController: UIViewController {
     // MARK: - Properties
-    
     private weak var cityDataDelegate: CityDataDelegate!
-    lazy private var backView: BackView = BackView(withDelegate: self)
+    private var backView: SearchBackView { view as! SearchBackView }
     
     // MARK: - Lifecycle
     required init(with cityDataDelegate: CityDataDelegate) {
@@ -28,31 +23,26 @@ class CitySearchViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func loadView() {
+        view = SearchBackView(withDelegate: self)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        view.backgroundColor = VIEW_BACKGROUND_COLOR
         self.definesPresentationContext = true
         
-        setupViewHierarchy()
-        setupLayoutConstraints()
+        // FIXME: - For demonstraition purpose only
+        provideCities()
     }
     
     // MARK: - Methods
-    private func setupViewHierarchy() {
-        view.addSubview(backView)
-    }
-    
-    private func setupLayoutConstraints() {
-        backView.snp.makeConstraints { make in
-            make.height.equalTo(VIEW_HEIGHT)
-            make.width.equalTo(VIEW_WIDTH)
-            make.centerX.equalTo(view.snp.centerX)
-            make.centerY.equalTo(view.snp.centerY)
-        }
+    public func provideCities() {
+        let cities = ["Тамбов", "Тюмень", "Тула", "Темрюк", "Таганрог", "Тьматараканья", "Тбилисси"]
+        backView.provideCitiesData(cities)
     }
 }
 
+// MARK: - CitySearchDelegate
 extension CitySearchViewController: CitySearchDelegate {
     public func dismissView() {
         self.dismiss(animated: true, completion: nil)

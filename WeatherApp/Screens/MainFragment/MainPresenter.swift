@@ -21,7 +21,7 @@ final class MainPresenterImpl: MainPresenter {
         self.networkController = networkController
         self.locationManager = locationManager
 
-        loadWeatherForCoordinates(LocationData(longitude: 52.7211, lattitude: 41.4518))
+//        loadWeatherForCoordinates(LocationData(longitude: 52.7211, lattitude: 41.4518))
     }
     
     // MARK: - Methods
