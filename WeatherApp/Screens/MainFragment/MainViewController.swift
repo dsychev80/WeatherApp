@@ -32,6 +32,7 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
 
         customizeNavigationBar()
+        presenter?.recieveWeatherForCityName("Tambov")
     }
     
     override func loadView() {

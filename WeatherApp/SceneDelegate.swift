@@ -21,7 +21,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         diContainer = DIContainer()
         
-        let navVC = UINavigationController(rootViewController: diContainer.configureMainViewController())
+//        let navVC = UINavigationController(rootViewController: diContainer.configureMainViewController())
+        let navVC = CustomNavigationController(rootViewController: diContainer.configureMainViewController())
         
         window?.rootViewController = navVC
         window?.makeKeyAndVisible()

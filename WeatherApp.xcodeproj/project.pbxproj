@@ -61,6 +61,9 @@
 		73BD0795276109EF00B5BCE3 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73BD0794276109EF00B5BCE3 /* Item.swift */; };
 		73BD07972761FB8C00B5BCE3 /* Model_MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73BD07962761FB8C00B5BCE3 /* Model_MockData.swift */; };
 		73BD07992763AD8000B5BCE3 /* CanvasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73BD07982763AD8000B5BCE3 /* CanvasView.swift */; };
+		73DA79762768C543003DFFA1 /* CustomNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73DA79752768C543003DFFA1 /* CustomNavigationController.swift */; };
+		73DA79782768C5AD003DFFA1 /* CustomNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73DA79772768C5AD003DFFA1 /* CustomNavigationView.swift */; };
+		73DA797A2768C5FD003DFFA1 /* NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73DA79792768C5FD003DFFA1 /* NavigationBar.swift */; };
 		73F0379B274BD67600C130FC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F0379A274BD67600C130FC /* AppDelegate.swift */; };
 		73F0379D274BD67600C130FC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F0379C274BD67600C130FC /* SceneDelegate.swift */; };
 		73F037A4274BD67800C130FC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 73F037A3274BD67800C130FC /* Assets.xcassets */; };
@@ -140,6 +143,9 @@
 		73BD0794276109EF00B5BCE3 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		73BD07962761FB8C00B5BCE3 /* Model_MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model_MockData.swift; sourceTree = "<group>"; };
 		73BD07982763AD8000B5BCE3 /* CanvasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasView.swift; sourceTree = "<group>"; };
+		73DA79752768C543003DFFA1 /* CustomNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationController.swift; sourceTree = "<group>"; };
+		73DA79772768C5AD003DFFA1 /* CustomNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationView.swift; sourceTree = "<group>"; };
+		73DA79792768C5FD003DFFA1 /* NavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBar.swift; sourceTree = "<group>"; };
 		73F03797274BD67600C130FC /* WeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		73F0379A274BD67600C130FC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		73F0379C274BD67600C130FC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -415,6 +421,16 @@
 			path = WeatherAppTesting;
 			sourceTree = "<group>";
 		};
+		73DA79742768C506003DFFA1 /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				73DA79752768C543003DFFA1 /* CustomNavigationController.swift */,
+				73DA79772768C5AD003DFFA1 /* CustomNavigationView.swift */,
+				73DA79792768C5FD003DFFA1 /* NavigationBar.swift */,
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
 		73F0378E274BD67600C130FC = {
 			isa = PBXGroup;
 			children = (
@@ -438,6 +454,7 @@
 		73F03799274BD67600C130FC /* WeatherApp */ = {
 			isa = PBXGroup;
 			children = (
+				73DA79742768C506003DFFA1 /* Coordinator */,
 				737B1CD52757782200397F19 /* DI */,
 				737B1CE82758B43B00397F19 /* Utils */,
 				737B1CE72758B42700397F19 /* UI */,
@@ -649,9 +666,11 @@
 				730355D9275A3BF50068DCC8 /* HourCellView.swift in Sources */,
 				737B1C872751286700397F19 /* CityCollectionViewCell.swift in Sources */,
 				737B1C992753A38C00397F19 /* WeatherAppErrors.swift in Sources */,
+				73DA797A2768C5FD003DFFA1 /* NavigationBar.swift in Sources */,
 				737B1C8D27538A4900397F19 /* NetworkProvider.swift in Sources */,
 				737B1C912753930E00397F19 /* MainPresenter.swift in Sources */,
 				730355D3275A1DA10068DCC8 /* SeparatorView.swift in Sources */,
+				73DA79782768C5AD003DFFA1 /* CustomNavigationView.swift in Sources */,
 				73921282275DE87500450941 /* SearchView.swift in Sources */,
 				73921288275DF17800450941 /* CitySearchAddButton.swift in Sources */,
 				73BD07932760FD4600B5BCE3 /* TodayData.swift in Sources */,
@@ -665,6 +684,7 @@
 				737B1C93275393FB00397F19 /* APIResource.swift in Sources */,
 				737D7091276756C4005BD83C /* extensions+Float.swift in Sources */,
 				73F037B6274BE33600C130FC /* MainViewController.swift in Sources */,
+				73DA79762768C543003DFFA1 /* CustomNavigationController.swift in Sources */,
 				7358E6C62751024500926C02 /* CitySearchViewController.swift in Sources */,
 				730355C727591E5F0068DCC8 /* TodayCellStackView.swift in Sources */,
 				73FD63C8274E38DE00E33A61 /* Fonts.swift in Sources */,
