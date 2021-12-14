@@ -22,11 +22,10 @@ class MainPresenterTest: XCTestCase {
         let jsonData = Model_MockData.jsonData
         let items = jsonData.convertToItems()
         
-        
         locationMock.mockResult = .success(location)
         networkMock.mockResult = .success(jsonData)
         
-        mainPresenter.recievedCityName(name)
+        mainPresenter.recieveWeatherForCityName(name)
         
         XCTAssertTrue(locationMock.isCalled)
         XCTAssertEqual(locationMock.mockName, name)
@@ -48,7 +47,7 @@ class MainPresenterTest: XCTestCase {
         locationMock.mockName = name
         locationMock.mockResult = .failure(locationError)
         
-        mainPresenter.recievedCityName(name)
+        mainPresenter.recieveWeatherForCityName(name)
         
         XCTAssertTrue(locationMock.isCalled)
         XCTAssertEqual(locationMock.mockName, name)
@@ -70,7 +69,7 @@ class MainPresenterTest: XCTestCase {
         
         networkMock.mockResult = .failure(serverError)
         
-        mainPresenter.recievedCityName(name)
+        mainPresenter.recieveWeatherForCityName(name)
         
         XCTAssertTrue(locationMock.isCalled)
         XCTAssertEqual(locationMock.mockName, name)
@@ -84,7 +83,7 @@ class MainPresenterTest: XCTestCase {
     
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
-        mainPresenter = MainPresenter(with: networkMock, locationManager: locationMock)
+        mainPresenter = MainPresenterImpl(with: networkMock, locationManager: locationMock)
         mainView = MainView_Mock()
         mainPresenter.mainViewController = mainView
     }

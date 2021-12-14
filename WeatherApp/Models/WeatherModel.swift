@@ -96,7 +96,6 @@ extension WeatherModel {
 
 // MARK: - Weather
 struct Weather: Decodable, Equatable, Hashable {
-    let id: Int
     let main: String
     let description: String
     let icon: String
