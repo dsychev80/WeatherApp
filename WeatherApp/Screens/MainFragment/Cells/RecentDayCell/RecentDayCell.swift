@@ -12,7 +12,7 @@ class RecentDayCell: UITableViewCell {
     // MARK: - Properties
     var cellView = RecentDayCellView()
 
-    // MARK: - Life cycle
+    // MARK: - Lifecycle
     required override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
@@ -24,16 +24,15 @@ class RecentDayCell: UITableViewCell {
     }
     
     // MARK: - Methods
+    private func setup() {
+        selectionStyle = .none
+        setupViewHierarchy()
+        setupLayoutConstraints()
+    }
+    
     // Use this function to configure cell with data
     public func configure(with data: ForecastData) {
         cellView.configure(with: data)
-    }
-    
-    private func setup() {
-        selectionStyle = .none
-
-        setupViewHierarchy()
-        setupLayoutConstraints()
     }
     
     private func setupViewHierarchy() {

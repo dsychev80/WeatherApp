@@ -7,10 +7,16 @@
 
 import UIKit
 
+//MARK: - Constants
+fileprivate let СONTENT_VIEW_WIDTH: CGFloat = 345
+fileprivate let CONTENT_VIEW_HEIGHT: CGFloat = 214
+fileprivate let HEADER_LEFT_RIGHT_GAP_TO_CONTENT_VIEW: CGFloat = 20
+fileprivate let TOP_BOTTOM_GAP: CGFloat = 16
+
 class RecentDayCellView: UIView {
 
     // MARK: - Properties
-    private var collectionViewAdapter = RecentDayCollectionAdapter()
+    private var collectionViewAdapter: RecentDayCollectionAdapter
     
     private var backView = RecentDayCellBackView()
     private var cellHeaderContainerView = RecentHeaderView()
@@ -19,6 +25,7 @@ class RecentDayCellView: UIView {
     
     // MARK: - LifeCycle
     required init() {
+        collectionViewAdapter = RecentDayCollectionAdapter(with: collectionView)
         super.init(frame: .zero)
         setup()
     }
@@ -28,17 +35,14 @@ class RecentDayCellView: UIView {
     }
     
     // MARK: - Methods
+    private func setup() {
+        setupViewHierarchy()
+        setupLayoutConstraints()
+    }
+    
     public func configure(with data: ForecastData) {
         cellHeaderContainerView.configure(withData: data)
         collectionViewAdapter.getForcastData(data.forecast)
-        collectionView.reloadData()
-    }
-    
-    private func setup() {
-        collectionView.dataSource = collectionViewAdapter
-    
-        setupViewHierarchy()
-        setupLayoutConstraints()
     }
     
     private func setupViewHierarchy() {
@@ -62,34 +66,23 @@ class RecentDayCellView: UIView {
         }
   
         cellHeaderContainerView.snp.makeConstraints { make in
-            make.left.equalTo(backView).offset(20)
-            make.right.equalTo(backView).offset(-20)
-            make.top.equalTo(backView).offset(16)
+            make.left.equalTo(backView).offset(HEADER_LEFT_RIGHT_GAP_TO_CONTENT_VIEW)
+            make.right.equalTo(backView).offset(-HEADER_LEFT_RIGHT_GAP_TO_CONTENT_VIEW)
+            make.top.equalTo(backView).offset(TOP_BOTTOM_GAP)
             make.height.equalTo(28)
         }
         
         separatorView.snp.makeConstraints { make in
             make.top.equalTo(cellHeaderContainerView.snp.bottom).offset(15.14)
-            make.left.equalTo(backView).offset(20)
-            make.right.equalTo(backView).offset(-20)
+            make.left.equalTo(backView).offset(HEADER_LEFT_RIGHT_GAP_TO_CONTENT_VIEW)
+            make.right.equalTo(backView).offset(-HEADER_LEFT_RIGHT_GAP_TO_CONTENT_VIEW)
         }
         
         collectionView.snp.makeConstraints { make in
-            make.top.equalTo(separatorView.snp.bottom).offset(16)
+            make.top.equalTo(separatorView.snp.bottom).offset(TOP_BOTTOM_GAP)
             make.left.equalTo(backView)
             make.right.equalTo(backView)
-            make.bottom.equalTo(backView.snp.bottom).offset(-16)
+            make.bottom.equalTo(backView.snp.bottom).offset(-TOP_BOTTOM_GAP)
         }
     }
-    
-    //MARK: - Constants    
-    private let СONTENT_VIEW_WIDTH: CGFloat = 345
-    private let CONTENT_VIEW_HEIGHT: CGFloat = 214
-    private let HEADER_LEFT_RIGHT_GAP_TO_CONTENT_VIEW: CGFloat = 20
-}
-
-protocol RecentDayHeaderData {
-    var dayDate: String { get }
-    var dayAverageTemp: String { get }
-    var dayMaxTemp: String { get }
 }

@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 // MARK: - WeatherModel
-struct WeatherModel: Decodable {
+struct WeatherModel: Decodable, Equatable, Hashable {
     let weather: [Weather]
     let main: MainWeatherInfo
     let wind: Wind
@@ -21,10 +21,6 @@ struct WeatherModel: Decodable {
         case dtText = "dt_txt"
     }
 }
-
-extension WeatherModel: Equatable { }
-
-extension WeatherModel: Hashable { }
 
 // MARK: - convertation functions
 extension WeatherModel {
@@ -99,19 +95,14 @@ extension WeatherModel {
 }
 
 // MARK: - Weather
-struct Weather: Decodable {
-    let id: Int
+struct Weather: Decodable, Equatable, Hashable {
     let main: String
     let description: String
     let icon: String
 }
 
-extension Weather: Equatable { }
-
-extension Weather: Hashable { }
-
 // MARK: - MainWeatherInfo
-struct MainWeatherInfo: Decodable {
+struct MainWeatherInfo: Decodable, Equatable, Hashable {
     let temp: Float
     let feelsLike: Float
     let tempMin: Float
@@ -130,36 +121,20 @@ struct MainWeatherInfo: Decodable {
     }
 }
 
-extension MainWeatherInfo: Equatable { }
-
-extension MainWeatherInfo: Hashable { }
-
 // MARK: - Wind
-struct Wind: Decodable {
+struct Wind: Decodable, Equatable, Hashable {
     let speed: Float
 }
 
-extension Wind: Equatable { }
-
-extension Wind: Hashable { }
-
 // MARK: - City
-struct City: Decodable {
+struct City: Decodable, Equatable, Hashable {
     let name: String
     let coord: Coordinates
 }
 
-extension City: Equatable { }
-
-extension City: Hashable { }
-
 // MARK: - Coordinates
-struct Coordinates: Decodable {
+struct Coordinates: Decodable, Equatable, Hashable {
     let lat: Float
     let lon: Float
 }
-
-extension Coordinates: Equatable { }
-
-extension Coordinates: Hashable { }
 

@@ -13,10 +13,6 @@ class MainWeatherAdapter: NSObject {
     private var weather: JSONWeatherData?
     private var forecast: [ForecastData] = []
     
-    override init() {
-        super.init()
-    }
-    
     public func getForecast(_ forecast: JSONWeatherData) {
         self.weather = forecast
         self.forecast = forecast.convertToForecastByDay()

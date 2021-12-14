@@ -1,5 +1,5 @@
 //
-//  NetworkController.swift
+//  NetworkProvider.swift
 //  WeatherApp
 //
 //  Created by Denis Sychev on 28.11.2021.
@@ -8,11 +8,7 @@
 import Foundation
 
 
-final class NetworkController: NetworkManager {
-    
-    private weak var dataUser: NetworkDataUserDelegate?
-    
-    init() { }
+final class NetworkProvider: NetworkManager {
     
     public func loadWeatherForLocation(_ location: LocationData, completion: @escaping (Result<JSONWeatherData, WeatherError>) -> Void) {
         
@@ -20,7 +16,7 @@ final class NetworkController: NetworkManager {
         api.addLocation(location)
         guard let url = api.url else { return }
         
-        let _ = URLSession.shared.dataTask(with: url) { data, response, error in
+        URLSession.shared.dataTask(with: url) { data, response, error in
             guard error == nil, let data = data else {
                 completion(.failure(WeatherError.serverError(error?.localizedDescription ?? "Unrecognized network error")))
                 return
@@ -36,9 +32,4 @@ final class NetworkController: NetworkManager {
 
         }.resume()
     }
-}
-
-
-protocol NetworkDataUserDelegate: AnyObject {
-    func dataEndLoading()
 }

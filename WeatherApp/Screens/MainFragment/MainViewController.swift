@@ -7,13 +7,14 @@
 
 import UIKit
 
+// MARK: - Constants
+fileprivate let TITLE_COLOR = UIColor(displayP3Red: 42/255, green: 45/255, blue: 51/255, alpha: 1)
 
 class MainViewController: UIViewController {
     // MARK: - Properties
     private weak var presenter: MainPresenter?
     private var tableView: MainTableView { view as! MainTableView }
-    private var mainWeatherDataSourceAdapter = MainWeatherAdapter()
-    private var dataSource: UITableViewDiffableDataSource<Int, Item>!
+
     
     // MARK: - Lifecycle
     
@@ -30,38 +31,20 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = .white
         customizeNavigationBar()
     }
     
     override func loadView() {
-        view = MainTableView(with: mainWeatherDataSourceAdapter)
-        dataSource = UITableViewDiffableDataSource<Int, Item>(tableView: tableView) {
-            (tableView: UITableView, indexPath: IndexPath, item: Item) -> UITableViewCell? in
-            switch item {
-            case .today(let todayData):
-                let cell = tableView.dequeueReusableCell(withIdentifier: TodayCell.name, for: indexPath) as! TodayCell
-                cell.configure(with: todayData)
-                return cell
-            case .forecast(let forecastData):
-                let cell = tableView.dequeueReusableCell(withIdentifier: RecentDayCell.name, for: indexPath) as! RecentDayCell
-                cell.configure(with: forecastData)
-                return cell
-            }
-        }
-        tableView.dataSource = dataSource
+        view = MainTableView()
     }
     
     // MARK: - Methods
     public func provideForcastData(_ data: [Item]) {
         DispatchQueue.main.async { [weak self] in
-            var snapshot = NSDiffableDataSourceSnapshot<Int, Item>()
-            snapshot.appendSections([0])
-            snapshot.appendItems(data, toSection: 0)
-            self?.dataSource.apply(snapshot)
+            guard let self = self else { return }
+            self.tableView.configure(with: data)
         }
     }
-    
     
     // FIXME: - need to move this code
     private func customizeNavigationBar() {
@@ -100,15 +83,11 @@ class MainViewController: UIViewController {
     }
     
     @objc private func selectOnMap() {
-        guard let presenter = presenter else { return }
-        let searchVC = CitySearchViewController(with: presenter)
+        let searchVC = CitySearchViewController(with: self)
         searchVC.modalPresentationStyle = .overCurrentContext
         searchVC.modalTransitionStyle = .crossDissolve
         present(searchVC, animated: true, completion: nil)
     }
-    
-    // MARK: - Constants
-    private let TITLE_COLOR = UIColor(displayP3Red: 42/255, green: 45/255, blue: 51/255, alpha: 1)
 }
 
 extension MainViewController: MainView {
@@ -120,6 +99,14 @@ extension MainViewController: MainView {
     }
 }
 
-protocol CityDataDelegate: AnyObject {
-    func recievedCityName(_ name: String)
+extension MainViewController: CityDataDelegate {
+    func searchCityWithName(_ name: String) {
+        guard let presenter = presenter else { return }
+        presenter.recieveWeatherForCityName(name)
+    }
+}
+
+protocol MainPresenter: AnyObject {
+    var mainViewController: MainView! { get set }
+    func recieveWeatherForCityName(_ name: String)
 }

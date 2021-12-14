@@ -8,10 +8,8 @@
 import Foundation
 
 
-struct HoursWeatherModel: HourData {
+struct HoursWeatherModel: HourData, Hashable {
     var time: String = ""
     var imageName: String = ""
     var temp: String = ""
 }
-
-extension HoursWeatherModel: Hashable { }

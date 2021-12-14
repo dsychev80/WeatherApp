@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 
-final class MainPresenter {
+final class MainPresenterImpl: MainPresenter {
     
     // MARK: - Properties
     private let networkController: NetworkManager
@@ -21,27 +21,11 @@ final class MainPresenter {
         self.networkController = networkController
         self.locationManager = locationManager
 
-        loadWeatherForCoordinates(LocationData(longitude: 52.7211, lattitude: 41.4518))
+//        loadWeatherForCoordinates(LocationData(longitude: 52.7211, lattitude: 41.4518))
     }
     
     // MARK: - Methods
-    private func loadWeatherForCoordinates(_ coordinates: LocationData) {
-        networkController.loadWeatherForLocation(coordinates) { [weak self] result in
-            switch result {
-            case .failure(let error):
-                // FIXME: Handle error
-                print(error.localizedDescription)
-            case .success(let weather):
-                self?.mainViewController.provideForcastData(weather.convertToItems())
-                self?.mainViewController?.dataReciviedForCity(weather.city.name)
-            
-            }
-        }
-    }
-}
-
-extension MainPresenter: CityDataDelegate {
-    func recievedCityName(_ name: String) {
+    public func recieveWeatherForCityName(_ name: String) {
         locationManager.getCityCoordinatesByName(name) { [weak self] result in
             guard let self = self else {
                 print("DataController is deallocated, so closure need to terminate too.")
@@ -54,6 +38,20 @@ extension MainPresenter: CityDataDelegate {
                 print(error)
             case .success(let coordinates):
                 self.loadWeatherForCoordinates(coordinates)
+            }
+        }
+    }
+    
+    public func loadWeatherForCoordinates(_ coordinates: LocationData) {
+        networkController.loadWeatherForLocation(coordinates) { [weak self] result in
+            switch result {
+            case .failure(let error):
+                // FIXME: Handle error
+                print(error.localizedDescription)
+            case .success(let weather):
+                self?.mainViewController.provideForcastData(weather.convertToItems())
+                self?.mainViewController?.dataReciviedForCity(weather.city.name)
+            
             }
         }
     }

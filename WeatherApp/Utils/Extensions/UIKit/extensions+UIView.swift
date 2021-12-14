@@ -18,7 +18,7 @@ extension Nameable {
 }
 
 extension UIView: Nameable {}
-extension UIViewController: Nameable {}
+
 
 extension UIView {
     func roundCorners() {
@@ -53,11 +53,5 @@ extension UIView {
         self.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -bottom).isActive = true
         self.widthAnchor.constraint(equalToConstant: width).isActive = true
         self.heightAnchor.constraint(equalToConstant: height).isActive = true
-    }
-}
-
-extension UILabel {
-    func makeTextWhite() {
-        self.textColor = .white
     }
 }

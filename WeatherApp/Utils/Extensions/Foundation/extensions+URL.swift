@@ -22,26 +22,3 @@ extension URL {
         }
     }
 }
-
-// MARK: - CelciusDegreesConvertable
-protocol CelciusDegreesConvertable {
-    func toDegreesInString() -> String
-}
-
-extension Int: CelciusDegreesConvertable {
-    func toDegreesInString() -> String {
-        return "\(self)°"
-    }
-}
-extension Float: CelciusDegreesConvertable {
-    func toDegreesInString() -> String {
-        return "\(Int(self))°"
-    }
-}
-extension Double: CelciusDegreesConvertable {
-    func toDegreesInString() -> String {
-        return "\(Int(self))°"
-    }
-}
-
-

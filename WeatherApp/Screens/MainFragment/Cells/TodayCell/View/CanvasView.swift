@@ -9,22 +9,33 @@ import UIKit
 
 
 final class CanvasView: UIView {
-    
+    // MARK: - Properties
     private var firstColor: CGColor
     private var secondColor: CGColor
+    let curveLayer = CAShapeLayer()
+    let curveGradientLayer = CAGradientLayer()
+    let gradientLayer = CAGradientLayer()
+    let mainLayer = CALayer()
     
+    // MARK: - Lifecycle
     required init(withColors color1: UIColor, color2: UIColor) {
         self.firstColor = color1.cgColor
         self.secondColor = color2.cgColor
         super.init(frame: .zero)
         layer.cornerRadius = 24
+        
+        mainLayer.addSublayer(gradientLayer)
+        mainLayer.addSublayer(curveLayer)
+        self.layer.addSublayer(mainLayer)
+        
+        gradientLayer.colors = [firstColor, secondColor]
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: - LifeCycle
+    // MARK: - Methods
     override func draw(_ rect: CGRect) {
         setup()
     }
@@ -33,7 +44,6 @@ final class CanvasView: UIView {
         let width: CGFloat = frame.width
         let height: CGFloat = frame.height
         
-        let curveLayer = CAShapeLayer()
         curveLayer.frame = frame
         let curvePath = UIBezierPath()
         curvePath.move(to: CGPoint(x: 0.0, y: height / 2 * 1.3))
@@ -47,20 +57,8 @@ final class CanvasView: UIView {
         curveLayer.path = curvePath.cgPath
         curveLayer.fillColor = firstColor
         
-        let curveGradientLayer = CAGradientLayer()
         curveGradientLayer.frame = curveLayer.frame
-
-        
-        let mainLayer = CALayer()
         mainLayer.frame = self.frame
-        
-        let gradientLayer = CAGradientLayer()
         gradientLayer.frame = frame
-        gradientLayer.colors = [firstColor, secondColor]
-        mainLayer.addSublayer(gradientLayer)
-        mainLayer.addSublayer(curveLayer)
-        
-        
-        self.layer.addSublayer(mainLayer)
     }
 }

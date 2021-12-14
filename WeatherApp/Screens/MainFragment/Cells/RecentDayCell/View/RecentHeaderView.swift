@@ -7,6 +7,13 @@
 
 import UIKit
 
+fileprivate let DATA_LABEL_WIDTH: CGFloat = 130
+fileprivate let DATA_LABEL_HEIGHT: CGFloat = 28.14
+fileprivate let MIN_MAX_LABEL_WIDTH: CGFloat = 40
+fileprivate let MIN_MAX_LABEL_HEIGHT: CGFloat = 28.14
+fileprivate let WEATHER_IMAGE_HEIGHT: CGFloat = 24.12
+fileprivate let WEATHER_IMAGE_WIDTH: CGFloat = 30
+
 class RecentHeaderView: UIView {
 
     // MARK: - Properties
@@ -27,17 +34,17 @@ class RecentHeaderView: UIView {
     }
     
     // MARK: - Methods
-    public func configure(withData data: RecentDayHeaderData) {
-        dataLabel.text = data.dayDate
-        maxTempLabel.text = data.dayAverageTemp
-        minTempLabel.text = data.dayMaxTemp
-    }
-    
     private func setup() {
         minTempLabel.textAlignment = .right
         maxTempLabel.textAlignment = .right
         setupViewHierarchy()
         setupLayoutConstraints()
+    }
+    
+    public func configure(withData data: RecentDayHeaderData) {
+        dataLabel.text = data.dayDate
+        maxTempLabel.text = data.dayAverageTemp
+        minTempLabel.text = data.dayMaxTemp
     }
     
     private func setupViewHierarchy() {
@@ -77,11 +84,10 @@ class RecentHeaderView: UIView {
             make.right.equalTo(self.snp.right)
         }
     }
-    
-    private let DATA_LABEL_WIDTH: CGFloat = 130
-    private let DATA_LABEL_HEIGHT: CGFloat = 28.14
-    private let MIN_MAX_LABEL_WIDTH: CGFloat = 40
-    private let MIN_MAX_LABEL_HEIGHT: CGFloat = 28.14
-    private let WEATHER_IMAGE_HEIGHT: CGFloat = 24.12
-    private let WEATHER_IMAGE_WIDTH: CGFloat = 30
+}
+
+protocol RecentDayHeaderData {
+    var dayDate: String { get }
+    var dayAverageTemp: String { get }
+    var dayMaxTemp: String { get }
 }
