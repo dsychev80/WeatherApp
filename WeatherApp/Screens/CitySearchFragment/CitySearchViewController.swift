@@ -10,7 +10,6 @@ import UIKit
 
 class CitySearchViewController: UIViewController {
     // MARK: - Properties
-    
     private weak var cityDataDelegate: CityDataDelegate!
     private var backView: SearchBackView { view as! SearchBackView }
     
@@ -31,11 +30,19 @@ class CitySearchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.definesPresentationContext = true
+        
+        // FIXME: - For demonstraition purpose only
+        provideCities()
     }
     
     // MARK: - Methods
+    public func provideCities() {
+        let cities = ["Тамбов", "Тюмень", "Тула", "Темрюк", "Таганрог", "Тьматараканья", "Тбилисси"]
+        backView.provideCitiesData(cities)
+    }
 }
 
+// MARK: - CitySearchDelegate
 extension CitySearchViewController: CitySearchDelegate {
     public func dismissView() {
         self.dismiss(animated: true, completion: nil)

@@ -42,4 +42,8 @@ class SearchBackView: UIView {
             make.centerY.equalTo(self.snp.centerY)
         }
     }
+
+    public func provideCitiesData(_ data: [String]) {
+        searchView.configure(with: data)
+    }
 }

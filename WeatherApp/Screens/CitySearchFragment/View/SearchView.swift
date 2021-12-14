@@ -8,6 +8,7 @@
 import UIKit
 
 // MARK: - Constants
+fileprivate let BACKGROUND_COLOR = UIColor(displayP3Red: 255/255, green: 255/255, blue: 255/255, alpha: 1)
 fileprivate let BUTTONS_AND_TEXTFIELD_GAP: CGFloat = 16
 fileprivate let TEXTFIELD_HEIGHT: CGFloat = 40
 fileprivate let COLLECTION_VIEW_HEIGHT: CGFloat = 30
@@ -20,17 +21,17 @@ fileprivate let VIEW_WIDTH: CGFloat = 343
 class SearchView: UIView {
 
     // MARK: - Properties
-    let citys = ["Тамбов", "Тюмень", "Тула", "Темрюк", "Таганрог", "Тьматараканья", "Тбилисси"]
-
     private weak var delegate: CitySearchDelegate!
+    private var cityCollectionViewAdapter: CityCollectionViewAdapter
     private var searchTextField = WeatherCityNameTextField()
     private var collectionView = CitysCollectionView()
     private var cancelButton = SityCancelButton(withTarget: self, selector: #selector(dismissView))
     private var addButton = CitySearchAddButton(withTarget: self, selector: #selector(search))
 
-    // MARK: - LifeCycle
+    // MARK: - Lifecycle
     required init(withDelegate delegate: CitySearchDelegate) {
-    self.delegate = delegate
+        self.delegate = delegate
+        self.cityCollectionViewAdapter = CityCollectionViewAdapter(with: collectionView)
         super.init(frame: .zero)
         setup()
     }
@@ -42,12 +43,9 @@ class SearchView: UIView {
     // MARK: - Methods
     private func setup() {
         self.translatesAutoresizingMaskIntoConstraints = false
-        self.backgroundColor = UIColor(displayP3Red: 255/255, green: 255/255, blue: 255/255, alpha: 1)
+        self.backgroundColor = BACKGROUND_COLOR
         self.layer.cornerRadius = 24
         self.clipsToBounds = true
-
-        searchTextField.delegate = self
-        collectionView.dataSource = self
 
         setupViewHierarchy()
         setupLayoutConstraints()
@@ -94,6 +92,10 @@ class SearchView: UIView {
             make.width.equalTo(BUTTON_WIDTH)
         }
     }
+    
+    public func configure(with data: [String]) {
+        cityCollectionViewAdapter.getCitiesData(data)
+    }
 
     @objc private func dismissView() {
         delegate?.dismissView()
@@ -105,26 +107,6 @@ class SearchView: UIView {
             return
         }
         delegate.search(name: text)
-    }
-}
-
-// MARK: - UICollectionViewDataSource
-extension SearchView: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return citys.count
-    }
-
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CityCollectionViewCell.name, for: indexPath) as? CityCollectionViewCell else { return UICollectionViewCell() }
-        cell.configureCell(withData: citys[indexPath.row])
-        return cell
-    }
-}
-
-extension SearchView: UITextFieldDelegate {
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        search()
-        return true
     }
 }
 
