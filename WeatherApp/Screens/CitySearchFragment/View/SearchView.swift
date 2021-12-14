@@ -64,29 +64,35 @@ class SearchView: UIView {
         self.snp.makeConstraints { make in
             make.height.equalTo(VIEW_HEIGHT)
             make.width.equalTo(VIEW_WIDTH)
-            
         }
 
-        searchTextField.topAnchor.constraint(equalTo: self.topAnchor, constant: BUTTONS_AND_TEXTFIELD_GAP).isActive = true
-        searchTextField.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -BUTTONS_AND_TEXTFIELD_GAP).isActive = true
-        searchTextField.leftAnchor.constraint(equalTo: self.leftAnchor, constant: BUTTONS_AND_TEXTFIELD_GAP).isActive = true
-        searchTextField.heightAnchor.constraint(equalToConstant: TEXTFIELD_HEIGHT).isActive = true
+        searchTextField.snp.makeConstraints { make in
+            make.top.equalTo(self.snp_top).offset(BUTTONS_AND_TEXTFIELD_GAP)
+            make.right.equalTo(self.snp_right).offset(-BUTTONS_AND_TEXTFIELD_GAP)
+            make.left.equalTo(self.snp_left).offset(BUTTONS_AND_TEXTFIELD_GAP)
+            make.height.equalTo(TEXTFIELD_HEIGHT)
+        }
 
-        collectionView.topAnchor.constraint(equalTo: searchTextField.bottomAnchor, constant: 12).isActive = true
-        collectionView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: BUTTONS_AND_TEXTFIELD_GAP).isActive = true
-        collectionView.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
-        collectionView.heightAnchor.constraint(equalToConstant: COLLECTION_VIEW_HEIGHT).isActive = true
+        collectionView.snp.makeConstraints { make in
+            make.top.equalTo(searchTextField.snp_bottom).offset(12)
+            make.left.equalTo(self.snp_left).offset(BUTTONS_AND_TEXTFIELD_GAP)
+            make.right.equalTo(self.snp_right)
+            make.height.equalTo(COLLECTION_VIEW_HEIGHT)
+        }
 
-        cancelButton.makeConstraintsAtLeftBottomCornerView(self,
-                                                           left: BUTTONS_AND_TEXTFIELD_GAP,
-                                                           bottom: BUTTONS_AND_TEXTFIELD_GAP,
-                                                           height: BUTTON_HEIGHT,
-                                                           width: BUTTON_WIDTH)
-        addButton.makeConstraintsAtRightBottomCornerView(self,
-                                                         right: BUTTONS_AND_TEXTFIELD_GAP,
-                                                         bottom: BUTTONS_AND_TEXTFIELD_GAP,
-                                                         height: BUTTON_HEIGHT,
-                                                         width: BUTTON_WIDTH)
+        cancelButton.snp.makeConstraints { make in
+            make.left.equalTo(self.snp_left).offset(BUTTONS_AND_TEXTFIELD_GAP)
+            make.bottom.equalTo(self.snp_bottom).offset(-BUTTONS_AND_TEXTFIELD_GAP)
+            make.height.equalTo(BUTTON_HEIGHT)
+            make.width.equalTo(BUTTON_WIDTH)
+        }
+
+        addButton.snp.makeConstraints { make in
+            make.right.equalTo(self.snp_right).offset(-BUTTONS_AND_TEXTFIELD_GAP)
+            make.bottom.equalTo(self.snp_bottom).offset(-BUTTONS_AND_TEXTFIELD_GAP)
+            make.height.equalTo(BUTTON_HEIGHT)
+            make.width.equalTo(BUTTON_WIDTH)
+        }
     }
 
     @objc private func dismissView() {
