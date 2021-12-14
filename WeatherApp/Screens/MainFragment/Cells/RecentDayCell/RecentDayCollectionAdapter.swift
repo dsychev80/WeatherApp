@@ -18,6 +18,11 @@ class RecentDayCollectionAdapter: NSObject {
         self.collectionView = collectionView
         super.init()
         
+        setup()
+    }
+
+    // MARK: - Methods
+    private func setup() {
         diffableDataSource = UICollectionViewDiffableDataSource<Int, HoursWeatherModel>(collectionView: collectionView) {
             (collectionView: UICollectionView, indexPath: IndexPath, model: HoursWeatherModel) -> UICollectionViewCell? in
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HourWeatherCell.name, for: indexPath) as! HourWeatherCell
@@ -26,8 +31,7 @@ class RecentDayCollectionAdapter: NSObject {
         }
         collectionView.dataSource = diffableDataSource
     }
-    
-    // MARK: - Methods
+
     public func getForcastData(_ data: [HoursWeatherModel]) {
         var snapshot = NSDiffableDataSourceSnapshot<Int, HoursWeatherModel>()
         snapshot.appendSections([0])
