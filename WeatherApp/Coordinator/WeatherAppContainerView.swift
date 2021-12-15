@@ -1,5 +1,5 @@
 //
-//  NavigationContainerView.swift
+//  WeatherAppContainerView.swift
 //  WeatherApp
 //
 //  Created by Denis Sychev on 14.12.2021.
@@ -8,7 +8,7 @@
 import UIKit
 
 
-class NavigationContainerView<ContainedView: ContentView>: UIView {
+class WeatherAppContainerView<ContainedView: ContentView>: UIView {
     typealias ViewType = ContainedView
     
     // MARK: - Properties
@@ -53,11 +53,11 @@ class NavigationContainerView<ContainedView: ContentView>: UIView {
     }
     
     public func configureView(withData data: ContainedView.ModelType) {
-        containedView.configurateWithData(data as! Model)
+        containedView.configureWithData(data as! Model)
     }
 }
 
-extension NavigationContainerView: ContainerView {
+extension WeatherAppContainerView: ContainerView {
     typealias NavigationBarTypeModel = String
     typealias ContainedViewTypeModel = ContainedView.ModelType
     
@@ -74,5 +74,5 @@ protocol Model {}
 
 protocol ContentView: UIView {
     associatedtype ModelType = Model
-    func configurateWithData(_ data: Model)
+    func configureWithData(_ data: Model)
 }

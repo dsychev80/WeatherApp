@@ -11,7 +11,7 @@ import UIKit
 class MainViewController: UIViewController {
     // MARK: - Properties
     private weak var presenter: MainPresenter?
-    private var containerView: NavigationContainerView<MainTableView> { view as! NavigationContainerView<MainTableView> }
+    private var containerView: WeatherAppContainerView<MainTableView> { view as! WeatherAppContainerView<MainTableView> }
 
     
     // MARK: - Lifecycle
@@ -35,7 +35,7 @@ class MainViewController: UIViewController {
     override func loadView() {
         let tableView = MainTableView()
         guard let eventHandler = presenter as? EventHandler else { return }
-        view = NavigationContainerView(withView: tableView, and: eventHandler)
+        view = WeatherAppContainerView(withView: tableView, and: eventHandler)
     }
     
     // MARK: - Methods
