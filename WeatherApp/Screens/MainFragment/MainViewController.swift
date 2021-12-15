@@ -7,8 +7,6 @@
 
 import UIKit
 
-// MARK: - Constants
-fileprivate let TITLE_COLOR = UIColor(displayP3Red: 42/255, green: 45/255, blue: 51/255, alpha: 1)
 
 class MainViewController: UIViewController {
     // MARK: - Properties
@@ -46,49 +44,6 @@ class MainViewController: UIViewController {
             self.containerView.configureView(withData: data)
         }
     }
-    
-    // FIXME: - need to move this code
-//    private func customizeNavigationBar() {
-//        guard let navBar = navigationController?.navigationBar else { return }
-//        navBar.titleTextAttributes = [
-//            .font: AppFont.extraBold.size(18),
-//            .foregroundColor: TITLE_COLOR
-//        ]
-//
-//        let pointButton = UIButton()
-//        pointButton.addTarget(self, action: #selector(selectOnMap), for: .touchUpInside)
-//        pointButton.setImage(UIImage(named: "Point"), for: .normal)
-//
-//        let searchButton = UIButton()
-//        searchButton.addTarget(self, action: #selector(search), for: .touchUpInside)
-//        searchButton.setImage(UIImage(named: "Search"), for: .normal)
-//
-//        let themeButton = UIButton()
-//        themeButton.addTarget(self, action: #selector(changeTheme), for: .touchUpInside)
-//        themeButton.setImage(UIImage(named: "Theme"), for: .normal)
-//
-//        let mapPointItem = UIBarButtonItem(customView: pointButton)
-//        let searchItem = UIBarButtonItem(customView: searchButton)
-//        let themeItem = UIBarButtonItem(customView: themeButton)
-//
-//        navigationItem.leftBarButtonItem = mapPointItem
-//        navigationItem.rightBarButtonItems = [searchItem, themeItem]
-//    }
-    
-    @objc private func search() {
-        print("search")
-    }
-    
-    @objc private func changeTheme() {
-        print("change theme")
-    }
-    
-    @objc private func selectOnMap() {
-        let searchVC = CitySearchViewController(with: self)
-        searchVC.modalPresentationStyle = .overCurrentContext
-        searchVC.modalTransitionStyle = .crossDissolve
-        present(searchVC, animated: true, completion: nil)
-    }
 }
 
 extension MainViewController: MainView {
@@ -107,7 +62,20 @@ extension MainViewController: CityDataDelegate {
 }
 
 extension MainViewController: EventHandler {
+    @objc func selectOnMap() {
+        let searchVC = CitySearchViewController(with: self)
+        searchVC.modalPresentationStyle = .overCurrentContext
+        searchVC.modalTransitionStyle = .crossDissolve
+        present(searchVC, animated: true, completion: nil)
+    }
     
+    @objc func search() {
+        print("search")
+    }
+    
+    @objc func changeTheme() {
+        print("change theme")
+    }
 }
 
 protocol MainPresenter: AnyObject {
