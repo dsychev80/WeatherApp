@@ -58,8 +58,7 @@ class MainTableView: UITableView {
 }
 
 extension MainTableView: ContentView {
-    
-    func configureWithData(_ data: Model) {
+    func configurateWithData(_ data: Model) {
         guard let items = data as? [Item] else { return }
         configure(with: items)
         self.reloadData()

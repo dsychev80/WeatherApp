@@ -53,7 +53,7 @@ class NavigationContainerView<ContainedView: ContentView>: UIView {
     }
     
     public func configureView(withData data: ContainedView.ModelType) {
-        containedView.configureWithData(data as! Model)
+        containedView.configurateWithData(data as! Model)
     }
 }
 
@@ -74,5 +74,5 @@ protocol Model {}
 
 protocol ContentView: UIView {
     associatedtype ModelType = Model
-    func configureWithData(_ data: Model)
+    func configurateWithData(_ data: Model)
 }
