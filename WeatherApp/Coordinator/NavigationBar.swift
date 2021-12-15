@@ -16,9 +16,11 @@ fileprivate let TITLE_BOTTOM_GAP: CGFloat = 17
 class NavigationBar: UIView {
     // MARK: - Properties
     private let title = WeatherCellLabel(withFont: AppFont.extraBold.size(18), fontColor: TITLE_COLOR, andText: "Tambov")
+    private let eventHandler: EventHandler
     
     // MARK: - Lifecycle
-    required init() {
+    required init(with eventHandler: EventHandler) {
+        self.eventHandler = eventHandler
         let screenWidth = UIScreen.main.bounds.width
         super.init(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 84))
         
@@ -51,4 +53,8 @@ class NavigationBar: UIView {
     public func configure(withData data: String) {
         self.title.text = data
     }
+}
+
+protocol EventHandler {
+    
 }

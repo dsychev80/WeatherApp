@@ -7,12 +7,6 @@
 
 import UIKit
 
-protocol Model {}
-
-protocol ContentView: UIView {
-    associatedtype ModelType = Model
-    func configureWithData(_ data: Model)
-}
 
 class NavigationContainerView<ContainedView: ContentView>: UIView {
     typealias ViewType = ContainedView
@@ -22,8 +16,8 @@ class NavigationContainerView<ContainedView: ContentView>: UIView {
     private var containedView: ViewType
     
     // MARK: - LifeCycle
-    required init(withView view: ContainedView) {
-        navigationBar = NavigationBar()
+    required init(withView view: ContainedView, and eventHandler: EventHandler) {
+        navigationBar = NavigationBar(with: eventHandler)
         containedView = view
         super.init(frame: .zero)
         setup()
@@ -74,4 +68,11 @@ extension NavigationContainerView: ContainerView {
     func provideDataToContainedView(_ data: ContainedView.ModelType) {
         configureView(withData: data)
     }
+}
+
+protocol Model {}
+
+protocol ContentView: UIView {
+    associatedtype ModelType = Model
+    func configureWithData(_ data: Model)
 }
