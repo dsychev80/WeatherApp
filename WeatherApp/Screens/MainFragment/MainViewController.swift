@@ -111,3 +111,11 @@ protocol MainPresenter: AnyObject {
     var mainViewController: MainView! { get set }
     func recieveWeatherForCityName(_ name: String)
 }
+
+protocol ContainerView: UIView {
+    associatedtype NavigationBarTypeModel
+    associatedtype ContainedViewTypeModel
+    
+    func provideDataToNavBar(_ data: NavigationBarTypeModel)
+    func provideDataToContainedView(_ data: ContainedViewTypeModel)
+}

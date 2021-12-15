@@ -21,7 +21,6 @@ final class DIContainer {
         self.locationManager = LocationManagerImpl()
         self.mainPresenter = MainPresenterImpl(with: networkController, locationManager: locationManager)
     }
-    
 }
 
 extension DIContainer {
