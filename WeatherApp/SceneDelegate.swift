@@ -20,11 +20,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(windowScene: windowScene)
         
         diContainer = DIContainer()
+        let navigationController = UINavigationController()
+        let coordinator = MainCoordinator(with: navigationController, and: diContainer)
+        coordinator.start()
         
-        let viewController = diContainer.configureMainViewController()
-        
-        window?.rootViewController = viewController
+        window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
     }
+}
+
+protocol Coordinator {
+    func start()
 }
 

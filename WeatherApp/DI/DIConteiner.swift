@@ -23,7 +23,7 @@ final class DIContainer {
     }
 }
 
-extension DIContainer {
+extension DIContainer: ScreenFabric {
     public func configureMainViewController() -> UIViewController {
         return MainViewController(with: mainPresenter)
     }
