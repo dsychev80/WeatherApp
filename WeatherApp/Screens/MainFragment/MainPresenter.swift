@@ -13,6 +13,7 @@ final class MainPresenterImpl: MainPresenter {
     // MARK: - Properties
     private let networkController: NetworkManager
     private let locationManager: LocationManager
+    public var coordinator: Coordinator!
     public weak var mainViewController: MainView!
     
     // MARK: - Lifecycle
@@ -56,6 +57,7 @@ final class MainPresenterImpl: MainPresenter {
 
 extension MainPresenterImpl: EventHandler {
     @objc func selectOnMap() {
+        coordinator.searchScreenOpen()
         print("selectOnMap")
     }
     

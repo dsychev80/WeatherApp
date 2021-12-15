@@ -11,7 +11,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
     
-    // possible to make it public
     private var diContainer: DIContainer!
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
@@ -22,6 +21,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         diContainer = DIContainer()
         let navigationController = UINavigationController()
         let coordinator = MainCoordinator(with: navigationController, and: diContainer)
+        diContainer.mainCoordinator = coordinator
         coordinator.start()
         
         window?.rootViewController = navigationController
@@ -31,5 +31,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 protocol Coordinator {
     func start()
+    func searchScreenOpen()
 }
 

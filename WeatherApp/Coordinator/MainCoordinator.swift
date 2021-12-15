@@ -29,8 +29,18 @@ class MainCoordinator: Coordinator {
         showMainScreen()
     }
     
-    func showMainScreen() {
+    private func showMainScreen() {
         navigationController.pushViewController(screenFabric.configureMainViewController(), animated: true)
+    }
+}
+
+extension MainCoordinator {
+    public func searchScreenOpen() {
+        // FIXME: - Temporally code
+        let searchVC = CitySearchViewController()
+        searchVC.modalPresentationStyle = .overCurrentContext
+        searchVC.modalTransitionStyle = .crossDissolve
+        navigationController.pushViewController(searchVC, animated: true)
     }
 }
 

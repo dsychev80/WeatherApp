@@ -15,16 +15,22 @@ final class DIContainer {
     let locationManager: LocationManager
     let mainPresenter: MainPresenter
     
+    var mainCoordinator: MainCoordinator?
+    
     // MARK: - Lifecycle
     init() {
         self.networkController = NetworkProvider()
         self.locationManager = LocationManagerImpl()
+
         self.mainPresenter = MainPresenterImpl(with: networkController, locationManager: locationManager)
     }
 }
 
 extension DIContainer: ScreenFabric {
     public func configureMainViewController() -> UIViewController {
-        return MainViewController(with: mainPresenter)
+        guard let coordinator = mainCoordinator else { fatalError() }
+        mainPresenter.coordinator = coordinator
+        let mainViewController = MainViewController(with: mainPresenter)
+        return mainViewController
     }
 }

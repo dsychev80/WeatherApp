@@ -64,6 +64,7 @@ extension MainViewController: CityDataDelegate {
 
 protocol MainPresenter: AnyObject {
     var mainViewController: MainView! { get set }
+    var coordinator: Coordinator! { get set }
     func recieveWeatherForCityName(_ name: String)
 }
 
