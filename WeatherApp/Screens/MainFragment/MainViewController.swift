@@ -34,7 +34,8 @@ class MainViewController: UIViewController {
     
     override func loadView() {
         let tableView = MainTableView()
-        view = NavigationContainerView(withView: tableView, and: self as EventHandler)
+        guard let eventHandler = presenter as? EventHandler else { return }
+        view = NavigationContainerView(withView: tableView, and: eventHandler)
     }
     
     // MARK: - Methods
@@ -58,23 +59,6 @@ extension MainViewController: CityDataDelegate {
     func searchCityWithName(_ name: String) {
         guard let presenter = presenter else { return }
         presenter.recieveWeatherForCityName(name)
-    }
-}
-
-extension MainViewController: EventHandler {
-    @objc func selectOnMap() {
-        let searchVC = CitySearchViewController(with: self)
-        searchVC.modalPresentationStyle = .overCurrentContext
-        searchVC.modalTransitionStyle = .crossDissolve
-        present(searchVC, animated: true, completion: nil)
-    }
-    
-    @objc func search() {
-        print("search")
-    }
-    
-    @objc func changeTheme() {
-        print("change theme")
     }
 }
 

@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import UIKit
 
 
 final class MainPresenterImpl: MainPresenter {
@@ -54,6 +53,20 @@ final class MainPresenterImpl: MainPresenter {
             
             }
         }
+    }
+}
+
+extension MainPresenterImpl: EventHandler {
+    @objc func selectOnMap() {
+        print("selectOnMap")
+    }
+    
+    @objc func search() {
+        print("search")
+    }
+    
+    @objc func changeTheme() {
+        print("change theme")
     }
 }
 
