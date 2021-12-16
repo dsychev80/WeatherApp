@@ -59,7 +59,6 @@ final class MainPresenterImpl: MainPresenter {
 extension MainPresenterImpl: EventHandler {
     @objc func selectOnMap() {
         router.searchScreenOpen()
-        print("selectOnMap")
     }
     
     @objc func search() {

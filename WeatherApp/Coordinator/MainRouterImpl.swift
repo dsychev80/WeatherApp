@@ -37,7 +37,7 @@ extension MainRouterImpl: Router {
     }
     
     public func searchScreenOpen() {
-
+        navigationController.pushViewController(screenFabric.configureSearchViewController(), animated: true)
     }
     
     public func popToRoot() {
@@ -49,4 +49,5 @@ extension MainRouterImpl: Router {
 protocol ScreenFabric {
     var di: DIContainer? { get set }
     func configureMainViewController() -> UIViewController
+    func configureSearchViewController() -> UIViewController
 }
