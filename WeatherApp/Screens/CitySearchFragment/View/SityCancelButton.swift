@@ -28,7 +28,7 @@ class SityCancelButton: UIButton {
     private func setup() {
         self.backgroundColor = CANCEL_BUTTON_COLOR
         self.layer.cornerRadius = 12
-        self.titleLabel?.font = AppFont.bold.size(14)
+        self.titleLabel?.font = R.font.manropeBold(size: 14)
         self.setTitleColor(CANCEL_BUTTON_TEXT_COLOR, for: .normal)
         self.setTitle("Отменить", for: .normal)
         self.translatesAutoresizingMaskIntoConstraints = false

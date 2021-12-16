@@ -25,7 +25,7 @@ class CityCollectionViewCell: UICollectionViewCell {
     
     private var cityLabel: WeatherCityNameLabel = {
         let label = WeatherCityNameLabel(withInsets: 4, left: 8, bottom: 4, right: 8)
-        label.font = AppFont.medium.size(14)
+        label.font = R.font.manropeMedium(size: 14)
         label.textColor = CITY_LABEL_TEXT_COLOR
         label.translatesAutoresizingMaskIntoConstraints = false
         return label

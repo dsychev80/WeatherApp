@@ -27,7 +27,7 @@ class CitySearchAddButton: SityCancelButton {
     func setup() {
         self.backgroundColor = ADD_BUTTON_COLOR
         self.layer.cornerRadius = 12
-        self.titleLabel?.font = AppFont.bold.size(14)
+        self.titleLabel?.font = R.font.manropeBold(size: 14)
         self.setTitle("Добавить", for: .normal)
         self.setTitleColor(ADD_BUTTON_TEXT_COLOR, for: .normal)
         self.translatesAutoresizingMaskIntoConstraints = false
