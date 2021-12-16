@@ -9,17 +9,17 @@ import Foundation
 
 
 final class MainPresenterImpl: MainPresenter {
-    
     // MARK: - Properties
     private let networkController: NetworkManager
     private let locationManager: LocationManager
-    public var coordinator: Coordinator!
+    public var router: Router
     public weak var mainViewController: MainView!
     
     // MARK: - Lifecycle
-    init(with networkController: NetworkManager, locationManager: LocationManager) {
+    init(with networkController: NetworkManager, locationManager: LocationManager, router: Router) {
         self.networkController = networkController
         self.locationManager = locationManager
+        self.router = router
     }
     
     // MARK: - Methods
@@ -55,9 +55,10 @@ final class MainPresenterImpl: MainPresenter {
     }
 }
 
+    // MARK: - EventHandler
 extension MainPresenterImpl: EventHandler {
     @objc func selectOnMap() {
-        coordinator.searchScreenOpen()
+        router.searchScreenOpen()
         print("selectOnMap")
     }
     
@@ -70,15 +71,18 @@ extension MainPresenterImpl: EventHandler {
     }
 }
 
+    // MARK: - MainView
 protocol MainView: AnyObject {
     func provideForcastData(_ data: [Item])
     func dataReciviedForCity(_ name: String)
 }
 
+    // MARK: - LocationManager
 protocol LocationManager {
     func getCityCoordinatesByName(_ name: String, completion: @escaping (Result<LocationData, WeatherError>) -> Void)
 }
 
+    // MARK: - NetworkManager
 protocol NetworkManager {
     func loadWeatherForLocation(_ location: LocationData, completion: @escaping (Result<JSONWeatherData, WeatherError>) -> Void)
 }

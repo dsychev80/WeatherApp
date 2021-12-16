@@ -17,20 +17,18 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         guard let windowScene = scene as? UIWindowScene else { return }
         window = UIWindow(windowScene: windowScene)
-        
+
         diContainer = DIContainer()
-        let navigationController = UINavigationController()
-        let coordinator = MainCoordinator(with: navigationController, and: diContainer)
-        diContainer.mainCoordinator = coordinator
-        coordinator.start()
+        diContainer.mainRouter.start()
         
-        window?.rootViewController = navigationController
+        window?.rootViewController = diContainer.navigationController
         window?.makeKeyAndVisible()
     }
 }
 
-protocol Coordinator {
+protocol Router {
     func start()
     func searchScreenOpen()
+    func popToRoot()
 }
 

@@ -1,5 +1,5 @@
 //
-//  MainCoordinator.swift
+//  MainRouterImpl.swift
 //  WeatherApp
 //
 //  Created by Denis Sychev on 15.12.2021.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MainCoordinator: Coordinator {
+class MainRouterImpl {
     // MARK: - Properties
     private let navigationController: UINavigationController
     private let screenFabric: ScreenFabric
@@ -25,25 +25,28 @@ class MainCoordinator: Coordinator {
         navigationController.setNavigationBarHidden(true, animated: false)
     }
     
-    public func start() {
-        showMainScreen()
-    }
-    
     private func showMainScreen() {
         navigationController.pushViewController(screenFabric.configureMainViewController(), animated: true)
     }
 }
 
-extension MainCoordinator {
+// MARK: - Router
+extension MainRouterImpl: Router {
+    public func start() {
+        showMainScreen()
+    }
+    
     public func searchScreenOpen() {
-        // FIXME: - Temporally code
-        let searchVC = CitySearchViewController()
-        searchVC.modalPresentationStyle = .overCurrentContext
-        searchVC.modalTransitionStyle = .crossDissolve
-        navigationController.pushViewController(searchVC, animated: true)
+
+    }
+    
+    public func popToRoot() {
+        navigationController.popToRootViewController(animated: true)
     }
 }
 
+// MARK: - ScreenFabric protocol
 protocol ScreenFabric {
+    var di: DIContainer? { get set }
     func configureMainViewController() -> UIViewController
 }

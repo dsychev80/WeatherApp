@@ -10,7 +10,7 @@ import UIKit
 
 class MainViewController: UIViewController {
     // MARK: - Properties
-    private weak var presenter: MainPresenter?
+    private var presenter: MainPresenter?
     private var containerView: WeatherAppContainerView<MainTableView> { view as! WeatherAppContainerView<MainTableView> }
 
     
@@ -47,6 +47,7 @@ class MainViewController: UIViewController {
     }
 }
 
+    // MARK: - MainView
 extension MainViewController: MainView {
     func dataReciviedForCity(_ name: String) {
         DispatchQueue.main.async { [weak self] in
@@ -55,6 +56,7 @@ extension MainViewController: MainView {
     }
 }
 
+    // MARK: - CityDataDelegate
 extension MainViewController: CityDataDelegate {
     func searchCityWithName(_ name: String) {
         guard let presenter = presenter else { return }
@@ -62,12 +64,14 @@ extension MainViewController: CityDataDelegate {
     }
 }
 
+    // MARK: - MainPresenter protocol
 protocol MainPresenter: AnyObject {
     var mainViewController: MainView! { get set }
-    var coordinator: Coordinator! { get set }
+    var router: Router { get set }
     func recieveWeatherForCityName(_ name: String)
 }
 
+    // MARK: - ContainerView protocol
 protocol ContainerView: UIView {
     associatedtype NavigationBarTypeModel
     associatedtype ContainedViewTypeModel
