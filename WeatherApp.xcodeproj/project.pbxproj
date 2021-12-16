@@ -244,6 +244,7 @@
 				73DA7981276B4AB5003DFFA1 /* ContainerView */,
 				737B1CE42758B1EE00397F19 /* CitySearchFragment */,
 				737B1CE22758AEE400397F19 /* MainFragment */,
+				73DA797F276B39FC003DFFA1 /* ScreenFabric.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -472,7 +473,6 @@
 				737B1CE62758B3FA00397F19 /* Models */,
 				737B1CE52758B3DC00397F19 /* Network */,
 				737B1CE12758AEBE00397F19 /* Screens */,
-				73DA797F276B39FC003DFFA1 /* ScreenFabric.swift */,
 				73DA79742768C506003DFFA1 /* Coordinator */,
 				737B1CD52757782200397F19 /* DI */,
 				73F0379A274BD67600C130FC /* AppDelegate.swift */,
