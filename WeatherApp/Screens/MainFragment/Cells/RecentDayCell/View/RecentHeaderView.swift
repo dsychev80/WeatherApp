@@ -12,7 +12,7 @@ fileprivate let DATA_LABEL_HEIGHT: CGFloat = 28.14
 fileprivate let MIN_MAX_LABEL_WIDTH: CGFloat = 40
 fileprivate let MIN_MAX_LABEL_HEIGHT: CGFloat = 28.14
 fileprivate let WEATHER_IMAGE_HEIGHT: CGFloat = 24.12
-fileprivate let WEATHER_IMAGE_WIDTH: CGFloat = 30
+fileprivate let WEATHER_IMAGE_WIDTH: CGFloat = 24
 
 class RecentHeaderView: UIView {
 
@@ -20,7 +20,7 @@ class RecentHeaderView: UIView {
     private var dataLabel = WeatherCellLabel(withFont: AppFont.medium.size(16), fontColor: UIColor(displayP3Red: 42/255, green: 45/255, blue: 51/255, alpha: 1))
     private var maxTempLabel = WeatherCellLabel(withFont: AppFont.extraBold.size(16), fontColor: UIColor(displayP3Red: 143/255, green: 150/255, blue: 161/255, alpha: 1))
     private var minTempLabel = WeatherCellLabel(withFont: AppFont.extraBold.size(16), fontColor: UIColor(displayP3Red: 42/255, green: 45/255, blue: 51/255, alpha: 1))
-    private var weatherImage = UIImageView(image: UIImage(named: "Sun"))
+    private var weatherImage = UIImageView(image: R.image.sun())
     
     // MARK: - LifeCycle
     required init() {

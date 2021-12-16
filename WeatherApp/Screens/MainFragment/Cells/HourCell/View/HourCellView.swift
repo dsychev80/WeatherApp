@@ -11,7 +11,7 @@ import UIKit
 fileprivate let CONTENT_CELL_HEIGHT: CGFloat = 114
 fileprivate let CONTENT_CELL_WIDTH: CGFloat = 73
 fileprivate let LABEL_GAP: CGFloat = 12
-fileprivate let IMAGE_WIDTH: CGFloat = 26
+fileprivate let IMAGE_WIDTH: CGFloat = 32
 fileprivate let IMAGE_HEIGHT: CGFloat = 32
 fileprivate let CORNER_RADIUS: CGFloat = 16
 fileprivate let HOUR_FONT_COLOR = UIColor(displayP3Red: 143/255,
@@ -27,7 +27,7 @@ class HourCellView: UIView {
     // MARK: - Properties
     private var hourLabel = WeatherCellLabel(withFont: AppFont.medium.size(16),
                                              fontColor: HOUR_FONT_COLOR)
-    private var weatherImage = UIImageView(image: UIImage(named: "Sun"))
+    private var weatherImage = UIImageView(image: R.image.sun())
     private var tempLabel = WeatherCellLabel(withFont: AppFont.extraBold.size(16),
                                              fontColor: TEMP_FONT_COLOR)
 

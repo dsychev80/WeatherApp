@@ -23,7 +23,7 @@ class TodayCellView: UIView {
     private var backView = TodayCellBackgroundView()
     private var verticalStackView = TodayCellStackView()
     private var dataLabel = WeatherCellLabel(withFont: AppFont.semiBold.size(14), fontColor: .white)
-    private var weatherImage = UIImageView(image: UIImage(named: "Sun"))
+    private var weatherImage = UIImageView(image: R.image.sun())
     private var degreeLabel = WeatherCellLabel(withFont: AppFont.extraBold.size(48), fontColor: .white)
     private var feelsLikeLabel = WeatherCellLabel(withFont: AppFont.semiBold.size(14), fontColor: .white)
 
