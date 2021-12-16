@@ -23,9 +23,15 @@ class MainTableView: UITableView {
     // MARK: - Methods
     private func setup() {
         self.separatorStyle = .none
+        self.translatesAutoresizingMaskIntoConstraints = false
 
         self.register(TodayCell.self, forCellReuseIdentifier: TodayCell.name)
         self.register(RecentDayCell.self, forCellReuseIdentifier: RecentDayCell.name)
+        
+        contentInset = UIEdgeInsets(top: 60, left: 0, bottom: 0, right: 0)
+        let underlyingView = UIView()
+        underlyingView.backgroundColor = .white
+        self.backgroundView = underlyingView
         
         diffableDataSource = UITableViewDiffableDataSource<Int, Item>(tableView: self) {
             (tableView: UITableView, indexPath: IndexPath, item: Item) -> UITableViewCell? in
@@ -48,5 +54,13 @@ class MainTableView: UITableView {
         snapshot.appendSections([0])
         snapshot.appendItems(items, toSection: 0)
         diffableDataSource.apply(snapshot)
+    }
+}
+
+extension MainTableView: ContentView {
+    func configureWithData(_ data: Model) {
+        guard let items = data as? [Item] else { return }
+        configure(with: items)
+        self.reloadData()
     }
 }

@@ -13,6 +13,7 @@ class MainPresenterTest: XCTestCase {
     var networkMock = NetworkController_Mock()
     var locationMock = LocationController_Mock()
     var mainView = MainView_Mock()
+    var router = MainRouterImpl(with: UINavigationController(), and: ScreenFabricImpl())
     var mainPresenter: MainPresenter!
     
     func testMainPresenterForCorrectData() {
@@ -83,7 +84,7 @@ class MainPresenterTest: XCTestCase {
     
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
-        mainPresenter = MainPresenterImpl(with: networkMock, locationManager: locationMock)
+        mainPresenter = MainPresenterImpl(with: networkMock, locationManager: locationMock, router: router)
         mainView = MainView_Mock()
         mainPresenter.mainViewController = mainView
     }

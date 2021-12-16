@@ -10,12 +10,10 @@ import UIKit
 
 class CitySearchViewController: UIViewController {
     // MARK: - Properties
-    private weak var cityDataDelegate: CityDataDelegate!
     private var backView: SearchBackView { view as! SearchBackView }
     
     // MARK: - Lifecycle
-    required init(with cityDataDelegate: CityDataDelegate) {
-        self.cityDataDelegate = cityDataDelegate
+    required init() {
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -45,11 +43,14 @@ class CitySearchViewController: UIViewController {
 // MARK: - CitySearchDelegate
 extension CitySearchViewController: CitySearchDelegate {
     public func dismissView() {
+        self.navigationController?.dismiss(animated: true, completion: {
+            self.navigationController?.popViewController(animated: true)
+        })
         self.dismiss(animated: true, completion: nil)
     }
     
     public func search(name: String) {
-        cityDataDelegate.searchCityWithName(name)
+//        cityDataDelegate.searchCityWithName(name)
         dismissView()
     }
 }
