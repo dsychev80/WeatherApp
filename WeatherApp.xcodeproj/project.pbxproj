@@ -19,6 +19,7 @@
 		730355D9275A3BF50068DCC8 /* HourCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 730355D8275A3BF50068DCC8 /* HourCellView.swift */; };
 		730355DC275A6E3E0068DCC8 /* MainWeatherAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 730355DB275A6E3E0068DCC8 /* MainWeatherAdapter.swift */; };
 		730355DE275AA30B0068DCC8 /* RecentDayCollectionAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 730355DD275AA30B0068DCC8 /* RecentDayCollectionAdapter.swift */; };
+		732DC05E276B767500B5E1A7 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732DC05D276B767500B5E1A7 /* R.generated.swift */; };
 		7358E6BC274E72E100926C02 /* HourWeatherCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7358E6BB274E72E100926C02 /* HourWeatherCell.swift */; };
 		7358E6C62751024500926C02 /* CitySearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7358E6C52751024500926C02 /* CitySearchViewController.swift */; };
 		73765C502758D15700C1CA4E /* Manrope-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 73765C4C2758D15700C1CA4E /* Manrope-ExtraBold.ttf */; };
@@ -102,6 +103,7 @@
 		730355D8275A3BF50068DCC8 /* HourCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourCellView.swift; sourceTree = "<group>"; };
 		730355DB275A6E3E0068DCC8 /* MainWeatherAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWeatherAdapter.swift; sourceTree = "<group>"; };
 		730355DD275AA30B0068DCC8 /* RecentDayCollectionAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentDayCollectionAdapter.swift; sourceTree = "<group>"; };
+		732DC05D276B767500B5E1A7 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
 		7358E6BB274E72E100926C02 /* HourWeatherCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourWeatherCell.swift; sourceTree = "<group>"; };
 		7358E6C52751024500926C02 /* CitySearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitySearchViewController.swift; sourceTree = "<group>"; };
 		73765C4C2758D15700C1CA4E /* Manrope-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Manrope-ExtraBold.ttf"; sourceTree = "<group>"; };
@@ -477,6 +479,7 @@
 				737B1CD52757782200397F19 /* DI */,
 				73F0379A274BD67600C130FC /* AppDelegate.swift */,
 				73F0379C274BD67600C130FC /* SceneDelegate.swift */,
+				732DC05D276B767500B5E1A7 /* R.generated.swift */,
 				73F037A3274BD67800C130FC /* Assets.xcassets */,
 				73F037A5274BD67800C130FC /* LaunchScreen.storyboard */,
 				73F037A8274BD67800C130FC /* Info.plist */,
@@ -522,6 +525,7 @@
 			buildConfigurationList = 73F037AB274BD67800C130FC /* Build configuration list for PBXNativeTarget "WeatherApp" */;
 			buildPhases = (
 				F55B30C1476192625EC31CED /* [CP] Check Pods Manifest.lock */,
+				732DC05C276B724E00B5E1A7 /* Run R.swift */,
 				73F03793274BD67600C130FC /* Sources */,
 				73F03794274BD67600C130FC /* Frameworks */,
 				73F03795274BD67600C130FC /* Resources */,
@@ -598,6 +602,26 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		732DC05C276B724E00B5E1A7 /* Run R.swift */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Run R.swift";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				$SRCROOT/R.generated.swift,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT/R.generated.swift\"\n";
+		};
 		D4EAA34A2FDFC299262A65AB /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -701,6 +725,7 @@
 				737B1C93275393FB00397F19 /* APIResource.swift in Sources */,
 				737D7091276756C4005BD83C /* extensions+Float.swift in Sources */,
 				73F037B6274BE33600C130FC /* MainViewController.swift in Sources */,
+				732DC05E276B767500B5E1A7 /* R.generated.swift in Sources */,
 				7358E6C62751024500926C02 /* CitySearchViewController.swift in Sources */,
 				730355C727591E5F0068DCC8 /* TodayCellStackView.swift in Sources */,
 				73FD63C8274E38DE00E33A61 /* Fonts.swift in Sources */,
