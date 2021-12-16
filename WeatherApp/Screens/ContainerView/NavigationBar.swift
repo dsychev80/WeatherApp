@@ -18,7 +18,7 @@ fileprivate let BETWEEN_BUTTON_GAP: CGFloat = 8
 
 class NavigationBar: UIView {
     // MARK: - Properties
-    private let title = WeatherCellLabel(withFont: AppFont.extraBold.size(18), fontColor: TITLE_COLOR)
+    private let title = WeatherCellLabel(withFont: R.font.manropeExtraBold(size: 18), fontColor: TITLE_COLOR)
     private let eventHandler: EventHandler
     
     private let pointButton = UIButton()

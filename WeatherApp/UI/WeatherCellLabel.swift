@@ -10,7 +10,7 @@ import UIKit
 class WeatherCellLabel: UILabel {
     
     // MARK: - LifeCycle
-    required init(withFont newFont: UIFont, fontColor color: UIColor, andText text: String = "") {
+    required init(withFont newFont: UIFont?, fontColor color: UIColor, andText text: String = "") {
         super.init(frame: .zero)
         self.text = text
         self.font = newFont

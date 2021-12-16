@@ -17,9 +17,9 @@ fileprivate let WEATHER_IMAGE_WIDTH: CGFloat = 24
 class RecentHeaderView: UIView {
 
     // MARK: - Properties
-    private var dataLabel = WeatherCellLabel(withFont: AppFont.medium.size(16), fontColor: UIColor(displayP3Red: 42/255, green: 45/255, blue: 51/255, alpha: 1))
-    private var maxTempLabel = WeatherCellLabel(withFont: AppFont.extraBold.size(16), fontColor: UIColor(displayP3Red: 143/255, green: 150/255, blue: 161/255, alpha: 1))
-    private var minTempLabel = WeatherCellLabel(withFont: AppFont.extraBold.size(16), fontColor: UIColor(displayP3Red: 42/255, green: 45/255, blue: 51/255, alpha: 1))
+    private var dataLabel = WeatherCellLabel(withFont: R.font.manropeMedium(size: 16), fontColor: UIColor(displayP3Red: 42/255, green: 45/255, blue: 51/255, alpha: 1))
+    private var maxTempLabel = WeatherCellLabel(withFont: R.font.manropeExtraBold(size: 16), fontColor: UIColor(displayP3Red: 143/255, green: 150/255, blue: 161/255, alpha: 1))
+    private var minTempLabel = WeatherCellLabel(withFont: R.font.manropeExtraBold(size: 16), fontColor: UIColor(displayP3Red: 42/255, green: 45/255, blue: 51/255, alpha: 1))
     private var weatherImage = UIImageView(image: R.image.sun())
     
     // MARK: - LifeCycle

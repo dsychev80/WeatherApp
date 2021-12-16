@@ -25,10 +25,10 @@ fileprivate let TEMP_FONT_COLOR = UIColor(displayP3Red: 42/255,
 
 class HourCellView: UIView {
     // MARK: - Properties
-    private var hourLabel = WeatherCellLabel(withFont: AppFont.medium.size(16),
+    private var hourLabel = WeatherCellLabel(withFont: R.font.manropeMedium(size: 16),
                                              fontColor: HOUR_FONT_COLOR)
     private var weatherImage = UIImageView(image: R.image.sun())
-    private var tempLabel = WeatherCellLabel(withFont: AppFont.extraBold.size(16),
+    private var tempLabel = WeatherCellLabel(withFont: R.font.manropeExtraBold(size: 16),
                                              fontColor: TEMP_FONT_COLOR)
 
     // MARK: - LifeCycle

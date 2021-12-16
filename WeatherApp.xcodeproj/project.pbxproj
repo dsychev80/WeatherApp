@@ -76,7 +76,6 @@
 		73F037B8274BE52700C130FC /* WeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F037B7274BE52700C130FC /* WeatherModel.swift */; };
 		73FD63C4274CF7E400E33A61 /* TodayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73FD63C3274CF7E400E33A61 /* TodayCell.swift */; };
 		73FD63C6274D32BC00E33A61 /* RecentDayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73FD63C5274D32BC00E33A61 /* RecentDayCell.swift */; };
-		73FD63C8274E38DE00E33A61 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73FD63C7274E38DE00E33A61 /* Fonts.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -163,7 +162,6 @@
 		73F037B7274BE52700C130FC /* WeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherModel.swift; sourceTree = "<group>"; };
 		73FD63C3274CF7E400E33A61 /* TodayCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayCell.swift; sourceTree = "<group>"; };
 		73FD63C5274D32BC00E33A61 /* RecentDayCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentDayCell.swift; sourceTree = "<group>"; };
-		73FD63C7274E38DE00E33A61 /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		D5ABA1888DCDF341C1A875B2 /* Pods_WeatherApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WeatherApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -490,7 +488,6 @@
 		73FD63CA274E3C3400E33A61 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
-				73FD63C7274E38DE00E33A61 /* Fonts.swift */,
 				73765C4D2758D15700C1CA4E /* Manrope-Bold.ttf */,
 				73765C4C2758D15700C1CA4E /* Manrope-ExtraBold.ttf */,
 				73765C4E2758D15700C1CA4E /* Manrope-Medium.ttf */,
@@ -728,7 +725,6 @@
 				732DC05E276B767500B5E1A7 /* R.generated.swift in Sources */,
 				7358E6C62751024500926C02 /* CitySearchViewController.swift in Sources */,
 				730355C727591E5F0068DCC8 /* TodayCellStackView.swift in Sources */,
-				73FD63C8274E38DE00E33A61 /* Fonts.swift in Sources */,
 				730355DC275A6E3E0068DCC8 /* MainWeatherAdapter.swift in Sources */,
 				737D708F2767569D005BD83C /* extensions+Double.swift in Sources */,
 				730355CE275A101D0068DCC8 /* RecentDayCellBackView.swift in Sources */,
