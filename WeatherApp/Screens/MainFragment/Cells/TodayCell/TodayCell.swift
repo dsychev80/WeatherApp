@@ -40,7 +40,6 @@ final class TodayCell: UITableViewCell {
         }
     }
     
-    // Use this function to configure cell with data
     public func configure(with data: TodayData) {
         view.configure(with: data)
     }

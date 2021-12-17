@@ -40,7 +40,6 @@ class TodayCellView: UIView {
     // MARK: - Methods
     private func setup() {
         translatesAutoresizingMaskIntoConstraints = false
-        weatherImage.frame = CGRect(x: 0, y: 0, width: self.frame.width/5, height: self.frame.width/5)
         
         setupViewHierarchy()
         setupLayoutConstraints()

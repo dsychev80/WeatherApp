@@ -58,11 +58,11 @@ final class MainPresenterImpl: MainPresenter {
     // MARK: - EventHandler
 extension MainPresenterImpl: EventHandler {
     @objc func selectOnMap() {
-        router.searchScreenOpen()
+        
     }
     
     @objc func search() {
-        print("search")
+        router.searchScreenOpen()
     }
     
     @objc func changeTheme() {

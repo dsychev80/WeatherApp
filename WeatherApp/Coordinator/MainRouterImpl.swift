@@ -31,7 +31,7 @@ class MainRouterImpl {
     }
 }
 
-// MARK: - Router
+    // MARK: - Router
 extension MainRouterImpl: Router {
     public func start() {
         showMainScreen()
@@ -52,7 +52,7 @@ extension MainRouterImpl: Router {
     }
 }
 
-// MARK: - ScreenFabric protocol
+    // MARK: - ScreenFabric protocol
 protocol ScreenFabric {
     var di: DIContainer? { get set }
     func configureMainViewController() -> UIViewController
