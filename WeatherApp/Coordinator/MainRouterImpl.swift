@@ -38,11 +38,12 @@ extension MainRouterImpl: Router {
     }
     
     public func searchScreenOpen() {
-        navigationController.pushViewController(screenFabric.configureSearchViewController(), animated: true)
+        let searchVC = screenFabric.configureSearchViewController()
+        navigationController.present( searchVC, animated: true)
     }
     
     func searchCity(_ name: String) {
-        popToRoot()
+        navigationController.topViewController?.dismiss(animated: false)
         di?.mainPresenter.recieveWeatherForCityName(name)
     }
     

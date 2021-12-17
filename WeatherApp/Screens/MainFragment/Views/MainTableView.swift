@@ -53,7 +53,7 @@ class MainTableView: UITableView {
         var snapshot = NSDiffableDataSourceSnapshot<Int, Item>()
         snapshot.appendSections([0])
         snapshot.appendItems(items, toSection: 0)
-        diffableDataSource.apply(snapshot)
+        diffableDataSource.apply(snapshot, animatingDifferences: false, completion: nil)
     }
 }
 
