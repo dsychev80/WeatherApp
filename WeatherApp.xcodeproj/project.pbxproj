@@ -20,6 +20,7 @@
 		730355DC275A6E3E0068DCC8 /* MainWeatherAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 730355DB275A6E3E0068DCC8 /* MainWeatherAdapter.swift */; };
 		730355DE275AA30B0068DCC8 /* RecentDayCollectionAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 730355DD275AA30B0068DCC8 /* RecentDayCollectionAdapter.swift */; };
 		732DC05E276B767500B5E1A7 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732DC05D276B767500B5E1A7 /* R.generated.swift */; };
+		7334AFF9276B9486000D0BB6 /* CitySearchPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7334AFF8276B9486000D0BB6 /* CitySearchPresenter.swift */; };
 		7358E6BC274E72E100926C02 /* HourWeatherCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7358E6BB274E72E100926C02 /* HourWeatherCell.swift */; };
 		7358E6C62751024500926C02 /* CitySearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7358E6C52751024500926C02 /* CitySearchViewController.swift */; };
 		73765C502758D15700C1CA4E /* Manrope-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 73765C4C2758D15700C1CA4E /* Manrope-ExtraBold.ttf */; };
@@ -103,6 +104,7 @@
 		730355DB275A6E3E0068DCC8 /* MainWeatherAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWeatherAdapter.swift; sourceTree = "<group>"; };
 		730355DD275AA30B0068DCC8 /* RecentDayCollectionAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentDayCollectionAdapter.swift; sourceTree = "<group>"; };
 		732DC05D276B767500B5E1A7 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
+		7334AFF8276B9486000D0BB6 /* CitySearchPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitySearchPresenter.swift; sourceTree = "<group>"; };
 		7358E6BB274E72E100926C02 /* HourWeatherCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourWeatherCell.swift; sourceTree = "<group>"; };
 		7358E6C52751024500926C02 /* CitySearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitySearchViewController.swift; sourceTree = "<group>"; };
 		73765C4C2758D15700C1CA4E /* Manrope-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Manrope-ExtraBold.ttf"; sourceTree = "<group>"; };
@@ -267,6 +269,7 @@
 				737D709D27675D77005BD83C /* Cells */,
 				73921280275DE6E200450941 /* View */,
 				7358E6C52751024500926C02 /* CitySearchViewController.swift */,
+				7334AFF8276B9486000D0BB6 /* CitySearchPresenter.swift */,
 			);
 			path = CitySearchFragment;
 			sourceTree = "<group>";
@@ -721,6 +724,7 @@
 				73BD07992763AD8000B5BCE3 /* CanvasView.swift in Sources */,
 				737B1C93275393FB00397F19 /* APIResource.swift in Sources */,
 				737D7091276756C4005BD83C /* extensions+Float.swift in Sources */,
+				7334AFF9276B9486000D0BB6 /* CitySearchPresenter.swift in Sources */,
 				73F037B6274BE33600C130FC /* MainViewController.swift in Sources */,
 				732DC05E276B767500B5E1A7 /* R.generated.swift in Sources */,
 				7358E6C62751024500926C02 /* CitySearchViewController.swift in Sources */,

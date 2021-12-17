@@ -8,13 +8,16 @@
 import UIKit
 
 
-class CitySearchViewController: UIViewController {
+class CitySearchViewController: UIViewController, CitySearchView {
     // MARK: - Properties
     private var backView: SearchBackView { view as! SearchBackView }
+    var presenter: CitySearchPresenter
     
     // MARK: - Lifecycle
-    required init() {
+    required init(with presenter: CitySearchPresenter) {
+        self.presenter = presenter
         super.init(nibName: nil, bundle: nil)
+        presenter.searchViewController = self
     }
     
     required init?(coder: NSCoder) {
@@ -29,13 +32,12 @@ class CitySearchViewController: UIViewController {
         super.viewDidLoad()
         self.definesPresentationContext = true
         
-        // FIXME: - For demonstraition purpose only
-        provideCities()
+        getCities()
     }
     
-    // MARK: - Methods
-    public func provideCities() {
-        let cities = ["Тамбов", "Тюмень", "Тула", "Темрюк", "Таганрог", "Тьматараканья", "Тбилисси"]
+    // MARK: - Methods    
+    func getCities() {
+        let cities = presenter.provideCities()
         backView.provideCitiesData(cities)
     }
 }
@@ -43,18 +45,23 @@ class CitySearchViewController: UIViewController {
 // MARK: - CitySearchDelegate
 extension CitySearchViewController: CitySearchDelegate {
     public func dismissView() {
-        self.navigationController?.dismiss(animated: true, completion: {
-            self.navigationController?.popViewController(animated: true)
-        })
-        self.dismiss(animated: true, completion: nil)
+        presenter.dismiss()
     }
     
     public func search(name: String) {
-//        cityDataDelegate.searchCityWithName(name)
-        dismissView()
+        presenter.searchCityWithName(name)
     }
 }
 
-protocol CityDataDelegate: AnyObject {
+protocol CitySearchView: AnyObject {
+    var presenter: CitySearchPresenter { get set }
+    func getCities()
+}
+
+protocol CitySearchPresenter: AnyObject {
+    var searchViewController: CitySearchView! { get set }
+    var router: Router { get set }
     func searchCityWithName(_ name: String)
+    func provideCities() -> [String]
+    func dismiss()
 }
