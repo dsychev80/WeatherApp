@@ -12,10 +12,9 @@ final class DIContainer {
     // MARK: - Properties
     let networkController: NetworkManager
     let locationManager: LocationManager
-    var screenFabric: ScreenFabric
-    
-    var navigationController: UINavigationController
     let mainPresenter: MainPresenter
+    var screenFabric: ScreenFabric
+    var navigationController: UINavigationController
     var mainRouter: Router
     
     // MARK: - Lifecycle
@@ -27,5 +26,6 @@ final class DIContainer {
         self.mainRouter = MainRouterImpl(with: navigationController, and: screenFabric)
         self.mainPresenter = MainPresenterImpl(with: networkController, locationManager: locationManager, router: mainRouter)
         self.screenFabric.di = self
+        self.mainRouter.di = self
     }
 }

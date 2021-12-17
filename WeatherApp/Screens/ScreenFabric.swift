@@ -15,15 +15,15 @@ final class ScreenFabricImpl: ScreenFabric {
     // MARK: - Methods
     public func configureMainViewController() -> UIViewController {
         guard let di = di else { fatalError() }
-        let presenter = MainPresenterImpl(with: di.networkController,
-                                          locationManager: di.locationManager,
-                                          router: di.mainRouter)
-        let mainViewController = MainViewController(with: presenter)        
+        let mainViewController = MainViewController(with: di.mainPresenter)
+        di.mainPresenter.mainViewController = mainViewController
         return mainViewController
     }
     
     public func configureSearchViewController() -> UIViewController {
-        let searchVC = CitySearchViewController()
+        guard let di = di else { fatalError() }
+        let presenter = CitySearchPresenterImpl(with: di.mainRouter)
+        let searchVC = CitySearchViewController(with: presenter)
         searchVC.modalPresentationStyle = .overCurrentContext
         searchVC.modalTransitionStyle = .crossDissolve
         return searchVC

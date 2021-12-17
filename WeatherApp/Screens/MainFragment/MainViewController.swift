@@ -10,7 +10,7 @@ import UIKit
 
 class MainViewController: UIViewController {
     // MARK: - Properties
-    private var presenter: MainPresenter?
+    private weak var presenter: MainPresenter?
     private var containerView: WeatherAppContainerView<MainTableView> { view as! WeatherAppContainerView<MainTableView> }
 
     
@@ -29,7 +29,6 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        presenter?.recieveWeatherForCityName("Tambov")
     }
     
     override func loadView() {
@@ -53,14 +52,6 @@ extension MainViewController: MainView {
         DispatchQueue.main.async { [weak self] in
             self?.containerView.configureNavBar(withData: name)
         }
-    }
-}
-
-    // MARK: - CityDataDelegate
-extension MainViewController: CityDataDelegate {
-    func searchCityWithName(_ name: String) {
-        guard let presenter = presenter else { return }
-        presenter.recieveWeatherForCityName(name)
     }
 }
 

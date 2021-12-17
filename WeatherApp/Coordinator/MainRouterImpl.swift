@@ -11,12 +11,13 @@ class MainRouterImpl {
     // MARK: - Properties
     private let navigationController: UINavigationController
     private let screenFabric: ScreenFabric
+    public var di: DIContainer?
     
     // MARK: - Lifecycle
     init(with navigationController: UINavigationController, and screenFabric: ScreenFabric) {
         self.navigationController = navigationController
         self.screenFabric = screenFabric
-        
+
         setup()
     }
     
@@ -38,6 +39,11 @@ extension MainRouterImpl: Router {
     
     public func searchScreenOpen() {
         navigationController.pushViewController(screenFabric.configureSearchViewController(), animated: true)
+    }
+    
+    func searchCity(_ name: String) {
+        popToRoot()
+        di?.mainPresenter.recieveWeatherForCityName(name)
     }
     
     public func popToRoot() {
