@@ -61,12 +61,3 @@ protocol MainPresenter: AnyObject {
     var router: Router { get set }
     func recieveWeatherForCityName(_ name: String)
 }
-
-    // MARK: - ContainerView protocol
-protocol ContainerView: UIView {
-    associatedtype NavigationBarTypeModel
-    associatedtype ContainedViewTypeModel
-    
-    func provideDataToNavBar(_ data: NavigationBarTypeModel)
-    func provideDataToContainedView(_ data: ContainedViewTypeModel)
-}

@@ -9,11 +9,11 @@ import UIKit
 
 
 class WeatherAppContainerView<ContainedView: ContentView>: UIView {
-    typealias ViewType = ContainedView
+//    typealias ViewType = ContainedView
     
     // MARK: - Properties
     private var navigationBar: NavigationBar
-    private var containedView: ViewType
+    private var containedView: ContainedView
     
     // MARK: - LifeCycle
     required init(withView view: ContainedView, and eventHandler: EventHandler) {
@@ -53,7 +53,7 @@ class WeatherAppContainerView<ContainedView: ContentView>: UIView {
     }
     
     public func configureView(withData data: ContainedView.ModelType) {
-        containedView.configureWithData(data as! Model)
+        containedView.configureWithData(data)
     }
 }
 
@@ -70,9 +70,19 @@ extension WeatherAppContainerView: ContainerView {
     }
 }
 
-protocol Model {}
+
 
 protocol ContentView: UIView {
-    associatedtype ModelType = Model
-    func configureWithData(_ data: Model)
+    associatedtype ModelType
+    func configureWithData(_ data: ModelType)
 }
+
+// MARK: - ContainerView protocol
+protocol ContainerView: UIView {
+associatedtype NavigationBarTypeModel
+associatedtype ContainedViewTypeModel
+
+func provideDataToNavBar(_ data: NavigationBarTypeModel)
+func provideDataToContainedView(_ data: ContainedViewTypeModel)
+}
+

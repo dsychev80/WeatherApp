@@ -64,7 +64,6 @@
 		73BD07992763AD8000B5BCE3 /* CanvasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73BD07982763AD8000B5BCE3 /* CanvasView.swift */; };
 		73DA79782768C5AD003DFFA1 /* WeatherAppContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73DA79772768C5AD003DFFA1 /* WeatherAppContainerView.swift */; };
 		73DA797A2768C5FD003DFFA1 /* NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73DA79792768C5FD003DFFA1 /* NavigationBar.swift */; };
-		73DA797C2769F15E003DFFA1 /* extension+Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73DA797B2769F15E003DFFA1 /* extension+Array.swift */; };
 		73DA797E276A1E33003DFFA1 /* MainRouterImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73DA797D276A1E33003DFFA1 /* MainRouterImpl.swift */; };
 		73DA7980276B39FC003DFFA1 /* ScreenFabric.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73DA797F276B39FC003DFFA1 /* ScreenFabric.swift */; };
 		73F0379B274BD67600C130FC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F0379A274BD67600C130FC /* AppDelegate.swift */; };
@@ -148,7 +147,6 @@
 		73BD07982763AD8000B5BCE3 /* CanvasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasView.swift; sourceTree = "<group>"; };
 		73DA79772768C5AD003DFFA1 /* WeatherAppContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherAppContainerView.swift; sourceTree = "<group>"; };
 		73DA79792768C5FD003DFFA1 /* NavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBar.swift; sourceTree = "<group>"; };
-		73DA797B2769F15E003DFFA1 /* extension+Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "extension+Array.swift"; sourceTree = "<group>"; };
 		73DA797D276A1E33003DFFA1 /* MainRouterImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainRouterImpl.swift; sourceTree = "<group>"; };
 		73DA797F276B39FC003DFFA1 /* ScreenFabric.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenFabric.swift; sourceTree = "<group>"; };
 		73F03797274BD67600C130FC /* WeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -330,7 +328,6 @@
 				737D7090276756C4005BD83C /* extensions+Float.swift */,
 				737D708E2767569D005BD83C /* extensions+Double.swift */,
 				737D708C27675682005BD83C /* extensions+Int.swift */,
-				73DA797B2769F15E003DFFA1 /* extension+Array.swift */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -716,7 +713,6 @@
 				730355D6275A23630068DCC8 /* RecentHeaderView.swift in Sources */,
 				737B1CD92757840500397F19 /* Forecast.swift in Sources */,
 				737D708D27675682005BD83C /* extensions+Int.swift in Sources */,
-				73DA797C2769F15E003DFFA1 /* extension+Array.swift in Sources */,
 				73DA797E276A1E33003DFFA1 /* MainRouterImpl.swift in Sources */,
 				73BD07992763AD8000B5BCE3 /* CanvasView.swift in Sources */,
 				737B1C93275393FB00397F19 /* APIResource.swift in Sources */,

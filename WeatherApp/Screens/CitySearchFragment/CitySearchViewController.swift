@@ -45,6 +45,7 @@ class CitySearchViewController: UIViewController, CitySearchView {
 // MARK: - CitySearchDelegate
 extension CitySearchViewController: CitySearchDelegate {
     public func dismissView() {
+        dismiss(animated: true)
         presenter.dismiss()
     }
     

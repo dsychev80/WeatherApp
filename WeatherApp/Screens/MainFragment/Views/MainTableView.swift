@@ -28,10 +28,9 @@ class MainTableView: UITableView {
         self.register(TodayCell.self, forCellReuseIdentifier: TodayCell.name)
         self.register(RecentDayCell.self, forCellReuseIdentifier: RecentDayCell.name)
         
-        contentInset = UIEdgeInsets(top: 60, left: 0, bottom: 0, right: 0)
-        let underlyingView = UIView()
-        underlyingView.backgroundColor = .white
-        self.backgroundView = underlyingView
+        self.contentInset = UIEdgeInsets(top: 60, left: 0, bottom: 0, right: 0)
+        self.backgroundView = UIView()
+        self.backgroundView?.backgroundColor = .white
         
         diffableDataSource = UITableViewDiffableDataSource<Int, Item>(tableView: self) {
             (tableView: UITableView, indexPath: IndexPath, item: Item) -> UITableViewCell? in
@@ -58,9 +57,7 @@ class MainTableView: UITableView {
 }
 
 extension MainTableView: ContentView {
-    func configureWithData(_ data: Model) {
-        guard let items = data as? [Item] else { return }
-        configure(with: items)
-        self.reloadData()
+    func configureWithData(_ data: [Item]) {
+        configure(with: data)
     }
 }
