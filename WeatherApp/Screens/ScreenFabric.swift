@@ -15,7 +15,8 @@ final class ScreenFabricImpl: ScreenFabric {
     // MARK: - Methods
     public func createMainViewController() -> UIViewController {
         guard let di = di else { fatalError() }
-        let mainViewController = MainViewController(with: di.mainPresenter)
+        let mainViewController = MainViewController()
+        mainViewController.presenter = di.mainPresenter
         di.mainPresenter.mainViewController = mainViewController
         return mainViewController
     }

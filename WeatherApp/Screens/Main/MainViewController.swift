@@ -10,7 +10,7 @@ import UIKit
 
 class MainViewController: UIViewController {
     // MARK: - Properties
-    private weak var presenter: MainPresenter?
+    public weak var presenter: MainPresenter?
     private var containerView: WeatherAppContainerView<MainView> { view as! WeatherAppContainerView<MainView> }
 
     // MARK: - Lifecycle
@@ -18,41 +18,31 @@ class MainViewController: UIViewController {
         fatalError("init(coder:) has not been implemented.")
     }
     
-    required init(with presenter: MainPresenter) {
-        self.presenter = presenter
+    required init() {
         super.init(nibName: nil, bundle: nil)
-        presenter.mainViewController = self
     }
     
     override func loadView() {
-        let tableView = MainView()
-        guard let eventHandler = presenter as? NavigationBarEventHandler else {
+        guard let presenter = presenter, let eventHandler = presenter as? NavigationBarEventHandler else {
             print("guard condition not met at: \(#file) \(#line) \(#function)")
             return
         }
+        presenter.mainViewController = self
+        let tableView = MainView()
         view = WeatherAppContainerView(withView: tableView, and: eventHandler)
     }
 }
 
     // MARK: - MainViewProtocol
 extension MainViewController: MainViewProtocol {
-    public func provideForcastData(_ data: [Item]) {
+    public func provideForcastData(_ data: [Item], forCity name: String) {
         DispatchQueue.main.async { [weak self] in
             guard let self = self else {
                 print("guard condition not met at: \(#file) \(#line) \(#function)")
                 return
             }
             self.containerView.configureView(withData: data)
-        }
-    }
-    
-    public func dataReciviedForCity(_ name: String) {
-        DispatchQueue.main.async { [weak self] in
-            guard let self = self else {
-                print("guard condition not met at: \(#file) \(#line) \(#function)")
-                return
-            }
-            self.containerView.configureNavBar(withData: name)
+            self.containerView.provideDataToNavBar(name)
         }
     }
 }
