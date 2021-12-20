@@ -19,14 +19,14 @@ fileprivate let BETWEEN_BUTTON_GAP: CGFloat = 8
 class NavigationBar: UIView {
     // MARK: - Properties
     private let title = WeatherCellLabel(withFont: R.font.manropeExtraBold(size: 18), fontColor: TITLE_COLOR)
-    private let eventHandler: EventHandler
+    private let eventHandler: NavigationBarEventHandler
     
     private let pointButton = UIButton()
     private let searchButton = UIButton()
     private let themeButton = UIButton()
     
     // MARK: - Lifecycle
-    required init(with eventHandler: EventHandler) {
+    required init(with eventHandler: NavigationBarEventHandler) {
         self.eventHandler = eventHandler
         let screenWidth = UIScreen.main.bounds.width
         super.init(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 84))
@@ -48,13 +48,13 @@ class NavigationBar: UIView {
     }
     
     private func configureButtons() {
-        pointButton.addTarget(eventHandler, action: #selector(EventHandler.selectOnMap), for: .touchUpInside)
+        pointButton.addTarget(eventHandler, action: #selector(NavigationBarEventHandler.selectOnMap), for: .touchUpInside)
         pointButton.setImage(R.image.point(), for: .normal)
         
-        searchButton.addTarget(eventHandler, action: #selector(EventHandler.search), for: .touchUpInside)
+        searchButton.addTarget(eventHandler, action: #selector(NavigationBarEventHandler.search), for: .touchUpInside)
         searchButton.setImage(R.image.search(), for: .normal)
         
-        themeButton.addTarget(eventHandler, action: #selector(EventHandler.changeTheme), for: .touchUpInside)
+        themeButton.addTarget(eventHandler, action: #selector(NavigationBarEventHandler.changeTheme), for: .touchUpInside)
         themeButton.setImage(R.image.theme(), for: .normal)
     }
     
@@ -99,7 +99,7 @@ class NavigationBar: UIView {
     }
 }
 
-@objc protocol EventHandler: AnyObject {
+@objc protocol NavigationBarEventHandler: AnyObject {
     func selectOnMap()
     func search()
     func changeTheme()

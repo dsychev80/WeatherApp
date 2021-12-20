@@ -33,7 +33,7 @@ class MainViewController: UIViewController {
     
     override func loadView() {
         let tableView = MainTableView()
-        guard let eventHandler = presenter as? EventHandler else { return }
+        guard let eventHandler = presenter as? NavigationBarEventHandler else { return }
         view = WeatherAppContainerView(withView: tableView, and: eventHandler)
     }
     

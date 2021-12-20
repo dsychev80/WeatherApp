@@ -16,7 +16,7 @@ class WeatherAppContainerView<ContainedView: ContentView>: UIView {
     private var containedView: ContainedView
     
     // MARK: - LifeCycle
-    required init(withView view: ContainedView, and eventHandler: EventHandler) {
+    required init(withView view: ContainedView, and eventHandler: NavigationBarEventHandler) {
         navigationBar = NavigationBar(with: eventHandler)
         containedView = view
         super.init(frame: .zero)

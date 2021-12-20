@@ -56,7 +56,7 @@ final class MainPresenterImpl: MainPresenter {
 }
 
     // MARK: - EventHandler
-extension MainPresenterImpl: EventHandler {
+extension MainPresenterImpl: NavigationBarEventHandler {
     @objc func selectOnMap() {
         
     }
