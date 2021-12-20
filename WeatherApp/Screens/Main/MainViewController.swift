@@ -13,22 +13,15 @@ class MainViewController: UIViewController {
     private weak var presenter: MainPresenter?
     private var containerView: WeatherAppContainerView<MainView> { view as! WeatherAppContainerView<MainView> }
 
-    
     // MARK: - Lifecycle
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented.")
+    }
     
     required init(with presenter: MainPresenter) {
         self.presenter = presenter
         super.init(nibName: nil, bundle: nil)
         presenter.mainViewController = self
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented.")
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
     }
     
     override func loadView() {

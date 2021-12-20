@@ -13,26 +13,21 @@ class RecentDayCell: UITableViewCell {
     var cellView = RecentDayView()
 
     // MARK: - Lifecycle
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented.")
+    }
+    
     required override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         setup()
     }
 
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented.")
-    }
-    
     // MARK: - Methods
     private func setup() {
         selectionStyle = .none
         setupViewHierarchy()
         setupLayoutConstraints()
-    }
-    
-    // Use this function to configure cell with data
-    public func configure(with data: ForecastData) {
-        cellView.configure(with: data)
     }
     
     private func setupViewHierarchy() {
@@ -43,5 +38,9 @@ class RecentDayCell: UITableViewCell {
         cellView.snp.makeConstraints { make in
             make.edges.equalTo(contentView)
         }
+    }
+    
+    public func configure(with data: ForecastData) {
+        cellView.configure(with: data)
     }
 }

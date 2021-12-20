@@ -13,14 +13,14 @@ class HourWeatherCell: UICollectionViewCell {
     private var backView = HourCellView(withColor: UIColor(displayP3Red: 234/255, green: 236/255, blue: 239/255, alpha: 1))
     
     // MARK: - Lifecycle
+    required init?(coder: NSCoder) {
+        fatalError("init(coder: ) has not been implemented.")
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
         setup()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder: ) has not been implemented.")
     }
     
     // MARK: - Methods
@@ -28,18 +28,16 @@ class HourWeatherCell: UICollectionViewCell {
         setupViewHierarchy()
     }
     
-    // Use this function to configure cell with data
-    public func configure(with data: HoursWeatherModel) {
-        backView.configure(with: data)
+    private func setupViewHierarchy() {
+        contentView.addSubview(backView)
     }
     
     override func prepareForReuse() {
         backView.prepareForReuse()
     }
     
-    
-    private func setupViewHierarchy() {
-        contentView.addSubview(backView)
+    public func configure(with data: HoursWeatherModel) {
+        backView.configure(with: data)
     }
 }
 

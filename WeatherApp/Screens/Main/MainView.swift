@@ -8,16 +8,17 @@
 import UIKit
 
 class MainView: UITableView {
-    // MARK: - LifeCycle
+    // MARK: - Properties
     private var diffableDataSource: UITableViewDiffableDataSource<Int, Item>!
+    
+    // MARK: - LifeCycle
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     required init() {
         super.init(frame: CGRect.zero, style: .plain)
         setup()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
     
     // MARK: - Methods

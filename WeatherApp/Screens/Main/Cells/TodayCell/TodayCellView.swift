@@ -28,13 +28,13 @@ class TodayCellView: UIView {
     private var feelsLikeLabel = WeatherCellLabel(withFont: R.font.manropeSemiBold(size: 14), fontColor: .white)
 
     // MARK: - LifeCycle
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     required init() {
         super.init(frame: .zero)
         setup()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
     
     // MARK: - Methods

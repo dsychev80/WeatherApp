@@ -26,16 +26,16 @@ class NavigationBar: UIView {
     private let themeButton = UIButton()
     
     // MARK: - Lifecycle
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     required init(with eventHandler: NavigationBarEventHandler) {
         self.eventHandler = eventHandler
         let screenWidth = UIScreen.main.bounds.width
         super.init(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 84))
         
         setup()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
     
     // MARK: - Methods

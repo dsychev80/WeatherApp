@@ -18,6 +18,10 @@ final class CanvasView: UIView {
     let mainLayer = CALayer()
     
     // MARK: - Lifecycle
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     required init(withColors color1: UIColor, color2: UIColor) {
         self.firstColor = color1.cgColor
         self.secondColor = color2.cgColor
@@ -29,10 +33,6 @@ final class CanvasView: UIView {
         self.layer.addSublayer(mainLayer)
         
         gradientLayer.colors = [firstColor, secondColor]
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
     
     // MARK: - Methods
