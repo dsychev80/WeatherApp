@@ -10,7 +10,7 @@ import UIKit
 class RecentDayCell: UITableViewCell {
 
     // MARK: - Properties
-    var cellView = RecentDayCellView()
+    var cellView = RecentDayView()
 
     // MARK: - Lifecycle
     required override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
