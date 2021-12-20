@@ -22,15 +22,15 @@ extension JSONWeatherData {
         return weatherModel.convertToTodayData()
     }
 
-    public func convertToForecastByDay() -> [ForecastData] {
+    public func convertToForecastByDay() -> [ForecastForDay] {
         let formatter = DateFormatter()
         // "dt_txt":"2021-11-29 15:00:00"
         formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         let dayFormatter = DateFormatter()
         dayFormatter.dateFormat = "dd"
         
-        var forcast: [ForecastData] = []
-        var weatherBuffer = ForecastData()
+        var forcast: [ForecastForDay] = []
+        var weatherBuffer = ForecastForDay()
         
         var currentDay: Int = 0
         self.list.forEach { weather in
@@ -41,10 +41,10 @@ extension JSONWeatherData {
                 // compare days
                 if currentDay == day {
                     // add to forecast by day
-                    weatherBuffer.forecast.append(weather.convertToHoursWeatherModel())
+                    weatherBuffer.forecastByHour.append(weather.convertToHoursWeatherModel())
                 } else {
                     // add forecast to buffer
-                    weatherBuffer.forecast.append(weather.convertToHoursWeatherModel())
+                    weatherBuffer.forecastByHour.append(weather.convertToHoursWeatherModel())
                     forcast.append(weatherBuffer)
                     weatherBuffer = weather.convertToForecastModel()
                     currentDay = day

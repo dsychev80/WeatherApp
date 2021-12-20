@@ -1,5 +1,5 @@
 //
-//  Forecast.swift
+//  ForecastForDay.swift
 //  WeatherApp
 //
 //  Created by Denis Sychev on 01.12.2021.
@@ -9,17 +9,17 @@ import Foundation
 
 // MARK: - ForecastModel
 // Model for RecenDayTableViewCell's
-struct ForecastData: Hashable {
+struct ForecastForDay: Hashable {
     var date: String = ""
     var minTemp: String = ""
     var maxTemp: String = ""
     var imageName: String = ""
-    var forecast: [HoursWeatherModel] = []
+    var forecastByHour: [HoursWeatherModel] = []
 }
 
-extension ForecastData {
+extension ForecastForDay {
     func averageTemp() -> String {
-        let tempData: [Int] = self.forecast.map{ Int($0.temp.dropLast()) ?? 0 }
+        let tempData: [Int] = self.forecastByHour.map{ Int($0.temp.dropLast()) ?? 0 }
         let tempSum = tempData.reduce(0){ $0 + $1 }
         return "\(Int(tempSum / tempData.count))°"
     }
@@ -29,7 +29,7 @@ extension ForecastData {
     }
 }
 
-extension ForecastData: RecentDayHeaderData {
+extension ForecastForDay: RecentDayHeaderData {
     var dayDate: String {
         return date
     }

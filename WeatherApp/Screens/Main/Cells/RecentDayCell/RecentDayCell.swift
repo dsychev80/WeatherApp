@@ -40,7 +40,7 @@ class RecentDayCell: UITableViewCell {
         }
     }
     
-    public func configure(with data: ForecastData) {
-        cellView.configure(with: data)
+    public func configure(with forecast: ForecastForDay) {
+        cellView.configure(with: forecast)
     }
 }
