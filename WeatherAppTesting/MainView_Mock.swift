@@ -8,7 +8,7 @@
 import Foundation
 @testable import WeatherApp
 
-class MainView_Mock: MainView {
+class MainView_Mock: MainViewProtocol {
     
     var isCalledProvideForcastData: Bool = false
     var isCalledReciviedForCity: Bool = false
