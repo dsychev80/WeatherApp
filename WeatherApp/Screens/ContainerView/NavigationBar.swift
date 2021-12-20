@@ -41,8 +41,7 @@ class NavigationBar: UIView {
     private func setup() {
         backgroundColor = NAVIGATION_BAR_COLOR
         
-        setupViewHierarchy()
-        setupLayoutConstraints()
+        setupLayout()
     }
     
     private func configureButtons(with eventHandler: NavigationBarEventHandler) {
@@ -56,14 +55,8 @@ class NavigationBar: UIView {
         themeButton.setImage(R.image.theme(), for: .normal)
     }
     
-    private func setupViewHierarchy() {
+    private func setupLayout() {
         self.addSubview(pointButton)
-        self.addSubview(searchButton)
-        self.addSubview(themeButton)
-        self.addSubview(title)
-    }
-    
-    private func setupLayoutConstraints() {
         pointButton.snp.makeConstraints { make in
             make.height.equalTo(BUTTON_SIZE)
             make.width.equalTo(BUTTON_SIZE)
@@ -71,24 +64,27 @@ class NavigationBar: UIView {
             make.bottom.equalTo(self.snp_bottom).offset(-BUTTON_SIDE_GAP)
         }
         
+        self.addSubview(title)
         title.snp.makeConstraints { make in
             make.height.equalTo(TITLE_HEIGHT)
             make.bottom.equalTo(self.snp_bottom).offset(-TITLE_BOTTOM_GAP)
             make.centerX.equalToSuperview()
         }
         
-        themeButton.snp.makeConstraints { make in
-            make.width.equalTo(BUTTON_SIZE)
-            make.height.equalTo(BUTTON_SIZE)
-            make.bottom.equalTo(self.snp_bottom).offset(-BUTTON_SIDE_GAP)
-            make.right.equalTo(self.searchButton.snp_left).offset(-BETWEEN_BUTTON_GAP)
-        }
-        
+        self.addSubview(searchButton)
         searchButton.snp.makeConstraints { make in
             make.width.equalTo(BUTTON_SIZE)
             make.height.equalTo(BUTTON_SIZE)
             make.bottom.equalTo(self.snp_bottom).offset(-BUTTON_SIDE_GAP)
             make.right.equalTo(self.snp_right).offset(-BUTTON_SIDE_GAP)
+        }
+        
+        self.addSubview(themeButton)
+        themeButton.snp.makeConstraints { make in
+            make.width.equalTo(BUTTON_SIZE)
+            make.height.equalTo(BUTTON_SIZE)
+            make.bottom.equalTo(self.snp_bottom).offset(-BUTTON_SIDE_GAP)
+            make.right.equalTo(self.searchButton.snp_left).offset(-BETWEEN_BUTTON_GAP)
         }
     }
     

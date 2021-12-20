@@ -41,20 +41,18 @@ class CityCollectionViewCell: UICollectionViewCell {
         
         clipsToBounds = true
         autoresizesSubviews = true
-        setupViewHierarchy()
-        setupLayoutConstraints()
+        setupLayout()
     }
     
     // MARK: - Methods
-    private func setupViewHierarchy() {
-        backView.addSubview(cityLabel)
-        contentView.addSubview(backView)
-    }
     
-    private func setupLayoutConstraints() {
+    private func setupLayout() {
+        contentView.addSubview(backView)
         backView.snp.makeConstraints { make in
             make.edges.equalTo(contentView).inset(UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0))
         }
+        
+        backView.addSubview(cityLabel)
         cityLabel.snp.makeConstraints { make in
             make.edges.equalTo(backView).inset(UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0))
         }

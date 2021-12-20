@@ -52,27 +52,22 @@ class HourCellView: UIView {
         tempLabel.textAlignment = .center
         weatherImage.translatesAutoresizingMaskIntoConstraints = false
         
-        setupViewHierarchy()
-        setupLayoutConstraints()
+        setupLayout()
     }
     
-    private func setupViewHierarchy() {
-        self.addSubview(hourLabel)
-        self.addSubview(weatherImage)
-        self.addSubview(tempLabel)
-    }
-    
-    private func setupLayoutConstraints() {
+    private func setupLayout() {
         self.snp.makeConstraints { make in
             make.height.equalTo(CONTENT_CELL_HEIGHT)
             make.width.equalTo(CONTENT_CELL_WIDTH)
         }
 
+        self.addSubview(hourLabel)
         hourLabel.snp.makeConstraints { make in
             make.centerX.equalTo(self.snp.centerX)
             make.top.equalTo(self.snp.top).offset(LABEL_GAP)
         }
 
+        self.addSubview(weatherImage)
         weatherImage.snp.makeConstraints { make in
             make.centerX.equalTo(self.snp.centerX)
             make.centerY.equalTo(self.snp.centerY)
@@ -80,6 +75,7 @@ class HourCellView: UIView {
             make.width.equalTo(IMAGE_WIDTH)
         }
         
+        self.addSubview(tempLabel)
         tempLabel.snp.makeConstraints { make in
             make.centerX.equalTo(self.snp.centerX)
             make.bottom.equalTo(self.snp.bottom).offset(-LABEL_GAP)

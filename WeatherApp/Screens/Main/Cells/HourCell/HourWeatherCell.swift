@@ -25,10 +25,10 @@ class HourWeatherCell: UICollectionViewCell {
     
     // MARK: - Methods
     private func setup() {
-        setupViewHierarchy()
+        setupLayout()
     }
     
-    private func setupViewHierarchy() {
+    private func setupLayout() {
         contentView.addSubview(backView)
     }
     

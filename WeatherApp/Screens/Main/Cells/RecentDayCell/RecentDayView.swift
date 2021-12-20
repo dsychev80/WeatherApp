@@ -35,30 +35,24 @@ class RecentDayView: UIView {
     
     // MARK: - Methods
     private func setup() {
-        setupViewHierarchy()
-        setupLayoutConstraints()
+
+        setupLayout()
     }
     
-    private func setupViewHierarchy() {
+    private func setupLayout() {
         translatesAutoresizingMaskIntoConstraints = false
         
-        backView.addSubview(cellHeaderContainerView)
-        backView.addSubview(separatorView)
-        backView.addSubview(collectionView)
-        
-        self.addSubview(backView)
-    }
-    
-    private func setupLayoutConstraints() {
         self.snp.makeConstraints { make in
             make.height.equalTo(CONTENT_VIEW_HEIGHT).priorityHigh()
             make.width.equalTo(СONTENT_VIEW_WIDTH).priorityHigh()
         }
         
+        self.addSubview(backView)
         backView.snp.makeConstraints { make in
             make.edges.equalTo(UIEdgeInsets(top: 4, left: 16, bottom: 4, right: 16))
         }
   
+        backView.addSubview(cellHeaderContainerView)
         cellHeaderContainerView.snp.makeConstraints { make in
             make.left.equalTo(backView).offset(HEADER_LEFT_RIGHT_GAP_TO_CONTENT_VIEW)
             make.right.equalTo(backView).offset(-HEADER_LEFT_RIGHT_GAP_TO_CONTENT_VIEW)
@@ -66,12 +60,14 @@ class RecentDayView: UIView {
             make.height.equalTo(28)
         }
         
+        backView.addSubview(separatorView)
         separatorView.snp.makeConstraints { make in
             make.top.equalTo(cellHeaderContainerView.snp.bottom).offset(15.14)
             make.left.equalTo(backView).offset(HEADER_LEFT_RIGHT_GAP_TO_CONTENT_VIEW)
             make.right.equalTo(backView).offset(-HEADER_LEFT_RIGHT_GAP_TO_CONTENT_VIEW)
         }
         
+        backView.addSubview(collectionView)
         collectionView.snp.makeConstraints { make in
             make.top.equalTo(separatorView.snp.bottom).offset(TOP_BOTTOM_GAP)
             make.left.equalTo(backView)

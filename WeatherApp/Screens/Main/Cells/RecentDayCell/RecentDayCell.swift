@@ -26,15 +26,12 @@ class RecentDayCell: UITableViewCell {
     // MARK: - Methods
     private func setup() {
         selectionStyle = .none
-        setupViewHierarchy()
-        setupLayoutConstraints()
+
+        setupLayout()
     }
     
-    private func setupViewHierarchy() {
+    private func setupLayout() {
         contentView.addSubview(cellView)
-    }
-    
-    private func setupLayoutConstraints() {
         cellView.snp.makeConstraints { make in
             make.edges.equalTo(contentView)
         }
