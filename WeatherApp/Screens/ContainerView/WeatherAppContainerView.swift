@@ -9,8 +9,6 @@ import UIKit
 
 
 class WeatherAppContainerView<ContainedView: ContentView>: UIView {
-//    typealias ViewType = ContainedView
-    
     // MARK: - Properties
     private var navigationBar: NavigationBar
     private var containedView: ContainedView
