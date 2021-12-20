@@ -42,7 +42,7 @@ class RecentDayCellView: UIView {
     
     public func configure(with data: ForecastData) {
         cellHeaderContainerView.configure(withData: data)
-        collectionViewAdapter.getForcastData(data.forecast)
+        collectionViewAdapter.configureWithForcast(data.forecast)
     }
     
     private func setupViewHierarchy() {
