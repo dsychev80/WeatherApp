@@ -41,8 +41,3 @@ class HourWeatherCell: UICollectionViewCell {
     }
 }
 
-protocol HourData {
-    var time: String { get }
-    var temp: String { get }
-    var imageName: String { get }
-}

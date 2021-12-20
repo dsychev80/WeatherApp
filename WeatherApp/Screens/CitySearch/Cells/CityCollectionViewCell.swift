@@ -60,7 +60,7 @@ class CityCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    public func configureCell(withData data: String) {
-        cityLabel.text = data
+    public func configureWithCityName(_ name: String) {
+        cityLabel.text = name
     }
 }
