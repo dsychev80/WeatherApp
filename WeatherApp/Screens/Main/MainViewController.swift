@@ -11,7 +11,7 @@ import UIKit
 class MainViewController: UIViewController {
     // MARK: - Properties
     private weak var presenter: MainPresenter?
-    private var containerView: WeatherAppContainerView<MainTableView> { view as! WeatherAppContainerView<MainTableView> }
+    private var containerView: WeatherAppContainerView<MainView> { view as! WeatherAppContainerView<MainView> }
 
     
     // MARK: - Lifecycle
@@ -32,8 +32,8 @@ class MainViewController: UIViewController {
     }
     
     override func loadView() {
-        let tableView = MainTableView()
-        guard let eventHandler = presenter as? EventHandler else { return }
+        let tableView = MainView()
+        guard let eventHandler = presenter as? NavigationBarEventHandler else { return }
         view = WeatherAppContainerView(withView: tableView, and: eventHandler)
     }
     
@@ -46,8 +46,8 @@ class MainViewController: UIViewController {
     }
 }
 
-    // MARK: - MainView
-extension MainViewController: MainView {
+    // MARK: - MainViewProtocol
+extension MainViewController: MainViewProtocol {
     func dataReciviedForCity(_ name: String) {
         DispatchQueue.main.async { [weak self] in
             self?.containerView.configureNavBar(withData: name)
@@ -57,7 +57,7 @@ extension MainViewController: MainView {
 
     // MARK: - MainPresenter protocol
 protocol MainPresenter: AnyObject {
-    var mainViewController: MainView! { get set }
+    var mainViewController: MainViewProtocol! { get set }
     var router: Router { get set }
     func recieveWeatherForCityName(_ name: String)
 }

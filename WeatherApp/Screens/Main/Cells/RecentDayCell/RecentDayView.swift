@@ -1,5 +1,5 @@
 //
-//  RecentDayCellView.swift
+//  RecentDayView.swift
 //  WeatherApp
 //
 //  Created by Denis Sychev on 03.12.2021.
@@ -13,7 +13,7 @@ fileprivate let CONTENT_VIEW_HEIGHT: CGFloat = 214
 fileprivate let HEADER_LEFT_RIGHT_GAP_TO_CONTENT_VIEW: CGFloat = 20
 fileprivate let TOP_BOTTOM_GAP: CGFloat = 16
 
-class RecentDayCellView: UIView {
+class RecentDayView: UIView {
 
     // MARK: - Properties
     private var collectionViewAdapter: RecentDayCollectionAdapter
@@ -42,7 +42,7 @@ class RecentDayCellView: UIView {
     
     public func configure(with data: ForecastData) {
         cellHeaderContainerView.configure(withData: data)
-        collectionViewAdapter.getForcastData(data.forecast)
+        collectionViewAdapter.configureWithForcast(data.forecast)
     }
     
     private func setupViewHierarchy() {

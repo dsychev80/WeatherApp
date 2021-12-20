@@ -13,7 +13,7 @@ final class MainPresenterImpl: MainPresenter {
     private let networkController: NetworkManager
     private let locationManager: LocationManager
     public var router: Router
-    public weak var mainViewController: MainView!
+    public weak var mainViewController: MainViewProtocol!
     
     // MARK: - Lifecycle
     init(with networkController: NetworkManager, locationManager: LocationManager, router: Router) {
@@ -56,7 +56,7 @@ final class MainPresenterImpl: MainPresenter {
 }
 
     // MARK: - EventHandler
-extension MainPresenterImpl: EventHandler {
+extension MainPresenterImpl: NavigationBarEventHandler {
     @objc func selectOnMap() {
         
     }
@@ -70,8 +70,8 @@ extension MainPresenterImpl: EventHandler {
     }
 }
 
-    // MARK: - MainView
-protocol MainView: AnyObject {
+    // MARK: - MainViewProtocol
+protocol MainViewProtocol: AnyObject {
     func provideForcastData(_ data: [Item])
     func dataReciviedForCity(_ name: String)
 }
