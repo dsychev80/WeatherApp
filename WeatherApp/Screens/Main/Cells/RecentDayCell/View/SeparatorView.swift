@@ -10,15 +10,15 @@ import UIKit
 class SeparatorView: UIView {
 
     // MARK: - LifeCycle
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     /// Default color: UIColor(displayP3Red: 217/255, green: 224/255, blue: 234/255, alpha: 1)
     required init(withColor color: UIColor = UIColor(displayP3Red: 217/255, green: 224/255, blue: 234/255, alpha: 1)) {
         super.init(frame: .zero)
         backgroundColor = color
         setup()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
     
     // MARK: - Methods

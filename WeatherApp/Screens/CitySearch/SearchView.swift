@@ -29,15 +29,15 @@ class SearchView: UIView {
     private var addButton = CitySearchAddButton(withTarget: self, selector: #selector(search))
 
     // MARK: - Lifecycle
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
     required init(withDelegate delegate: CitySearchDelegate) {
         self.delegate = delegate
         self.cityCollectionViewAdapter = CityCollectionViewAdapter(with: collectionView)
         super.init(frame: .zero)
         setup()
-    }
-
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
 
     // MARK: - Methods
@@ -92,13 +92,13 @@ class SearchView: UIView {
             make.width.equalTo(BUTTON_WIDTH)
         }
     }
-    
-    public func configure(with data: [String]) {
-        cityCollectionViewAdapter.getCitiesData(data)
-    }
 
     @objc private func dismissView() {
-        delegate?.dismissView()
+        guard let delegate = delegate else {
+            print("guard condition not met at: \(#file) \(#line) \(#function)")
+            return
+        }
+        delegate.dismissView()
     }
 
     @objc private func search() {
@@ -107,6 +107,10 @@ class SearchView: UIView {
             return
         }
         delegate.search(name: text)
+    }
+    
+    public func configure(with data: [String]) {
+        cityCollectionViewAdapter.getCitiesData(data)
     }
 }
 

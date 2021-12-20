@@ -14,14 +14,14 @@ class CitySearchViewController: UIViewController, CitySearchView {
     var presenter: CitySearchPresenter
     
     // MARK: - Lifecycle
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     required init(with presenter: CitySearchPresenter) {
         self.presenter = presenter
         super.init(nibName: nil, bundle: nil)
         presenter.searchViewController = self
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
     
     override func loadView() {
@@ -36,7 +36,7 @@ class CitySearchViewController: UIViewController, CitySearchView {
     }
     
     // MARK: - Methods    
-    func getCities() {
+    public func getCities() {
         let cities = presenter.provideCities()
         backView.provideCitiesData(cities)
     }

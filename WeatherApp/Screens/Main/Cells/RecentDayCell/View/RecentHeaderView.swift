@@ -23,14 +23,14 @@ class RecentHeaderView: UIView {
     private var weatherImage = UIImageView(image: R.image.sun())
     
     // MARK: - LifeCycle
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     required init() {
         super.init(frame: .zero)
         
         setup()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
     
     // MARK: - Methods
@@ -39,12 +39,6 @@ class RecentHeaderView: UIView {
         maxTempLabel.textAlignment = .right
         setupViewHierarchy()
         setupLayoutConstraints()
-    }
-    
-    public func configure(withData data: RecentDayHeaderData) {
-        dataLabel.text = data.dayDate
-        maxTempLabel.text = data.dayAverageTemp
-        minTempLabel.text = data.dayMaxTemp
     }
     
     private func setupViewHierarchy() {
@@ -83,6 +77,12 @@ class RecentHeaderView: UIView {
             make.centerY.equalTo(self.snp.centerY)
             make.right.equalTo(self.snp.right)
         }
+    }
+    
+    public func configure(withData data: RecentDayHeaderData) {
+        dataLabel.text = data.dayDate
+        maxTempLabel.text = data.dayAverageTemp
+        minTempLabel.text = data.dayMaxTemp
     }
 }
 

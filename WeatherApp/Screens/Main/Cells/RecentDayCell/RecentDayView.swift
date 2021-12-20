@@ -17,32 +17,26 @@ class RecentDayView: UIView {
 
     // MARK: - Properties
     private var collectionViewAdapter: RecentDayCollectionAdapter
-    
     private var backView = RecentDayCellBackView()
     private var cellHeaderContainerView = RecentHeaderView()
     private var separatorView = SeparatorView()
     private var collectionView = RecentDayCollectionView()
     
     // MARK: - LifeCycle
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     required init() {
         collectionViewAdapter = RecentDayCollectionAdapter(with: collectionView)
         super.init(frame: .zero)
         setup()
     }
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
     // MARK: - Methods
     private func setup() {
         setupViewHierarchy()
         setupLayoutConstraints()
-    }
-    
-    public func configure(with data: ForecastData) {
-        cellHeaderContainerView.configure(withData: data)
-        collectionViewAdapter.configureWithForcast(data.forecast)
     }
     
     private func setupViewHierarchy() {
@@ -84,5 +78,10 @@ class RecentDayView: UIView {
             make.right.equalTo(backView)
             make.bottom.equalTo(backView.snp.bottom).offset(-TOP_BOTTOM_GAP)
         }
+    }
+    
+    public func configure(with data: ForecastData) {
+        cellHeaderContainerView.configure(withData: data)
+        collectionViewAdapter.configureWithForcast(data.forecast)
     }
 }

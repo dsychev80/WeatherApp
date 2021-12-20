@@ -15,7 +15,10 @@ struct JSONWeatherData: Decodable, Equatable, Hashable {
 extension JSONWeatherData {
     
     public func returnTodayWeather() -> TodayData? {
-        guard let weatherModel = self.list.first else { return nil }
+        guard let weatherModel = self.list.first else {
+            print("guard condition not met at: \(#file) \(#line) \(#function)")
+            return nil
+        }
         return weatherModel.convertToTodayData()
     }
 
@@ -53,8 +56,10 @@ extension JSONWeatherData {
     }
     
     public func convertToItems() -> [Item] {
-        guard  let todayWeather = self.returnTodayWeather()
-                else { return [] }
+        guard  let todayWeather = self.returnTodayWeather() else {
+            print("guard condition not met at: \(#file) \(#line) \(#function)")
+            return []
+        }
         let dayWeatherItem = Item.today(todayWeather)
         var items = self.convertToForecastByDay()
             .map { Item.forecast($0) }

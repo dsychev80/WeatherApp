@@ -9,22 +9,20 @@ import UIKit
 
 
 class WeatherAppContainerView<ContainedView: ContentView>: UIView {
-//    typealias ViewType = ContainedView
-    
     // MARK: - Properties
     private var navigationBar: NavigationBar
     private var containedView: ContainedView
     
     // MARK: - LifeCycle
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     required init(withView view: ContainedView, and eventHandler: NavigationBarEventHandler) {
         navigationBar = NavigationBar(with: eventHandler)
         containedView = view
         super.init(frame: .zero)
         setup()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
     
     // MARK: - Methods
@@ -69,8 +67,6 @@ extension WeatherAppContainerView: ContainerView {
         configureView(withData: data)
     }
 }
-
-
 
 protocol ContentView: UIView {
     associatedtype ModelType

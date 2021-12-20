@@ -10,47 +10,39 @@ import UIKit
 
 class MainViewController: UIViewController {
     // MARK: - Properties
-    private weak var presenter: MainPresenter?
+    public weak var presenter: MainPresenter?
     private var containerView: WeatherAppContainerView<MainView> { view as! WeatherAppContainerView<MainView> }
 
-    
     // MARK: - Lifecycle
-    
-    required init(with presenter: MainPresenter) {
-        self.presenter = presenter
-        super.init(nibName: nil, bundle: nil)
-        presenter.mainViewController = self
-    }
-    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented.")
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
+    required init() {
+        super.init(nibName: nil, bundle: nil)
     }
     
     override func loadView() {
-        let tableView = MainView()
-        guard let eventHandler = presenter as? NavigationBarEventHandler else { return }
-        view = WeatherAppContainerView(withView: tableView, and: eventHandler)
-    }
-    
-    // MARK: - Methods
-    public func provideForcastData(_ data: [Item]) {
-        DispatchQueue.main.async { [weak self] in
-            guard let self = self else { return }
-            self.containerView.configureView(withData: data)
+        guard let presenter = presenter, let eventHandler = presenter as? NavigationBarEventHandler else {
+            print("guard condition not met at: \(#file) \(#line) \(#function)")
+            return
         }
+        presenter.mainViewController = self
+        let tableView = MainView()
+        view = WeatherAppContainerView(withView: tableView, and: eventHandler)
     }
 }
 
     // MARK: - MainViewProtocol
 extension MainViewController: MainViewProtocol {
-    func dataReciviedForCity(_ name: String) {
+    public func provideForcastData(_ data: [Item], forCity name: String) {
         DispatchQueue.main.async { [weak self] in
-            self?.containerView.configureNavBar(withData: name)
+            guard let self = self else {
+                print("guard condition not met at: \(#file) \(#line) \(#function)")
+                return
+            }
+            self.containerView.configureView(withData: data)
+            self.containerView.provideDataToNavBar(name)
         }
     }
 }

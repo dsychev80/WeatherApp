@@ -14,17 +14,17 @@ fileprivate let ADD_BUTTON_TEXT_COLOR = UIColor(displayP3Red: 255/255, green: 25
 class CitySearchAddButton: SityCancelButton {
 
     // MARK: - LifeCycle
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     required init(withTarget target: Any?, selector: Selector) {
         super.init(withTarget: target, selector: selector)
         setup()
     }
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
     // MARK: - Methods
-    func setup() {
+    private func setup() {
         self.backgroundColor = ADD_BUTTON_COLOR
         self.layer.cornerRadius = 12
         self.titleLabel?.font = R.font.manropeBold(size: 14)

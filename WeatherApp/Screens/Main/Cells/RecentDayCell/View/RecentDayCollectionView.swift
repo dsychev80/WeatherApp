@@ -13,13 +13,13 @@ class RecentDayCollectionView: UICollectionView {
     private let layout = UICollectionViewFlowLayout()
     
     // MARK: - LifeCycle
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     required init() {
         super.init(frame: .zero, collectionViewLayout: self.layout)
         setup()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
     
     // MARK: - Methods

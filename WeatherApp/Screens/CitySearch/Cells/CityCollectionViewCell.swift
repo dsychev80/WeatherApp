@@ -32,6 +32,10 @@ class CityCollectionViewCell: UICollectionViewCell {
     }()
     
     // MARK: - Lifecycle
+    required init?(coder: NSCoder) {
+        fatalError("init(coder: ) has not been implemented.")
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -39,10 +43,6 @@ class CityCollectionViewCell: UICollectionViewCell {
         autoresizesSubviews = true
         setupViewHierarchy()
         setupLayoutConstraints()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder: ) has not been implemented.")
     }
     
     // MARK: - Methods
@@ -60,7 +60,7 @@ class CityCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    public func configureCell(withData data: String) {
-        cityLabel.text = data
+    public func configureWithCityName(_ name: String) {
+        cityLabel.text = name
     }
 }

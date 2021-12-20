@@ -32,15 +32,15 @@ class HourCellView: UIView {
                                              fontColor: TEMP_FONT_COLOR)
 
     // MARK: - LifeCycle
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     required init(withColor color: UIColor) {
         super.init(frame: .zero)
         
         self.backgroundColor = color
         setup()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
     
     // MARK: - Methods

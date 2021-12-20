@@ -25,7 +25,7 @@ final class CityCollectionViewAdapter: NSObject {
     private func setup() {
         diffableDataSource = UICollectionViewDiffableDataSource<Int, String>.init(collectionView: collectionView, cellProvider: { collectionView, indexPath, cityName in
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CityCollectionViewCell.name, for: indexPath) as! CityCollectionViewCell
-            cell.configureCell(withData: cityName)
+            cell.configureWithCityName(cityName)
             return cell
         })
     }

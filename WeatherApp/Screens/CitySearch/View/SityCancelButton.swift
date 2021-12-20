@@ -14,14 +14,14 @@ fileprivate let CANCEL_BUTTON_TEXT_COLOR = UIColor(displayP3Red: 112/255, green:
 class SityCancelButton: UIButton {
 
     // MARK: - LifeCycle
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     required init(withTarget target: Any?, selector: Selector) {
         super.init(frame: .zero)
         self.addTarget(target, action: selector, for: .touchUpInside)
         setup()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
     
     // MARK: - Methods

@@ -10,16 +10,16 @@ import UIKit
 class WeatherCellLabel: UILabel {
     
     // MARK: - LifeCycle
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     required init(withFont newFont: UIFont?, fontColor color: UIColor, andText text: String = "") {
         super.init(frame: .zero)
         self.text = text
         self.font = newFont
         self.textColor = color
         setup()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
     
     // MARK: - Methods
