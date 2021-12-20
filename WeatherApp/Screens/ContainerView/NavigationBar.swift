@@ -19,7 +19,6 @@ fileprivate let BETWEEN_BUTTON_GAP: CGFloat = 8
 class NavigationBar: UIView {
     // MARK: - Properties
     private let title = WeatherCellLabel(withFont: R.font.manropeExtraBold(size: 18), fontColor: TITLE_COLOR)
-    private let eventHandler: NavigationBarEventHandler
     
     private let pointButton = UIButton()
     private let searchButton = UIButton()
@@ -31,23 +30,22 @@ class NavigationBar: UIView {
     }
     
     required init(with eventHandler: NavigationBarEventHandler) {
-        self.eventHandler = eventHandler
         let screenWidth = UIScreen.main.bounds.width
         super.init(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 84))
         
         setup()
+        configureButtons(with: eventHandler)
     }
     
     // MARK: - Methods
     private func setup() {
         backgroundColor = NAVIGATION_BAR_COLOR
         
-        configureButtons()
         setupViewHierarchy()
         setupLayoutConstraints()
     }
     
-    private func configureButtons() {
+    private func configureButtons(with eventHandler: NavigationBarEventHandler) {
         pointButton.addTarget(eventHandler, action: #selector(NavigationBarEventHandler.selectOnMap), for: .touchUpInside)
         pointButton.setImage(R.image.point(), for: .normal)
         
