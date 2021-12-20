@@ -27,7 +27,7 @@ class MainRouterImpl {
     }
     
     private func showMainScreen() {
-        navigationController.pushViewController(screenFabric.configureMainViewController(), animated: true)
+        navigationController.pushViewController(screenFabric.createMainViewController(), animated: true)
     }
 }
 
@@ -38,7 +38,7 @@ extension MainRouterImpl: Router {
     }
     
     public func searchScreenOpen() {
-        let searchVC = screenFabric.configureSearchViewController()
+        let searchVC = screenFabric.createSearchViewController()
         navigationController.present( searchVC, animated: true)
     }
     
@@ -55,6 +55,6 @@ extension MainRouterImpl: Router {
     // MARK: - ScreenFabric protocol
 protocol ScreenFabric {
     var di: DIContainer? { get set }
-    func configureMainViewController() -> UIViewController
-    func configureSearchViewController() -> UIViewController
+    func createMainViewController() -> UIViewController
+    func createSearchViewController() -> UIViewController
 }

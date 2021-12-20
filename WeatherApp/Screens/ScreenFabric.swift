@@ -13,14 +13,14 @@ final class ScreenFabricImpl: ScreenFabric {
     var di: DIContainer?
     
     // MARK: - Methods
-    public func configureMainViewController() -> UIViewController {
+    public func createMainViewController() -> UIViewController {
         guard let di = di else { fatalError() }
         let mainViewController = MainViewController(with: di.mainPresenter)
         di.mainPresenter.mainViewController = mainViewController
         return mainViewController
     }
     
-    public func configureSearchViewController() -> UIViewController {
+    public func createSearchViewController() -> UIViewController {
         guard let di = di else { fatalError() }
         let presenter = CitySearchPresenterImpl(with: di.mainRouter)
         let searchVC = CitySearchViewController(with: presenter)
