@@ -32,7 +32,7 @@ class RecentDayCollectionAdapter: NSObject {
         collectionView.dataSource = diffableDataSource
     }
 
-    public func configureWithForcast(_ forcast: [HoursWeatherModel]) {
+    public func configure(with forcast: [HoursWeatherModel]) {
         var snapshot = NSDiffableDataSourceSnapshot<Int, HoursWeatherModel>()
         snapshot.appendSections([0])
         snapshot.appendItems(forcast, toSection: 0)

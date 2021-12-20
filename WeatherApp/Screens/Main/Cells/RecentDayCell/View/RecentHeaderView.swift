@@ -79,7 +79,7 @@ class RecentHeaderView: UIView {
         }
     }
     
-    public func configure(withData data: RecentDayHeaderData) {
+    public func configure(with data: RecentDayHeaderData) {
         dataLabel.text = data.dayDate
         maxTempLabel.text = data.dayAverageTemp
         minTempLabel.text = data.dayMaxTemp

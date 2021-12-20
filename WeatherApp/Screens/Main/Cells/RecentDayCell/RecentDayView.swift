@@ -81,7 +81,7 @@ class RecentDayView: UIView {
     }
     
     public func configure(with forecast: ForecastForDay) {
-        cellHeaderContainerView.configure(withData: forecast)
-        collectionViewAdapter.configureWithForcast(forecast.forecastByHour)
+        cellHeaderContainerView.configure(with: forecast)
+        collectionViewAdapter.configure(with: forecast.forecastByHour)
     }
 }

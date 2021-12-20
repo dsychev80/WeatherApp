@@ -92,8 +92,8 @@ class NavigationBar: UIView {
         }
     }
     
-    public func configure(withData data: String) {
-        self.title.text = data
+    public func setTitle(with text: String) {
+        self.title.text = text
     }
 }
 

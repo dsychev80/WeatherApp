@@ -47,11 +47,11 @@ class WeatherAppContainerView<ContainedView: ContentView>: UIView {
     }
     
     public func configureNavBar(withData data: String) {
-        navigationBar.configure(withData: data)
+        navigationBar.setTitle(with: data)
     }
     
     public func configureView(withData data: ContainedView.ModelType) {
-        containedView.configureWithData(data)
+        containedView.configure(with: data)
     }
 }
 
@@ -70,7 +70,7 @@ extension WeatherAppContainerView: ContainerView {
 
 protocol ContentView: UIView {
     associatedtype ModelType
-    func configureWithData(_ data: ModelType)
+    func configure(with data: ModelType)
 }
 
 // MARK: - ContainerView protocol
