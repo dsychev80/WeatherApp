@@ -26,24 +26,33 @@ class MainViewController: UIViewController {
     
     override func loadView() {
         let tableView = MainView()
-        guard let eventHandler = presenter as? NavigationBarEventHandler else { return }
-        view = WeatherAppContainerView(withView: tableView, and: eventHandler)
-    }
-    
-    // MARK: - Methods
-    public func provideForcastData(_ data: [Item]) {
-        DispatchQueue.main.async { [weak self] in
-            guard let self = self else { return }
-            self.containerView.configureView(withData: data)
+        guard let eventHandler = presenter as? NavigationBarEventHandler else {
+            print("guard condition not met at: \(#file) \(#line) \(#function)")
+            return
         }
+        view = WeatherAppContainerView(withView: tableView, and: eventHandler)
     }
 }
 
     // MARK: - MainViewProtocol
 extension MainViewController: MainViewProtocol {
-    func dataReciviedForCity(_ name: String) {
+    public func provideForcastData(_ data: [Item]) {
         DispatchQueue.main.async { [weak self] in
-            self?.containerView.configureNavBar(withData: name)
+            guard let self = self else {
+                print("guard condition not met at: \(#file) \(#line) \(#function)")
+                return
+            }
+            self.containerView.configureView(withData: data)
+        }
+    }
+    
+    public func dataReciviedForCity(_ name: String) {
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else {
+                print("guard condition not met at: \(#file) \(#line) \(#function)")
+                return
+            }
+            self.containerView.configureNavBar(withData: name)
         }
     }
 }

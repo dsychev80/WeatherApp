@@ -26,7 +26,7 @@ final class MainPresenterImpl: MainPresenter {
     public func recieveWeatherForCityName(_ name: String) {
         locationManager.getCityCoordinatesByName(name) { [weak self] result in
             guard let self = self else {
-                print("DataController is deallocated, so closure need to terminate too.")
+                print("guard condition not met at: \(#file) \(#line) \(#function)")
                 return
             }
 
@@ -42,13 +42,17 @@ final class MainPresenterImpl: MainPresenter {
     
     public func loadWeatherForCoordinates(_ coordinates: LocationData) {
         networkController.loadWeatherForLocation(coordinates) { [weak self] result in
+            guard let self = self else {
+                print("guard condition not met at: \(#file) \(#line) \(#function)")
+                return
+            }
             switch result {
             case .failure(let error):
                 // FIXME: Handle error
                 print(error.localizedDescription)
             case .success(let weather):
-                self?.mainViewController.provideForcastData(weather.convertToItems())
-                self?.mainViewController?.dataReciviedForCity(weather.city.name)
+                self.mainViewController.provideForcastData(weather.convertToItems())
+                self.mainViewController.dataReciviedForCity(weather.city.name)
             
             }
         }

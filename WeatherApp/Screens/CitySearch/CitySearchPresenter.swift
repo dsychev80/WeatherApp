@@ -19,15 +19,16 @@ class CitySearchPresenterImpl: CitySearchPresenter {
         self.router = router
     }
     
-    func provideCities() -> [String] {
+    // MARK: - Methods
+    public func provideCities() -> [String] {
         return cities
     }
     
-    func searchCityWithName(_ name: String) {
+    public func searchCityWithName(_ name: String) {
         router.searchCity(name)
     }
     
-    func dismiss() {
+    public func dismiss() {
         router.popToRoot()
     }
 }

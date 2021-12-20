@@ -94,7 +94,11 @@ class SearchView: UIView {
     }
 
     @objc private func dismissView() {
-        delegate?.dismissView()
+        guard let delegate = delegate else {
+            print("guard condition not met at: \(#file) \(#line) \(#function)")
+            return
+        }
+        delegate.dismissView()
     }
 
     @objc private func search() {

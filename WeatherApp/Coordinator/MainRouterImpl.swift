@@ -44,7 +44,11 @@ extension MainRouterImpl: Router {
     
     func searchCity(_ name: String) {
         navigationController.topViewController?.dismiss(animated: false)
-        di?.mainPresenter.recieveWeatherForCityName(name)
+        guard let di = di else {
+            print("guard condition not met at: \(#file) \(#line) \(#function)")
+            return
+        }
+        di.mainPresenter.recieveWeatherForCityName(name)
     }
     
     public func popToRoot() {

@@ -14,10 +14,14 @@ final class NetworkProvider: NetworkManager {
         
         var api = WeatherResource()
         api.addLocation(location)
-        guard let url = api.url else { return }
+        guard let url = api.url else {
+            print("guard condition not met at: \(#file) \(#line) \(#function)")
+            return
+        }
         
         URLSession.shared.dataTask(with: url) { data, response, error in
             guard error == nil, let data = data else {
+                print("guard condition not met at: \(#file) \(#line) \(#function)")
                 completion(.failure(WeatherError.serverError(error?.localizedDescription ?? "Unrecognized network error")))
                 return
             }
