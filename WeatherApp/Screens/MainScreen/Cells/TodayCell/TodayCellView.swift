@@ -22,10 +22,10 @@ class TodayCellView: UIView {
     // MARK: - Properties
     private var backView = TodayCellBackgroundView()
     private var verticalStackView = TodayCellStackView()
-    private var dataLabel = WeatherCellLabel(withFont: R.font.manropeSemiBold(size: 14), fontColor: .white)
+    private var dataLabel = WeatherCellLabel()
     private var weatherImage = UIImageView(image: R.image.sun())
-    private var degreeLabel = WeatherCellLabel(withFont: R.font.manropeBold(size: 48), fontColor: .white)
-    private var feelsLikeLabel = WeatherCellLabel(withFont: R.font.manropeSemiBold(size: 14), fontColor: .white)
+    private var degreeLabel = WeatherCellLabel()
+    private var feelsLikeLabel = WeatherCellLabel()
 
     // MARK: - LifeCycle
     required init?(coder: NSCoder) {
@@ -39,9 +39,16 @@ class TodayCellView: UIView {
     
     // MARK: - Methods
     private func setup() {
+        setupStyle()
+        setupLayout()
+    }
+    
+    private func setupStyle() {
         translatesAutoresizingMaskIntoConstraints = false
         
-        setupLayout()
+        dataLabel.configurate(with: R.font.manropeSemiBold(size: 14), textColor: .white)
+        degreeLabel.configurate(with: R.font.manropeBold(size: 48), textColor: .white)
+        feelsLikeLabel.configurate(with: R.font.manropeSemiBold(size: 14), textColor: .white)
     }
     
     private func setupLayout() {

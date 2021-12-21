@@ -25,11 +25,9 @@ fileprivate let TEMP_FONT_COLOR = UIColor(displayP3Red: 42/255,
 
 class HourCellView: UIView {
     // MARK: - Properties
-    private var hourLabel = WeatherCellLabel(withFont: R.font.manropeMedium(size: 16),
-                                             fontColor: HOUR_FONT_COLOR)
+    private var hourLabel = WeatherCellLabel()
     private var weatherImage = UIImageView(image: R.image.sun())
-    private var tempLabel = WeatherCellLabel(withFont: R.font.manropeExtraBold(size: 16),
-                                             fontColor: TEMP_FONT_COLOR)
+    private var tempLabel = WeatherCellLabel()
 
     // MARK: - LifeCycle
     required init?(coder: NSCoder) {
@@ -45,14 +43,20 @@ class HourCellView: UIView {
     
     // MARK: - Methods
     private func setup() {
+        setupStyle()
+        setupLayout()
+    }
+    
+    fileprivate func setupStyle() {
         self.layer.cornerRadius = CORNER_RADIUS
         self.translatesAutoresizingMaskIntoConstraints = false
+        
+        hourLabel.configurate(with: R.font.manropeMedium(size: 16), textColor: HOUR_FONT_COLOR)
+        tempLabel.configurate(with: R.font.manropeExtraBold(size: 16), textColor: TEMP_FONT_COLOR)
         
         hourLabel.textAlignment = .center
         tempLabel.textAlignment = .center
         weatherImage.translatesAutoresizingMaskIntoConstraints = false
-        
-        setupLayout()
     }
     
     private func setupLayout() {

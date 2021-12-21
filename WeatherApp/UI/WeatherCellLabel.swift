@@ -14,11 +14,8 @@ class WeatherCellLabel: UILabel {
         fatalError("init(coder:) has not been implemented")
     }
     
-    required init(withFont newFont: UIFont?, fontColor color: UIColor, andText text: String = "") {
+    required init() {
         super.init(frame: .zero)
-        self.text = text
-        self.font = newFont
-        self.textColor = color
         setup()
     }
     
@@ -26,5 +23,10 @@ class WeatherCellLabel: UILabel {
     private func setup() {
         translatesAutoresizingMaskIntoConstraints = false
         clipsToBounds = true
+    }
+    
+    public func configurate(with font: UIFont?, textColor color: UIColor) {
+        self.font = font
+        self.textColor = color
     }
 }

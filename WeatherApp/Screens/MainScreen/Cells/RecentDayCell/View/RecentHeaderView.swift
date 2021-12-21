@@ -7,19 +7,23 @@
 
 import UIKit
 
+fileprivate let DATA_LABEL_TEXT_COLOR = UIColor(displayP3Red: 42/255, green: 45/255, blue: 51/255, alpha: 1)
 fileprivate let DATA_LABEL_WIDTH: CGFloat = 130
 fileprivate let DATA_LABEL_HEIGHT: CGFloat = 28.14
+
+fileprivate let MAX_TEMP_LABEL_TEXT_COLOR = UIColor(displayP3Red: 143/255, green: 150/255, blue: 161/255, alpha: 1)
 fileprivate let MIN_MAX_LABEL_WIDTH: CGFloat = 40
 fileprivate let MIN_MAX_LABEL_HEIGHT: CGFloat = 28.14
 fileprivate let WEATHER_IMAGE_HEIGHT: CGFloat = 24.12
 fileprivate let WEATHER_IMAGE_WIDTH: CGFloat = 24
 
+
 class RecentHeaderView: UIView {
 
     // MARK: - Properties
-    private var dataLabel = WeatherCellLabel(withFont: R.font.manropeMedium(size: 16), fontColor: UIColor(displayP3Red: 42/255, green: 45/255, blue: 51/255, alpha: 1))
-    private var maxTempLabel = WeatherCellLabel(withFont: R.font.manropeExtraBold(size: 16), fontColor: UIColor(displayP3Red: 143/255, green: 150/255, blue: 161/255, alpha: 1))
-    private var minTempLabel = WeatherCellLabel(withFont: R.font.manropeExtraBold(size: 16), fontColor: UIColor(displayP3Red: 42/255, green: 45/255, blue: 51/255, alpha: 1))
+    private var dataLabel = WeatherCellLabel()
+    private var maxTempLabel = WeatherCellLabel()
+    private var minTempLabel = WeatherCellLabel()
     private var weatherImage = UIImageView(image: R.image.sun())
     
     // MARK: - LifeCycle
@@ -35,10 +39,17 @@ class RecentHeaderView: UIView {
     
     // MARK: - Methods
     private func setup() {
+        setupStyle()
+        setupLayout()
+    }
+    
+    fileprivate func setupStyle() {
         minTempLabel.textAlignment = .right
         maxTempLabel.textAlignment = .right
         
-        setupLayout()
+        dataLabel.configurate(with: R.font.manropeMedium(size: 16), textColor: DATA_LABEL_TEXT_COLOR)
+        maxTempLabel.configurate(with: R.font.manropeExtraBold(size: 16), textColor: MAX_TEMP_LABEL_TEXT_COLOR)
+        minTempLabel.configurate(with: R.font.manropeExtraBold(size: 16), textColor: DATA_LABEL_TEXT_COLOR)
     }
 
     private func setupLayout() {
@@ -83,6 +94,7 @@ class RecentHeaderView: UIView {
     }
 }
 
+// MARK: - RecentDayHeaderData protocol
 protocol RecentDayHeaderData {
     var dayDate: String { get }
     var dayAverageTemp: String { get }

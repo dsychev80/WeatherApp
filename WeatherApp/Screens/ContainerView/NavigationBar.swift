@@ -18,8 +18,7 @@ fileprivate let BETWEEN_BUTTON_GAP: CGFloat = 8
 
 class NavigationBar: UIView {
     // MARK: - Properties
-    private let title = WeatherCellLabel(withFont: R.font.manropeExtraBold(size: 18), fontColor: TITLE_COLOR)
-    
+    private let title = WeatherCellLabel()
     private let pointButton = UIButton()
     private let searchButton = UIButton()
     private let themeButton = UIButton()
@@ -40,10 +39,14 @@ class NavigationBar: UIView {
     
     // MARK: - Methods
     private func setup() {
-        backgroundColor = NAVIGATION_BAR_COLOR
-        
+        setupStyle()
         setupLayout()
         configureButtons()
+    }
+    
+    fileprivate func setupStyle() {
+        backgroundColor = NAVIGATION_BAR_COLOR
+        title.configurate(with: R.font.manropeExtraBold(size: 18), textColor: TITLE_COLOR)
     }
     
     private func setupLayout() {
