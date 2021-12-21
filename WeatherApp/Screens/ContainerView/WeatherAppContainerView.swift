@@ -72,10 +72,10 @@ protocol ContentView: UIView {
 
 // MARK: - ContainerView protocol
 protocol ContainerView: UIView {
-associatedtype NavigationBarTypeModel
-associatedtype ContainedViewTypeModel
+    associatedtype NavigationBarTypeModel
+    associatedtype ContainedViewTypeModel
 
-func provideDataToNavBar(_ data: NavigationBarTypeModel)
-func provideDataToContainedView(_ data: ContainedViewTypeModel)
+    func provideDataToNavBar(_ data: NavigationBarTypeModel)
+    func provideDataToContainedView(_ data: ContainedViewTypeModel)
 }
 

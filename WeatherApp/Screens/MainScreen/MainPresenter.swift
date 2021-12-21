@@ -60,16 +60,16 @@ final class MainPresenterImpl: MainPresenter {
 
     // MARK: - EventHandler
 extension MainPresenterImpl: NavigationBarEventHandler {
-    @objc func selectOnMap() {
+    public func selectOnMap() {
         
     }
     
-    @objc func search() {
+    public func search() {
         router.searchScreenOpen()
     }
     
-    @objc func changeTheme() {
-        print("change theme")
+    public func changeTheme() {
+        
     }
 }
 

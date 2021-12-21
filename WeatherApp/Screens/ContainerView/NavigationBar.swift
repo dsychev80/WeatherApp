@@ -23,6 +23,7 @@ class NavigationBar: UIView {
     private let pointButton = UIButton()
     private let searchButton = UIButton()
     private let themeButton = UIButton()
+    private let eventHandler: NavigationBarEventHandler
     
     // MARK: - Lifecycle
     required init?(coder: NSCoder) {
@@ -31,10 +32,10 @@ class NavigationBar: UIView {
     
     required init(with eventHandler: NavigationBarEventHandler) {
         let screenWidth = UIScreen.main.bounds.width
+        self.eventHandler = eventHandler
         super.init(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 84))
         
         setup()
-        configureButtons(with: eventHandler)
     }
     
     // MARK: - Methods
@@ -42,17 +43,7 @@ class NavigationBar: UIView {
         backgroundColor = NAVIGATION_BAR_COLOR
         
         setupLayout()
-    }
-    
-    private func configureButtons(with eventHandler: NavigationBarEventHandler) {
-        pointButton.addTarget(eventHandler, action: #selector(NavigationBarEventHandler.selectOnMap), for: .touchUpInside)
-        pointButton.setImage(R.image.point(), for: .normal)
-        
-        searchButton.addTarget(eventHandler, action: #selector(NavigationBarEventHandler.search), for: .touchUpInside)
-        searchButton.setImage(R.image.search(), for: .normal)
-        
-        themeButton.addTarget(eventHandler, action: #selector(NavigationBarEventHandler.changeTheme), for: .touchUpInside)
-        themeButton.setImage(R.image.theme(), for: .normal)
+        configureButtons()
     }
     
     private func setupLayout() {
@@ -91,9 +82,32 @@ class NavigationBar: UIView {
     public func setTitle(with text: String) {
         self.title.text = text
     }
+    
+    private func configureButtons() {
+        pointButton.addTarget(self, action: #selector(selectOnMap), for: .touchUpInside)
+        pointButton.setImage(R.image.point(), for: .normal)
+        
+        searchButton.addTarget(self, action: #selector(search), for: .touchUpInside)
+        searchButton.setImage(R.image.search(), for: .normal)
+        
+        themeButton.addTarget(self, action: #selector(changeTheme), for: .touchUpInside)
+        themeButton.setImage(R.image.theme(), for: .normal)
+    }
+    
+    @objc private func selectOnMap() {
+        eventHandler.selectOnMap()
+    }
+    
+    @objc private func search() {
+        eventHandler.search()
+    }
+    
+    @objc private func changeTheme() {
+        eventHandler.changeTheme()
+    }
 }
 
-@objc protocol NavigationBarEventHandler: AnyObject {
+protocol NavigationBarEventHandler {
     func selectOnMap()
     func search()
     func changeTheme()
