@@ -19,7 +19,6 @@ class RecentDayCollection: RecentDayCustomCollectionView {
     
     required init() {
         super.init()
-
         setup()
     }
     
@@ -27,9 +26,7 @@ class RecentDayCollection: RecentDayCustomCollectionView {
     private func setup() {
         diffableDataSource = UICollectionViewDiffableDataSource<Int, HoursWeatherModel>(collectionView: self) {
             (collectionView: UICollectionView, indexPath: IndexPath, model: HoursWeatherModel) -> UICollectionViewCell? in
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HourWeatherCell.name, for: indexPath) as! HourWeatherCell
-            cell.configure(with: model)
-                return cell
+            collectionView.createHourWeatherCell(for: indexPath, with: model)
         }
         self.dataSource = diffableDataSource
     }
