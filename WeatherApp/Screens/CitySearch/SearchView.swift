@@ -22,9 +22,8 @@ class SearchView: UIView {
 
     // MARK: - Properties
     private weak var delegate: CitySearchDelegate!
-    private var cityCollectionViewAdapter: CityCollectionViewAdapter
     private var searchTextField = WeatherCityNameTextField()
-    private var collectionView = CitysCollectionView()
+    private var collectionView = CitiesCollectionView()
     private var cancelButton = SityCancelButton(withTarget: self, selector: #selector(dismissView))
     private var addButton = CitySearchAddButton(withTarget: self, selector: #selector(search))
 
@@ -35,7 +34,6 @@ class SearchView: UIView {
 
     required init(withDelegate delegate: CitySearchDelegate) {
         self.delegate = delegate
-        self.cityCollectionViewAdapter = CityCollectionViewAdapter(with: collectionView)
         super.init(frame: .zero)
         setup()
     }
@@ -106,7 +104,7 @@ class SearchView: UIView {
     }
     
     public func configure(with data: [String]) {
-        cityCollectionViewAdapter.getCitiesData(data)
+        collectionView.getCitiesData(data)
     }
 }
 

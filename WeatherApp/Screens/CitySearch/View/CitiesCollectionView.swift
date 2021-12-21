@@ -5,28 +5,26 @@
 //  Created by Denis Sychev on 14.12.2021.
 //
 
-import Foundation
 import UIKit
 
-final class CityCollectionViewAdapter: NSObject {
+class CitiesCollectionView: CitiesCustomCollectionView {
     // MARK: - Properties
-    private let collectionView: UICollectionView
     private var diffableDataSource: UICollectionViewDiffableDataSource<Int, String>!
     
     // MARK: - Lifecycle
-    required init(with collectionView: UICollectionView) {
-        self.collectionView = collectionView
+    required init(coder: NSCoder) {
+        fatalError("init() has not been implemented")
+    }
+    
+    required init() {
         super.init()
-        
         setup()
     }
-
+    
     // MARK: - Methods
     private func setup() {
-        diffableDataSource = UICollectionViewDiffableDataSource<Int, String>.init(collectionView: collectionView, cellProvider: { collectionView, indexPath, cityName in
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CityCollectionViewCell.name, for: indexPath) as! CityCollectionViewCell
-            cell.configureWithCityName(cityName)
-            return cell
+        diffableDataSource = UICollectionViewDiffableDataSource<Int, String>.init(collectionView: self, cellProvider: { collectionView, indexPath, cityName in
+            collectionView.createCityCell(for: indexPath, with: cityName)
         })
     }
     

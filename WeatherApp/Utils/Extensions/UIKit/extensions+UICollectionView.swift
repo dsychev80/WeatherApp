@@ -13,4 +13,10 @@ extension UICollectionView {
         cell.configure(with: data)
         return cell
     }
+    
+    func createCityCell(for indexPath: IndexPath, with cityName: String) -> UICollectionViewCell {
+        let cell = self.dequeueReusableCell(withReuseIdentifier: CityCollectionViewCell.name, for: indexPath) as! CityCollectionViewCell
+        cell.configureWithCityName(cityName)
+        return cell
+    }
 }
