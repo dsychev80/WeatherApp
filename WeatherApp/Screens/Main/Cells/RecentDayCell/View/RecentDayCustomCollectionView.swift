@@ -1,5 +1,5 @@
 //
-//  RecentDayCollectionView.swift
+//  RecentDayCustomCollectionView.swift
 //  WeatherApp
 //
 //  Created by Denis Sychev on 03.12.2021.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class RecentDayCollectionView: UICollectionView {
+class RecentDayCustomCollectionView: UICollectionView {
 
     // MARK: - Properties
     private let layout = UICollectionViewFlowLayout()
