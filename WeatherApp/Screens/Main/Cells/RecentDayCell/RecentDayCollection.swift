@@ -1,5 +1,5 @@
 //
-//  RecentDayCollectionAdapter.swift
+//  RecentDayCollection.swift
 //  WeatherApp
 //
 //  Created by Denis Sychev on 03.12.2021.
@@ -7,29 +7,28 @@
 
 import UIKit
 
-class RecentDayCollectionAdapter: NSObject {
+class RecentDayCollection: RecentDayCustomCollectionView {
     
     // MARK: - Properties
-    private let collectionView: UICollectionView!
     private var diffableDataSource: UICollectionViewDiffableDataSource<Int, HoursWeatherModel>!
     
     // MARK: - LifeCycle
-    required init(with collectionView: UICollectionView) {
-        self.collectionView = collectionView
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    required init() {
         super.init()
-        
         setup()
     }
-
+    
     // MARK: - Methods
     private func setup() {
-        diffableDataSource = UICollectionViewDiffableDataSource<Int, HoursWeatherModel>(collectionView: collectionView) {
+        diffableDataSource = UICollectionViewDiffableDataSource<Int, HoursWeatherModel>(collectionView: self) {
             (collectionView: UICollectionView, indexPath: IndexPath, model: HoursWeatherModel) -> UICollectionViewCell? in
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HourWeatherCell.name, for: indexPath) as! HourWeatherCell
-            cell.configure(with: model)
-                return cell
+            collectionView.createHourWeatherCell(for: indexPath, with: model)
         }
-        collectionView.dataSource = diffableDataSource
+        self.dataSource = diffableDataSource
     }
 
     public func configure(with forcast: [HoursWeatherModel]) {

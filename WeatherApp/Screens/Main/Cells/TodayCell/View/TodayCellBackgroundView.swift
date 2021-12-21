@@ -31,9 +31,9 @@ class TodayCellBackgroundView: UIView {
         self.translatesAutoresizingMaskIntoConstraints = false
         backgroundView = CanvasView(withColors: THIRD_COLOR, color2: FOURTH_COLOR)
         backgroundView.clipsToBounds = true
-        self.addSubview(backgroundView)
         backgroundView.translatesAutoresizingMaskIntoConstraints = false
         
+        self.addSubview(backgroundView)
         backgroundView.snp.makeConstraints { make in
             make.edges.equalTo(self)
         }

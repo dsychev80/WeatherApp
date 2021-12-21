@@ -37,45 +37,42 @@ class RecentHeaderView: UIView {
     private func setup() {
         minTempLabel.textAlignment = .right
         maxTempLabel.textAlignment = .right
-        setupViewHierarchy()
-        setupLayoutConstraints()
+        
+        setupLayout()
     }
-    
-    private func setupViewHierarchy() {
+
+    private func setupLayout() {
         translatesAutoresizingMaskIntoConstraints = false
         weatherImage.translatesAutoresizingMaskIntoConstraints = false
         
         self.addSubview(dataLabel)
-        self.addSubview(minTempLabel)
-        self.addSubview(maxTempLabel)
-        self.addSubview(weatherImage)
-    }
-    
-    private func setupLayoutConstraints() {
-        
         dataLabel.snp.makeConstraints { make in
             make.left.equalTo(self.snp.left)
             make.width.equalTo(DATA_LABEL_WIDTH)
             make.centerY.equalTo(self.snp.centerY)
         }
-
+        
+        self.addSubview(minTempLabel)
         minTempLabel.snp.makeConstraints { make in
             make.width.equalTo(MIN_MAX_LABEL_WIDTH)
             make.centerY.equalTo(self.snp.centerY)
         }
         
-        maxTempLabel.snp.makeConstraints { make in
-            make.centerY.equalTo(self.snp.centerY)
-            make.width.equalTo(MIN_MAX_LABEL_WIDTH)
-            make.left.equalTo(minTempLabel.snp.right).offset(8)
-            make.right.equalTo(weatherImage.snp.left).offset(-16)
-        }
 
+        self.addSubview(weatherImage)
         weatherImage.snp.makeConstraints { make in
             make.width.equalTo(WEATHER_IMAGE_WIDTH)
             make.height.equalTo(WEATHER_IMAGE_HEIGHT)
             make.centerY.equalTo(self.snp.centerY)
             make.right.equalTo(self.snp.right)
+        }
+
+        self.addSubview(maxTempLabel)
+        maxTempLabel.snp.makeConstraints { make in
+            make.centerY.equalTo(self.snp.centerY)
+            make.width.equalTo(MIN_MAX_LABEL_WIDTH)
+            make.left.equalTo(minTempLabel.snp.right).offset(8)
+            make.right.equalTo(weatherImage.snp.left).offset(-16)
         }
     }
     

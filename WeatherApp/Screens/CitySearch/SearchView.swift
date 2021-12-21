@@ -22,9 +22,8 @@ class SearchView: UIView {
 
     // MARK: - Properties
     private weak var delegate: CitySearchDelegate!
-    private var cityCollectionViewAdapter: CityCollectionViewAdapter
     private var searchTextField = WeatherCityNameTextField()
-    private var collectionView = CitysCollectionView()
+    private var collectionView = CitiesCollectionView()
     private var cancelButton = SityCancelButton(withTarget: self, selector: #selector(dismissView))
     private var addButton = CitySearchAddButton(withTarget: self, selector: #selector(search))
 
@@ -35,7 +34,6 @@ class SearchView: UIView {
 
     required init(withDelegate delegate: CitySearchDelegate) {
         self.delegate = delegate
-        self.cityCollectionViewAdapter = CityCollectionViewAdapter(with: collectionView)
         super.init(frame: .zero)
         setup()
     }
@@ -47,23 +45,16 @@ class SearchView: UIView {
         self.layer.cornerRadius = 24
         self.clipsToBounds = true
 
-        setupViewHierarchy()
-        setupLayoutConstraints()
+        setupLayout()
     }
 
-    private func setupViewHierarchy() {
-        self.addSubview(searchTextField)
-        self.addSubview(collectionView)
-        self.addSubview(cancelButton)
-        self.addSubview(addButton)
-    }
-
-    private func setupLayoutConstraints() {
+    private func setupLayout() {
         self.snp.makeConstraints { make in
             make.height.equalTo(VIEW_HEIGHT)
             make.width.equalTo(VIEW_WIDTH)
         }
 
+        self.addSubview(searchTextField)
         searchTextField.snp.makeConstraints { make in
             make.top.equalTo(self.snp_top).offset(BUTTONS_AND_TEXTFIELD_GAP)
             make.right.equalTo(self.snp_right).offset(-BUTTONS_AND_TEXTFIELD_GAP)
@@ -71,6 +62,7 @@ class SearchView: UIView {
             make.height.equalTo(TEXTFIELD_HEIGHT)
         }
 
+        self.addSubview(collectionView)
         collectionView.snp.makeConstraints { make in
             make.top.equalTo(searchTextField.snp_bottom).offset(12)
             make.left.equalTo(self.snp_left).offset(BUTTONS_AND_TEXTFIELD_GAP)
@@ -78,6 +70,7 @@ class SearchView: UIView {
             make.height.equalTo(COLLECTION_VIEW_HEIGHT)
         }
 
+        self.addSubview(cancelButton)
         cancelButton.snp.makeConstraints { make in
             make.left.equalTo(self.snp_left).offset(BUTTONS_AND_TEXTFIELD_GAP)
             make.bottom.equalTo(self.snp_bottom).offset(-BUTTONS_AND_TEXTFIELD_GAP)
@@ -85,6 +78,7 @@ class SearchView: UIView {
             make.width.equalTo(BUTTON_WIDTH)
         }
 
+        self.addSubview(addButton)
         addButton.snp.makeConstraints { make in
             make.right.equalTo(self.snp_right).offset(-BUTTONS_AND_TEXTFIELD_GAP)
             make.bottom.equalTo(self.snp_bottom).offset(-BUTTONS_AND_TEXTFIELD_GAP)
@@ -110,7 +104,7 @@ class SearchView: UIView {
     }
     
     public func configure(with data: [String]) {
-        cityCollectionViewAdapter.getCitiesData(data)
+        collectionView.getCitiesData(data)
     }
 }
 

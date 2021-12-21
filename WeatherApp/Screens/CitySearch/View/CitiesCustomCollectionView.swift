@@ -1,5 +1,5 @@
 //
-//  CitysCollectionView.swift
+//  CitiesCustomCollectionView.swift
 //  WeatherApp
 //
 //  Created by Denis Sychev on 06.12.2021.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CitysCollectionView: UICollectionView {
+class CitiesCustomCollectionView: UICollectionView {
 
     // MARK: - LifeCycle
     required init?(coder: NSCoder) {

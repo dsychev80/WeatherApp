@@ -26,15 +26,11 @@ final class TodayCell: UITableViewCell {
 
     // MARK: - Methods
     private func setup() {
-        setupViewHierarchy()
-        setupLayoutConstraints()
+        setupLayout()
     }
     
-    private func setupViewHierarchy() {
+    private func setupLayout() {
         contentView.addSubview(view)
-    }
-    
-    private func setupLayoutConstraints() {
         view.snp.makeConstraints { make in
             make.edges.equalTo(contentView)
         }

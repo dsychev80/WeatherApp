@@ -28,15 +28,12 @@ class SearchBackView: UIView {
     // MARK: - Methods
     private func setup() {
         self.backgroundColor = VIEW_BACKGROUND_COLOR
-        setupViewHierarchy()
-        setupLayoutConstraints()
+
+        setupLayout()
     }
 
-    private func setupViewHierarchy() {
+    private func setupLayout() {
         self.addSubview(searchView)
-    }
-
-    private func setupLayoutConstraints() {
         searchView.snp.makeConstraints { make in
             make.centerX.equalTo(self.snp.centerX)
             make.centerY.equalTo(self.snp.centerY)

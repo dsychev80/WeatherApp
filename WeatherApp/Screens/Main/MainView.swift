@@ -18,33 +18,27 @@ class MainView: UITableView {
     
     required init() {
         super.init(frame: CGRect.zero, style: .plain)
-        setup()
+        styleSetup()
+        diffableDataSourceSetup()
     }
     
     // MARK: - Methods
-    private func setup() {
+    private func styleSetup() {
         self.separatorStyle = .none
         self.translatesAutoresizingMaskIntoConstraints = false
-
+        
         self.register(TodayCell.self, forCellReuseIdentifier: TodayCell.name)
         self.register(RecentDayCell.self, forCellReuseIdentifier: RecentDayCell.name)
         
         self.contentInset = UIEdgeInsets(top: 60, left: 0, bottom: 0, right: 0)
         self.backgroundView = UIView()
         self.backgroundView?.backgroundColor = .white
-        
+    }
+    
+    private func diffableDataSourceSetup() {
         diffableDataSource = UITableViewDiffableDataSource<Int, Item>(tableView: self) {
             (tableView: UITableView, indexPath: IndexPath, item: Item) -> UITableViewCell? in
-            switch item {
-            case .today(let todayData):
-                let cell = tableView.dequeueReusableCell(withIdentifier: TodayCell.name, for: indexPath) as! TodayCell
-                cell.configure(with: todayData)
-                return cell
-            case .forecast(let forecastData):
-                let cell = tableView.dequeueReusableCell(withIdentifier: RecentDayCell.name, for: indexPath) as! RecentDayCell
-                cell.configure(with: forecastData)
-                return cell
-            }
+            tableView.createWeatherDayCell(for: indexPath, with: item)
         }
         self.dataSource = diffableDataSource
     }

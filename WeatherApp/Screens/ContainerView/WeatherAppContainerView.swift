@@ -28,22 +28,19 @@ class WeatherAppContainerView<ContainedView: ContentView>: UIView {
     // MARK: - Methods
     private func setup() {
 
-        setupViewHierarchy()
-        setupLayoutConstraints()
+        setupLayout()
     }
     
-    private func setupViewHierarchy() {
+    private func setupLayout() {
         self.addSubview(containedView)
-        self.addSubview(navigationBar)
-    }
-    
-    private func setupLayoutConstraints() {
         containedView.snp.makeConstraints { make in
             make.top.equalTo(self.snp_top)
             make.left.equalTo(self.snp_left)
             make.bottom.equalTo(self.snp_bottom)
             make.right.equalTo(self.snp_right)
         }
+        
+        self.addSubview(navigationBar)
     }
     
     public func configureNavBar(withData data: String) {
