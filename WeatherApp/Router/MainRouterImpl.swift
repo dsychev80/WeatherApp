@@ -33,7 +33,7 @@ extension MainRouterImpl: MainRouter {
     }
     
     public func openSearchScreen(withCompletion completion: @escaping (String) -> Void) {
-        let searchFabric = SearchScreenFabricImpl(with: di)
+        let searchFabric = SearchScreenDIContainer(with: di)
         let searchVC = searchFabric.createSearchViewController(withCompletion: completion)
         navigationController.present( searchVC, animated: true)
     }
