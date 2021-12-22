@@ -10,7 +10,7 @@ import UIKit
 class MainRouterImpl {
     // MARK: - Properties
     private let navigationController: UINavigationController
-    private var mainScreenFabric: MainScreenFabric?
+    private var mainScreenFabric: MainScreenDIContainer?
     internal var di: AppCoordinator!
     
     // MARK: - Lifecycle
@@ -28,7 +28,7 @@ class MainRouterImpl {
     // MARK: - Router
 extension MainRouterImpl: MainRouter {
     public func start() {
-        mainScreenFabric = MainScreenFabricImpl(with: di)
+        mainScreenFabric = MainScreenDIContainer(with: di)
         navigationController.pushViewController(mainScreenFabric!.createMainViewController(), animated: true)
     }
     
