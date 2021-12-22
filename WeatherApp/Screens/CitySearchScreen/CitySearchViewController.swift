@@ -21,7 +21,6 @@ class CitySearchViewController: UIViewController, CitySearchView {
     required init(with presenter: CitySearchPresenter) {
         self.presenter = presenter
         super.init(nibName: nil, bundle: nil)
-        presenter.searchViewController = self
     }
     
     override func loadView() {
@@ -60,8 +59,7 @@ protocol CitySearchView: AnyObject {
 }
 
 protocol CitySearchPresenter: AnyObject {
-    var searchViewController: CitySearchView! { get set }
-    var router: MainRouter { get set }
+    var searchCompletion: ((String) -> Void)? { get set }
     func searchCityWithName(_ name: String)
     func provideCities() -> [String]
     func dismiss()

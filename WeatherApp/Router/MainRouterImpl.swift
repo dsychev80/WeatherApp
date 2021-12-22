@@ -32,19 +32,14 @@ extension MainRouterImpl: MainRouter {
         navigationController.pushViewController(mainScreenFabric!.createMainViewController(), animated: true)
     }
     
-    public func searchScreenOpen() {
+    public func searchScreenOpen(withCompletion completion: @escaping (String) -> Void) {
         let searchFabric = SearchScreenFabricImpl(with: di)
-        let searchVC = searchFabric.createSearchViewController()
+        let searchVC = searchFabric.createSearchViewController(withCompletion: completion)
         navigationController.present( searchVC, animated: true)
     }
     
-    func searchCity(_ name: String) {
-        navigationController.topViewController?.dismiss(animated: false)
-        guard let mainFabric = mainScreenFabric else { return }
-        mainFabric.updateMainViewControllerForCity(name)
-    }
-    
     public func popToRoot() {
+        navigationController.topViewController?.dismiss(animated: false, completion: nil)
         navigationController.popToRootViewController(animated: true)
     }
 }
@@ -56,5 +51,5 @@ protocol MainScreenFabric {
 }
 
 protocol SearchScreenFabric {
-    func createSearchViewController() -> UIViewController
+    func createSearchViewController(withCompletion completion: @escaping (String) -> Void) -> UIViewController
 }

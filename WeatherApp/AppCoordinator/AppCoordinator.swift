@@ -28,7 +28,6 @@ final class AppCoordinator {
 protocol MainRouter {
     var di: AppCoordinator! { get set }
     func start()
-    func searchScreenOpen()
-    func searchCity(_ name: String)
+    func searchScreenOpen(withCompletion completion: @escaping (String) -> Void)
     func popToRoot()
 }

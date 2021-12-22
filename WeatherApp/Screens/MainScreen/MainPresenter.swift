@@ -8,7 +8,7 @@
 import Foundation
 
 
-final class MainPresenterImpl: MainPresenter {
+final class MainPresenterImpl {
     // MARK: - Properties
     private let networkController: NetworkManager
     private let locationManager: LocationManager
@@ -23,18 +23,6 @@ final class MainPresenterImpl: MainPresenter {
     }
     
     // MARK: - Methods
-    public func recieveWeatherForCityName(_ name: String) {
-        locationManager.getCityCoordinatesByName(name) { [unowned self] result in
-            switch result {
-            case .failure(let error):
-                // MARK: need to handle the error
-                print(error)
-            case .success(let coordinates):
-                self.loadWeatherForCoordinates(coordinates)
-            }
-        }
-    }
-    
     private func loadWeatherForCoordinates(_ coordinates: LocationData) {
         networkController.loadWeatherForLocation(coordinates) { [unowned self] result in
             switch result {
@@ -49,6 +37,21 @@ final class MainPresenterImpl: MainPresenter {
     }
 }
 
+// MARK: - MainPresenter
+extension MainPresenterImpl: MainPresenter {
+    public func recieveWeatherForCityName(_ name: String) {
+        locationManager.getCityCoordinatesByName(name) { [unowned self] result in
+            switch result {
+            case .failure(let error):
+                // MARK: need to handle the error
+                print(error)
+            case .success(let coordinates):
+                self.loadWeatherForCoordinates(coordinates)
+            }
+        }
+    }
+}
+
     // MARK: - EventHandler
 extension MainPresenterImpl: NavigationBarEventHandler {
     public func selectOnMap() {
@@ -56,7 +59,9 @@ extension MainPresenterImpl: NavigationBarEventHandler {
     }
     
     public func search() {
-        router.searchScreenOpen()
+        router.searchScreenOpen { [unowned self] cityName in
+            self.recieveWeatherForCityName(cityName)
+        }
     }
     
     public func changeTheme() {

@@ -15,8 +15,9 @@ class SearchScreenFabricImpl: SearchScreenFabric {
         self.di = SearchScreenDIContainer(with: di)
     }
     
-    public func createSearchViewController() -> UIViewController {
+    public func createSearchViewController(withCompletion completion: @escaping (String) -> Void ) -> UIViewController {
         let searchVC = CitySearchViewController(with: di.presenter)
+        di.presenter.searchCompletion = completion
         searchVC.modalPresentationStyle = .overCurrentContext
         searchVC.modalTransitionStyle = .crossDissolve
         return searchVC
