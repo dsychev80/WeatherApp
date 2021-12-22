@@ -9,13 +9,13 @@ import Foundation
 
 class CitySearchPresenterImpl: CitySearchPresenter {
     // MARK: - Properties
-    weak var searchViewController: CitySearchView!
-    public var router: Router
+    public var router: MainRouter
+    public var searchCompletion: ((String) -> Void)?
     
     let cities = ["Тамбов", "Тюмень", "Тула", "Темрюк", "Таганрог", "Тьматараканья", "Тбилисси"]
     
     // MARK: - Lifecycle
-    init(with router: Router) {
+    init(with router: MainRouter) {
         self.router = router
     }
     
@@ -25,7 +25,10 @@ class CitySearchPresenterImpl: CitySearchPresenter {
     }
     
     public func searchCityWithName(_ name: String) {
-        router.searchCity(name)
+        dismiss()
+        if let completion = searchCompletion {
+            completion(name)
+        }
     }
     
     public func dismiss() {

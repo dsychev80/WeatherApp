@@ -24,8 +24,7 @@ class MainViewController: UIViewController {
     
     override func loadView() {
         guard let presenter = presenter, let eventHandler = presenter as? NavigationBarEventHandler else {
-            print("guard condition not met at: \(#file) \(#line) \(#function)")
-            return
+            fatalError("Presenter not found")
         }
         presenter.mainViewController = self
         let tableView = MainView()
@@ -38,8 +37,7 @@ extension MainViewController: MainViewProtocol {
     public func provideForcastData(_ data: [Item], forCity name: String) {
         DispatchQueue.main.async { [weak self] in
             guard let self = self else {
-                print("guard condition not met at: \(#file) \(#line) \(#function)")
-                return
+                fatalError("self not found")
             }
             self.containerView.configureView(withData: data)
             self.containerView.provideDataToNavBar(name)
