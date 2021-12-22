@@ -10,6 +10,7 @@ import UIKit
 class MainRouterImpl {
     // MARK: - Properties
     private let navigationController: UINavigationController
+    private var mainScreenFabric: MainScreenFabric?
     internal var di: DIContainer!
     
     // MARK: - Lifecycle
@@ -24,8 +25,8 @@ class MainRouterImpl {
     }
     
     private func showMainScreen() {
-        let mainFabric = MainScreenFabricImpl(with: di)
-        navigationController.pushViewController(mainFabric.createMainViewController(), animated: true)
+        mainScreenFabric = MainScreenFabricImpl(with: di)
+        navigationController.pushViewController(mainScreenFabric!.createMainViewController(), animated: true)
     }
 }
 
@@ -44,7 +45,8 @@ extension MainRouterImpl: Router {
     
     func searchCity(_ name: String) {
         navigationController.topViewController?.dismiss(animated: false)
-        di.mainPresenter.recieveWeatherForCityName(name)
+        guard let mainFabric = mainScreenFabric else { return }
+        mainFabric.updateMainViewControllerForCity(name)
     }
     
     public func popToRoot() {
@@ -55,6 +57,7 @@ extension MainRouterImpl: Router {
     // MARK: - ScreenFabric protocol
 protocol MainScreenFabric {
     func createMainViewController() -> UIViewController
+    func updateMainViewControllerForCity(_ name: String)
 }
 
 protocol SearchScreenFabric {

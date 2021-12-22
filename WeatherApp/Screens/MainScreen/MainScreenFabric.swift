@@ -7,16 +7,19 @@
 import UIKit
 
 class MainScreenFabricImpl: MainScreenFabric {
-    private let di: DIContainer
+    private let di: MainScreenDIContainer
     
     init(with di: DIContainer) {
-        self.di = di
+        self.di = MainScreenDIContainer(with: di)
     }
     
     public func createMainViewController() -> UIViewController {
         let mainViewController = MainViewController()
         mainViewController.presenter = di.mainPresenter
-        di.mainPresenter.mainViewController = mainViewController
         return mainViewController
+    }
+    
+    public func updateMainViewControllerForCity(_ name: String) {
+        di.mainPresenter.recieveWeatherForCityName(name)
     }
 }
