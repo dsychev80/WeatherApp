@@ -32,7 +32,6 @@ class MainRouterImpl {
 
     // MARK: - Router
 extension MainRouterImpl: Router {
-    
     public func start() {
         showMainScreen()
     }

@@ -14,9 +14,21 @@ final class DIContainer {
     var mainRouter: Router
     
     // MARK: - Lifecycle
-    init() {
+    init(with window: UIWindow) {
         self.navigationController = UINavigationController()
         self.mainRouter = MainRouterImpl(with: navigationController)
         self.mainRouter.di = self
+        self.mainRouter.start()
+        
+        window.rootViewController = self.navigationController
+        window.makeKeyAndVisible()
     }
+}
+
+protocol Router {
+    var di: DIContainer! { get set }
+    func start()
+    func searchScreenOpen()
+    func searchCity(_ name: String)
+    func popToRoot()
 }
