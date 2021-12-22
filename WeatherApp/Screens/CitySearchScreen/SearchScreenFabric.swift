@@ -9,15 +9,14 @@ import UIKit
 
 
 class SearchScreenFabricImpl: SearchScreenFabric {
-    let di: DIContainer
+    let di: SearchScreenDIContainer
     
     init(with di: DIContainer) {
-        self.di = di
+        self.di = SearchScreenDIContainer(with: di)
     }
     
     public func createSearchViewController() -> UIViewController {
-        let presenter = CitySearchPresenterImpl(with: di.mainRouter)
-        let searchVC = CitySearchViewController(with: presenter)
+        let searchVC = CitySearchViewController(with: di.presenter)
         searchVC.modalPresentationStyle = .overCurrentContext
         searchVC.modalTransitionStyle = .crossDissolve
         return searchVC
