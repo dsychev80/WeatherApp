@@ -13,7 +13,6 @@ final class DIContainer {
     let networkController: NetworkManager
     let locationManager: LocationManager
     let mainPresenter: MainPresenter
-    var screenFabric: ScreenFabric
     var navigationController: UINavigationController
     var mainRouter: Router
     
@@ -21,11 +20,9 @@ final class DIContainer {
     init() {
         self.networkController = NetworkProvider()
         self.locationManager = LocationManagerImpl()
-        self.screenFabric = ScreenFabricImpl()
         self.navigationController = UINavigationController()
-        self.mainRouter = MainRouterImpl(with: navigationController, and: screenFabric)
+        self.mainRouter = MainRouterImpl(with: navigationController)
         self.mainPresenter = MainPresenterImpl(with: networkController, locationManager: locationManager, router: mainRouter)
-        self.screenFabric.di = self
         self.mainRouter.di = self
     }
 }

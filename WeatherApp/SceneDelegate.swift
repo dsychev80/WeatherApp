@@ -27,7 +27,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 }
 
 protocol Router {
-    var di: DIContainer? { get set }
+    var di: DIContainer! { get set }
     func start()
     func searchScreenOpen()
     func searchCity(_ name: String)

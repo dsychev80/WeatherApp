@@ -10,14 +10,11 @@ import UIKit
 class MainRouterImpl {
     // MARK: - Properties
     private let navigationController: UINavigationController
-    private let screenFabric: ScreenFabric
-    public var di: DIContainer?
+    internal var di: DIContainer!
     
     // MARK: - Lifecycle
-    init(with navigationController: UINavigationController, and screenFabric: ScreenFabric) {
+    init(with navigationController: UINavigationController) {
         self.navigationController = navigationController
-        self.screenFabric = screenFabric
-
         setup()
     }
     
@@ -27,27 +24,26 @@ class MainRouterImpl {
     }
     
     private func showMainScreen() {
-        navigationController.pushViewController(screenFabric.createMainViewController(), animated: true)
+        let mainFabric = MainScreenFabricImpl(with: di)
+        navigationController.pushViewController(mainFabric.createMainViewController(), animated: true)
     }
 }
 
     // MARK: - Router
 extension MainRouterImpl: Router {
+    
     public func start() {
         showMainScreen()
     }
     
     public func searchScreenOpen() {
-        let searchVC = screenFabric.createSearchViewController()
+        let searchFabric = SearchScreenFabricImpl(with: di)
+        let searchVC = searchFabric.createSearchViewController()
         navigationController.present( searchVC, animated: true)
     }
     
     func searchCity(_ name: String) {
         navigationController.topViewController?.dismiss(animated: false)
-        guard let di = di else {
-            print("guard condition not met at: \(#file) \(#line) \(#function)")
-            return
-        }
         di.mainPresenter.recieveWeatherForCityName(name)
     }
     
@@ -57,8 +53,10 @@ extension MainRouterImpl: Router {
 }
 
     // MARK: - ScreenFabric protocol
-protocol ScreenFabric {
-    var di: DIContainer? { get set }
+protocol MainScreenFabric {
     func createMainViewController() -> UIViewController
+}
+
+protocol SearchScreenFabric {
     func createSearchViewController() -> UIViewController
 }
