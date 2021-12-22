@@ -250,8 +250,8 @@
 		737B1CE22758AEE400397F19 /* MainScreen */ = {
 			isa = PBXGroup;
 			children = (
-				737B1CE92758B9A800397F19 /* Cells */,
 				737B1CE52758B3DC00397F19 /* Network */,
+				737B1CE92758B9A800397F19 /* Cells */,
 				73765C562759039100C1CA4E /* MainView.swift */,
 				737B1C902753930E00397F19 /* MainPresenter.swift */,
 				73F037B5274BE33600C130FC /* MainViewController.swift */,

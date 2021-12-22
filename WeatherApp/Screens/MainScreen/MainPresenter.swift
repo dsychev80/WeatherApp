@@ -12,8 +12,8 @@ final class MainPresenterImpl: MainPresenter {
     // MARK: - Properties
     private let networkController: NetworkManager
     private let locationManager: LocationManager
-    public var router: MainRouter
-    public var mainViewController: MainViewProtocol!
+    private var router: MainRouter
+    public weak var mainViewController: MainViewProtocol!
     
     // MARK: - Lifecycle
     init(with networkController: NetworkManager, locationManager: LocationManager, router: MainRouter) {
@@ -24,12 +24,7 @@ final class MainPresenterImpl: MainPresenter {
     
     // MARK: - Methods
     public func recieveWeatherForCityName(_ name: String) {
-        locationManager.getCityCoordinatesByName(name) { [weak self] result in
-            guard let self = self else {
-                print("guard condition not met at: \(#file) \(#line) \(#function)")
-                return
-            }
-
+        locationManager.getCityCoordinatesByName(name) { [unowned self] result in
             switch result {
             case .failure(let error):
                 // MARK: need to handle the error
@@ -40,12 +35,8 @@ final class MainPresenterImpl: MainPresenter {
         }
     }
     
-    public func loadWeatherForCoordinates(_ coordinates: LocationData) {
-        networkController.loadWeatherForLocation(coordinates) { [weak self] result in
-            guard let self = self else {
-                print("guard condition not met at: \(#file) \(#line) \(#function)")
-                return
-            }
+    private func loadWeatherForCoordinates(_ coordinates: LocationData) {
+        networkController.loadWeatherForLocation(coordinates) { [unowned self] result in
             switch result {
             case .failure(let error):
                 // FIXME: Handle error
