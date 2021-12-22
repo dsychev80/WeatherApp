@@ -43,7 +43,7 @@
 		737B1C952753964C00397F19 /* extensions+URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737B1C942753964C00397F19 /* extensions+URL.swift */; };
 		737B1C9727539E5D00397F19 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737B1C9627539E5D00397F19 /* Location.swift */; };
 		737B1C992753A38C00397F19 /* WeatherAppErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737B1C982753A38C00397F19 /* WeatherAppErrors.swift */; };
-		737B1C9C2753B79100397F19 /* DIConteiner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737B1C9B2753B79100397F19 /* DIConteiner.swift */; };
+		737B1C9C2753B79100397F19 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737B1C9B2753B79100397F19 /* AppCoordinator.swift */; };
 		737B1CD92757840500397F19 /* ForecastForDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737B1CD82757840500397F19 /* ForecastForDay.swift */; };
 		737B1CDB27578D0000397F19 /* HoursWeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737B1CDA27578D0000397F19 /* HoursWeatherModel.swift */; };
 		737B1CDD2757962900397F19 /* JSONWeatherData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737B1CDC2757962900397F19 /* JSONWeatherData.swift */; };
@@ -130,7 +130,7 @@
 		737B1C942753964C00397F19 /* extensions+URL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "extensions+URL.swift"; sourceTree = "<group>"; };
 		737B1C9627539E5D00397F19 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		737B1C982753A38C00397F19 /* WeatherAppErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherAppErrors.swift; sourceTree = "<group>"; };
-		737B1C9B2753B79100397F19 /* DIConteiner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DIConteiner.swift; sourceTree = "<group>"; };
+		737B1C9B2753B79100397F19 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		737B1CD82757840500397F19 /* ForecastForDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastForDay.swift; sourceTree = "<group>"; };
 		737B1CDA27578D0000397F19 /* HoursWeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoursWeatherModel.swift; sourceTree = "<group>"; };
 		737B1CDC2757962900397F19 /* JSONWeatherData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONWeatherData.swift; sourceTree = "<group>"; };
@@ -229,12 +229,12 @@
 			path = HourCell;
 			sourceTree = "<group>";
 		};
-		737B1CD52757782200397F19 /* DI */ = {
+		737B1CD52757782200397F19 /* AppCoordinator */ = {
 			isa = PBXGroup;
 			children = (
-				737B1C9B2753B79100397F19 /* DIConteiner.swift */,
+				737B1C9B2753B79100397F19 /* AppCoordinator.swift */,
 			);
-			path = DI;
+			path = AppCoordinator;
 			sourceTree = "<group>";
 		};
 		737B1CE12758AEBE00397F19 /* Screens */ = {
@@ -425,12 +425,12 @@
 			path = WeatherAppTesting;
 			sourceTree = "<group>";
 		};
-		73DA79742768C506003DFFA1 /* Coordinator */ = {
+		73DA79742768C506003DFFA1 /* Router */ = {
 			isa = PBXGroup;
 			children = (
 				73DA797D276A1E33003DFFA1 /* MainRouterImpl.swift */,
 			);
-			path = Coordinator;
+			path = Router;
 			sourceTree = "<group>";
 		};
 		73DA7981276B4AB5003DFFA1 /* ContainerView */ = {
@@ -469,8 +469,8 @@
 				737B1CE72758B42700397F19 /* UI */,
 				737B1CE62758B3FA00397F19 /* Models */,
 				737B1CE12758AEBE00397F19 /* Screens */,
-				73DA79742768C506003DFFA1 /* Coordinator */,
-				737B1CD52757782200397F19 /* DI */,
+				73DA79742768C506003DFFA1 /* Router */,
+				737B1CD52757782200397F19 /* AppCoordinator */,
 				73F0379A274BD67600C130FC /* AppDelegate.swift */,
 				73F0379C274BD67600C130FC /* SceneDelegate.swift */,
 				732DC05D276B767500B5E1A7 /* R.generated.swift */,
@@ -675,7 +675,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				737D7098276757D2005BD83C /* extension+UILabel.swift in Sources */,
-				737B1C9C2753B79100397F19 /* DIConteiner.swift in Sources */,
+				737B1C9C2753B79100397F19 /* AppCoordinator.swift in Sources */,
 				737D70A1276892B3005BD83C /* CitiesCollectionView.swift in Sources */,
 				73F0379B274BD67600C130FC /* AppDelegate.swift in Sources */,
 				730515FD27721DF900C5F6E7 /* SearchScreenFabric.swift in Sources */,

@@ -11,7 +11,7 @@ import UIKit
 class SearchScreenFabricImpl: SearchScreenFabric {
     let di: SearchScreenDIContainer
     
-    init(with di: DIContainer) {
+    init(with di: AppCoordinator) {
         self.di = SearchScreenDIContainer(with: di)
     }
     

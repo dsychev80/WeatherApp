@@ -11,13 +11,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
     
-    private var diContainer: DIContainer!
+    private var diContainer: AppCoordinator!
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
 
         guard let windowScene = scene as? UIWindowScene else { return }
         window = UIWindow(windowScene: windowScene)
 
-        diContainer = DIContainer(with: window!)
+        diContainer = AppCoordinator(with: window!)
     }
 }

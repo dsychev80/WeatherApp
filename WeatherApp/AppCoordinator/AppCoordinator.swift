@@ -1,5 +1,5 @@
 //
-//  DIConteiner.swift
+//  AppCoordinator.swift
 //  WeatherApp
 //
 //  Created by Denis Sychev on 28.11.2021.
@@ -8,10 +8,10 @@
 import UIKit
 
 
-final class DIContainer {
+final class AppCoordinator {
     // MARK: - Properties
     var navigationController: UINavigationController
-    var mainRouter: Router
+    var mainRouter: MainRouter
     
     // MARK: - Lifecycle
     init(with window: UIWindow) {
@@ -25,8 +25,8 @@ final class DIContainer {
     }
 }
 
-protocol Router {
-    var di: DIContainer! { get set }
+protocol MainRouter {
+    var di: AppCoordinator! { get set }
     func start()
     func searchScreenOpen()
     func searchCity(_ name: String)

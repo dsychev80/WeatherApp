@@ -10,7 +10,7 @@ import Foundation
 class SearchScreenDIContainer {
     public let presenter: CitySearchPresenter
     
-    init(with di: DIContainer) {
+    init(with di: AppCoordinator) {
         self.presenter = CitySearchPresenterImpl(with: di.mainRouter)
     }
 }

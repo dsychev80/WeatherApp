@@ -10,12 +10,12 @@ import Foundation
 class CitySearchPresenterImpl: CitySearchPresenter {
     // MARK: - Properties
     weak var searchViewController: CitySearchView!
-    public var router: Router
+    public var router: MainRouter
     
     let cities = ["Тамбов", "Тюмень", "Тула", "Темрюк", "Таганрог", "Тьматараканья", "Тбилисси"]
     
     // MARK: - Lifecycle
-    init(with router: Router) {
+    init(with router: MainRouter) {
         self.router = router
     }
     

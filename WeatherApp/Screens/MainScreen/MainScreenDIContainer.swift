@@ -12,7 +12,7 @@ class MainScreenDIContainer {
     let locationManager: LocationManager
     let mainPresenter: MainPresenter
     
-    init(with di: DIContainer) {
+    init(with di: AppCoordinator) {
         self.networkController = NetworkProvider()
         self.locationManager = LocationManagerImpl()
         self.mainPresenter = MainPresenterImpl(with: networkController, locationManager: locationManager, router: di.mainRouter)

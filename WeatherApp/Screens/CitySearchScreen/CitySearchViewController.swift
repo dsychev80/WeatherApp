@@ -61,7 +61,7 @@ protocol CitySearchView: AnyObject {
 
 protocol CitySearchPresenter: AnyObject {
     var searchViewController: CitySearchView! { get set }
-    var router: Router { get set }
+    var router: MainRouter { get set }
     func searchCityWithName(_ name: String)
     func provideCities() -> [String]
     func dismiss()

@@ -12,11 +12,11 @@ final class MainPresenterImpl: MainPresenter {
     // MARK: - Properties
     private let networkController: NetworkManager
     private let locationManager: LocationManager
-    public var router: Router
+    public var router: MainRouter
     public var mainViewController: MainViewProtocol!
     
     // MARK: - Lifecycle
-    init(with networkController: NetworkManager, locationManager: LocationManager, router: Router) {
+    init(with networkController: NetworkManager, locationManager: LocationManager, router: MainRouter) {
         self.networkController = networkController
         self.locationManager = locationManager
         self.router = router

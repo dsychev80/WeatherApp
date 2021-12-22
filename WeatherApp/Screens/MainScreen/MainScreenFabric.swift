@@ -9,7 +9,7 @@ import UIKit
 class MainScreenFabricImpl: MainScreenFabric {
     private let di: MainScreenDIContainer
     
-    init(with di: DIContainer) {
+    init(with di: AppCoordinator) {
         self.di = MainScreenDIContainer(with: di)
     }
     

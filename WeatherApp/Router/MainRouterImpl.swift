@@ -11,7 +11,7 @@ class MainRouterImpl {
     // MARK: - Properties
     private let navigationController: UINavigationController
     private var mainScreenFabric: MainScreenFabric?
-    internal var di: DIContainer!
+    internal var di: AppCoordinator!
     
     // MARK: - Lifecycle
     init(with navigationController: UINavigationController) {
@@ -23,17 +23,13 @@ class MainRouterImpl {
     private func setup() {
         navigationController.setNavigationBarHidden(true, animated: false)
     }
-    
-    private func showMainScreen() {
-        mainScreenFabric = MainScreenFabricImpl(with: di)
-        navigationController.pushViewController(mainScreenFabric!.createMainViewController(), animated: true)
-    }
 }
 
     // MARK: - Router
-extension MainRouterImpl: Router {
+extension MainRouterImpl: MainRouter {
     public func start() {
-        showMainScreen()
+        mainScreenFabric = MainScreenFabricImpl(with: di)
+        navigationController.pushViewController(mainScreenFabric!.createMainViewController(), animated: true)
     }
     
     public func searchScreenOpen() {
