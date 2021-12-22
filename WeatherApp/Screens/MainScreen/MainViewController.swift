@@ -39,8 +39,7 @@ extension MainViewController: MainView {
             guard let self = self else {
                 fatalError("self not found")
             }
-            self.containerView.configureView(withData: data)
-            self.containerView.provideDataToNavBar(name)
+            self.containerView.configureView(withData: data, andBarTitle: name)
         }
     }
 }

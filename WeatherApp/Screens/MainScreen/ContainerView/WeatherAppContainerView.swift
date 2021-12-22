@@ -43,12 +43,9 @@ class WeatherAppContainerView<ContainedView: ContentView>: UIView {
         self.addSubview(navigationBar)
     }
     
-    public func configureNavBar(withData data: String) {
-        navigationBar.setTitle(with: data)
-    }
-    
-    public func configureView(withData data: ContainedView.ModelType) {
+    public func configureView(withData data: ContainedView.ModelType, andBarTitle title: String) {
         containedView.configure(with: data)
+        navigationBar.setTitle(with: title)
     }
 }
 
@@ -56,12 +53,8 @@ extension WeatherAppContainerView: ContainerView {
     typealias NavigationBarTypeModel = String
     typealias ContainedViewTypeModel = ContainedView.ModelType
     
-    func provideDataToNavBar(_ data: String) {
-        configureNavBar(withData: data)
-    }
-    
-    func provideDataToContainedView(_ data: ContainedView.ModelType) {
-        configureView(withData: data)
+    func provideDataToContainedView(_ data: ContainedView.ModelType, andBarData barData: String) {
+        configureView(withData: data, andBarTitle: barData)
     }
 }
 
@@ -75,7 +68,6 @@ protocol ContainerView: UIView {
     associatedtype NavigationBarTypeModel
     associatedtype ContainedViewTypeModel
 
-    func provideDataToNavBar(_ data: NavigationBarTypeModel)
-    func provideDataToContainedView(_ data: ContainedViewTypeModel)
+    func provideDataToContainedView(_ data: ContainedViewTypeModel, andBarData barData: NavigationBarTypeModel)
 }
 
