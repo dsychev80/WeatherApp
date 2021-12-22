@@ -11,7 +11,7 @@ import UIKit
 class CitySearchViewController: UIViewController, CitySearchView {
     // MARK: - Properties
     private var backView: SearchBackView { view as! SearchBackView }
-    var presenter: CitySearchPresenter
+    private var presenter: CitySearchPresenter
     
     // MARK: - Lifecycle
     required init?(coder: NSCoder) {
@@ -54,7 +54,6 @@ extension CitySearchViewController: CitySearchDelegate {
 }
 
 protocol CitySearchView: AnyObject {
-    var presenter: CitySearchPresenter { get set }
     func getCities()
 }
 

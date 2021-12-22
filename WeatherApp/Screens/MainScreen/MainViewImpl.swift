@@ -1,5 +1,5 @@
 //
-//  MainView.swift
+//  MainViewImpl.swift
 //  WeatherApp
 //
 //  Created by Denis Sychev on 02.12.2021.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MainView: UITableView {
+class MainViewImpl: UITableView {
     // MARK: - Properties
     private var diffableDataSource: UITableViewDiffableDataSource<Int, Item>!
     
@@ -51,7 +51,7 @@ class MainView: UITableView {
     }
 }
 
-extension MainView: ContentView {
+extension MainViewImpl: ContentView {
     func configureWithData(_ data: [Item]) {
         configure(with: data)
     }

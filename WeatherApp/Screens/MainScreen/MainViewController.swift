@@ -10,8 +10,8 @@ import UIKit
 
 class MainViewController: UIViewController {
     // MARK: - Properties
-    public weak var presenter: MainPresenter?
-    private var containerView: WeatherAppContainerView<MainView> { view as! WeatherAppContainerView<MainView> }
+    public var presenter: MainPresenter?
+    private var containerView: WeatherAppContainerView<MainViewImpl> { view as! WeatherAppContainerView<MainViewImpl> }
 
     // MARK: - Lifecycle
     required init?(coder: NSCoder) {
@@ -26,14 +26,14 @@ class MainViewController: UIViewController {
         guard let presenter = presenter, let eventHandler = presenter as? NavigationBarEventHandler else {
             fatalError("Presenter not found")
         }
-        presenter.mainViewController = self
-        let tableView = MainView()
+        presenter.view = self
+        let tableView = MainViewImpl()
         view = WeatherAppContainerView(withView: tableView, and: eventHandler)
     }
 }
 
-    // MARK: - MainViewProtocol
-extension MainViewController: MainViewProtocol {
+    // MARK: - MainView
+extension MainViewController: MainView {
     public func provideForcastData(_ data: [Item], forCity name: String) {
         DispatchQueue.main.async { [weak self] in
             guard let self = self else {
@@ -47,6 +47,6 @@ extension MainViewController: MainViewProtocol {
 
     // MARK: - MainPresenter protocol
 protocol MainPresenter: AnyObject {
-    var mainViewController: MainViewProtocol! { get set }
+    var view: MainView! { get set }
     func recieveWeatherForCityName(_ name: String)
 }

@@ -13,7 +13,7 @@ final class MainPresenterImpl {
     private let networkController: NetworkManager
     private let locationManager: LocationManager
     private var router: MainRouter
-    public weak var mainViewController: MainViewProtocol!
+    public weak var view: MainView!
     
     // MARK: - Lifecycle
     init(with networkController: NetworkManager, locationManager: LocationManager, router: MainRouter) {
@@ -30,7 +30,7 @@ final class MainPresenterImpl {
                 // FIXME: Handle error
                 print(error.localizedDescription)
             case .success(let weather):
-                self.mainViewController.provideForcastData(weather.convertToItems(),forCity: weather.city.name)
+                self.view.provideForcastData(weather.convertToItems(),forCity: weather.city.name)
             
             }
         }
@@ -59,7 +59,7 @@ extension MainPresenterImpl: NavigationBarEventHandler {
     }
     
     public func search() {
-        router.searchScreenOpen { [unowned self] cityName in
+        router.openSearchScreen { [unowned self] cityName in
             self.recieveWeatherForCityName(cityName)
         }
     }
@@ -69,8 +69,8 @@ extension MainPresenterImpl: NavigationBarEventHandler {
     }
 }
 
-    // MARK: - MainViewProtocol
-protocol MainViewProtocol: AnyObject {
+    // MARK: - MainView
+protocol MainView: AnyObject {
     func provideForcastData(_ data: [Item], forCity name: String)
 }
 
