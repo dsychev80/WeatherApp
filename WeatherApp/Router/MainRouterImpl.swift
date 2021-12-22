@@ -47,7 +47,6 @@ extension MainRouterImpl: MainRouter {
     // MARK: - ScreenFabric protocol
 protocol MainScreenFabric {
     func createMainViewController() -> UIViewController
-    func updateMainViewControllerForCity(_ name: String)
 }
 
 protocol SearchScreenFabric {

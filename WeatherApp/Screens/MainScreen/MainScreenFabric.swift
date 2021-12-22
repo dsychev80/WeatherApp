@@ -18,8 +18,4 @@ class MainScreenFabricImpl: MainScreenFabric {
         mainViewController.presenter = di.mainPresenter
         return mainViewController
     }
-    
-    public func updateMainViewControllerForCity(_ name: String) {
-        di.mainPresenter.recieveWeatherForCityName(name)
-    }
 }
