@@ -34,12 +34,17 @@ class MainViewController: UIViewController {
 
     // MARK: - MainView
 extension MainViewController: MainView {
+    func startLoadingWeather() {
+        containerView.startLoading()
+    }
+    
     public func provideForcastData(_ data: [Item], forCity name: String) {
         DispatchQueue.main.async { [weak self] in
             guard let self = self else {
                 fatalError("self not found")
             }
             self.containerView.configureView(withData: data, andBarTitle: name)
+            self.containerView.stopLoading()
         }
     }
 }

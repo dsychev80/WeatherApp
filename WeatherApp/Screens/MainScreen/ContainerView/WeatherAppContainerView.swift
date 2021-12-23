@@ -12,6 +12,7 @@ class WeatherAppContainerView<ContainedView: ContentView>: UIView {
     // MARK: - Properties
     private var navigationBar: NavigationBar
     private var containedView: ContainedView
+    private var activityIndicator: UIActivityIndicatorView
     
     // MARK: - LifeCycle
     required init?(coder: NSCoder) {
@@ -21,14 +22,16 @@ class WeatherAppContainerView<ContainedView: ContentView>: UIView {
     required init(withView view: ContainedView, and eventHandler: NavigationBarEventHandler) {
         navigationBar = NavigationBar(with: eventHandler)
         containedView = view
+        activityIndicator = UIActivityIndicatorView(frame: .zero)
         super.init(frame: .zero)
         setup()
     }
     
     // MARK: - Methods
     private func setup() {
-
+        self.backgroundColor = .white
         setupLayout()
+        setupAcivityIndicator()
     }
     
     private func setupLayout() {
@@ -40,7 +43,17 @@ class WeatherAppContainerView<ContainedView: ContentView>: UIView {
             make.right.equalTo(self.snp_right)
         }
         
+        self.addSubview(activityIndicator)
+        activityIndicator.snp.makeConstraints { make in
+            make.centerX.centerY.equalTo(self)
+        }
+        
         self.addSubview(navigationBar)
+    }
+    
+    private func setupAcivityIndicator() {
+        activityIndicator.style = .large
+        activityIndicator.hidesWhenStopped = true
     }
     
     public func configureView(withData data: ContainedView.ModelType, andBarTitle title: String) {
@@ -56,6 +69,16 @@ extension WeatherAppContainerView: ContainerView {
     func provideDataToContainedView(_ data: ContainedView.ModelType, andBarData barData: String) {
         configureView(withData: data, andBarTitle: barData)
     }
+    
+    public func startLoading() {
+        activityIndicator.startAnimating()
+        containedView.isHidden = true
+    }
+    
+    public func stopLoading() {
+        activityIndicator.stopAnimating()
+        containedView.isHidden = false
+    }
 }
 
 protocol ContentView: UIView {
@@ -68,6 +91,8 @@ protocol ContainerView: UIView {
     associatedtype NavigationBarTypeModel
     associatedtype ContainedViewTypeModel
 
+    func startLoading()
+    func stopLoading()
     func provideDataToContainedView(_ data: ContainedViewTypeModel, andBarData barData: NavigationBarTypeModel)
 }
 

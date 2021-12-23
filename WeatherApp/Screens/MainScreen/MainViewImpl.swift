@@ -23,6 +23,7 @@ class MainViewImpl: UITableView {
     }
     
     // MARK: - Methods
+    
     private func styleSetup() {
         self.separatorStyle = .none
         self.translatesAutoresizingMaskIntoConstraints = false

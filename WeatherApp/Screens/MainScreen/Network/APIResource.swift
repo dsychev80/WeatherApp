@@ -11,12 +11,11 @@ import Foundation
     api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={API key}
  */
 
-struct WeatherResource: ApiResource {
+struct WeatherResource {
     
     private enum Constants: String {
         case url = "https://api.openweathermap.org/data/2.5/forecast?"
         case apiKey = "08e77799ad87c75f8ae1192abab79639"
-        // possible to use another enum with different languages
         case lang = "ru"
         case units = "metric"
     }
@@ -26,23 +25,13 @@ struct WeatherResource: ApiResource {
     var parameters: [String : String] = ["appid": Constants.apiKey.rawValue,
                                          "lang": Constants.lang.rawValue,
                                          "units": Constants.units.rawValue]
+    var url: URL? {
+        guard let baseUrl = URL(string: apiURL) else { return nil }
+        return baseUrl.appendingParameters(parameters)
+    }
     
     mutating func addLocation(_ location: LocationData) {
         parameters.updateValue(location.stringLatt, forKey: "lat")
         parameters.updateValue(location.stringLong, forKey: "lon")
-    }
-}
-
-
-protocol ApiResource {
-    
-    var apiURL: String { get }
-    var parameters: [String: String] { get set }
-}
-
-extension ApiResource {
-    var url: URL? {
-        guard let baseUrl = URL(string: apiURL) else { return nil }
-        return baseUrl.appendingParameters(parameters)
     }
 }

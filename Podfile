@@ -5,4 +5,5 @@ use_frameworks!
 target 'WeatherApp' do
      pod 'SnapKit', '~> 4.0'
      pod 'R.swift'
+     pod 'Alamofire', '~> 5.5'
 end
