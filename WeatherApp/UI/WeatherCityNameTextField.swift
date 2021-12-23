@@ -24,6 +24,10 @@ class WeatherCityNameTextField: UITextField {
     let insets: UIEdgeInsets
     
     // MARK: - Lifecycle
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     required init() {
         self.insets = UIEdgeInsets(top: topInset,
                                    left: leftInset,
@@ -31,10 +35,6 @@ class WeatherCityNameTextField: UITextField {
                                    right: rightInset)
         super.init(frame: CGRect.zero)
         configurate()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
     
     // MARK: - Methods

@@ -10,7 +10,7 @@ import UIKit
 
 // MARK: - WeatherModel
 struct WeatherModel: Decodable, Equatable, Hashable {
-    let weather: [Weather]
+    let weather: [WeatherBrief]
     let main: MainWeatherInfo
     let wind: Wind
     let dt: Double
@@ -77,8 +77,8 @@ extension WeatherModel {
         return model
     }
 
-    func convertToForecastModel() -> ForecastData {
-        var forcast = ForecastData()
+    func convertToForecastModel() -> ForecastForDay {
+        var forcast = ForecastForDay()
         forcast.date = self.convertedTime()
         forcast.minTemp = self.main.tempMin.toDegreesInString()
         forcast.maxTemp = self.main.tempMax.toDegreesInString()
@@ -94,8 +94,8 @@ extension WeatherModel {
     }
 }
 
-// MARK: - Weather
-struct Weather: Decodable, Equatable, Hashable {
+// MARK: - WeatherBrief
+struct WeatherBrief: Decodable, Equatable, Hashable {
     let main: String
     let description: String
     let icon: String

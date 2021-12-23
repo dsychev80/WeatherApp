@@ -15,19 +15,22 @@ struct JSONWeatherData: Decodable, Equatable, Hashable {
 extension JSONWeatherData {
     
     public func returnTodayWeather() -> TodayData? {
-        guard let weatherModel = self.list.first else { return nil }
+        guard let weatherModel = self.list.first else {
+            print("guard condition not met at: \(#file) \(#line) \(#function)")
+            return nil
+        }
         return weatherModel.convertToTodayData()
     }
 
-    public func convertToForecastByDay() -> [ForecastData] {
+    public func convertToForecastByDay() -> [ForecastForDay] {
         let formatter = DateFormatter()
         // "dt_txt":"2021-11-29 15:00:00"
         formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         let dayFormatter = DateFormatter()
         dayFormatter.dateFormat = "dd"
         
-        var forcast: [ForecastData] = []
-        var weatherBuffer = ForecastData()
+        var forcast: [ForecastForDay] = []
+        var weatherBuffer = ForecastForDay()
         
         var currentDay: Int = 0
         self.list.forEach { weather in
@@ -38,10 +41,10 @@ extension JSONWeatherData {
                 // compare days
                 if currentDay == day {
                     // add to forecast by day
-                    weatherBuffer.forecast.append(weather.convertToHoursWeatherModel())
+                    weatherBuffer.forecastByHour.append(weather.convertToHoursWeatherModel())
                 } else {
                     // add forecast to buffer
-                    weatherBuffer.forecast.append(weather.convertToHoursWeatherModel())
+                    weatherBuffer.forecastByHour.append(weather.convertToHoursWeatherModel())
                     forcast.append(weatherBuffer)
                     weatherBuffer = weather.convertToForecastModel()
                     currentDay = day
@@ -53,8 +56,10 @@ extension JSONWeatherData {
     }
     
     public func convertToItems() -> [Item] {
-        guard  let todayWeather = self.returnTodayWeather()
-                else { return [] }
+        guard  let todayWeather = self.returnTodayWeather() else {
+            print("guard condition not met at: \(#file) \(#line) \(#function)")
+            return []
+        }
         let dayWeatherItem = Item.today(todayWeather)
         var items = self.convertToForecastByDay()
             .map { Item.forecast($0) }

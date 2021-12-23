@@ -9,20 +9,14 @@ import Foundation
 @testable import WeatherApp
 
 class MainView_Mock: MainView {
-    
     var isCalledProvideForcastData: Bool = false
-    var isCalledReciviedForCity: Bool = false
     
     var nameRecivied: String = ""
     var dataReceived: [Item]?
     
-    func provideForcastData(_ data: [Item]) {
+    func provideForcastData(_ data: [Item], forCity name: String) {
         isCalledProvideForcastData = true
         dataReceived = data
-    }
-    
-    func dataReciviedForCity(_ name: String) {
-        isCalledReciviedForCity = true
         nameRecivied = name
     }
 }

@@ -9,5 +9,5 @@ import Foundation
 
 enum Item: Hashable {
     case today(TodayData)
-    case forecast(ForecastData)
+    case forecast(ForecastForDay)
 }

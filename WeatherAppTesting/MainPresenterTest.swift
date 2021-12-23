@@ -34,7 +34,6 @@ class MainPresenterTest: XCTestCase {
         XCTAssertTrue(networkMock.isCalled)
         XCTAssertEqual(networkMock.mockLocation, location)
         
-        XCTAssertTrue(mainView.isCalledReciviedForCity)
         XCTAssertTrue(mainView.isCalledProvideForcastData)
         XCTAssertEqual(mainView.nameRecivied, name)
         XCTAssertEqual(mainView.dataReceived, items)
@@ -55,7 +54,6 @@ class MainPresenterTest: XCTestCase {
         
         XCTAssertFalse(networkMock.isCalled)
         XCTAssertFalse(mainView.isCalledProvideForcastData)
-        XCTAssertFalse(mainView.isCalledReciviedForCity)
     }
     
     func testMainPresenterForIncorrectData() {
@@ -78,7 +76,6 @@ class MainPresenterTest: XCTestCase {
         XCTAssertTrue(networkMock.isCalled)
         XCTAssertEqual(networkMock.mockLocation, location)
         
-        XCTAssertFalse(mainView.isCalledReciviedForCity)
         XCTAssertFalse(mainView.isCalledProvideForcastData)
     }
     
