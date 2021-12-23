@@ -13,6 +13,7 @@ class WeatherAppContainerView<ContainedView: ContentView>: UIView {
     private var navigationBar: NavigationBar
     private var containedView: ContainedView
     private var activityIndicator: UIActivityIndicatorView
+    private var errorView: ErrorView
     
     // MARK: - LifeCycle
     required init?(coder: NSCoder) {
@@ -23,6 +24,7 @@ class WeatherAppContainerView<ContainedView: ContentView>: UIView {
         navigationBar = NavigationBar(with: eventHandler)
         containedView = view
         activityIndicator = UIActivityIndicatorView(frame: .zero)
+        errorView = ErrorView()
         super.init(frame: .zero)
         setup()
     }
@@ -30,6 +32,7 @@ class WeatherAppContainerView<ContainedView: ContentView>: UIView {
     // MARK: - Methods
     private func setup() {
         self.backgroundColor = .white
+        errorView.isHidden = true
         setupLayout()
         setupAcivityIndicator()
     }
@@ -45,7 +48,12 @@ class WeatherAppContainerView<ContainedView: ContentView>: UIView {
         
         self.addSubview(activityIndicator)
         activityIndicator.snp.makeConstraints { make in
-            make.centerX.centerY.equalTo(self)
+            make.centerX.centerY.equalToSuperview()
+        }
+        
+        self.addSubview(errorView)
+        errorView.snp.makeConstraints { make in
+            make.centerX.centerY.equalToSuperview()
         }
         
         self.addSubview(navigationBar)
@@ -73,11 +81,17 @@ extension WeatherAppContainerView: ContainerView {
     public func startLoading() {
         activityIndicator.startAnimating()
         containedView.isHidden = true
+        errorView.isHidden = true
     }
     
     public func stopLoading() {
         activityIndicator.stopAnimating()
         containedView.isHidden = false
+    }
+    
+    public func showError(_ text: String) {
+        errorView.isHidden = false
+        errorView.showErrorText(text)
     }
 }
 
@@ -93,6 +107,7 @@ protocol ContainerView: UIView {
 
     func startLoading()
     func stopLoading()
+    func showError(_ text: String)
     func provideDataToContainedView(_ data: ContainedViewTypeModel, andBarData barData: NavigationBarTypeModel)
 }
 
