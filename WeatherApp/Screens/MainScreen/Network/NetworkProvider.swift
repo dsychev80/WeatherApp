@@ -19,13 +19,22 @@ final class NetworkProvider: NetworkManager {
             return
         }
 
-        AF.request(url).validate().responseDecodable(of: JSONWeatherData.self) { response in
-            switch response.result {
-            case .success(let data):
-                completion(.success(data))
-            case .failure(let error):
-                completion(.failure(WeatherError.errorFromLocationServer(error.localizedDescription)))
-            }
+        AF.request(url)
+            .validate()
+            .responseDecodable(of: JSONWeatherData.self) { response in
+                guard let statusCode = response.response?.statusCode else { return }
+                if (200..<300).contains(statusCode) {
+                    switch response.result {
+                    case .success(let data):
+                        completion(.success(data))
+                    case .failure(let error):
+                        completion(.failure(WeatherError.errorFromLocationServer(error.localizedDescription)))
+                    }
+                } else if (400..<500).contains(statusCode) {
+                    completion(.failure(WeatherError.clientError(response.error?.localizedDescription ?? "Server can't operate request. Status code is \(statusCode)")))
+                } else if (500..<600).contains(statusCode) {
+                    completion(.failure(WeatherError.serverError(response.error?.localizedDescription ?? "Server error. Status code is \(statusCode)")))
+                }
         }
     }
 }
