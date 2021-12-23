@@ -13,7 +13,7 @@ class MainPresenterTest: XCTestCase {
     var networkMock = NetworkController_Mock()
     var locationMock = LocationController_Mock()
     var mainView = MainView_Mock()
-    var router = MainRouterImpl(with: UINavigationController(), and: ScreenFabricImpl())
+    var router = MainRouterImpl(with: UINavigationController())
     var mainPresenter: MainPresenter!
     
     func testMainPresenterForCorrectData() {
@@ -35,6 +35,7 @@ class MainPresenterTest: XCTestCase {
         XCTAssertEqual(networkMock.mockLocation, location)
         
         XCTAssertTrue(mainView.isCalledProvideForcastData)
+        XCTAssertTrue(mainView.isCalledStartLoadingWeather)
         XCTAssertEqual(mainView.nameRecivied, name)
         XCTAssertEqual(mainView.dataReceived, items)
     }
@@ -53,6 +54,7 @@ class MainPresenterTest: XCTestCase {
         XCTAssertEqual(locationMock.mockName, name)
         
         XCTAssertFalse(networkMock.isCalled)
+        XCTAssertTrue(mainView.isCalledStartLoadingWeather)
         XCTAssertFalse(mainView.isCalledProvideForcastData)
     }
     
@@ -77,13 +79,14 @@ class MainPresenterTest: XCTestCase {
         XCTAssertEqual(networkMock.mockLocation, location)
         
         XCTAssertFalse(mainView.isCalledProvideForcastData)
+        XCTAssertTrue(mainView.isCalledStartLoadingWeather)
     }
     
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
         mainPresenter = MainPresenterImpl(with: networkMock, locationManager: locationMock, router: router)
         mainView = MainView_Mock()
-        mainPresenter.mainViewController = mainView
+        mainPresenter.view = mainView
     }
 
     override func tearDownWithError() throws {

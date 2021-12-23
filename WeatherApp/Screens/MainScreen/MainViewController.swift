@@ -52,4 +52,5 @@ extension MainViewController: MainView {
     // MARK: - MainPresenter protocol
 protocol MainPresenter: AnyObject {
     var view: MainView! { get set }
+    func recieveWeatherForCityName(_ name: String)
 }

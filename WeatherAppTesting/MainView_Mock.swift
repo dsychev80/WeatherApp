@@ -9,10 +9,16 @@ import Foundation
 @testable import WeatherApp
 
 class MainView_Mock: MainView {
+    
+    var isCalledStartLoadingWeather: Bool = false
     var isCalledProvideForcastData: Bool = false
     
     var nameRecivied: String = ""
     var dataReceived: [Item]?
+    
+    func startLoadingWeather() {
+        isCalledStartLoadingWeather = true
+    }
     
     func provideForcastData(_ data: [Item], forCity name: String) {
         isCalledProvideForcastData = true
