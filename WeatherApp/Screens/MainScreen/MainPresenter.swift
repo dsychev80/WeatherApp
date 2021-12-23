@@ -40,6 +40,7 @@ final class MainPresenterImpl {
 // MARK: - MainPresenter
 extension MainPresenterImpl: MainPresenter {
     public func recieveWeatherForCityName(_ name: String) {
+        view.startLoadingWeather()
         locationManager.getCityCoordinatesByName(name) { [unowned self] result in
             switch result {
             case .failure(let error):
@@ -71,6 +72,7 @@ extension MainPresenterImpl: NavigationBarEventHandler {
 
     // MARK: - MainView
 protocol MainView: AnyObject {
+    func startLoadingWeather()
     func provideForcastData(_ data: [Item], forCity name: String)
 }
 
