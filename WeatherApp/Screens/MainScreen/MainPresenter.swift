@@ -28,7 +28,6 @@ final class MainPresenterImpl {
             switch result {
             case .failure(let error):
                 view.showError(error.localizedDescription)
-                print(error.localizedDescription)
             case .success(let weather):
                 self.view.provideForcastData(weather.convertToItems(),forCity: weather.city.name)
             
@@ -45,7 +44,6 @@ extension MainPresenterImpl: MainPresenter {
             switch result {
             case .failure(let error):
                 view.showError(error.localizedDescription)
-                print(error)
             case .success(let coordinates):
                 self.loadWeatherForCoordinates(coordinates)
             }

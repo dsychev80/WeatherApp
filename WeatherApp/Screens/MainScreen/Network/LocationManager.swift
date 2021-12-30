@@ -19,8 +19,7 @@ final class LocationManagerImpl: LocationManager {
             }
             
             guard let location = placeMarcs?.first?.location else {
-                print("guard condition not met at: \(#file) \(#line) \(#function)")
-                completion(.failure(WeatherError.missingLocation("Where is no place mark to return...")))
+                completion(.failure(WeatherError.missingLocation("Where is no place mark to entered city... Try another one.")))
                 return
             }
             let locationData = LocationData(longitude: location.coordinate.longitude,
