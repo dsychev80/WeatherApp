@@ -10,30 +10,42 @@ import Alamofire
 
 final class NetworkProvider: NetworkManager {
     
-    public func loadWeatherForLocation(_ location: LocationData, completion: @escaping (Result<JSONWeatherData, WeatherError>) -> Void) {
-
-        var api = WeatherResource()
-        api.addLocation(location)
-        guard let url = api.url else {
-            print("guard condition not met at: \(#file) \(#line) \(#function)")
-            return
+    private enum Constants: String {
+        case url
+        case apiKey = "appid"
+        case lang
+        case units
+        case lon
+        case lat
+        
+        func returnValue() -> String {
+            switch self {
+            case .url:
+                return "https://api.openweathermap.org/data/2.5/forecast?"
+            case .apiKey:
+                return "08e77799ad87c75f8ae1192abab79639"
+            case .lang:
+                return "ru"
+            case .units:
+                return "metric"
+            default:
+                return ""
+            }
         }
+    }
+    
+    public func loadWeatherForLocation(_ location: LocationData, completion: @escaping (Result<JSONWeatherData, WeatherError>) -> Void) {
+        
+        let parameters: [String: String] = [Constants.apiKey.rawValue: Constants.apiKey.returnValue(), Constants.lang.rawValue: Constants.lang.returnValue(), Constants.units.rawValue: Constants.units.returnValue(), Constants.lon.rawValue: location.stringLong, Constants.lat.rawValue: location.stringLatt]
 
-        AF.request(url)
-            .validate()
+        AF.request(Constants.url.returnValue(), parameters: parameters)
+            .validate(statusCode: 200..<300)
             .responseDecodable(of: JSONWeatherData.self) { response in
-                guard let statusCode = response.response?.statusCode else { return }
-                if (200..<300).contains(statusCode) {
-                    switch response.result {
-                    case .success(let data):
-                        completion(.success(data))
-                    case .failure(let error):
-                        completion(.failure(WeatherError.errorFromLocationServer(error.localizedDescription)))
-                    }
-                } else if (400..<500).contains(statusCode) {
-                    completion(.failure(WeatherError.clientError(response.error?.localizedDescription ?? "Server can't operate request. Status code is \(statusCode)")))
-                } else if (500..<600).contains(statusCode) {
-                    completion(.failure(WeatherError.serverError(response.error?.localizedDescription ?? "Server error. Status code is \(statusCode)")))
+                switch response.result {
+                case .success(let data):
+                    completion(.success(data))
+                case .failure(let error):
+                    completion(.failure(WeatherError.errorFromLocationServer(error.localizedDescription)))
                 }
         }
     }
