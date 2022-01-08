@@ -7,39 +7,51 @@
 
 import Alamofire
 
+fileprivate let END_POINT = "https://api.openweathermap.org/data/2.5/forecast?"
+fileprivate enum QueryParameters: String {
+    case apiKey = "appid"
+    case lang
+    case units
+    case lon
+    case lat
+    
+    func returnValue() -> String {
+        switch self {
+        case .apiKey:
+            return "08e77799ad87c75f8ae1192abab79639"
+        case .lang:
+            return "ru"
+        case .units:
+            return "metric"
+        default:
+            return ""
+        }
+    }
+}
 
 final class NetworkProvider: NetworkManager {
     
-    private enum Constants: String {
-        case url
-        case apiKey = "appid"
-        case lang
-        case units
-        case lon
-        case lat
-        
-        func returnValue() -> String {
-            switch self {
-            case .url:
-                return "https://api.openweathermap.org/data/2.5/forecast?"
-            case .apiKey:
-                return "08e77799ad87c75f8ae1192abab79639"
-            case .lang:
-                return "ru"
-            case .units:
-                return "metric"
-            default:
-                return ""
-            }
-        }
-    }
+    let reachabilityManager = NetworkReachabilityManager()
+    let cacher = ResponseCacher()
     
     public func loadWeatherForLocation(_ location: LocationData, completion: @escaping (Result<JSONWeatherData, WeatherError>) -> Void) {
         
-        let parameters: [String: String] = [Constants.apiKey.rawValue: Constants.apiKey.returnValue(), Constants.lang.rawValue: Constants.lang.returnValue(), Constants.units.rawValue: Constants.units.returnValue(), Constants.lon.rawValue: location.stringLong, Constants.lat.rawValue: location.stringLatt]
-
-        AF.request(Constants.url.returnValue(), parameters: parameters)
+        reachabilityManager?.startListening(onQueue: .global(), onUpdatePerforming: { status in
+            switch status {
+            case .notReachable:
+                completion(.failure(.serverError("No internet... Please try later...")))
+            case .unknown:
+                print("enternet is in unknown status :0")
+            case .reachable(_):
+                print("enternet reachable :)")
+            }
+        })
+        
+        let parameters: [String: String] = [QueryParameters.apiKey.rawValue: QueryParameters.apiKey.returnValue(), QueryParameters.lang.rawValue: QueryParameters.lang.returnValue(), QueryParameters.units.rawValue: QueryParameters.units.returnValue(), QueryParameters.lon.rawValue: location.stringLong, QueryParameters.lat.rawValue: location.stringLatt]
+        
+        AF.request(END_POINT, parameters: parameters)
             .validate(statusCode: 200..<300)
+            .cacheResponse(using: cacher)
             .responseDecodable(of: JSONWeatherData.self) { response in
                 switch response.result {
                 case .success(let data):
@@ -50,3 +62,4 @@ final class NetworkProvider: NetworkManager {
         }
     }
 }
+
