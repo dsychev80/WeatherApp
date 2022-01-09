@@ -47,6 +47,11 @@ extension MainViewController: MainView {
             self.containerView.stopLoading()
         }
     }
+    
+    public func showError(_ text: String) {
+        self.containerView.stopLoading()
+        self.containerView.showError(text)
+    }
 }
 
     // MARK: - MainPresenter protocol

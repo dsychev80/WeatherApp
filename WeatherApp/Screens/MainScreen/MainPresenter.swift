@@ -27,8 +27,7 @@ final class MainPresenterImpl {
         networkController.loadWeatherForLocation(coordinates) { [unowned self] result in
             switch result {
             case .failure(let error):
-                // FIXME: Handle error
-                print(error.localizedDescription)
+                view.showError(error.localizedDescription)
             case .success(let weather):
                 self.view.provideForcastData(weather.convertToItems(),forCity: weather.city.name)
             
@@ -44,8 +43,7 @@ extension MainPresenterImpl: MainPresenter {
         locationManager.getCityCoordinatesByName(name) { [unowned self] result in
             switch result {
             case .failure(let error):
-                // MARK: need to handle the error
-                print(error)
+                view.showError(error.localizedDescription)
             case .success(let coordinates):
                 self.loadWeatherForCoordinates(coordinates)
             }
@@ -74,6 +72,7 @@ extension MainPresenterImpl: NavigationBarEventHandler {
 protocol MainView: AnyObject {
     func startLoadingWeather()
     func provideForcastData(_ data: [Item], forCity name: String)
+    func showError(_ text: String)
 }
 
     // MARK: - LocationManager
