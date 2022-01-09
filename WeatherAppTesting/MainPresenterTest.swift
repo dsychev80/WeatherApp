@@ -38,6 +38,7 @@ class MainPresenterTest: XCTestCase {
         XCTAssertTrue(mainView.isCalledStartLoadingWeather)
         XCTAssertEqual(mainView.nameRecivied, name)
         XCTAssertEqual(mainView.dataReceived, items)
+        XCTAssertFalse(mainView.isCalledShowError)
     }
     
     func testMainPresenterForIncorrectName() {
@@ -54,6 +55,7 @@ class MainPresenterTest: XCTestCase {
         XCTAssertEqual(locationMock.mockName, name)
         
         XCTAssertFalse(networkMock.isCalled)
+        XCTAssertTrue(mainView.isCalledShowError)
         XCTAssertTrue(mainView.isCalledStartLoadingWeather)
         XCTAssertFalse(mainView.isCalledProvideForcastData)
     }
@@ -78,6 +80,7 @@ class MainPresenterTest: XCTestCase {
         XCTAssertTrue(networkMock.isCalled)
         XCTAssertEqual(networkMock.mockLocation, location)
         
+        XCTAssertTrue(mainView.isCalledShowError)
         XCTAssertFalse(mainView.isCalledProvideForcastData)
         XCTAssertTrue(mainView.isCalledStartLoadingWeather)
     }
@@ -87,9 +90,5 @@ class MainPresenterTest: XCTestCase {
         mainPresenter = MainPresenterImpl(with: networkMock, locationManager: locationMock, router: router)
         mainView = MainView_Mock()
         mainPresenter.view = mainView
-    }
-
-    override func tearDownWithError() throws {
-        
     }
 }

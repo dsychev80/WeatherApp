@@ -12,6 +12,7 @@ class MainView_Mock: MainView {
     
     var isCalledStartLoadingWeather: Bool = false
     var isCalledProvideForcastData: Bool = false
+    var isCalledShowError: Bool = false
     
     var nameRecivied: String = ""
     var dataReceived: [Item]?
@@ -24,5 +25,9 @@ class MainView_Mock: MainView {
         isCalledProvideForcastData = true
         dataReceived = data
         nameRecivied = name
+    }
+    
+    func showError(_ text: String) {
+        isCalledShowError = true
     }
 }
