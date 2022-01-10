@@ -29,7 +29,7 @@ final class MainPresenterImpl {
             case .failure(let error):
                 view.showError(error.localizedDescription)
             case .success(let weather):
-                self.view.provideForcastData(weather.convertToItems(),forCity: weather.city.name)
+                view.provideForcastData(weather.convertToItems(),forCity: weather.city.name)
             
             }
         }
