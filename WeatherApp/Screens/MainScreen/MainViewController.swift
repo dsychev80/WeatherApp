@@ -49,8 +49,13 @@ extension MainViewController: MainView {
     }
     
     public func showError(_ text: String) {
-        self.containerView.stopLoading()
-        self.containerView.showError(text)
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else {
+                fatalError("self not found")
+            }
+            self.containerView.stopLoading()
+            self.containerView.showError(text)
+        }
     }
 }
 
