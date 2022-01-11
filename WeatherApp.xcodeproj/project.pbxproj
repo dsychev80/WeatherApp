@@ -58,6 +58,7 @@
 		73921284275DED6100450941 /* CitiesCustomCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73921283275DED6100450941 /* CitiesCustomCollectionView.swift */; };
 		73921286275DEED600450941 /* SityCancelButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73921285275DEED600450941 /* SityCancelButton.swift */; };
 		73921288275DF17800450941 /* CitySearchAddButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73921287275DF17800450941 /* CitySearchAddButton.swift */; };
+		73AD16D5278D4F02002F6503 /* NeedleGenerated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73AD16D4278D4F02002F6503 /* NeedleGenerated.swift */; };
 		73BD0780275E5DD200B5BCE3 /* WeatherAppTesting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73BD077F275E5DD200B5BCE3 /* WeatherAppTesting.swift */; };
 		73BD0787275E60A000B5BCE3 /* MainPresenterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73BD0786275E60A000B5BCE3 /* MainPresenterTest.swift */; };
 		73BD0789275E629B00B5BCE3 /* NetworkController_Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73BD0788275E629B00B5BCE3 /* NetworkController_Mock.swift */; };
@@ -144,6 +145,7 @@
 		73921283275DED6100450941 /* CitiesCustomCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitiesCustomCollectionView.swift; sourceTree = "<group>"; };
 		73921285275DEED600450941 /* SityCancelButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SityCancelButton.swift; sourceTree = "<group>"; };
 		73921287275DF17800450941 /* CitySearchAddButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitySearchAddButton.swift; sourceTree = "<group>"; };
+		73AD16D4278D4F02002F6503 /* NeedleGenerated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NeedleGenerated.swift; sourceTree = "<group>"; };
 		73BD077D275E5DD200B5BCE3 /* WeatherAppTesting.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WeatherAppTesting.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		73BD077F275E5DD200B5BCE3 /* WeatherAppTesting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherAppTesting.swift; sourceTree = "<group>"; };
 		73BD0786275E60A000B5BCE3 /* MainPresenterTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPresenterTest.swift; sourceTree = "<group>"; };
@@ -472,6 +474,7 @@
 				73F0379A274BD67600C130FC /* AppDelegate.swift */,
 				73F0379C274BD67600C130FC /* SceneDelegate.swift */,
 				732DC05D276B767500B5E1A7 /* R.generated.swift */,
+				73AD16D4278D4F02002F6503 /* NeedleGenerated.swift */,
 				73F037A3274BD67800C130FC /* Assets.xcassets */,
 				73F037A5274BD67800C130FC /* LaunchScreen.storyboard */,
 				73F037A8274BD67800C130FC /* Info.plist */,
@@ -521,6 +524,7 @@
 				73F03794274BD67600C130FC /* Frameworks */,
 				73F03795274BD67600C130FC /* Resources */,
 				D4EAA34A2FDFC299262A65AB /* [CP] Embed Pods Frameworks */,
+				730480FB278C4CA000408434 /* Run Needle */,
 			);
 			buildRules = (
 			);
@@ -593,6 +597,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		730480FB278C4CA000408434 /* Run Needle */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Run Needle";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export PATH=\"$PATH:/opt/homebrew/bin\"\n\nif which needle; then\n    SOURCEKIT_LOGGING=0 && needle generate WeatherApp/NeedleGenerated.swift WeatherApp/\nelse\n  echo \"warning: Needle not installed, download from https://github.com/uber/needle using Homebrew\"\nfi\n\n";
+		};
 		732DC05C276B724E00B5E1A7 /* Run R.swift */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
@@ -698,6 +720,7 @@
 				730708D82789AA37000E38A9 /* (null) in Sources */,
 				737B1C872751286700397F19 /* CityCollectionViewCell.swift in Sources */,
 				737B1C992753A38C00397F19 /* WeatherAppErrors.swift in Sources */,
+				73AD16D5278D4F02002F6503 /* NeedleGenerated.swift in Sources */,
 				730516032774C6DB00C5F6E7 /* ErrorView.swift in Sources */,
 				730515D72771D6E600C5F6E7 /* extensions+UITableView.swift in Sources */,
 				73DA797A2768C5FD003DFFA1 /* NavigationBar.swift in Sources */,
