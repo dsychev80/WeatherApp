@@ -6,18 +6,26 @@
 //
 
 import UIKit
+import NeedleFoundation
+
+
+class SearchScreenDependencyComponent: Component<EmptyDependency> {
+    
+    var searchScreenDependency: SearchScreenDIContainer {
+        SearchScreenDIContainer()
+    }
+}
 
 class SearchScreenDIContainer {
     public let presenter: CitySearchPresenter
     
-    init(with di: AppCoordinator) {
-        self.presenter = CitySearchPresenterImpl(with: di.router)
+    init() {
+        self.presenter = CitySearchPresenterImpl()
     }
-}
 
-extension SearchScreenDIContainer: SearchScreenFabric {
-    public func createSearchViewController(withCompletion completion: @escaping (String) -> Void ) -> UIViewController {
+    public func createSearchViewControllerWithRouter(_ router: MainRouter, withCompletion completion: @escaping (String) -> Void ) -> UIViewController {
         let searchVC = CitySearchViewController(with: self.presenter)
+        self.presenter.router = router
         self.presenter.searchCompletion = completion
         searchVC.modalPresentationStyle = .overCurrentContext
         searchVC.modalTransitionStyle = .crossDissolve

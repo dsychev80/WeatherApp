@@ -13,7 +13,7 @@ protocol MainScreenDependency: Dependency {
     var locationManager: LocationManager { get }
 }
 
-class MainScreenComponent: Component<MainScreenDependency> {
+class MainScreenDependencyComponent: Component<MainScreenDependency> {
     var mainScreenDIContainer: MainScreenDIContainer {
         return MainScreenDIContainer(with: dependency.networkController, locationManager: dependency.locationManager)
     }
@@ -30,8 +30,9 @@ class MainScreenDIContainer {
         self.mainPresenter = MainPresenterImpl(with: networkController, locationManager: locationManager)
     }
     
-    public func createMainViewController() -> UIViewController {
+    public func createMainViewControllerWithRouter(_ router: MainRouter) -> UIViewController {
         let mainViewController = MainViewController()
+        self.mainPresenter.router = router
         mainViewController.presenter = self.mainPresenter
         return mainViewController
     }

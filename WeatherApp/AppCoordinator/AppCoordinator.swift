@@ -15,6 +15,7 @@ final class AppCoordinator: BootstrapComponent {
     var locationManager: LocationManager
     var router: MainRouter
     var mainScreenComponent: MainScreenDIContainer
+    var searchScreenComponent: SearchScreenDIContainer
     
     
     // MARK: - Lifecycle
@@ -25,7 +26,9 @@ final class AppCoordinator: BootstrapComponent {
         self.networkController = NetworkProvider()
         self.locationManager = LocationManagerImpl()
         self.mainScreenComponent = MainScreenDIContainer(with: networkController, locationManager: locationManager)
-        self.router = MainRouterImpl(with: self.navigationController, mainScreenDIContainer: self.mainScreenComponent)
+        self.searchScreenComponent = SearchScreenDIContainer()
+        self.router = MainRouterImpl(with: self.navigationController, mainScreenDIContainer: self.mainScreenComponent, searchScreenDIContainer: searchScreenComponent)
+        
         super.init()
     }
     
