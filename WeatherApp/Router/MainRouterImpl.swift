@@ -10,12 +10,12 @@ import UIKit
 class MainRouterImpl {
     // MARK: - Properties
     private let navigationController: UINavigationController
-    private var mainScreenFabric: MainScreenDIContainer?
-    internal var di: AppCoordinator!
+    private let mainScreenDIContainer: MainScreenDIContainer
     
     // MARK: - Lifecycle
-    init(with navigationController: UINavigationController) {
+    init(with navigationController: UINavigationController, mainScreenDIContainer: MainScreenDIContainer) {
         self.navigationController = navigationController
+        self.mainScreenDIContainer = mainScreenDIContainer
         setup()
     }
     
@@ -28,14 +28,14 @@ class MainRouterImpl {
     // MARK: - Router
 extension MainRouterImpl: MainRouter {
     public func start() {
-        mainScreenFabric = MainScreenDIContainer(with: di)
-        navigationController.pushViewController(mainScreenFabric!.createMainViewController(), animated: true)
+        let mainScreenViewController = mainScreenDIContainer.createMainViewController()
+        navigationController.pushViewController(mainScreenViewController, animated: true)
     }
     
     public func openSearchScreen(withCompletion completion: @escaping (String) -> Void) {
-        let searchFabric = SearchScreenDIContainer(with: di)
-        let searchVC = searchFabric.createSearchViewController(withCompletion: completion)
-        navigationController.present( searchVC, animated: true)
+//        let searchFabric = SearchScreenDIContainer(with: di)
+//        let searchVC = searchFabric.createSearchViewController(withCompletion: completion)
+//        navigationController.present( searchVC, animated: true)
     }
     
     public func popToRoot() {

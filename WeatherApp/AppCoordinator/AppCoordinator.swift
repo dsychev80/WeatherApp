@@ -4,29 +4,42 @@
 //
 //  Created by Denis Sychev on 28.11.2021.
 //
-
+import NeedleFoundation
 import UIKit
 
 
-final class AppCoordinator {
+final class AppCoordinator: BootstrapComponent {
     // MARK: - Properties
-    var navigationController: UINavigationController
-    var mainRouter: MainRouter
+    private var navigationController: UINavigationController
+    private var networkController: NetworkManager
+    var locationManager: LocationManager
+    var router: MainRouter
+    var mainScreenComponent: MainScreenDIContainer
+    
     
     // MARK: - Lifecycle
-    init(with window: UIWindow) {
+    override init() {
+        // Needle 
+        registerProviderFactories()
         self.navigationController = UINavigationController()
-        self.mainRouter = MainRouterImpl(with: navigationController)
-        self.mainRouter.di = self
-        self.mainRouter.start()
-        
-        window.rootViewController = self.navigationController
+        self.networkController = NetworkProvider()
+        self.locationManager = LocationManagerImpl()
+        self.mainScreenComponent = MainScreenDIContainer(with: networkController, locationManager: locationManager)
+        self.router = MainRouterImpl(with: self.navigationController, mainScreenDIContainer: self.mainScreenComponent)
+        super.init()
+    }
+    
+    public func startApplicationInWindow(_ window: UIWindow?) {
+        guard let window = window else {
+            fatalError("There is no window")
+        }
+        router.start()
+        window.rootViewController = navigationController
         window.makeKeyAndVisible()
     }
 }
 
-protocol MainRouter {
-    var di: AppCoordinator! { get set }
+protocol MainRouter: AnyObject {
     func start()
     func openSearchScreen(withCompletion completion: @escaping (String) -> Void)
     func popToRoot()

@@ -11,7 +11,7 @@ class SearchScreenDIContainer {
     public let presenter: CitySearchPresenter
     
     init(with di: AppCoordinator) {
-        self.presenter = CitySearchPresenterImpl(with: di.mainRouter)
+        self.presenter = CitySearchPresenterImpl(with: di.router)
     }
 }
 

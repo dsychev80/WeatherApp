@@ -6,24 +6,28 @@
 //
 
 import UIKit
+import NeedleFoundation
+
+protocol MainScreenDependency: Dependency {
+    var networkController: NetworkManager { get }
+    var locationManager: LocationManager { get }
+}
+
+class MainScreenComponent: Component<MainScreenDependency> {
+    var mainScreenDIContainer: MainScreenDIContainer {
+        return MainScreenDIContainer(with: dependency.networkController, locationManager: dependency.locationManager)
+    }
+}
 
 class MainScreenDIContainer {
-    let networkController: NetworkManager
-    let locationManager: LocationManager
-    let mainPresenter: MainPresenter
+    private let networkController: NetworkManager
+    private let locationManager: LocationManager
+    private let mainPresenter: MainPresenter
     
-    init(with di: AppCoordinator) {
-        self.networkController = MainScreenDIContainer.createNetworkManager()
-        self.locationManager = MainScreenDIContainer.createLocationManager()
-        self.mainPresenter = MainPresenterImpl(with: networkController, locationManager: locationManager, router: di.mainRouter)
-    }
-    
-    private static func createNetworkManager() -> NetworkManager {
-        return NetworkProvider()
-    }
-    
-    private static func createLocationManager() -> LocationManager {
-        return LocationManagerImpl()
+    init(with networkManager: NetworkManager, locationManager: LocationManager) {
+        self.networkController = networkManager
+        self.locationManager = locationManager
+        self.mainPresenter = MainPresenterImpl(with: networkController, locationManager: locationManager)
     }
     
     public func createMainViewController() -> UIViewController {
