@@ -10,14 +10,14 @@ import UIKit
 
 protocol MainRouterDependency: Dependency {
     var navigationController: UINavigationController { get }
-    var mainScreenDIContainer: MainScreenDIContainer { get }
-    var searchScreenDIContainer: SearchScreenDIContainer { get }
+    var mainScreenComponent: MainScreenBuilder { get }
+    var searchScreenComponent: SearchScreenBuilder { get }
 }
 
 final class MainRouterComponent: Component<MainRouterDependency> {
     
     var mainRouter: MainRouter {
-        return MainRouterImpl(with: dependency.navigationController, mainScreenDIContainer: dependency.mainScreenDIContainer, searchScreenDIContainer: dependency.searchScreenDIContainer)
+        return MainRouterImpl(with: dependency.navigationController, mainScreenBuilder: dependency.mainScreenComponent, searchScreenBuilder: dependency.searchScreenComponent)
     }
     
     var searchScreenComponent: SearchScreenDependencyComponent {

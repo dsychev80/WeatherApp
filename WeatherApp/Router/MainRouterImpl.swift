@@ -10,14 +10,14 @@ import UIKit
 class MainRouterImpl {
     // MARK: - Properties
     private let navigationController: UINavigationController
-    private let mainScreenDIContainer: MainScreenDIContainer
-    private let searchScreenDIContainer: SearchScreenDIContainer
+    private let mainScreenBuilder: MainScreenBuilder
+    private let searchScreenBuilder: SearchScreenBuilder
     
     // MARK: - Lifecycle
-    init(with navigationController: UINavigationController, mainScreenDIContainer: MainScreenDIContainer, searchScreenDIContainer: SearchScreenDIContainer) {
+    init(with navigationController: UINavigationController, mainScreenBuilder: MainScreenBuilder, searchScreenBuilder: SearchScreenBuilder) {
         self.navigationController = navigationController
-        self.mainScreenDIContainer = mainScreenDIContainer
-        self.searchScreenDIContainer = searchScreenDIContainer
+        self.mainScreenBuilder = mainScreenBuilder
+        self.searchScreenBuilder = searchScreenBuilder
         setup()
     }
     
@@ -30,12 +30,12 @@ class MainRouterImpl {
     // MARK: - Router
 extension MainRouterImpl: MainRouter {
     public func start() {
-        let mainScreenViewController = mainScreenDIContainer.createMainViewControllerWithRouter(self)
+        let mainScreenViewController = mainScreenBuilder.createMainViewControllerWithRouter(self)
         navigationController.pushViewController(mainScreenViewController, animated: true)
     }
     
     public func openSearchScreen(withCompletion completion: @escaping (String) -> Void) {
-        let searchVC = searchScreenDIContainer.createSearchViewControllerWithRouter(self, withCompletion: completion)
+        let searchVC = searchScreenBuilder.createSearchViewControllerWithRouter(self, withCompletion: completion)
         navigationController.present( searchVC, animated: true)
     }
     
@@ -43,4 +43,12 @@ extension MainRouterImpl: MainRouter {
         navigationController.topViewController?.dismiss(animated: false, completion: nil)
         navigationController.popToRootViewController(animated: true)
     }
+}
+
+protocol MainScreenBuilder {
+    func createMainViewControllerWithRouter(_ router: MainRouter) -> UIViewController
+}
+
+protocol SearchScreenBuilder {
+    func createSearchViewControllerWithRouter(_ router: MainRouter, withCompletion completion: @escaping (String) -> Void) -> UIViewController
 }

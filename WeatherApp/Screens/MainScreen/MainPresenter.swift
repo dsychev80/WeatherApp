@@ -12,7 +12,7 @@ final class MainPresenterImpl {
     // MARK: - Properties
     private let networkController: NetworkManager
     private let locationManager: LocationManager
-    public weak var router: MainRouter!
+    public var router: MainRouter!
     public weak var view: MainView!
     
     // MARK: - Lifecycle

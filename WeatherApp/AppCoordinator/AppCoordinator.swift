@@ -10,25 +10,35 @@ import UIKit
 
 final class AppCoordinator: BootstrapComponent {
     // MARK: - Properties
-    private var navigationController: UINavigationController
-    private var networkController: NetworkManager
-    var locationManager: LocationManager
-    var router: MainRouter
-    var mainScreenComponent: MainScreenDIContainer
-    var searchScreenComponent: SearchScreenDIContainer
+    var navigationController: UINavigationController {
+        return shared { UINavigationController() }
+    }
+    
+    var networkController: NetworkManager {
+        return NetworkProvider()
+    }
+    
+    var locationManager: LocationManager {
+        return LocationManagerImpl()
+    }
+    
+    var router: MainRouterComponent {
+        return MainRouterComponent(parent: self)
+    }
+    
+    var mainScreenComponent: MainScreenBuilder {
+        return MainScreenDependencyComponent(parent: self)
+    }
+    
+    var searchScreenComponent: SearchScreenBuilder {
+        return SearchScreenDependencyComponent(parent: self)
+    }
     
     
     // MARK: - Lifecycle
     override init() {
         // Needle 
         registerProviderFactories()
-        self.navigationController = UINavigationController()
-        self.networkController = NetworkProvider()
-        self.locationManager = LocationManagerImpl()
-        self.mainScreenComponent = MainScreenDIContainer(with: networkController, locationManager: locationManager)
-        self.searchScreenComponent = SearchScreenDIContainer()
-        self.router = MainRouterImpl(with: self.navigationController, mainScreenDIContainer: self.mainScreenComponent, searchScreenDIContainer: searchScreenComponent)
-        
         super.init()
     }
     
@@ -36,7 +46,8 @@ final class AppCoordinator: BootstrapComponent {
         guard let window = window else {
             fatalError("There is no window")
         }
-        router.start()
+        
+        router.mainRouter.start()
         window.rootViewController = navigationController
         window.makeKeyAndVisible()
     }
