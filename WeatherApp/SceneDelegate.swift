@@ -18,6 +18,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = scene as? UIWindowScene else { return }
         window = UIWindow(windowScene: windowScene)
 
-        diContainer = AppCoordinator(with: window!)
+        diContainer = AppCoordinator()
+        diContainer.startApplicationInWindow(window)
     }
 }

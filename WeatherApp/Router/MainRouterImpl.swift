@@ -10,12 +10,14 @@ import UIKit
 class MainRouterImpl {
     // MARK: - Properties
     private let navigationController: UINavigationController
-    private var mainScreenFabric: MainScreenDIContainer?
-    internal var di: AppCoordinator!
+    private let mainScreenBuilder: MainScreenBuilder
+    private let searchScreenBuilder: SearchScreenBuilder
     
     // MARK: - Lifecycle
-    init(with navigationController: UINavigationController) {
+    init(with navigationController: UINavigationController, mainScreenBuilder: MainScreenBuilder, searchScreenBuilder: SearchScreenBuilder) {
         self.navigationController = navigationController
+        self.mainScreenBuilder = mainScreenBuilder
+        self.searchScreenBuilder = searchScreenBuilder
         setup()
     }
     
@@ -28,13 +30,12 @@ class MainRouterImpl {
     // MARK: - Router
 extension MainRouterImpl: MainRouter {
     public func start() {
-        mainScreenFabric = MainScreenDIContainer(with: di)
-        navigationController.pushViewController(mainScreenFabric!.createMainViewController(), animated: true)
+        let mainScreenViewController = mainScreenBuilder.createMainViewControllerWithRouter(self)
+        navigationController.pushViewController(mainScreenViewController, animated: true)
     }
     
     public func openSearchScreen(withCompletion completion: @escaping (String) -> Void) {
-        let searchFabric = SearchScreenDIContainer(with: di)
-        let searchVC = searchFabric.createSearchViewController(withCompletion: completion)
+        let searchVC = searchScreenBuilder.createSearchViewControllerWithRouter(self, withCompletion: completion)
         navigationController.present( searchVC, animated: true)
     }
     
@@ -44,11 +45,10 @@ extension MainRouterImpl: MainRouter {
     }
 }
 
-    // MARK: - ScreenFabric protocol
-protocol MainScreenFabric {
-    func createMainViewController() -> UIViewController
+protocol MainScreenBuilder {
+    func createMainViewControllerWithRouter(_ router: MainRouter) -> UIViewController
 }
 
-protocol SearchScreenFabric {
-    func createSearchViewController(withCompletion completion: @escaping (String) -> Void) -> UIViewController
+protocol SearchScreenBuilder {
+    func createSearchViewControllerWithRouter(_ router: MainRouter, withCompletion completion: @escaping (String) -> Void) -> UIViewController
 }

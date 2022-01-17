@@ -4,29 +4,56 @@
 //
 //  Created by Denis Sychev on 28.11.2021.
 //
-
+import NeedleFoundation
 import UIKit
 
 
-final class AppCoordinator {
+final class AppCoordinator: BootstrapComponent {
     // MARK: - Properties
-    var navigationController: UINavigationController
-    var mainRouter: MainRouter
+    var navigationController: UINavigationController {
+        return shared { UINavigationController() }
+    }
+    
+    var networkController: NetworkManager {
+        return NetworkProvider()
+    }
+    
+    var locationManager: LocationManager {
+        return LocationManagerImpl()
+    }
+    
+    var router: MainRouterComponent {
+        return MainRouterComponent(parent: self)
+    }
+    
+    var mainScreenComponent: MainScreenBuilder {
+        return MainScreenDependencyComponent(parent: self)
+    }
+    
+    var searchScreenComponent: SearchScreenBuilder {
+        return SearchScreenDependencyComponent(parent: self)
+    }
+    
     
     // MARK: - Lifecycle
-    init(with window: UIWindow) {
-        self.navigationController = UINavigationController()
-        self.mainRouter = MainRouterImpl(with: navigationController)
-        self.mainRouter.di = self
-        self.mainRouter.start()
+    override init() {
+        // Needle 
+        registerProviderFactories()
+        super.init()
+    }
+    
+    public func startApplicationInWindow(_ window: UIWindow?) {
+        guard let window = window else {
+            fatalError("There is no window")
+        }
         
-        window.rootViewController = self.navigationController
+        router.mainRouter.start()
+        window.rootViewController = navigationController
         window.makeKeyAndVisible()
     }
 }
 
-protocol MainRouter {
-    var di: AppCoordinator! { get set }
+protocol MainRouter: AnyObject {
     func start()
     func openSearchScreen(withCompletion completion: @escaping (String) -> Void)
     func popToRoot()
