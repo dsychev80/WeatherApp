@@ -5,7 +5,7 @@
 //  Created by Denis Sychev on 28.11.2021.
 //
 
-import Foundation
+import UIKit
 
 
 final class MainPresenterImpl {
@@ -68,7 +68,7 @@ extension MainPresenterImpl: NavigationBarEventHandler {
 }
 
     // MARK: - MainView
-protocol MainView: AnyObject {
+protocol MainView: UIViewController {
     func startLoadingWeather()
     func provideForcastData(_ data: [Item], forCity name: String)
     func showError(_ text: String)

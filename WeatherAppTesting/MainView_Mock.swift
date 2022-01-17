@@ -5,10 +5,12 @@
 //  Created by Denis Sychev on 07.12.2021.
 //
 
-import Foundation
 @testable import WeatherApp
+import UIKit
 
-class MainView_Mock: MainView {
+class MainView_Mock: UIViewController, MainView {
+    
+    var presenter: MainPresenter!
     
     var isCalledStartLoadingWeather: Bool = false
     var isCalledProvideForcastData: Bool = false
