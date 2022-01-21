@@ -11,9 +11,11 @@ import UIKit
 class MainScreenBuilder_Mock: MainScreenBuilder {
     
     let mainPresenter: MainPresenter
+    let mainInteractor: MainInteractor
     
     init(networkController: NetworkManager, locationManager: LocationManager) {
-        self.mainPresenter =  MainPresenterImpl(with: networkController, locationManager: locationManager)
+        self.mainInteractor = MainInteractorImpl(with: locationManager, networkController: networkController)
+        self.mainPresenter =  MainPresenterImpl(with: mainInteractor)
     }
     
     func createMainViewControllerWithRouter(_ router: MainRouter) -> UIViewController {

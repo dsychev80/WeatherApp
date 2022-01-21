@@ -10,28 +10,13 @@ import UIKit
 
 final class MainPresenterImpl {
     // MARK: - Properties
-    private let networkController: NetworkManager
-    private let locationManager: LocationManager
+    private let mainInteractor: MainInteractor
     public var router: MainRouter!
     public weak var view: MainView!
     
     // MARK: - Lifecycle
-    init(with networkController: NetworkManager, locationManager: LocationManager) {
-        self.networkController = networkController
-        self.locationManager = locationManager
-    }
-    
-    // MARK: - Methods
-    private func loadWeatherForCoordinates(_ coordinates: LocationData) {
-        networkController.loadWeatherForLocation(coordinates) { [unowned self] result in
-            switch result {
-            case .failure(let error):
-                view.showError(error.localizedDescription)
-            case .success(let weather):
-                view.provideForcastData(weather.convertToItems(),forCity: weather.city.name)
-            
-            }
-        }
+    init(with mainInteractor: MainInteractor) {
+        self.mainInteractor = mainInteractor
     }
 }
 
@@ -39,12 +24,12 @@ final class MainPresenterImpl {
 extension MainPresenterImpl: MainPresenter {
     public func recieveWeatherForCityName(_ name: String) {
         view.startLoadingWeather()
-        locationManager.getCityCoordinatesByName(name) { [unowned self] result in
+        mainInteractor.fetchWeatherFor(city: name) { [unowned self] result in
             switch result {
             case .failure(let error):
                 view.showError(error.localizedDescription)
-            case .success(let coordinates):
-                self.loadWeatherForCoordinates(coordinates)
+            case .success(let items):
+                view.provideForcastData(items, forCity: name)
             }
         }
     }
