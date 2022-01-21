@@ -258,6 +258,7 @@
 		737B1CE22758AEE400397F19 /* MainScreen */ = {
 			isa = PBXGroup;
 			children = (
+				73E8BA2C279988F50079F4BB /* MainUseCase */,
 				737B1CE52758B3DC00397F19 /* Network */,
 				73DA7981276B4AB5003DFFA1 /* ContainerView */,
 				737B1CE92758B9A800397F19 /* Cells */,
@@ -456,7 +457,6 @@
 		73E8BA2B279988E50079F4BB /* UseCases */ = {
 			isa = PBXGroup;
 			children = (
-				73E8BA2C279988F50079F4BB /* MainUseCase */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";

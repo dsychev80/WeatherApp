@@ -18,6 +18,9 @@ final class MainInteractorImpl {
         self.networkController = networkController
     }
     
+}
+
+extension MainInteractorImpl: MainInteractor {
     public func fetchWeatherFor(city: String, with completion: @escaping (Result<[Item], WeatherError>) -> Void) {
         locationController.getCityCoordinatesByName(city) { [unowned self] result in
             switch result {

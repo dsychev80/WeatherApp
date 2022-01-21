@@ -10,13 +10,13 @@ import UIKit
 
 final class MainPresenterImpl {
     // MARK: - Properties
+    private let mainInteractor: MainInteractor
     public var router: MainRouter!
     public weak var view: MainView!
-    private let mainInteractor: MainInteractor
     
     // MARK: - Lifecycle
-    init(with networkController: NetworkManager, locationManager: LocationManager) {
-        self.mainInteractor = MainInteractorImpl(with: locationManager, networkController: networkController)
+    init(with mainInteractor: MainInteractor) {
+        self.mainInteractor = mainInteractor
     }
 }
 
