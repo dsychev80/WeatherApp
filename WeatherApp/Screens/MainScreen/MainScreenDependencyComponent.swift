@@ -15,8 +15,8 @@ protocol MainScreenDependency: Dependency {
 
 class MainScreenDependencyComponent: Component<MainScreenDependency>, MainScreenBuilder {
     
-    var mainInteractor: MainInteractor {
-        return shared { MainInteractorImpl(with: dependency.locationManager, networkController: dependency.networkController) }
+    var mainInteractor: WeatherSearchForCityUseCase {
+        return shared { WeatherSearchForCityUseCaseImpl(with: dependency.locationManager, networkController: dependency.networkController) }
     }
     
     var mainPresenter: MainPresenter {

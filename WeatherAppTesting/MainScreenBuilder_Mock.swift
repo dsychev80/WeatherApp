@@ -11,10 +11,10 @@ import UIKit
 class MainScreenBuilder_Mock: MainScreenBuilder {
     
     let mainPresenter: MainPresenter
-    let mainInteractor: MainInteractor
+    let mainInteractor: WeatherSearchForCityUseCase
     
     init(networkController: NetworkManager, locationManager: LocationManager) {
-        self.mainInteractor = MainInteractorImpl(with: locationManager, networkController: networkController)
+        self.mainInteractor = WeatherSearchForCityUseCaseImpl(with: locationManager, networkController: networkController)
         self.mainPresenter =  MainPresenterImpl(with: mainInteractor)
     }
     
