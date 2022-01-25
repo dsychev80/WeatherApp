@@ -1,5 +1,5 @@
 //
-//  MainInteractor.swift
+//  WeatherSearchForCityUseCase.swift
 //  WeatherApp
 //
 //  Created by Denis Sychev on 20.01.2022.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class MainInteractorImpl {
+final class WeatherSearchForCityUseCaseImpl {
     // MARK: - Properties
     private let locationController: LocationManager
     private let networkController: NetworkManager
@@ -20,7 +20,7 @@ final class MainInteractorImpl {
     
 }
 
-extension MainInteractorImpl: MainInteractor {
+extension WeatherSearchForCityUseCaseImpl: WeatherSearchForCityUseCase {
     public func fetchWeatherFor(city: String, with completion: @escaping (Result<[Item], WeatherError>) -> Void) {
         locationController.getCityCoordinatesByName(city) { [unowned self] result in
             switch result {
@@ -40,7 +40,6 @@ extension MainInteractorImpl: MainInteractor {
     }
 }
 
-// TODO: - Move from here to where it calls
-protocol MainInteractor {
+protocol WeatherSearchForCityUseCase {
     func fetchWeatherFor(city: String, with completion: @escaping (Result<[Item], WeatherError>) -> Void)
 }

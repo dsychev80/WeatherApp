@@ -10,13 +10,13 @@ import UIKit
 
 final class MainPresenterImpl {
     // MARK: - Properties
-    private let mainInteractor: MainInteractor
+    private let weatherSearchForCityUseCase: WeatherSearchForCityUseCase
     public var router: MainRouter!
     public weak var view: MainView!
     
     // MARK: - Lifecycle
-    init(with mainInteractor: MainInteractor) {
-        self.mainInteractor = mainInteractor
+    init(with mainInteractor: WeatherSearchForCityUseCase) {
+        self.weatherSearchForCityUseCase = mainInteractor
     }
 }
 
@@ -24,7 +24,7 @@ final class MainPresenterImpl {
 extension MainPresenterImpl: MainPresenter {
     public func recieveWeatherForCityName(_ name: String) {
         view.startLoadingWeather()
-        mainInteractor.fetchWeatherFor(city: name) { [unowned self] result in
+        weatherSearchForCityUseCase.fetchWeatherFor(city: name) { [unowned self] result in
             switch result {
             case .failure(let error):
                 view.showError(error.localizedDescription)
