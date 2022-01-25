@@ -43,3 +43,14 @@ extension WeatherSearchForCityUseCaseImpl: WeatherSearchForCityUseCase {
 protocol WeatherSearchForCityUseCase {
     func fetchWeatherFor(city: String, with completion: @escaping (Result<[Item], WeatherError>) -> Void)
 }
+
+// MARK: - LocationManager
+protocol LocationManager {
+func getCityCoordinatesByName(_ name: String, completion: @escaping (Result<LocationData, WeatherError>) -> Void)
+}
+
+// MARK: - NetworkManager
+protocol NetworkManager {
+func loadWeatherForLocation(_ location: LocationData, completion: @escaping (Result<JSONWeatherData, WeatherError>) -> Void)
+}
+

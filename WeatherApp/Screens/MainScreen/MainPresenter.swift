@@ -58,13 +58,3 @@ protocol MainView: UIViewController {
     func provideForcastData(_ data: [Item], forCity name: String)
     func showError(_ text: String)
 }
-
-    // MARK: - LocationManager
-protocol LocationManager {
-    func getCityCoordinatesByName(_ name: String, completion: @escaping (Result<LocationData, WeatherError>) -> Void)
-}
-
-    // MARK: - NetworkManager
-protocol NetworkManager {
-    func loadWeatherForLocation(_ location: LocationData, completion: @escaping (Result<JSONWeatherData, WeatherError>) -> Void)
-}
