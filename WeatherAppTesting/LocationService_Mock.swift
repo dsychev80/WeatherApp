@@ -1,5 +1,5 @@
 //
-//  LocationController_Mock.swift
+//  LocationService_Mock.swift
 //  WeatherAppTesting
 //
 //  Created by Denis Sychev on 07.12.2021.
@@ -8,7 +8,7 @@
 import Foundation
 @testable import WeatherApp
 
-class LocationController_Mock: LocationManager {
+class LocationService_Mock: LocationService {
     
     public var isCalled: Bool = false
     public var mockName: String?

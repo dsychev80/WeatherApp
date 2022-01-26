@@ -9,14 +9,14 @@ import UIKit
 import NeedleFoundation
 
 protocol MainScreenDependency: Dependency {
-    var networkController: NetworkManager { get }
-    var locationManager: LocationManager { get }
+    var networkService: NetworkService { get }
+    var locationService: LocationService { get }
 }
 
 class MainScreenDependencyComponent: Component<MainScreenDependency>, MainScreenBuilder {
     
     var mainInteractor: WeatherSearchForCityUseCase {
-        return shared { WeatherSearchForCityUseCaseImpl(with: dependency.locationManager, networkController: dependency.networkController) }
+        return shared { WeatherSearchForCityUseCaseImpl(with: dependency.locationService, networkService: dependency.networkService) }
     }
     
     var mainPresenter: MainPresenter {

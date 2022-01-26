@@ -1,5 +1,5 @@
 //
-//  LocationManager.swift
+//  LocationService.swift
 //  WeatherApp
 //
 //  Created by Denis Sychev on 28.11.2021.
@@ -8,7 +8,7 @@
 import CoreLocation
 
 
-final class LocationManagerImpl: LocationManager {
+final class LocationManagerImpl: LocationService {
     
     func getCityCoordinatesByName(_ name: String, completion: @escaping (Result<LocationData, WeatherError>) -> Void) {
         CLGeocoder().geocodeAddressString(name) { placeMarcs, error in

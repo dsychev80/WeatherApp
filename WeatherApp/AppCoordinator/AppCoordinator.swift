@@ -14,11 +14,11 @@ final class AppCoordinator: BootstrapComponent {
         return shared { UINavigationController() }
     }
     
-    var networkController: NetworkManager {
-        return NetworkProvider()
+    var networkService: NetworkService {
+        return NetworkServiceImpl()
     }
     
-    var locationManager: LocationManager {
+    var locationService: LocationService {
         return LocationManagerImpl()
     }
     
