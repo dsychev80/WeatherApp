@@ -9,23 +9,22 @@ import Foundation
 
 final class WeatherSearchForCityUseCaseImpl {
     // MARK: - Properties
-    private let locationController: LocationManager
-    private let networkController: NetworkManager
+    private let locationService: LocationService
+    private let networkService: NetworkService
     
     // MARK: - Lifecycle
-    init(with locationController: LocationManager, networkController: NetworkManager) {
-        self.locationController = locationController
-        self.networkController = networkController
+    init(with locationService: LocationService, networkService: NetworkService) {
+        self.locationService = locationService
+        self.networkService = networkService
     }
-    
 }
 
 extension WeatherSearchForCityUseCaseImpl: WeatherSearchForCityUseCase {
     public func fetchWeatherFor(city: String, with completion: @escaping (Result<[Item], WeatherError>) -> Void) {
-        locationController.getCityCoordinatesByName(city) { [unowned self] result in
+        locationService.getCityCoordinatesByName(city) { [unowned self] result in
             switch result {
             case .success(let location):
-                self.networkController.loadWeatherForLocation(location) { result in
+                self.networkService.loadWeatherForLocation(location) { result in
                     switch result {
                     case .success(let data):
                         completion(.success(data.convertToItems()))
@@ -44,13 +43,13 @@ protocol WeatherSearchForCityUseCase {
     func fetchWeatherFor(city: String, with completion: @escaping (Result<[Item], WeatherError>) -> Void)
 }
 
-// MARK: - LocationManager
-protocol LocationManager {
+// MARK: - LocationService
+protocol LocationService {
 func getCityCoordinatesByName(_ name: String, completion: @escaping (Result<LocationData, WeatherError>) -> Void)
 }
 
 // MARK: - NetworkManager
-protocol NetworkManager {
+protocol NetworkService {
 func loadWeatherForLocation(_ location: LocationData, completion: @escaping (Result<JSONWeatherData, WeatherError>) -> Void)
 }
 

@@ -1,5 +1,5 @@
 //
-//  NetworkProvider.swift
+//  NetworkServiceImpl.swift
 //  WeatherApp
 //
 //  Created by Denis Sychev on 28.11.2021.
@@ -29,7 +29,7 @@ fileprivate enum QueryParameters: String {
     }
 }
 
-final class NetworkProvider: NetworkManager {
+final class NetworkServiceImpl: NetworkService {
     
     let reachabilityManager = NetworkReachabilityManager()
     let cacher = ResponseCacher()

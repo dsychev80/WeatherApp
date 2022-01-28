@@ -13,8 +13,8 @@ class MainScreenBuilder_Mock: MainScreenBuilder {
     let mainPresenter: MainPresenter
     let mainInteractor: WeatherSearchForCityUseCase
     
-    init(networkController: NetworkManager, locationManager: LocationManager) {
-        self.mainInteractor = WeatherSearchForCityUseCaseImpl(with: locationManager, networkController: networkController)
+    init(networkService: NetworkService, locationService: LocationService) {
+        self.mainInteractor = WeatherSearchForCityUseCaseImpl(with: locationService, networkService: networkService)
         self.mainPresenter =  MainPresenterImpl(with: mainInteractor)
     }
     

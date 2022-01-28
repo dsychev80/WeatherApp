@@ -1,5 +1,5 @@
 //
-//  NetworkController_Mock.swift
+//  NetworkService_Mock.swift
 //  WeatherAppTesting
 //
 //  Created by Denis Sychev on 06.12.2021.
@@ -8,7 +8,7 @@
 import Foundation
 @testable import WeatherApp
 
-class NetworkController_Mock: NetworkManager {
+class NetworkService_Mock: NetworkService {
     
     var isCalled: Bool = false
     var mockLocation: LocationData?

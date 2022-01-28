@@ -10,8 +10,8 @@ import XCTest
 
 class MainPresenterTest: XCTestCase {
 
-    var networkMock: NetworkController_Mock!
-    var locationMock: LocationController_Mock!
+    var networkMock: NetworkService_Mock!
+    var locationMock: LocationService_Mock!
     var mainView: MainView_Mock!
     var router: MainRouter!
     var mainPresenter: MainPresenter!
@@ -88,9 +88,9 @@ class MainPresenterTest: XCTestCase {
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
         let navigationVC = UINavigationController()
-        locationMock = LocationController_Mock()
-        networkMock = NetworkController_Mock()
-        let mainScreenBuilder = MainScreenBuilder_Mock(networkController: networkMock, locationManager: locationMock)
+        locationMock = LocationService_Mock()
+        networkMock = NetworkService_Mock()
+        let mainScreenBuilder = MainScreenBuilder_Mock(networkService: networkMock, locationService: locationMock)
         let searchScreenBuilder = SearchScreenBuilder_Mock()
         router = MainRouterImpl(with: navigationVC, mainScreenBuilder: mainScreenBuilder, searchScreenBuilder: searchScreenBuilder)
         mainView = mainScreenBuilder.createMainViewControllerWithRouter(router) as? MainView_Mock

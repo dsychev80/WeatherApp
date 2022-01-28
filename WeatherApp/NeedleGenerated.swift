@@ -33,11 +33,11 @@ public func registerProviderFactories() {
 // MARK: - Providers
 
 private class MainScreenDependencyb56da4ea76a04f5a4c48BaseProvider: MainScreenDependency {
-    var networkController: NetworkManager {
-        return appCoordinator.networkController
+    var networkService: NetworkService {
+        return appCoordinator.networkService
     }
-    var locationManager: LocationManager {
-        return appCoordinator.locationManager
+    var locationService: LocationService {
+        return appCoordinator.locationService
     }
     private let appCoordinator: AppCoordinator
     init(appCoordinator: AppCoordinator) {

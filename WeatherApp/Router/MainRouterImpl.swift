@@ -40,8 +40,11 @@ extension MainRouterImpl: MainRouter {
     }
     
     public func popToRoot() {
-        navigationController.topViewController?.dismiss(animated: false, completion: nil)
-        navigationController.popToRootViewController(animated: true)
+        if let topViewController = navigationController.topViewController {
+            topViewController.dismiss(animated: false, completion: nil)
+        } else {
+            navigationController.popToRootViewController(animated: true)
+        }
     }
 }
 
