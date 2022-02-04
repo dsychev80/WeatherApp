@@ -11,6 +11,7 @@ class CitySearchPresenterImpl: CitySearchPresenter {
     // MARK: - Properties
     public var router: MainRouter!
     public var searchCompletion: ((String) -> Void)?
+    private let searchCityNameUseCase = SearchCityNameUseCase()
     
     let cities = ["Тамбов", "Тюмень", "Тула", "Темрюк", "Таганрог", "Тьматараканья", "Тбилисси"]
     
