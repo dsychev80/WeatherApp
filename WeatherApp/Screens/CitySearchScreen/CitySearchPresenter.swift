@@ -13,10 +13,13 @@ class CitySearchPresenterImpl: CitySearchPresenter {
     public var searchCompletion: ((String) -> Void)?
     private let searchCityNameUseCase = SearchCityNameUseCase()
     
-    let cities = ["Тамбов", "Тюмень", "Тула", "Темрюк", "Таганрог", "Тьматараканья", "Тбилисси"]
+    var cities: [String] = []
     
     // MARK: - Methods
     public func provideCities() -> [String] {
+        searchCityNameUseCase.getCityNames(contains: "Astr") { [weak self] answer in
+            self?.cities = answer
+        }
         return cities
     }
     

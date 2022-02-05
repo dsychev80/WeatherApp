@@ -4,17 +4,9 @@ final class SearchCityNameUseCase: NSObject {
     
     var completer = MKLocalSearchCompleter()
     var locationManager: CLLocationManager?
-    var completionResults: [MKLocalSearchCompletion] = []
     
-    var userLocation: CLLocation?
-    
-    var cityResults: [String] = [] {
-        didSet {
-            (0..<cityResults.count).forEach { cityName in
-                print(cityName)
-            }
-        }
-    }
+    var cityResults: [String]?
+    var completion: (([String]) -> Void)?
     
     override init() {
         super.init()
@@ -34,28 +26,36 @@ final class SearchCityNameUseCase: NSObject {
         completer.delegate = self
     }
     
-    private func getCoordinates() {
-        guard let userCoordinates = userLocation else { fatalError("💩There is no coordinates!!!") }
-        let coordinations = CLLocationCoordinate2D(latitude: userCoordinates.coordinate.latitude, longitude: userCoordinates.coordinate.longitude)
-        completer.region = MKCoordinateRegion(center: coordinations, span: MKCoordinateSpan(latitudeDelta: 1, longitudeDelta: 1))
+    private func convertToCityNames(_ results: [MKLocalSearchCompletion]) -> [String] {
+        var cityNames: [String] = []
+        if results.count > 0 {
+            results.forEach { result in
+                cityNames.append(result.title)
+            }
+        }
+        return cityNames
+    }
+    
+    public func getCityNames(contains city: String, completion: @escaping ([String]) -> Void) {
+        completer.queryFragment = city
+        self.completion = completion
     }
     
 }
 
 extension SearchCityNameUseCase: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        self.userLocation = locations.first
-        getCoordinates()
+        let userLocation = manager.location!.coordinate
+        completer.region = MKCoordinateRegion(center: userLocation, span: MKCoordinateSpan(latitudeDelta: 10000, longitudeDelta: 10000))
     }
 }
 
 extension SearchCityNameUseCase: MKLocalSearchCompleterDelegate {
     func completerDidUpdateResults(_ completer: MKLocalSearchCompleter) {
-        completionResults = completer.results
-        if completionResults.count > 0 {
-            completionResults.forEach { result in
-                print(result.title)
-            }
+        let completionResults = completer.results
+        self.cityResults = convertToCityNames(completionResults)
+        if let completion = completion, let cities = cityResults {
+            completion(cities)
         }
     }
 }
