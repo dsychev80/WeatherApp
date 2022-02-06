@@ -17,6 +17,7 @@ class SearchScreenDependencyComponent: Component<EmptyDependency>, SearchScreenB
     
     public func createSearchViewControllerWithRouter(_ router: MainRouter, withCompletion completion: @escaping (String) -> Void ) -> UIViewController {
         let searchVC = CitySearchViewController(with: self.presenter)
+        self.presenter.view = searchVC
         self.presenter.router = router
         self.presenter.searchCompletion = completion
         searchVC.modalPresentationStyle = .overCurrentContext

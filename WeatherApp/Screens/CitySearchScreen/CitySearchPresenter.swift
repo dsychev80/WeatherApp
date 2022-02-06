@@ -10,6 +10,7 @@ import Foundation
 class CitySearchPresenterImpl: CitySearchPresenter {
     // MARK: - Properties
     public var router: MainRouter!
+    public var view: CitySearchView!
     public var searchCompletion: ((String) -> Void)?
     private let searchCityNameUseCase = SearchCityNameUseCase()
     
