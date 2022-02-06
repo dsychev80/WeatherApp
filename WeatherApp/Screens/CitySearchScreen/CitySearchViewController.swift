@@ -34,9 +34,6 @@ class CitySearchViewController: UIViewController, CitySearchView {
     
     // MARK: - Methods    
     public func getCities(_ cities: [String]) {
-        cities.forEach { text in
-            print(text)
-        }
         DispatchQueue.main.async { [weak self] in
             self?.backView.provideCitiesData(cities)
         }
