@@ -30,13 +30,13 @@ class CitySearchViewController: UIViewController, CitySearchView {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.definesPresentationContext = true
-        
-        getCities()
     }
     
     // MARK: - Methods    
-    public func getCities() {
-        let cities = presenter.provideCities()
+    public func getCities(_ cities: [String]) {
+        cities.forEach { text in
+            print(text)
+        }
         DispatchQueue.main.async { [weak self] in
             self?.backView.provideCitiesData(cities)
         }
@@ -55,8 +55,17 @@ extension CitySearchViewController: CitySearchDelegate {
     }
 }
 
+extension CitySearchViewController: UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        guard let text = textField.text else { return false }
+        let cities = presenter.provideCities(contains: text + string)
+        getCities(cities)
+        return true
+    }
+}
+
 protocol CitySearchView: AnyObject {
-    func getCities()
+    func getCities(_ cities: [String])
 }
 
 protocol CitySearchPresenter: AnyObject {
@@ -64,6 +73,6 @@ protocol CitySearchPresenter: AnyObject {
     var view: CitySearchView! { get set }
     var searchCompletion: ((String) -> Void)? { get set }
     func searchCityWithName(_ name: String)
-    func provideCities() -> [String]
+    func provideCities(contains text: String) -> [String]
     func dismiss()
 }

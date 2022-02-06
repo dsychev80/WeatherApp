@@ -35,6 +35,8 @@ class SearchView: UIView {
     required init(withDelegate delegate: CitySearchDelegate) {
         self.delegate = delegate
         super.init(frame: .zero)
+        
+        self.searchTextField.delegate = delegate
         setup()
     }
 
@@ -108,7 +110,7 @@ class SearchView: UIView {
     }
 }
 
-protocol CitySearchDelegate: AnyObject {
+protocol CitySearchDelegate: UITextFieldDelegate {
     func dismissView()
     func search(name: String)
 }

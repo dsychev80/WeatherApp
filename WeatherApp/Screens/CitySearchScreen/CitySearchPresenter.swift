@@ -17,9 +17,10 @@ class CitySearchPresenterImpl: CitySearchPresenter {
     var cities: [String] = []
     
     // MARK: - Methods
-    public func provideCities() -> [String] {
-        searchCityNameUseCase.getCityNames(contains: "Astr") { [weak self] answer in
-            self?.cities = answer
+    public func provideCities(contains text: String) -> [String] {
+        searchCityNameUseCase.getCityNames(contains: text) { [weak self] answer in
+            guard let self = self else { return }
+            self.cities = answer
         }
         return cities
     }
