@@ -55,7 +55,8 @@ extension SearchCityNameUseCase: MKLocalSearchCompleterDelegate {
         let completionResults = completer.results
         self.cityResults = convertToCityNames(completionResults)
         if let completion = completion, let cities = cityResults {
-            completion(cities)
+            let set = Set(cities)
+            completion(Array(set))
         }
     }
 }
