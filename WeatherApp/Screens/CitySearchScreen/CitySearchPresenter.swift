@@ -10,12 +10,18 @@ import Foundation
 class CitySearchPresenterImpl: CitySearchPresenter {
     // MARK: - Properties
     public var router: MainRouter!
+    public var view: CitySearchView!
     public var searchCompletion: ((String) -> Void)?
+    private let searchCityNameUseCase = SearchCityNameUseCase()
     
-    let cities = ["Тамбов", "Тюмень", "Тула", "Темрюк", "Таганрог", "Тьматараканья", "Тбилисси"]
+    var cities: [String] = []
     
     // MARK: - Methods
-    public func provideCities() -> [String] {
+    public func provideCities(contains text: String) -> [String] {
+        searchCityNameUseCase.getCityNames(contains: text) { [weak self] answer in
+            guard let self = self else { return }
+            self.cities = answer
+        }
         return cities
     }
     

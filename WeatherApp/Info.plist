@@ -2,6 +2,12 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>🤖Application requires user’s location for better user experience.</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>🤖Application requires user’s location for better user experience.</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>🤖Application requires user’s location for better user experience.</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Manrope-Bold.ttf</string>
